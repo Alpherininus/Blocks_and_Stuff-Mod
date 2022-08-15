@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#R ",
+        "RSR",
+        " R#"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:redstone_torch"
+        },
+        "R": {
+            "item": "minecraft:redstone"
+        },
+        "S": {
+            "item": "minecraft:slime_block"
+        }
+    },
+    "result": {
+        "item": "basmod:jump_block_red",
+        "count": 1
+    }
+}

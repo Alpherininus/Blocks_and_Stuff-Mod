@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " # ",
+        "#S#",
+        " # "
+    ],
+    "key": {
+        "#": {
+            "tag": "basmod:crafting_blue_dye"
+        },
+        "S": {
+            "item": "minecraft:slime_block"
+        }
+    },
+    "result": {
+        "item": "basmod:jump_block",
+        "count": 1
+    }
+}

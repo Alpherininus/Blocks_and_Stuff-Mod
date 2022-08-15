@@ -1,0 +1,26 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#D#",
+        "SES",
+        "#D#"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:ender_pearl"
+        },
+        "D": {
+            "item": "minecraft:diamond_block"
+        },
+        "S": {
+            "item": "minecraft:sea_lantern"
+        },
+        "E": {
+            "item": "minecraft:ender_eye"
+        }
+    },
+    "result": {
+        "item": "basmod:teleporter_block",
+        "count": 1
+    }
+}

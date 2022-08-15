@@ -1,0 +1,18 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#T"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:iron_door"
+        },
+        "T": {
+            "item": "basmod:red_door_key"
+        }
+    },
+    "result": {
+        "item": "basmod:red_key_door",
+        "count": 1
+    }
+}
