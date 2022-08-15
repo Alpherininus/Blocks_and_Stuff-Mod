@@ -112,17 +112,11 @@ public class SeiorShellArmorEntity extends MuleEntity {
         super.dropInventory();
         if (this.hasChest()) {
             if (!this.world.isRemote) {
-                this.entityDropItem(Blocks.SHULKER_BOX);
+                this.entityDropItem(this.activeItemStack.getContainerItem());
             }
 
             this.setChested(false);
         }
-
-    }
-
-    @Override
-    protected ResourceLocation getLootTable() {
-        return new ResourceLocation(Basmod.MOD_ID, "entities/seiorshell.json");
 
     }
 
