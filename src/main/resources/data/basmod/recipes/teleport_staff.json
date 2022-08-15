@@ -1,0 +1,29 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "iEU",
+        " O ",
+        "U/i"
+    ],
+    "key": {
+        "i": {
+            "item": "minecraft:iron_ingot"
+        },
+        "E": {
+            "item": "minecraft:ender_eye"
+        },
+        "U": {
+            "item": "minecraft:ender_pearl"
+        },
+        "O": {
+            "item": "minecraft:oak_sapling"
+        },
+        "/": {
+            "item": "minecraft:stick"
+        }
+    },
+    "result": {
+        "item": "basmod:teleport_staff",
+        "count": 1
+    }
+}

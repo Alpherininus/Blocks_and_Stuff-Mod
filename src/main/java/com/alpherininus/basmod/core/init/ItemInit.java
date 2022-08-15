@@ -277,7 +277,7 @@ public class ItemInit {
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     public static final RegistryObject<Item> MANA_BUCKET = ITEMS.register("mana_bucket",
-            () -> new BucketItem(() -> FluidInit.MANA_FLUID.get(),
+            () -> new BucketItem(FluidInit.MANA_FLUID,
                     new Item.Properties().maxStackSize(1).group(ItemGroup.MISC)));
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

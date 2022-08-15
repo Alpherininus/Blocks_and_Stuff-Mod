@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "# #",
+        " A ",
+        "# #"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:purple_dye"
+        },
+        "A": {
+            "item": "minecraft:arrow"
+        }
+    },
+    "result": {
+        "item": "basmod:magical_spell_arrow",
+        "count": 1
+    }
+}

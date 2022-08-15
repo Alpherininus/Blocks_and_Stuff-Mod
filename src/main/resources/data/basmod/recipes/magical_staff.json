@@ -1,0 +1,29 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "iP ",
+        "L/B",
+        " /i"
+    ],
+    "key": {
+        "i": {
+            "item": "minecraft:iron_ingot"
+        },
+        "P": {
+            "item": "minecraft:purpur_block"
+        },
+        "L": {
+            "item": "minecraft:lapis_lazuli"
+        },
+        "/": {
+            "item": "minecraft:stick"
+        },
+        "B": {
+            "item": "minecraft:bow"
+        }
+    },
+    "result": {
+        "item": "basmod:magical_staff",
+        "count": 1
+    }
+}
