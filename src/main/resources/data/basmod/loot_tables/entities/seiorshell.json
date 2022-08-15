@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:entity",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:loot_table",
+          "weight": 10,
+          "name": "basmod:entities/random/seiorshell_random"
+        },
+        {
+          "type": "minecraft:loot_table",
+          "weight": 85,
+          "name": "basmod:entities/random/seiorshell_random"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:killed_by_player"
+        }
+      ]
+    }
+  ]
+}
