@@ -7,14 +7,14 @@
     ],
     "key": {
         "#": {
-            "item": "basmod:ruby"
+            "item": "basmod:steel"
         },
         "/": {
             "item": "minecraft:stick"
         }
     },
     "result": {
-        "item": "basmod:ruby_shovel",
+        "item": "basmod:steel_shovel",
         "count": 1
     }
 }
