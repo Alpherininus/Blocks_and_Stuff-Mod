@@ -32,6 +32,7 @@ public class BasmodTags {
     public static class Items {
 
         public static final Tags.IOptionalNamedTag<Item> REPAIR_MOD_SWORDS = createItemTag("repair_swords");
+        public static final Tags.IOptionalNamedTag<Item> CRAFTING_WHITE_DYE = createItemTag("crafting_white_dye");
         public static final Tags.IOptionalNamedTag<Item> JETPACK_ITEMS = createItemTag("jetpacks");
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
