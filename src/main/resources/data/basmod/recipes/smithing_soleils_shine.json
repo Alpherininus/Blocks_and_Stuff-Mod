@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smithing",
+  "base": {
+    "item": "basmod:soleils_shine"
+  },
+  "addition": {
+    "tag": "basmod:repair_swords"
+  },
+  "result": {
+    "item": "basmod:soleils_shine"
+  }
+}

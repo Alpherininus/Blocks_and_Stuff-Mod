@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/door_top",
+  "textures": {
+    "top": "basmod:blocks/red_key_door_top",
+    "bottom": "basmod:blocks/key_door_bottom"
+  }
+}

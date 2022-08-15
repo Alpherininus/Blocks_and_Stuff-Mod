@@ -1,0 +1,103 @@
+package com.alpherininus.basmod.core.init;
+
+import com.alpherininus.basmod.Basmod;
+import com.alpherininus.basmod.common.blocks.*;
+import com.alpherininus.basmod.common.blocks.doorblock.BlueKeyDoorBlock;
+import com.alpherininus.basmod.common.blocks.doorblock.GreenKeyDoorBlock;
+import com.alpherininus.basmod.common.blocks.doorblock.KeyDoorBlock;
+import com.alpherininus.basmod.common.blocks.doorblock.RedKeyDoorBlock;
+import com.alpherininus.basmod.core.itemgroup.ModItemGroupBlocks;
+import net.minecraft.block.*;
+import net.minecraft.block.material.Material;
+import net.minecraft.block.material.MaterialColor;
+import net.minecraft.item.BlockItem;
+import net.minecraft.item.Item;
+import net.minecraft.potion.Effects;
+import net.minecraftforge.common.ToolType;
+import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
+
+import java.util.function.Supplier;
+
+public class BlockInit {
+    public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, Basmod.MOD_ID);
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // TODO ORES
+
+    public static final RegistryObject<Block> UMBRAL_STEEL_ORE = registryBlock("umbral_steel_ore",
+            () -> new Block(AbstractBlock.Properties.create(Material.IRON, MaterialColor.GRAY).hardnessAndResistance(5f, 6f)
+                    .harvestTool(ToolType.PICKAXE).harvestLevel(2).sound(SoundType.STONE)));
+
+    public static final RegistryObject<Block> DARK_STEEL_ORE = registryBlock("dark_steel_ore",
+            () -> new Block(AbstractBlock.Properties.create(Material.IRON, MaterialColor.GRAY).hardnessAndResistance(5f, 6f)
+                    .harvestTool(ToolType.PICKAXE).harvestLevel(2).sound(SoundType.STONE)));
+
+    public static final RegistryObject<Block> STEEL_ORE = registryBlock("steel_ore",
+            () -> new Block(AbstractBlock.Properties.create(Material.IRON, MaterialColor.GRAY).hardnessAndResistance(5f, 6f)
+                    .harvestTool(ToolType.PICKAXE).harvestLevel(2).sound(SoundType.STONE)));
+
+    public static final RegistryObject<Block> RUBY_ORE = registryBlock("ruby_ore",
+            () -> new Block(AbstractBlock.Properties.create(Material.IRON, MaterialColor.GRAY).hardnessAndResistance(5f, 6f)
+                    .harvestTool(ToolType.PICKAXE).harvestLevel(2).sound(SoundType.STONE)));
+
+    public static final RegistryObject<Block> RELICS_ORE = registryBlock("relics_ore",
+            () -> new Block(AbstractBlock.Properties.create(Material.IRON, MaterialColor.GRAY).hardnessAndResistance(8f, 7f)
+                    .harvestTool(ToolType.PICKAXE).harvestLevel(2).sound(SoundType.STONE)));
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // TODO BUILDINGBLOCKS
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // TODO DECORATION AND FLOWERS :>
+
+    public static final RegistryObject<Block> MAGICAL_FLOWER = registryBlock("magical_flower",
+            () -> new MagicalFlower(Effects.INSTANT_HEALTH, 20,
+                    AbstractBlock.Properties.from(Blocks.DANDELION)
+                            .sound(SoundType.BONE)
+                            .setLightLevel(BlockState -> 3)));
+
+    public static final RegistryObject<Block> KEY_DOOR = registryBlock("key_door",
+            () -> new KeyDoorBlock(AbstractBlock.Properties.create(Material.IRON, MaterialColor.GRAY).hardnessAndResistance(-1.0F, 3600000.0F)
+                    .harvestTool(ToolType.PICKAXE).harvestLevel(10).sound(SoundType.STONE)));
+
+    public static final RegistryObject<Block> BLUEKEY_DOOR = registryBlock("blue_key_door",
+            () -> new BlueKeyDoorBlock(AbstractBlock.Properties.create(Material.IRON, MaterialColor.GRAY).hardnessAndResistance(-1.0F, 3600000.0F)
+                    .harvestTool(ToolType.PICKAXE).harvestLevel(10).sound(SoundType.STONE)));
+
+    public static final RegistryObject<Block> REDKEY_DOOR = registryBlock("red_key_door",
+            () -> new RedKeyDoorBlock(AbstractBlock.Properties.create(Material.IRON, MaterialColor.GRAY).hardnessAndResistance(-1.0F, 3600000.0F)
+                    .harvestTool(ToolType.PICKAXE).harvestLevel(10).sound(SoundType.STONE)));
+
+    public static final RegistryObject<Block> GREENKEY_DOOR = registryBlock("green_key_door",
+            () -> new GreenKeyDoorBlock(AbstractBlock.Properties.create(Material.IRON, MaterialColor.GRAY).hardnessAndResistance(-1.0F, 3600000.0F)
+                    .harvestTool(ToolType.PICKAXE).harvestLevel(10).sound(SoundType.STONE)));
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // TODO BLOCKS
+
+    public static final RegistryObject<Block> TELEPORTERBLOCK = registryBlock("teleporter_block", TeleporterBlock::new);
+    public static final RegistryObject<Block> BOUNCEBLOCK_BLUE = registryBlock("jump_block", BouncSourceBlockBlue::new);
+    public static final RegistryObject<Block> BOUNCEBLOCK_RED = registryBlock("jump_block_red", BouncSourceBlockRed::new);
+
+    public static final RegistryObject<Block> LIGHTSOURCE_BLOCKS = BLOCKS.register("light_blocks", LightSourceBlocks::new);
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //TODO Registry -> registryBlock oder BLOCKS.register
+    private static <T extends Block> RegistryObject<T> registryBlock(String name, Supplier<T> block) {
+        RegistryObject<T> toReturn = BLOCKS.register(name, block);
+        registryBlock(name, toReturn);
+        return toReturn;
+    }
+
+    public static <T extends Block> void registryBlock(String name, RegistryObject<T> block) {
+        ItemInit.ITEMS.register(name,
+                () -> new BlockItem(block.get(), new Item.Properties().group(ModItemGroupBlocks.BAS_MOD_BLOCKS)));
+    }
+
+    public static void register(IEventBus eventBus) {
+        BLOCKS.register(eventBus);
+    }
+}

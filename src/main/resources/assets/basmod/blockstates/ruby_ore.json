@@ -1,0 +1,5 @@
+{
+	"variants": {
+		"": { "model": "basmod:block/ruby_ore" }
+	}
+}

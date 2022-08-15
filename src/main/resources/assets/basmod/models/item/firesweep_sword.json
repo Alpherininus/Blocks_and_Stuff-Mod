@@ -1,0 +1,40 @@
+{
+	"parent": "item/handheld",
+
+	"textures": {
+		"layer0": "basmod:items/firesweep_sword"
+	},
+	"gui_light": "front",
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [90, 90, -35],
+			"translation": [0, 4.25, 1.5],
+			"scale": [1.09, 1.09, 1]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [-90, 90, 35],
+			"translation": [0, 4, -0.5],
+			"scale": [1.09, 1.09, 1]
+		},
+		"firstperson_righthand": {
+			"rotation": [90, 90, -50],
+			"translation": [0, 5.25, 1],
+			"scale": [1.09, 1.09, 1]
+		},
+		"firstperson_lefthand": {
+			"rotation": [90, -90, 75],
+			"translation": [0, 5.25, 1],
+			"scale": [1.09, 1.09, 1]
+		},
+		"ground": {
+			"translation": [0, 2, 0]
+		},
+		"gui": {
+			"translation": [-0.25, -0.25, 0],
+			"scale": [1.08, 1.08, 1.5]
+		},
+		"head": {
+			"translation": [0, 15, 0]
+		}
+	}
+}

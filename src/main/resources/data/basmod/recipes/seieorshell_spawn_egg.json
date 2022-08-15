@@ -1,0 +1,35 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#FS",
+        "RGR",
+        "JDJ"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:golden_sword"
+        },
+        "F": {
+            "item": "minecraft:fire_charge"
+        },
+        "S": {
+            "item": "minecraft:shield"
+        },
+        "R": {
+            "item": "minecraft:redstone"
+        },
+        "G": {
+            "item": "minecraft:golden_horse_armor"
+        },
+        "J": {
+            "item": "minecraft:repeater"
+        },
+        "D": {
+            "item": "minecraft:redstone_block"
+        }
+    },
+    "result": {
+        "item": "basmod:seieorshell_spawn_egg",
+        "count": 1
+    }
+}

@@ -1,0 +1,5 @@
+{
+	"variants": {
+		"": { "model": "basmod:block/teleporter_block" }
+	}
+}

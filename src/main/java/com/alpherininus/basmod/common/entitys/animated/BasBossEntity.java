@@ -1,0 +1,195 @@
+package com.alpherininus.basmod.common.entitys.animated;
+
+import net.minecraft.block.BlockState;
+import net.minecraft.entity.*;
+import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.item.ItemEntity;
+import net.minecraft.entity.merchant.villager.AbstractVillagerEntity;
+import net.minecraft.entity.monster.MonsterEntity;
+import net.minecraft.entity.monster.SlimeEntity;
+import net.minecraft.entity.monster.SpiderEntity;
+import net.minecraft.entity.monster.ZombieEntity;
+import net.minecraft.entity.passive.IronGolemEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.item.Items;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.SoundEvent;
+import net.minecraft.util.SoundEvents;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.BossInfo;
+import net.minecraft.world.World;
+import net.minecraft.world.server.ServerBossInfo;
+import software.bernie.geckolib3.core.IAnimatable;
+import software.bernie.geckolib3.core.PlayState;
+import software.bernie.geckolib3.core.builder.AnimationBuilder;
+import software.bernie.geckolib3.core.controller.AnimationController;
+import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
+import software.bernie.geckolib3.core.manager.AnimationData;
+import software.bernie.geckolib3.core.manager.AnimationFactory;
+
+import javax.annotation.Nullable;
+import java.util.function.Predicate;
+
+public class BasBossEntity extends MonsterEntity implements IAnimatable {
+    private static final EntityPredicate PLAYER_INVADER_CONDITION = (new EntityPredicate()).setDistance(64.0D);
+
+    private static final Predicate<LivingEntity> NOT_UNDEAD = (p_213797_0_) -> p_213797_0_.getCreatureAttribute() != CreatureAttribute.UNDEAD && p_213797_0_.attackable();
+    private final ServerBossInfo bossInfo = (ServerBossInfo)(new ServerBossInfo(this.getDisplayName(), BossInfo.Color.YELLOW, BossInfo.Overlay.PROGRESS)).setDarkenSky(true);
+
+    private AnimationFactory factory = new AnimationFactory(this);
+
+    public BasBossEntity(EntityType<? extends MonsterEntity> entityType, World worldIn) {
+        super(entityType, worldIn);
+    }
+
+    @Override
+    protected void registerGoals() {
+        this.goalSelector.addGoal(2, new SwimGoal(this));
+        this.goalSelector.addGoal(1, new LookAtGoal(this, PlayerEntity.class, 64.0f));
+        this.goalSelector.addGoal(4, new LookRandomlyGoal(this));
+        this.goalSelector.addGoal(9, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
+
+        this.targetSelector.addGoal(2, (new HurtByTargetGoal(this)).setCallsForHelp(BasBossEntity.class));
+        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
+        this.targetSelector.addGoal(8, new NearestAttackableTargetGoal<>(this, ZombieEntity.class, true));
+        this.targetSelector.addGoal(7, new NearestAttackableTargetGoal<>(this, SlimeEntity.class, true));
+        this.targetSelector.addGoal(6, new NearestAttackableTargetGoal<>(this, LivingEntity.class, true));
+        this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, AbstractVillagerEntity.class, false));
+        this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, IronGolemEntity.class, true));
+
+        super.registerGoals();
+    }
+
+    public static AttributeModifierMap setCustomBasbossAttributes() {
+        return MobEntity.func_233666_p_()
+                .createMutableAttribute(Attributes.MAX_HEALTH, 500.0D)
+                .createMutableAttribute(Attributes.ATTACK_DAMAGE, 3.5f)
+                .createMutableAttribute(Attributes.ATTACK_SPEED, 2.0f)
+                .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.50D)
+                .createMutableAttribute(Attributes.FOLLOW_RANGE, 35.0D)
+                .createMutableAttribute(Attributes.ATTACK_KNOCKBACK, 1.5f).create();
+
+    }
+
+    @Override
+    public boolean isAggressive() {
+        return true;
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    private <E extends IAnimatable>PlayState predicate(AnimationEvent<E> event) {
+
+        if (event.isMoving()) {
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("walk", true));
+            return PlayState.CONTINUE;
+        }
+
+        event.getController().setAnimation(new AnimationBuilder().addAnimation("idle", true));
+        return PlayState.CONTINUE;
+
+    }
+
+    private <E extends IAnimatable>PlayState predicateAttack(AnimationEvent<E> event) {
+
+        if (isSpinAttacking()) {
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("attack", true));
+            return PlayState.CONTINUE;
+        }
+
+        return PlayState.CONTINUE;
+    }
+
+    @Override
+    public void registerControllers(AnimationData animationData) {
+        animationData.addAnimationController(
+                new AnimationController(this, "basRobotBossController", 0, this::predicate));
+
+        animationData.addAnimationController(
+                new AnimationController(this, "attackController", 0, this::predicateAttack));
+
+
+    }
+
+    @Override
+    public AnimationFactory getFactory() {
+        return this.factory;
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    @Override
+    protected void playStepSound(BlockPos pos, BlockState blockIn) {
+        this.playSound(SoundEvents.BLOCK_METAL_STEP, 0.50F, 1.0F);
+    }
+
+    @Nullable
+    @Override
+    protected SoundEvent getAmbientSound() {
+        return SoundEvents.EVENT_RAID_HORN;
+    }
+
+    @Nullable
+    @Override
+    protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
+        return SoundEvents.ENTITY_VEX_HURT;
+    }
+
+    @Nullable
+    @Override
+    protected SoundEvent getDeathSound() {
+        return SoundEvents.ENTITY_IRON_GOLEM_DEATH;
+    }
+
+    @Override
+    protected float getSoundVolume() {
+        return 10.5F;
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    @Override
+    protected void dropSpecialItems(DamageSource source, int looting, boolean recentlyHitIn) {
+        super.dropSpecialItems(source, looting, recentlyHitIn);
+        ItemEntity itementity = this.entityDropItem(Items.IRON_BLOCK);
+        if (itementity != null) {
+            itementity.setNoDespawn();
+        }
+    }
+
+    public CreatureAttribute getCreatureAttribute() {
+        return CreatureAttribute.UNDEAD;
+    }
+
+    public boolean onLivingFall(float distance, float damageMultiplier) {
+        return false;
+    }
+
+    @Override
+    public boolean addPotionEffect(EffectInstance effectInstanceIn) {
+        return false;
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    @Override
+    protected void updateAITasks() {
+        this.bossInfo.setPercent(this.getHealth() / this.getMaxHealth());
+    }
+
+    public void addTrackingPlayer(ServerPlayerEntity player) {
+        super.addTrackingPlayer(player);
+        this.bossInfo.addPlayer(player);
+    }
+
+    public void removeTrackingPlayer(ServerPlayerEntity player) {
+        super.removeTrackingPlayer(player);
+        this.bossInfo.removePlayer(player);
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+}

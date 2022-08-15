@@ -1,0 +1,154 @@
+{
+	"item.basmod.basmod_book": "Blocks and Stuff Book",
+	"item.basmod.experi_helmet": "Experimental Helmet",
+	"item.basmod.experi_chestplatte": "Experimental Chestplatte",
+	"item.basmod.experi_leggings": "Experimental Leggings",
+	"item.basmod.experi_boots": "Experimental Boots",
+
+	"item.basmod.model_helmet": "Helmet",
+	"item.basmod.model_chestplatte": "Chestplatte",
+	"item.basmod.model_leggings": "Leggings",
+	"item.basmod.model_boots": "Boots",
+
+	"item.basmod.jetpack_chestplatte": "Jetpack",
+
+	"item.basmod.experimental_item": "Experimental Item",
+	"item.basmod.experi_horse_armor": "Experimental Horse Armor",
+	"item.basmod.asuka_axt": "ASUKA Axt",
+
+	"item.basmod.creator_sword": "The Sword of Creator",
+	"item.basmod.soleils_shine": "Soleil's Shine",
+	"item.basmod.thundersword": "Thunder Sword",
+	"item.basmod.firesweep_sword": "Firesweep",
+	"item.basmod.sublime_creator_sword": "Sublime Creator Sword",
+
+	"item.basmod.nohr_shield_red": "Nohr Shield",
+	"item.basmod.nohr_shield_white": "Nohr Shield",
+
+	"item.basmod.giant_spawn_egg": "Giant Spawn Egg",
+	"item.basmod.iron_golem_spawn_egg": "Iron Golem Spawn Egg",
+	"item.basmod.illusioner_spawn_egg": "Illusioner Spawn Egg",
+	"item.basmod.wither_spawn_egg": "Wither Spawn Egg",
+	"item.basmod.ender_dragon_spawn_egg": "Ender Dragon Spawn Egg",
+	"item.basmod.cooper_golem_spawn_egg": "Copper Golem Spawn Egg",
+
+	"item.basmod.seieorshell_spawn_egg": "Seiðr Shell",
+	"entity.basmod.seiorshell": "Seiðr Shell",
+
+	"item.basmod.bas_boss_spawn_egg": "Blocks and Stuff | Boss",
+	"entity.basmod.basmod_boss": "Blocks and Stuff | Boss",
+
+	"item.basmod.ruby_sword": "Ruby Sword",
+	"item.basmod.ruby_axt": "Ruby Axe",
+	"item.basmod.ruby_pickaxt": "Ruby Pickaxe",
+	"item.basmod.ruby_shovel": "Ruby Shovel",
+	"item.basmod.ruby_hoe": "Ruby Hoe",
+
+	"item.basmod.umbral_sword": "Umbral Sword",
+	"item.basmod.umbral_axt": "Umbral Axe",
+	"item.basmod.umbral_pickaxt": "Umbral Pickaxe",
+	"item.basmod.umbral_shovel": "Umbral Shovel",
+	"item.basmod.umbral_hoe": "Umbral Hoe",
+
+	"item.basmod.dark_steel_sword": "Dark Steel Sword",
+	"item.basmod.dark_steel_axt": "Dark Steel Axe",
+	"item.basmod.dark_steel_pickaxt": "Dark Steel Pickaxe",
+	"item.basmod.dark_steel_shovel": "Dark Steel Shovel",
+	"item.basmod.dark_steel_hoe": "Dark Steel Hoe",
+
+	"item.basmod.steel_sword": "Steel Sword",
+	"item.basmod.steel_axt": "Steel Axe",
+	"item.basmod.steel_pickaxt": "Steel Pickaxe",
+	"item.basmod.steel_shovel": "Steel Shovel",
+	"item.basmod.steel_hoe": "Steel Hoe",
+
+	"item.basmod.ring_of_lol": "Ring of LOL",
+
+	"item.basmod.ruby": "Ruby",
+	"item.basmod.steel": "Steel",
+	"item.basmod.relics": "Relics",
+	"item.basmod.dark_steel": "Dark Steel",
+	"item.basmod.umbral_steel": "Umbral Steel",
+
+	"block.basmod.key_door": "Key Door",
+	"block.basmod.blue_key_door": "Key Door",
+	"block.basmod.red_key_door": "Key Door",
+	"block.basmod.green_key_door": "Key Door",
+
+	"item.basmod.blue_door_key": "Blue Door Key",
+	"item.basmod.red_door_key": "Red Door Key",
+	"item.basmod.green_door_key": "Green Door Key",
+	"item.basmod.door_key": "Door Key",
+
+	"block.basmod.light_blocks": "Light Sword",
+	"item.basmod.light_sword": "Light Sword Item",
+
+	"item.basmod.magical_spell_arrow": "Magical Arrow",
+	"item.basmod.magical_staff": "Magical Staff",
+	"item.basmod.heal_staff": "Heal Staff",
+	"item.basmod.teleport_staff": "Teleport Staff",
+
+	"block.basmod.ruby_ore": "Ruby Ore",
+	"block.basmod.steel_ore": "Steel Ore",
+	"block.basmod.umbral_steel_ore": "Umbral Steel Ore",
+	"block.basmod.relics_ore": "Relics Ore",
+	"block.basmod.dark_steel_ore": "Dark Steel Ore",
+
+	"block.basmod.magical_flower": "Magical Flower",
+	"block.basmod.magical_grass": "Magical Grass",
+	"block.basmod.magical_log": "Magical Logs",
+	"block.basmod.magical_stipped_log": "Magical Stripped Logs",
+	"block.basmod.magical_leaves": "Magical Leaves",
+	"block.basmod.magical_sapling": "Magical Sapling",
+
+	"item.basmod.mana_bucket": "Mana Bucket",
+	"fluid.basmod.mana": "Mana",
+
+	"block.basmod.jump_block": "Jump Block ...",
+	"block.basmod.jump_block_red": "Jump Block ...",
+	"block.basmod.teleporter_block": "Teleporter",
+
+	"screen.basmod.experimental_item_screen": "\u00A76\u00A7nExperi. Item",
+	"screen.basmod.ring_of_lol": "Ring of Lol",
+
+	"tooltip.basmod.default_items_shift": "Holded Shift for this Information:",
+	"tooltip.basmod.default_items": "Hold \u00A76SHIFT \u00A7ffor more Information, Yay!",
+
+	"itemGroup.bas_mod_item": "Blocks and Stuff Items",
+	"itemGroup.bas_mod_block": "Blocks and Stuff Blocks",
+	"itemGroup.bas_mod_wapons": "Blocks and Stuff Combat",
+
+	"biome.basmod.dark_of_godness": "Dark of Godness",
+	"biome.basmod.biom1": "",
+	"biome.basmod.biom2": "",
+	"biome.basmod.biom3": "",
+	"biome.basmod.biom4": "",
+
+	"deathScreen.respawn": "Try Again?",
+
+	"sounds.basmod.records.theme_music_disc": "Blocks and Staff | Main Theme",
+	"sounds.basmod.records.gears_music_disc": "Gears",
+	"sounds.basmod.music.basmod_boss_battlemusic": "Blocks and Staff | Boss Battle Music",
+
+	"item.basmod.gears_music_disc": "Gears",
+	"item.basmod.gears_music_disc.desc": "Music Descripton",
+	"item.basmod.theme_music_disc": "Theme",
+	"item.basmod.theme_music_disc.desc": "Music Descripton",
+
+	"enchantment.basmod.lightning_striker": "Lighting Striker",
+	"enchantment.basmod.tnt_attack": "TNT Attack",
+	"enchantment.basmod.fireball": "Fireball",
+	"enchantment.basmod.heavens_fall": "Heaven's Fall",
+
+	"enchantment.mjoenir_enchan_desc": "useful when thundering",
+	"enchantment.basmod.mjoenir_enchan_desc": "useful when thundering",
+	"enchantment.basmod.mjoenirs_attack": "Mjönirs Schlag",
+
+	"key.category.basmod": "Blocks and Stuff Mod",
+	"key.basmod.keyY": "Y - NONE",
+	"key.basmod.keyX": "X - NONE",
+	"key.basmod.keyV": "V - NONE",
+	"key.basmod.keyN": "N - NONE",
+	"key.basmod.keyM": "M - NONE"
+
+}

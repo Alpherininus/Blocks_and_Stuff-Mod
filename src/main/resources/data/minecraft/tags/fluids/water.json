@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "basmod:mana_fluid",
+    "basmod:mana_flowing"
+  ]
+}

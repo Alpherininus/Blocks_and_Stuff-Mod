@@ -1,0 +1,29 @@
+{
+	"theme_music_disc": {
+		"subtitle": "sounds.basmod.records.theme_music_disc",
+		"sounds": [
+			{
+				"name": "basmod:records/theme_music_disc",
+				"stream": true
+			}
+		]
+	},
+	"gears_music_disc": {
+		"subtitle": "sounds.basmod.records.gears_music_disc",
+		"sounds": [
+			{
+				"name": "basmod:records/gears_music_disc",
+				"stream": true
+			}
+		]
+	},
+	"basmod_boss_battlemusic": {
+		"subtitle": "sounds.basmod.music.basmod_boss_battlemusic",
+		"sounds": [
+			{
+				"name": "basmod:music/basmod_boss_battlemusic",
+				"stream": true
+			}
+		]
+	}
+}

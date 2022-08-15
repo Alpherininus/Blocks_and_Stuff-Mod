@@ -1,0 +1,30 @@
+modLoader="javafml"
+loaderVersion="[36,)"
+license="All Rights Reserved"
+[[mods]]
+# The modid of the mod
+modId="basmod"
+version="${file.jarVersion} test" #mandatory
+# A display name for the mod
+displayName="\u00A76Basmod"
+logoFile="basmod.png"
+#credits="Thanks for this example mod goes to Java"
+authors="\u00A76Alpherininus aka. STEVEN" #optional
+description="\u00A7eWith Optifine - 1.16.5 Support.\n\u00A7f - dynamic_lights.properties"
+# description='''description'''
+[[dependencies.basmod]]
+   modId="forge"
+   mandatory=true
+   versionRange="[36,)"
+   ordering="NONE"
+   side="BOTH"
+[[dependencies.basmod]]
+   modId="minecraft"
+   mandatory=true
+   versionRange="[1.16.5,1.17)"
+   ordering="NONE"
+   side="BOTH"
+[[dependencies.basmod]]
+modId = "curios"
+mandatory = true
+versionRange = "[1.16.5-4.0.5.3,1.17.1-5.0.2.6)"

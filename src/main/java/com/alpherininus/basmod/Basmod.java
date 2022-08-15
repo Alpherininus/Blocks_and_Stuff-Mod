@@ -1,0 +1,129 @@
+package com.alpherininus.basmod;
+
+import com.alpherininus.basmod.common.containers.screen.BaSInfoScreen;
+import com.alpherininus.basmod.common.entitys.animated.renerer.BasBossRenderer;
+import com.alpherininus.basmod.common.entitys.renderer.CopperGolemRenderer;
+import com.alpherininus.basmod.common.entitys.renderer.MagicalSpellArrowRenderer;
+import com.alpherininus.basmod.common.entitys.renderer.SeieorShellRenderer;
+import com.alpherininus.basmod.common.handlers.BasmodAnivilHandler;
+import com.alpherininus.basmod.common.items.armor.JetPackArmorItem;
+import com.alpherininus.basmod.common.items.armor.models.renderer.JetPackArmorRenderer;
+import com.alpherininus.basmod.common.world.gen.BiomeGeneration;
+import com.alpherininus.basmod.common.world.gen.OreGeneration;
+import com.alpherininus.basmod.core.init.*;
+import com.alpherininus.basmod.core.util.BasmodConfig;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.ScreenManager;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.RenderTypeLookup;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.eventbus.api.EventPriority;
+import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.InterModComms;
+import net.minecraftforge.fml.ModLoadingContext;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import software.bernie.geckolib3.GeckoLib;
+import software.bernie.geckolib3.renderers.geo.GeoArmorRenderer;
+import top.theillusivec4.curios.api.SlotTypeMessage;
+import top.theillusivec4.curios.api.SlotTypePreset;
+
+@Mod("basmod")
+@Mod.EventBusSubscriber(modid = Basmod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
+public class Basmod {
+
+    private static final Logger LOGGER = LogManager.getLogger();
+    public static final String MOD_ID = "basmod";
+
+    public Basmod() {
+        IEventBus eventbus = FMLJavaModLoadingContext.get().getModEventBus();
+
+        // TODO Registrys
+        BlockInit.BLOCKS.register(eventbus);
+        ItemInit.ITEMS.register(eventbus);
+
+        EnchantmentInit.ENCHANTMENT_DEFERRED_REGISTER.register(eventbus);
+        TileEntityInit.TILE_ENTITIES.register(eventbus);
+        BiomeInit.BIOMES.register(eventbus);
+        ContainerInit.CONTAINERS.register(eventbus);
+        EntityTypesInit.ENTITY_TYPES.register(eventbus);
+        PaintingsInit.PAINTING_TYPES.register(eventbus);
+        FluidInit.FLUIDS.register(eventbus);
+        SoundInit.BAS_SOUND_EVENTS.register(eventbus);
+
+        GeckoLib.initialize();
+
+        // TODO EVENTS
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::enqueueIMC);
+
+        // TODO EVENTBUS
+        MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGH, OreGeneration::addOres);
+
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, BasmodConfig.COMMON_SPEC, "basmod-common.toml");
+
+        // Register ourselves for server and other game events we are interested in
+        MinecraftForge.EVENT_BUS.register(this);
+    }
+
+    private void enqueueIMC(final InterModEnqueueEvent event) {
+        InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE,
+                () -> SlotTypePreset.CHARM.getMessageBuilder().build());
+        InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE,
+                () -> SlotTypePreset.NECKLACE.getMessageBuilder().build());
+        InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE,
+                () -> SlotTypePreset.RING.getMessageBuilder().build());
+        InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE,
+                () -> SlotTypePreset.HEAD.getMessageBuilder().build());
+    }
+
+    private void setup(final FMLCommonSetupEvent event) {
+        BasmodAnivilHandler.initAnvilRecipes();
+
+        event.enqueueWork(
+                BiomeGeneration::generateBiome
+        );
+    }
+
+    private void doClientStuff(final FMLClientSetupEvent event) {
+        Minecraft mc = Minecraft.getInstance();
+
+        event.enqueueWork(() -> {
+
+            RenderTypeLookup.setRenderLayer(BlockInit.BLUEKEY_DOOR.get(), RenderType.getCutout());
+            RenderTypeLookup.setRenderLayer(BlockInit.GREENKEY_DOOR.get(), RenderType.getCutout());
+            RenderTypeLookup.setRenderLayer(BlockInit.REDKEY_DOOR.get(), RenderType.getCutout());
+            RenderTypeLookup.setRenderLayer(BlockInit.KEY_DOOR.get(), RenderType.getCutout());
+
+            RenderTypeLookup.setRenderLayer(BlockInit.MAGICAL_FLOWER.get(), RenderType.getCutout());
+
+            RenderTypeLookup.setRenderLayer(FluidInit.MANA_FLUID.get(), RenderType.getTranslucent());
+            RenderTypeLookup.setRenderLayer(FluidInit.MANA_BLOCK.get(), RenderType.getTranslucent());
+            RenderTypeLookup.setRenderLayer(FluidInit.MANA_FLOWING.get(), RenderType.getTranslucent());
+
+            ScreenManager.registerFactory(ContainerInit.LIGHTNING_CHANNELER_CONTAINER.get(), BaSInfoScreen::new);
+
+        });
+
+        RenderingRegistry.registerEntityRenderingHandler(EntityTypesInit.BASMOD_COPPER_GOLEM.get(), CopperGolemRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityTypesInit.BASMOD_SEIORSHELL.get(), SeieorShellRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityTypesInit.MAGICAL_SPELL_ARROW.get(), MagicalSpellArrowRenderer::new);
+
+        RenderingRegistry.registerEntityRenderingHandler(EntityTypesInit.BASMOD_BOSS_ENTITY.get(), BasBossRenderer::new);
+
+        GeoArmorRenderer.registerArmorRenderer(JetPackArmorItem.class, JetPackArmorRenderer::new);
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    }
+
+}

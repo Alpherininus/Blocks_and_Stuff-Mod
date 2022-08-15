@@ -1,0 +1,78 @@
+{
+    "display": {
+        "title": {
+            "text": "Picked Flowers"
+        },
+        "description": {
+            "text": "pick all flowers on the game"
+        },
+        "icon": {
+            "item": "minecraft:blue_orchid"
+        },
+        "frame": "challenge",
+        "show_toast": true,
+        "announce_to_chat": true,
+        "hidden": false
+    },
+    "criteria": {
+        "pickAllflowers": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "minecraft:red_tulip"
+                    },
+                    {
+                        "item": "minecraft:lily_of_the_valley"
+                    },
+                    {
+                        "item": "minecraft:orange_tulip"
+                    },
+                    {
+                        "item": "minecraft:white_tulip"
+                    },
+                    {
+                        "item": "minecraft:pink_tulip"
+                    },
+                    {
+                        "item": "minecraft:oxeye_daisy"
+                    },
+                    {
+                        "item": "minecraft:dandelion"
+                    },
+                    {
+                        "item": "minecraft:poppy"
+                    },
+                    {
+                        "item": "minecraft:blue_orchid"
+                    },
+                    {
+                        "item": "minecraft:allium"
+                    },
+                    {
+                        "item": "minecraft:azure_bluet"
+                    },
+                    {
+                        "item": "minecraft:cornflower"
+                    },
+                    {
+                        "item": "minecraft:wither_rose"
+                    },
+                    {
+                        "itme": "minecraft:rose_bush"
+                    },
+                    {
+                        "item": "minecraft:peony"
+                    },
+                    {
+                        "item": "minecraft:lilac"
+                    },
+                    {
+                        "item": "basmod:magical_flower"
+                    }
+                ]
+            }
+        }
+    },
+    "parent": "basmod:flowers/root"
+}

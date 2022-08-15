@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "entries": [
+    "basmod:greenkey_from_blocks",
+
+    "basmod:greenkey_in_chests",
+    "basmod:bluekey_in_chests",
+    "basmod:redkey_in_chests",
+    "basmod:normalkey_in_chests"
+
+  ]
+}

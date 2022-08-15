@@ -1,0 +1,38 @@
+{
+	"parent": "item/handheld",
+
+	"textures": {
+		"layer0": "basmod:items/soleils_shine"
+	},
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [90, 90, -45],
+			"translation": [0, 5.5, 0.25],
+			"scale": [1.17, 1.17, 1]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [90, -90, 45],
+			"translation": [0, 5.5, 0.25],
+			"scale": [1.17, 1.17, 1]
+		},
+		"firstperson_righthand": {
+			"rotation": [90, 90, -45],
+			"translation": [2.5, 5, 0],
+			"scale": [1.09, 1.09, 1]
+		},
+		"firstperson_lefthand": {
+			"rotation": [90, -90, 45],
+			"translation": [2.5, 5, 0],
+			"scale": [1.09, 1.09, 1]
+		},
+		"ground": {
+			"translation": [0, 2, 0]
+		},
+		"gui": {
+			"scale": [1.11, 1.11, 1.5]
+		},
+		"head": {
+			"translation": [0, 15, 0]
+		}
+	}
+}
