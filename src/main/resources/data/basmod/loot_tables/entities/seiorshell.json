@@ -1,5 +1,5 @@
 {
-  "type": "basmod:seiorshell_random",
+  "type": "minecraft:entity",
   "pools": [
     {
       "rolls": 1,

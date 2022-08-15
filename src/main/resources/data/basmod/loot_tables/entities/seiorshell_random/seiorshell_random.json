@@ -1,5 +1,5 @@
 {
-  "type": "minecraft:entity",
+  "type": "basmod:seiorshell_random",
   "pools": [
     {
       "rolls": 1,
@@ -22,7 +22,7 @@
         {
           "type": "minecraft:item",
           "weight": 13,
-          "name": "minecraft:red_stone"
+          "name": "minecraft:redstone"
         }
       ]
     }

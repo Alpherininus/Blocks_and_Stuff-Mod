@@ -24,7 +24,7 @@
                   }
                 }
               ],
-              "name": "minecraft:relics_ore"
+              "name": "basmod:relics_ore"
             },
             {
               "type": "minecraft:item",
@@ -38,7 +38,7 @@
                   "function": "minecraft:explosion_decay"
                 }
               ],
-              "name": "minecraft:relics"
+              "name": "basmod:relics"
             }
           ]
         }

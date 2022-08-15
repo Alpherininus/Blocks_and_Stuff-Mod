@@ -24,7 +24,7 @@
                   }
                 }
               ],
-              "name": "minecraft:ruby_ore"
+              "name": "basmod:ruby_ore"
             },
             {
               "type": "minecraft:item",
@@ -38,7 +38,7 @@
                   "function": "minecraft:explosion_decay"
                 }
               ],
-              "name": "minecraft:ruby"
+              "name": "basmod:ruby"
             }
           ]
         }
