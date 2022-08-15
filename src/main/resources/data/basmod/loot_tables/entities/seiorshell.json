@@ -8,11 +8,6 @@
           "type": "minecraft:loot_table",
           "weight": 10,
           "name": "basmod:entities/random/seiorshell_random"
-        },
-        {
-          "type": "minecraft:loot_table",
-          "weight": 85,
-          "name": "basmod:entities/random/seiorshell_random"
         }
       ],
       "conditions": [
