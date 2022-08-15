@@ -1,0 +1,24 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "iW ",
+        "WSW",
+        " Wi"
+    ],
+    "key": {
+        "i": {
+            "item": "minecraft:iron_ingot"
+        },
+        "W": {
+            "tag": "basmod:crafting_white_dye"
+        },
+        "S": {
+            "item": "minecraft:shield"
+        }
+    },
+    "result": {
+        "item": "basmod:nohr_shield_white",
+        "count": 1
+    },
+    "group": "fire_emblem_theme"
+}

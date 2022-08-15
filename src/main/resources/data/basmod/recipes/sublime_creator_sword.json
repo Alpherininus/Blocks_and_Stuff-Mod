@@ -1,0 +1,30 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " i ",
+        "SGM",
+        " / "
+    ],
+    "key": {
+        "i": {
+            "item": "minecraft:iron_ingot"
+        },
+        "S": {
+            "item": "minecraft:string"
+        },
+        "G": {
+            "item": "minecraft:golden_sword"
+        },
+        "M": {
+            "item": "minecraft:magma_cream"
+        },
+        "/": {
+            "item": "minecraft:stick"
+        }
+    },
+    "result": {
+        "item": "minecraft:diamond_sword",
+        "count": 1
+    },
+    "group": "fire_emblem_theme"
+}

@@ -1,0 +1,24 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "iR ",
+        "RSR",
+        " Ri"
+    ],
+    "key": {
+        "i": {
+            "item": "minecraft:iron_ingot"
+        },
+        "R": {
+            "item": "minecraft:red_dye"
+        },
+        "S": {
+            "item": "minecraft:shield"
+        }
+    },
+    "result": {
+        "item": "basmod:nohr_shield_red",
+        "count": 1
+    },
+    "group": "fire_emblem_theme"
+}
