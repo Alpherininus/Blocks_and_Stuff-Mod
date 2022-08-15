@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:magical_flower"
+          "name": "basmod:magical_flower"
         }
       ],
       "conditions": [
