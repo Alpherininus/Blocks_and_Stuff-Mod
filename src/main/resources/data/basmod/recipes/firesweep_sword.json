@@ -20,7 +20,7 @@
         }
     },
     "result": {
-        "item": "minecraft:diamond_sword",
+        "item": "basmod:firesweep_sword",
         "count": 1
     },
     "group": "fire_emblem_theme"

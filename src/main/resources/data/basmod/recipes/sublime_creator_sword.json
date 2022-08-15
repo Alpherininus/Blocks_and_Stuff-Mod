@@ -7,13 +7,13 @@
     ],
     "key": {
         "i": {
-            "item": "minecraft:iron_ingot"
+            "item": "basmod:relics"
         },
         "S": {
             "item": "minecraft:string"
         },
         "G": {
-            "item": "minecraft:golden_sword"
+            "item": "basmod:creator_sword"
         },
         "M": {
             "item": "minecraft:magma_cream"
@@ -23,7 +23,7 @@
         }
     },
     "result": {
-        "item": "minecraft:diamond_sword",
+        "item": "basmod:sublime_creator_sword",
         "count": 1
     },
     "group": "fire_emblem_theme"

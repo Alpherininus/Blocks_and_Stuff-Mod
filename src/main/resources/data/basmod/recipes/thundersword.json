@@ -7,7 +7,7 @@
     ],
     "key": {
         "g": {
-            "item": "minecraft:gold_ingot"
+            "item": "basmod:relics"
         },
         "/": {
             "item": "minecraft:blaze_rod"
@@ -20,7 +20,7 @@
         }
     },
     "result": {
-        "item": "minecraft:diamond_sword",
+        "item": "basmod:thundersword",
         "count": 1
     },
     "group": "fire_emblem_theme"
