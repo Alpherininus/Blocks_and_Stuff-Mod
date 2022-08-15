@@ -1,5 +1,6 @@
 package com.alpherininus.basmod.common.entitys;
 
+import com.alpherininus.basmod.Basmod;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.SoundType;
 import net.minecraft.entity.AgeableEntity;
@@ -117,6 +118,17 @@ public class SeiorShellArmorEntity extends MuleEntity {
             this.setChested(false);
         }
 
+    }
+
+    @Override
+    protected ResourceLocation getLootTable() {
+        return new ResourceLocation(Basmod.MOD_ID, "entities/seiorshell.json");
+
+    }
+
+    @Override
+    protected boolean canDropLoot() {
+        return true;
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -290,9 +302,9 @@ public class SeiorShellArmorEntity extends MuleEntity {
 
     private void eatingHorse() {
         if (!this.isSilent()) {
-            SoundEvent soundevent = this.func_230274_fe_();
+            SoundEvent soundevent = this.getEatSound(ItemStack.EMPTY);
             if (soundevent != null) {
-                this.world.playSound((PlayerEntity)null, this.getPosX(), this.getPosY(), this.getPosZ(), soundevent, this.getSoundCategory(), 1.0F, 1.0F + (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F);
+                this.world.playSound(null, this.getPosX(), this.getPosY(), this.getPosZ(), soundevent, this.getSoundCategory(), 1.0F, 1.0F + (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F);
             }
         }
 

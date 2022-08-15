@@ -73,6 +73,11 @@ public class CopperGolemEntity extends GolemEntity {
         return false;
     }
 
+    @Override
+    protected boolean canDropLoot() {
+        return true;
+    }
+
     @Nullable
     protected SoundEvent getAmbientSound() {
         if (!world.isThundering()) {
