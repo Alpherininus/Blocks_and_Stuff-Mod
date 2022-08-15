@@ -1,0 +1,9 @@
+{
+    "type": "minecraft:smelting",
+    "ingredient": {
+        "item": "basmod:umbral_steel_ore"
+    },
+    "result": "basmod:umbral_steel",
+    "experience": 0.1,
+    "cookingtime": 500
+}

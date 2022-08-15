@@ -1,0 +1,9 @@
+{
+    "type": "minecraft:blasting",
+    "ingredient": {
+        "item": "basmod:dark_steel_ore"
+    },
+    "result": "basmod:dark_steel",
+    "experience": 0.2,
+    "cookingtime": 280
+}

@@ -1,0 +1,9 @@
+{
+    "type": "minecraft:smelting",
+    "ingredient": {
+        "item": "basmod:steel_ore"
+    },
+    "result": "basmod:steel",
+    "experience": 0.1,
+    "cookingtime": 350
+}

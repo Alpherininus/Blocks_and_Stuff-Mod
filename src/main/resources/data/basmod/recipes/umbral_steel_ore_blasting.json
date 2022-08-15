@@ -1,0 +1,9 @@
+{
+    "type": "minecraft:blasting",
+    "ingredient": {
+        "item": "basmod:umbral_steel_ore"
+    },
+    "result": "basmod:umbral_steel",
+    "experience": 0.2,
+    "cookingtime": 280
+}
