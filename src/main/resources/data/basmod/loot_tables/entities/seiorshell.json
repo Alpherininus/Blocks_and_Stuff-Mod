@@ -1,5 +1,5 @@
 {
-  "type": "minecraft:entity",
+  "type": "basmod:seiorshell_random",
   "pools": [
     {
       "rolls": 1,
@@ -7,7 +7,7 @@
         {
           "type": "minecraft:loot_table",
           "weight": 10,
-          "name": "basmod:entities/random/seiorshell_random"
+          "name": "basmod:entities/seiorshell_random/seiorshell_random"
         }
       ],
       "conditions": [
