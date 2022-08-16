@@ -64,7 +64,7 @@ public class AsukaAxt extends SwordItem {
     }
 
     public UseAction getUseAction(ItemStack stack) {
-        return UseAction.BOW;
+        return UseAction.SPEAR;
     }
 
     public int getUseDuration(ItemStack stack) {
