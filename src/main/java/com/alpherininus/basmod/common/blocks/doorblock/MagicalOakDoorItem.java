@@ -9,6 +9,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
@@ -32,8 +33,7 @@ public class MagicalOakDoorItem extends DoorBlock {
     public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
 
         ItemStack mainhand = player.getItemStackFromSlot(EquipmentSlotType.MAINHAND);
-
-        if (mainhand.getItem() == BasmodTags.Items.MAGICAL_ITEMS_FOR_OPEN_MAGICAL_DOOR && this.material == Material.IRON) {
+        if (mainhand.getItem() == ItemInit.MAGICAL_SPELL_ARROWITEM.get() && this.material == Material.IRON) {
 
             state = state.cycleValue(OPEN);
             worldIn.setBlockState(pos, state, 10);
