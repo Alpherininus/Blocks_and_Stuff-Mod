@@ -23,8 +23,6 @@ import java.util.UUID;
 
 @Mod.EventBusSubscriber(modid = Basmod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class BasmodPlayerEvents {
-    private static int flyTime = 0;
-
 
     @SubscribeEvent
     public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
