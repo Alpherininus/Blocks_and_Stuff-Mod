@@ -51,7 +51,7 @@ public class BlockInit {
 
     public static final RegistryObject<Block> MAGICAL_OAK_DOOR = registryBlock("magical_oak_door",
             () -> new MagicalOakDoorItem(AbstractBlock.Properties.create(Material.IRON, MaterialColor.PURPLE).hardnessAndResistance(8f, 7f)
-                    .harvestTool(ToolType.PICKAXE).harvestLevel(2).sound(SoundType.METAL)));
+                    .harvestTool(ToolType.PICKAXE).harvestLevel(2).sound(SoundType.METAL).notSolid()));
 
     public static final RegistryObject<Block> MAGICAL_OAK_LEAVES = registryBlock("magical_oak_leaves",
             () -> new LeavesBlock(AbstractBlock.Properties.create(Material.LEAVES, MaterialColor.PURPLE)
@@ -71,7 +71,7 @@ public class BlockInit {
 
     public static final RegistryObject<Block> MAGICAL_OAK_TRAPDOOR = registryBlock("magical_oak_trapdoor",
             () -> new TrapDoorBlock(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.PURPLE).hardnessAndResistance(8f, 7f)
-                    .harvestTool(ToolType.AXE).harvestLevel(2).sound(SoundType.METAL)));
+                    .harvestTool(ToolType.AXE).harvestLevel(2).sound(SoundType.METAL).notSolid()));
 
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -93,19 +93,19 @@ public class BlockInit {
 
     public static final RegistryObject<Block> KEY_DOOR = registryBlock("key_door",
             () -> new KeyDoorBlock(AbstractBlock.Properties.create(Material.IRON, MaterialColor.GRAY).hardnessAndResistance(-1.0F, 3600000.0F)
-                    .harvestTool(ToolType.PICKAXE).harvestLevel(10).sound(SoundType.STONE)));
+                    .harvestTool(ToolType.PICKAXE).harvestLevel(10).sound(SoundType.STONE).notSolid()));
 
     public static final RegistryObject<Block> BLUEKEY_DOOR = registryBlock("blue_key_door",
             () -> new BlueKeyDoorBlock(AbstractBlock.Properties.create(Material.IRON, MaterialColor.GRAY).hardnessAndResistance(-1.0F, 3600000.0F)
-                    .harvestTool(ToolType.PICKAXE).harvestLevel(10).sound(SoundType.STONE)));
+                    .harvestTool(ToolType.PICKAXE).harvestLevel(10).sound(SoundType.STONE).notSolid()));
 
     public static final RegistryObject<Block> REDKEY_DOOR = registryBlock("red_key_door",
             () -> new RedKeyDoorBlock(AbstractBlock.Properties.create(Material.IRON, MaterialColor.GRAY).hardnessAndResistance(-1.0F, 3600000.0F)
-                    .harvestTool(ToolType.PICKAXE).harvestLevel(10).sound(SoundType.STONE)));
+                    .harvestTool(ToolType.PICKAXE).harvestLevel(10).sound(SoundType.STONE).notSolid()));
 
     public static final RegistryObject<Block> GREENKEY_DOOR = registryBlock("green_key_door",
             () -> new GreenKeyDoorBlock(AbstractBlock.Properties.create(Material.IRON, MaterialColor.GRAY).hardnessAndResistance(-1.0F, 3600000.0F)
-                    .harvestTool(ToolType.PICKAXE).harvestLevel(10).sound(SoundType.STONE)));
+                    .harvestTool(ToolType.PICKAXE).harvestLevel(10).sound(SoundType.STONE).notSolid()));
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // TODO BLOCKS

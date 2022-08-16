@@ -38,7 +38,7 @@ public class TeleporterBlock extends Block {
                 .hardnessAndResistance(2, 5)
                 .harvestTool(ToolType.PICKAXE)
                 .harvestLevel(1)
-                .sound(SoundType.BONE)
+                .sound(SoundType.BONE).notSolid()
                 .setLightLevel(BlockState -> 13));
     }
 
