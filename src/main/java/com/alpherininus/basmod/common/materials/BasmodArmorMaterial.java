@@ -20,83 +20,83 @@ public enum BasmodArmorMaterial implements IArmorMaterial {
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    A_ARMOR_MATERIAL("material_a", 7, new int[] {2, 5, 6, 2}, 12,
-    SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 1.0f, 0.0f, () -> Ingredient.fromItems(ItemInit.EXPERIMENTAL_ITEM.get())),
+    A_ARMOR_MATERIAL("material_a", 7, new int[] {2, 5, 6, 2}, 9,
+    SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 1.0f, 0.3f, () -> Ingredient.fromItems(ItemInit.EXPERIMENTAL_ITEM.get())),
 
-    B_ARMOR_MATERIAL("material_b", 7, new int[] {2, 5, 6, 2}, 12,
-    SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 1.0f, 0.0f, () -> Ingredient.fromItems(ItemInit.EXPERIMENTAL_ITEM.get())),
+    B_ARMOR_MATERIAL("material_b", 7, new int[] {2, 5, 6, 2}, 9,
+    SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 1.0f, 0.5f, () -> Ingredient.fromItems(ItemInit.EXPERIMENTAL_ITEM.get())),
 
-    C_ARMOR_MATERIAL("material_c", 7, new int[] {2, 5, 6, 2}, 12,
-    SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 1.0f, 0.0f, () -> Ingredient.fromItems(ItemInit.EXPERIMENTAL_ITEM.get())),
+    C_ARMOR_MATERIAL("material_c", 7, new int[] {2, 5, 6, 2}, 9,
+    SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 1.0f, 0.8f, () -> Ingredient.fromItems(ItemInit.EXPERIMENTAL_ITEM.get())),
 
-    D_ARMOR_MATERIAL("material_d", 7, new int[] {2, 5, 6, 2}, 12,
-    SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 1.0f, 0.0f, () -> Ingredient.fromItems(ItemInit.EXPERIMENTAL_ITEM.get())),
+    D_ARMOR_MATERIAL("material_d", 7, new int[] {2, 5, 6, 2}, 9,
+    SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 1.0f, 1.0f, () -> Ingredient.fromItems(ItemInit.EXPERIMENTAL_ITEM.get())),
 
-    E_ARMOR_MATERIAL("material_e", 7, new int[] {2, 5, 6, 2}, 12,
-            SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 1.0f, 0.0f, () -> Ingredient.fromItems(ItemInit.EXPERIMENTAL_ITEM.get())),
+    E_ARMOR_MATERIAL("material_e", 7, new int[] {2, 5, 6, 2}, 9,
+            SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 1.0f, 1.3f, () -> Ingredient.fromItems(ItemInit.EXPERIMENTAL_ITEM.get())),
 
-    F_ARMOR_MATERIAL("material_f", 7, new int[] {2, 5, 6, 2}, 12,
-            SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 1.0f, 0.0f, () -> Ingredient.fromItems(ItemInit.EXPERIMENTAL_ITEM.get())),
+    F_ARMOR_MATERIAL("material_f", 7, new int[] {2, 5, 6, 2}, 25,
+            SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 1.0f, 1.5f, () -> Ingredient.fromItems(ItemInit.EXPERIMENTAL_ITEM.get())),
 
-    G_ARMOR_MATERIAL("material_g", 7, new int[] {2, 5, 6, 2}, 12,
-            SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 1.0f, 0.0f, () -> Ingredient.fromItems(ItemInit.EXPERIMENTAL_ITEM.get())),
+    G_ARMOR_MATERIAL("material_g", 7, new int[] {2, 5, 6, 2}, 25,
+            SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 1.0f, 1.8f, () -> Ingredient.fromItems(ItemInit.EXPERIMENTAL_ITEM.get())),
 
-    H_ARMOR_MATERIAL("material_h", 7, new int[] {2, 5, 6, 2}, 12,
-            SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 1.0f, 0.0f, () -> Ingredient.fromItems(ItemInit.EXPERIMENTAL_ITEM.get())),
+    H_ARMOR_MATERIAL("material_h", 7, new int[] {2, 5, 6, 2}, 25,
+            SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 1.0f, 2.0f, () -> Ingredient.fromItems(ItemInit.EXPERIMENTAL_ITEM.get())),
 
-    I_ARMOR_MATERIAL("material_i", 7, new int[] {2, 5, 6, 2}, 12,
-            SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 1.0f, 0.0f, () -> Ingredient.fromItems(ItemInit.EXPERIMENTAL_ITEM.get())),
+    I_ARMOR_MATERIAL("material_i", 7, new int[] {2, 5, 6, 2}, 25,
+            SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 1.0f, 2.3f, () -> Ingredient.fromItems(ItemInit.EXPERIMENTAL_ITEM.get())),
 
-    J_ARMOR_MATERIAL("material_j", 7, new int[] {2, 5, 6, 2}, 12,
-            SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 1.0f, 0.0f, () -> Ingredient.fromItems(ItemInit.EXPERIMENTAL_ITEM.get())),
+    J_ARMOR_MATERIAL("material_j", 7, new int[] {2, 5, 6, 2}, 10,
+            SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 1.0f, 2.5f, () -> Ingredient.fromItems(ItemInit.EXPERIMENTAL_ITEM.get())),
 
-    K_ARMOR_MATERIAL("material_k", 7, new int[] {2, 5, 6, 2}, 12,
-            SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 1.0f, 0.0f, () -> Ingredient.fromItems(ItemInit.EXPERIMENTAL_ITEM.get())),
+    K_ARMOR_MATERIAL("material_k", 7, new int[] {2, 5, 6, 2}, 10,
+            SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 1.0f, 2.8f, () -> Ingredient.fromItems(ItemInit.EXPERIMENTAL_ITEM.get())),
 
-    L_ARMOR_MATERIAL("material_l", 7, new int[] {2, 5, 6, 2}, 12,
-            SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 1.0f, 0.0f, () -> Ingredient.fromItems(ItemInit.EXPERIMENTAL_ITEM.get())),
+    L_ARMOR_MATERIAL("material_l", 7, new int[] {2, 5, 6, 2}, 10,
+            SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 1.0f, 3.0f, () -> Ingredient.fromItems(ItemInit.EXPERIMENTAL_ITEM.get())),
 
-    M_ARMOR_MATERIAL("material_m", 7, new int[] {2, 5, 6, 2}, 12,
-            SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 1.0f, 0.0f, () -> Ingredient.fromItems(ItemInit.EXPERIMENTAL_ITEM.get())),
+    M_ARMOR_MATERIAL("material_m", 7, new int[] {2, 5, 6, 2}, 10,
+            SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 1.0f, 3.3f, () -> Ingredient.fromItems(ItemInit.EXPERIMENTAL_ITEM.get())),
 
     N_ARMOR_MATERIAL("material_n", 7, new int[] {2, 5, 6, 2}, 12,
-            SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 1.0f, 0.0f, () -> Ingredient.fromItems(ItemInit.EXPERIMENTAL_ITEM.get())),
+            SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 1.0f, 3.5f, () -> Ingredient.fromItems(ItemInit.EXPERIMENTAL_ITEM.get())),
 
     O_ARMOR_MATERIAL("material_o", 7, new int[] {2, 5, 6, 2}, 12,
-            SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 1.0f, 0.0f, () -> Ingredient.fromItems(ItemInit.EXPERIMENTAL_ITEM.get())),
+            SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 1.0f, 3.8f, () -> Ingredient.fromItems(ItemInit.EXPERIMENTAL_ITEM.get())),
 
     P_ARMOR_MATERIAL("material_p", 7, new int[] {2, 5, 6, 2}, 12,
-            SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 1.0f, 0.0f, () -> Ingredient.fromItems(ItemInit.EXPERIMENTAL_ITEM.get())),
+            SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 1.0f, 4.0f, () -> Ingredient.fromItems(ItemInit.EXPERIMENTAL_ITEM.get())),
 
     Q_ARMOR_MATERIAL("material_q", 7, new int[] {2, 5, 6, 2}, 12,
-            SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 1.0f, 0.0f, () -> Ingredient.fromItems(ItemInit.EXPERIMENTAL_ITEM.get())),
+            SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 1.0f, 4.3f, () -> Ingredient.fromItems(ItemInit.EXPERIMENTAL_ITEM.get())),
 
-    R_ARMOR_MATERIAL("material_r", 7, new int[] {2, 5, 6, 2}, 12,
-            SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 1.0f, 0.0f, () -> Ingredient.fromItems(ItemInit.EXPERIMENTAL_ITEM.get())),
+    R_ARMOR_MATERIAL("material_r", 7, new int[] {2, 5, 6, 2}, 15,
+            SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 1.0f, 4.5f, () -> Ingredient.fromItems(ItemInit.EXPERIMENTAL_ITEM.get())),
 
-    S_ARMOR_MATERIAL("material_s", 7, new int[] {2, 5, 6, 2}, 12,
-            SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 1.0f, 0.0f, () -> Ingredient.fromItems(ItemInit.EXPERIMENTAL_ITEM.get())),
+    S_ARMOR_MATERIAL("material_s", 7, new int[] {2, 5, 6, 2}, 15,
+            SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 1.0f, 4.8f, () -> Ingredient.fromItems(ItemInit.EXPERIMENTAL_ITEM.get())),
 
-    T_ARMOR_MATERIAL("material_t", 7, new int[] {2, 5, 6, 2}, 12,
-            SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 1.0f, 0.0f, () -> Ingredient.fromItems(ItemInit.EXPERIMENTAL_ITEM.get())),
+    T_ARMOR_MATERIAL("material_t", 7, new int[] {2, 5, 6, 2}, 15,
+            SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 1.0f, 5.0f, () -> Ingredient.fromItems(ItemInit.EXPERIMENTAL_ITEM.get())),
 
-    U_ARMOR_MATERIAL("material_u", 7, new int[] {2, 5, 6, 2}, 12,
-            SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 1.0f, 0.0f, () -> Ingredient.fromItems(ItemInit.EXPERIMENTAL_ITEM.get())),
+    U_ARMOR_MATERIAL("material_u", 7, new int[] {2, 5, 6, 2}, 15,
+            SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 1.0f, 5.3f, () -> Ingredient.fromItems(ItemInit.EXPERIMENTAL_ITEM.get())),
 
-    V_ARMOR_MATERIAL("material_v", 7, new int[] {2, 5, 6, 2}, 12,
-            SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 1.0f, 0.0f, () -> Ingredient.fromItems(ItemInit.EXPERIMENTAL_ITEM.get())),
+    V_ARMOR_MATERIAL("material_v", 7, new int[] {2, 5, 6, 2}, 15,
+            SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 1.0f, 5.5f, () -> Ingredient.fromItems(ItemInit.EXPERIMENTAL_ITEM.get())),
 
-    W_ARMOR_MATERIAL("material_w", 7, new int[] {2, 5, 6, 2}, 12,
-            SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 1.0f, 0.0f, () -> Ingredient.fromItems(ItemInit.EXPERIMENTAL_ITEM.get())),
+    W_ARMOR_MATERIAL("material_w", 7, new int[] {2, 5, 6, 2}, 15,
+            SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 1.0f, 5.8f, () -> Ingredient.fromItems(ItemInit.EXPERIMENTAL_ITEM.get())),
 
-    X_ARMOR_MATERIAL("material_x", 7, new int[] {2, 5, 6, 2}, 12,
-            SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 1.0f, 0.0f, () -> Ingredient.fromItems(ItemInit.EXPERIMENTAL_ITEM.get())),
+    X_ARMOR_MATERIAL("material_x", 7, new int[] {2, 5, 6, 2}, 15,
+            SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 1.0f, 6.0f, () -> Ingredient.fromItems(ItemInit.EXPERIMENTAL_ITEM.get())),
 
-    Y_ARMOR_MATERIAL("material_y", 7, new int[] {2, 5, 6, 2}, 12,
-            SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 1.0f, 0.0f, () -> Ingredient.fromItems(ItemInit.EXPERIMENTAL_ITEM.get())),
+    Y_ARMOR_MATERIAL("material_y", 7, new int[] {2, 5, 6, 2}, 15,
+            SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 1.0f, 6.3f, () -> Ingredient.fromItems(ItemInit.EXPERIMENTAL_ITEM.get())),
 
-    Z_ARMOR_MATERIAL("material_z", 7, new int[] {2, 5, 6, 2}, 12,
-    SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 1.0f, 0.0f, () -> Ingredient.fromItems(ItemInit.EXPERIMENTAL_ITEM.get()));
+    Z_ARMOR_MATERIAL("material_z", 7, new int[] {2, 5, 6, 2}, 15,
+    SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 1.0f, 6.5f, () -> Ingredient.fromItems(ItemInit.EXPERIMENTAL_ITEM.get()));
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
