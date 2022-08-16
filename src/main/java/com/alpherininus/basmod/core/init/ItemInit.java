@@ -166,7 +166,7 @@ public class ItemInit {
                     BasmodToolMaterial.B_TOOL_MATERIAL, 1, 1));
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // TODO ARMOR
+    // TODO ARMOR # material_a _b _c _d... _z
     public static final RegistryObject<Item> EXPERIMENTAL_HELMET = ITEMS.register("experi_helmet",
             () -> new ExperiArmorItem(BasmodArmorMaterial.EXPERIMENTALITEM, EquipmentSlotType.HEAD,
                     new Item.Properties().group(ModItemGroupWapons.BAS_MOD_WAPONS)));
