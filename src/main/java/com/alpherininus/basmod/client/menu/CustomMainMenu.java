@@ -1,7 +1,6 @@
 package com.alpherininus.basmod.client.menu;
 
 
-import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.client.event.GuiOpenEvent;
 import net.minecraftforge.client.event.GuiScreenEvent;
 
