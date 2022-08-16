@@ -217,6 +217,7 @@ public class ItemInit {
     public static final RegistryObject<Item> X_HELMET = ITEMS.register("material_x_helmet", () -> new MaterialXArmorItem(BasmodArmorMaterial.X_ARMOR_MATERIAL, EquipmentSlotType.HEAD, new Item.Properties().group(ItemGroup.COMBAT)));
     public static final RegistryObject<Item> Y_HELMET = ITEMS.register("material_y_helmet", () -> new MaterialYArmorItem(BasmodArmorMaterial.Y_ARMOR_MATERIAL, EquipmentSlotType.HEAD, new Item.Properties().group(ItemGroup.COMBAT)));
     public static final RegistryObject<Item> Z_HELMET = ITEMS.register("material_z_helmet", () -> new MaterialZArmorItem(BasmodArmorMaterial.Z_ARMOR_MATERIAL, EquipmentSlotType.HEAD, new Item.Properties().group(ItemGroup.COMBAT)));
+
     public static final RegistryObject<Item> A_CHEST = ITEMS.register("material_a_chestplate", () -> new MaterialAArmorItem(BasmodArmorMaterial.A_ARMOR_MATERIAL, EquipmentSlotType.CHEST, new Item.Properties().group(ItemGroup.COMBAT)));
     public static final RegistryObject<Item> B_CHEST = ITEMS.register("material_b_chestplate", () -> new MaterialBArmorItem(BasmodArmorMaterial.B_ARMOR_MATERIAL, EquipmentSlotType.CHEST, new Item.Properties().group(ItemGroup.COMBAT)));
     public static final RegistryObject<Item> C_CHEST = ITEMS.register("material_c_chestplate", () -> new MaterialCArmorItem(BasmodArmorMaterial.C_ARMOR_MATERIAL, EquipmentSlotType.CHEST, new Item.Properties().group(ItemGroup.COMBAT)));
