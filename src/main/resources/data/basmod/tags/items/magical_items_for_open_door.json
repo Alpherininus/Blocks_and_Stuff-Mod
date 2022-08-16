@@ -1,0 +1,9 @@
+{
+  "replace:": false,
+  "values": [
+    "basmod:magical_staff",
+    "basmod:heal_staff",
+    "basmod:teleport_staff",
+    "basmod:mana_bucket"
+  ]
+}
