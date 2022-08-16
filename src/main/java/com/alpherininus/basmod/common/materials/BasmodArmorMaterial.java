@@ -18,8 +18,7 @@ public enum BasmodArmorMaterial implements IArmorMaterial {
     EXPERIMENTALITEM("experi", 7, new int[] {2, 5, 6, 2}, 12,
             SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 1.0f, 0.0f, () -> Ingredient.fromItems(ItemInit.EXPERIMENTAL_ITEM.get())),
 
-    MODELARMORS("model", 7, new int[] {2, 5, 6, 2}, 12,
-    SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 1.0f, 0.0f, () -> Ingredient.fromItems(ItemInit.EXPERIMENTAL_ITEM.get())),
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     A_ARMOR_MATERIAL("material_a", 7, new int[] {2, 5, 6, 2}, 12,
     SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 1.0f, 0.0f, () -> Ingredient.fromItems(ItemInit.EXPERIMENTAL_ITEM.get())),
@@ -98,6 +97,8 @@ public enum BasmodArmorMaterial implements IArmorMaterial {
 
     Z_ARMOR_MATERIAL("material_z", 7, new int[] {2, 5, 6, 2}, 12,
     SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 1.0f, 0.0f, () -> Ingredient.fromItems(ItemInit.EXPERIMENTAL_ITEM.get()));
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     private static final int[] MAX_DAMAGE_ARRAY = new int[]{13, 15, 16, 11};
     private final String name;
