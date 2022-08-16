@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "basmod:block/magical_oak_slab"
+    },
+    "type=double": {
+      "model": "basmod:block/magical_oak_planks"
+    },
+    "type=top": {
+      "model": "basmod:block/magical_oak_slab_top"
+    }
+  }
+}

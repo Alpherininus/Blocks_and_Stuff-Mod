@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "basmod:blocks/magical_oak_sapling"
+  }
+}

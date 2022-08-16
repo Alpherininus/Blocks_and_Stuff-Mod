@@ -75,36 +75,55 @@
 	"block.basmod.relics_ore": "Relics Ore",
 	"block.basmod.dark_steel_ore": "Dark Steel Ore",
 	"block.basmod.magical_flower": "Magical Flower",
+
 	"block.basmod.magical_grass": "Magical Grass",
-	"block.basmod.magical_log": "Magical Logs",
-	"block.basmod.magical_stipped_log": "Magical Stripped Logs",
-	"block.basmod.magical_leaves": "Magical Leaves",
-	"block.basmod.magical_sapling": "Magical Sapling",
+
+	"block.basmod.magical_oak_log": "Magical Logs",
+	"block.basmod.magical_oak_stipped_log": "Stripped Magical Oak Logs",
+	"block.basmod.magical_oak_wood": "Magical Oak Wood",
+	"block.basmod.magical_oak_stipped_wood": "Stripped Magical Oak Wood",
+	"block.basmod.magical_oak_leaves": "Magical Oak Leaves",
+	"block.basmod.magical_oak_sapling": "Magical Oak Sapling",
+
+	"block.basmod.magical_oak_door": "Magical Oak Door",
+	"block.basmod.magical_oak_planks": "Magical Oak Planks",
+	"block.basmod.magical_oak_slab": "Magical Oak Slab",
+	"block.basmod.magical_oak_trapdoor": "Magical Oak Trapdoor",
+
 	"item.basmod.mana_bucket": "Mana Bucket",
 	"fluid.basmod.mana": "Mana",
+
 	"block.basmod.jump_block": "Jump Block ...",
 	"block.basmod.jump_block_red": "Jump Block ...",
 	"block.basmod.teleporter_block": "Teleporter",
+
 	"screen.basmod.experimental_item_screen": "\u00A76\u00A7nExperi. Item",
 	"screen.basmod.ring_of_lol": "Ring of Lol",
+
 	"tooltip.basmod.default_items_shift": "Holded Shift for this Information:",
 	"tooltip.basmod.default_items": "Hold \u00A76SHIFT \u00A7ffor more Information, Yay!",
+
 	"itemGroup.bas_mod_item": "Blocks and Stuff Items",
 	"itemGroup.bas_mod_block": "Blocks and Stuff Blocks",
 	"itemGroup.bas_mod_wapons": "Blocks and Stuff Combat",
+
 	"biome.basmod.dark_of_godness": "Dark of Godness",
 	"biome.basmod.biom1": "",
 	"biome.basmod.biom2": "",
 	"biome.basmod.biom3": "",
 	"biome.basmod.biom4": "",
+
 	"deathScreen.respawn": "Try Again?",
+
 	"sounds.basmod.records.theme_music_disc": "Blocks and Staff | Main Theme",
 	"sounds.basmod.records.gears_music_disc": "Gears",
 	"sounds.basmod.music.basmod_boss_battlemusic": "Blocks and Staff | Boss Battle Music",
+
 	"item.basmod.gears_music_disc": "Gears",
 	"item.basmod.gears_music_disc.desc": "Music Descripton",
 	"item.basmod.theme_music_disc": "Theme",
 	"item.basmod.theme_music_disc.desc": "Music Descripton",
+
 	"enchantment.basmod.lightning_striker": "Lighting Striker",
 	"enchantment.basmod.tnt_attack": "TNT Attack",
 	"enchantment.basmod.fireball": "Fireball",
@@ -112,6 +131,7 @@
 	"enchantment.mjoenir_enchan_desc": "useful when thundering",
 	"enchantment.basmod.mjoenir_enchan_desc": "useful when thundering",
 	"enchantment.basmod.mjoenirs_attack": "Mjönirs Schlag",
+
 	"key.category.basmod": "Blocks and Stuff Mod",
 	"key.basmod.keyY": "Y - NONE",
 	"key.basmod.keyX": "X - NONE",

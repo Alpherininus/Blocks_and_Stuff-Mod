@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/door_bottom",
+  "textures": {
+    "top": "basmod:blocks/magical_oak_door_top",
+    "bottom": "basmod:blocks/magical_oak_door_bottom"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab_top",
+  "textures": {
+    "bottom": "basmod:block/magical_oak_planks",
+    "top": "basmod:block/magical_oak_planks",
+    "side": "basmod:block/magical_oak_planks"
+  }
+}

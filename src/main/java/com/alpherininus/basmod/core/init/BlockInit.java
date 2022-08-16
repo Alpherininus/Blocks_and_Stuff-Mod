@@ -2,14 +2,13 @@ package com.alpherininus.basmod.core.init;
 
 import com.alpherininus.basmod.Basmod;
 import com.alpherininus.basmod.common.blocks.*;
-import com.alpherininus.basmod.common.blocks.doorblock.BlueKeyDoorBlock;
-import com.alpherininus.basmod.common.blocks.doorblock.GreenKeyDoorBlock;
-import com.alpherininus.basmod.common.blocks.doorblock.KeyDoorBlock;
-import com.alpherininus.basmod.common.blocks.doorblock.RedKeyDoorBlock;
+import com.alpherininus.basmod.common.blocks.doorblock.*;
+import com.alpherininus.basmod.common.blocks.trees.MagicalOakTree;
 import com.alpherininus.basmod.core.itemgroup.ModItemGroupBlocks;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
+import net.minecraft.block.trees.OakTree;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.potion.Effects;
@@ -50,6 +49,31 @@ public class BlockInit {
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // TODO BUILDINGBLOCKS
 
+    public static final RegistryObject<Block> MAGICAL_OAK_DOOR = registryBlock("magical_oak_door",
+            () -> new MagicalOakDoorItem(AbstractBlock.Properties.create(Material.IRON, MaterialColor.PURPLE).hardnessAndResistance(8f, 7f)
+                    .harvestTool(ToolType.PICKAXE).harvestLevel(2).sound(SoundType.METAL)));
+
+    public static final RegistryObject<Block> MAGICAL_OAK_LEAVES = registryBlock("magical_oak_leaves",
+            () -> new LeavesBlock(AbstractBlock.Properties.create(Material.LEAVES, MaterialColor.PURPLE)
+                    .hardnessAndResistance(0.2f).tickRandomly().notSolid().sound(SoundType.PLANT)));
+
+    public static final RegistryObject<Block> MAGICAL_OAK_LOG = registryBlock("magical_oak_log",
+            () -> new Block(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.PURPLE).hardnessAndResistance(8f, 7f)
+                    .harvestTool(ToolType.AXE).harvestLevel(2).sound(SoundType.WOOD)));
+
+    public static final RegistryObject<Block> MAGICAL_OAK_PLANKS = registryBlock("magical_oak_planks",
+            () -> new Block(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.PURPLE).hardnessAndResistance(8f, 7f)
+                    .harvestTool(ToolType.AXE).harvestLevel(2).sound(SoundType.METAL)));
+
+    public static final RegistryObject<Block> MAGICAL_OAK_SLAB = registryBlock("magical_oak_slab",
+            () -> new SlabBlock(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.PURPLE).hardnessAndResistance(8f, 7f)
+                    .harvestTool(ToolType.AXE).harvestLevel(2).sound(SoundType.METAL)));
+
+    public static final RegistryObject<Block> MAGICAL_OAK_TRAPDOOR = registryBlock("magical_oak_trapdoor",
+            () -> new TrapDoorBlock(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.PURPLE).hardnessAndResistance(8f, 7f)
+                    .harvestTool(ToolType.AXE).harvestLevel(2).sound(SoundType.METAL)));
+
+
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // TODO DECORATION AND FLOWERS :>
 
@@ -58,6 +82,14 @@ public class BlockInit {
                     AbstractBlock.Properties.from(Blocks.DANDELION)
                             .sound(SoundType.BONE)
                             .setLightLevel(BlockState -> 3)));
+
+    public static final RegistryObject<Block> MAGICAL_OAK_SAPLING = registryBlock("magical_oak_sapling",
+            () -> new SaplingBlock(new MagicalOakTree(), AbstractBlock.Properties
+                    .from(Blocks.OAK_SAPLING)
+                    .sound(SoundType.CROP)
+                    .setLightLevel(BlockState -> 4)));
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     public static final RegistryObject<Block> KEY_DOOR = registryBlock("key_door",
             () -> new KeyDoorBlock(AbstractBlock.Properties.create(Material.IRON, MaterialColor.GRAY).hardnessAndResistance(-1.0F, 3600000.0F)

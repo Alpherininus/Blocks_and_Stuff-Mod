@@ -12,10 +12,13 @@ import com.alpherininus.basmod.common.world.gen.BiomeGeneration;
 import com.alpherininus.basmod.common.world.gen.OreGeneration;
 import com.alpherininus.basmod.core.init.*;
 import com.alpherininus.basmod.core.util.BasmodConfig;
+import com.google.common.collect.ImmutableMap;
+import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
+import net.minecraft.item.AxeItem;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -87,6 +90,11 @@ public class Basmod {
 
     private void setup(final FMLCommonSetupEvent event) {
         BasmodAnivilHandler.initAnvilRecipes();
+
+        // // event.enqueueWork(() -> AxeItem = new ImmutableMap.Builder<Block, Block>().putAll(AxeItem.BLOCK_STRIPPING_MAP)
+        // //         .put(BlockInit.MAGICAL_OAK_LOG.get(), BlockInit.MAGICAL_STRIPPED_OAK_LOG.get())
+        // //         .put(BlockInit.MAGICAL_OAK_WOOD.get(), BlockInit.MAGICAL_STRIPPED_OAK_WOOD.get()).build()
+        // // );
 
         event.enqueueWork(
                 BiomeGeneration::generateBiome
