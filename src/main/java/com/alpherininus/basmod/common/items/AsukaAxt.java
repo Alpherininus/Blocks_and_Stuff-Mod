@@ -87,20 +87,6 @@ public class AsukaAxt extends SwordItem {
         return ActionResult.resultConsume(itemstack);
     }
 
-    @Override
-    public void addInformation(ItemStack stack, World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-        if (Screen.hasShiftDown()) {
-            tooltip.add(new TranslationTextComponent("tooltip.basmod.soleils_shine_shift"));
-
-            tooltip.add(new StringTextComponent("Story"));
-            tooltip.add(new StringTextComponent("Story"));
-            tooltip.add(new StringTextComponent("Story"));
-        } else {
-            tooltip.add(new TranslationTextComponent("tooltip.basmod.soleils_shine"));
-
-        }
-    }
-
     public Multimap<Attribute, AttributeModifier> getAttributeModifiers(EquipmentSlotType equipmentSlot) {
         return equipmentSlot == EquipmentSlotType.MAINHAND ? this.attributeModifiers : super.getAttributeModifiers(equipmentSlot);
     }
