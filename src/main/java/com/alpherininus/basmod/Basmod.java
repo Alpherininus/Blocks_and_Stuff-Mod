@@ -111,7 +111,11 @@ public class Basmod {
             RenderTypeLookup.setRenderLayer(BlockInit.REDKEY_DOOR.get(), RenderType.getCutout());
             RenderTypeLookup.setRenderLayer(BlockInit.KEY_DOOR.get(), RenderType.getCutout());
 
+            RenderTypeLookup.setRenderLayer(BlockInit.MAGICAL_OAK_DOOR.get(), RenderType.getCutout());
+            RenderTypeLookup.setRenderLayer(BlockInit.MAGICAL_OAK_TRAPDOOR.get(), RenderType.getCutout());
+
             RenderTypeLookup.setRenderLayer(BlockInit.MAGICAL_FLOWER.get(), RenderType.getCutout());
+            RenderTypeLookup.setRenderLayer(BlockInit.MAGICAL_OAK_SAPLING.get(), RenderType.getCutout());
 
             RenderTypeLookup.setRenderLayer(FluidInit.MANA_FLUID.get(), RenderType.getTranslucent());
             RenderTypeLookup.setRenderLayer(FluidInit.MANA_BLOCK.get(), RenderType.getTranslucent());
