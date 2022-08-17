@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "basmod:blocks/magical_oak_planks"
+    "all": "basmod:block/magical_oak_planks"
   }
 }

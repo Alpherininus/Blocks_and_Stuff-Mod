@@ -3,8 +3,8 @@
     "textures": {
     	"particle": "minecraft:block/dirt",
         "bottom": "minecraft:block/dirt",
-        "top": "basmod:blocks/magical_grass_block_top",
-        "side": "basmod:blocks/magical_grass_block_side"
+        "top": "basmod:block/magical_grass_block_top",
+        "side": "basmod:block/magical_grass_block_side"
     },
     "elements": [
         {   "from": [ 0, 0, 0 ],

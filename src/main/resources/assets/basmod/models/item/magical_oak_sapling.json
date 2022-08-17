@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "basmod:blocks/magical_oak_sapling"
+    "layer0": "basmod:block/magical_oak_sapling"
   }
 }

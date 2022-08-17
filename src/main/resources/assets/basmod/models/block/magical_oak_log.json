@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/cube_column",
   "textures": {
-    "end": "basmod:blocks/magical_oak_log_top",
-    "side": "basmod:blocks/magical_oak_log"
+    "end": "basmod:block/magical_oak_log_top",
+    "side": "basmod:block/magical_oak_log"
   }
 }

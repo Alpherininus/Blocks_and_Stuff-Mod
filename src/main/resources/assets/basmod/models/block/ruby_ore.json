@@ -1,6 +1,6 @@
 {
     "parent": "block/cube_all",
     "textures": {
-        "all": "basmod:blocks/ruby_ore"
+        "all": "basmod:block/ruby_ore"
     }
 }

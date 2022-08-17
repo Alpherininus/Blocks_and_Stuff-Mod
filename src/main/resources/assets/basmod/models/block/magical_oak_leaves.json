@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/leaves",
   "textures": {
-    "all": "basmod:blocks/magical_oak_leaves"
+    "all": "basmod:block/magical_oak_leaves"
   }
 }

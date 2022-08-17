@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "basmod:blocks/magical_flower"
+    "layer0": "basmod:block/magical_flower"
   }
 }

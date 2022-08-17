@@ -1,6 +1,6 @@
 {
     "parent": "block/cube_all",
     "textures": {
-        "all": "basmod:blocks/dark_steel_ore"
+        "all": "basmod:block/dark_steel_ore"
     }
 }

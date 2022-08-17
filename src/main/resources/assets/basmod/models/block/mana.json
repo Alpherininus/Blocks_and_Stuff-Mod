@@ -1,6 +1,6 @@
 {
     "textures": {
-        "particle": "basmod:blocks/mana_still"
+        "particle": "basmod:block/mana_still"
     }
 }
 

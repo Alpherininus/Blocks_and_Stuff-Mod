@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/door_bottom_rh",
   "textures": {
-    "top": "basmod:blocks/key_door_top",
-    "bottom": "basmod:blocks/key_door_bottom"
+    "top": "basmod:block/key_door_top",
+    "bottom": "basmod:block/key_door_bottom"
   }
 }

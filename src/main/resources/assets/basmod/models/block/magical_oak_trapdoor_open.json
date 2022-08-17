@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/template_orientable_trapdoor_open",
   "textures": {
-    "texture": "basmod:blocks/magical_oak_trapdoor"
+    "texture": "basmod:block/magical_oak_trapdoor"
   }
 }

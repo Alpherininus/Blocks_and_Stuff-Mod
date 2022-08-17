@@ -1,6 +1,6 @@
 {
     "parent": "block/cube_all",
     "textures": {
-        "all": "basmod:blocks/bounce_test"
+        "all": "basmod:block/bounce_test"
     }
 }
