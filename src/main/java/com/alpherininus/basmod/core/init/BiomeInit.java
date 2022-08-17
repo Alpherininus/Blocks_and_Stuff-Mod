@@ -2,6 +2,7 @@ package com.alpherininus.basmod.core.init;
 
 import com.alpherininus.basmod.Basmod;
 import com.alpherininus.basmod.common.world.BasmodConfiguredSurfacebuilder;
+import com.alpherininus.basmod.common.world.gen.StructureGeneration;
 import net.minecraft.client.audio.BackgroundMusicTracks;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
@@ -36,7 +37,7 @@ public class BiomeInit {
 
         BiomeGenerationSettings.Builder biomegenerationsettings$builder = (new BiomeGenerationSettings.Builder()).withSurfaceBuilder(BasmodConfiguredSurfacebuilder.DARK_OF_GODNESS);
 
-        MobSpawnInfo.Builder mobspawninfo$builder = new MobSpawnInfo.Builder();
+        MobSpawnInfo.Builder mobspawninfoExtraChickens$builder = new MobSpawnInfo.Builder();
         MobSpawnInfo.Builder mobspawninfoForMonster$builder = new MobSpawnInfo.Builder();
         MobSpawnInfo.Builder mobspawninfoForCreature$builder = new MobSpawnInfo.Builder();
 
@@ -55,7 +56,7 @@ public class BiomeInit {
         DefaultBiomeFeatures.withDefaultFlowers(biomegenerationsettings$builder);
         DefaultBiomeFeatures.withAllForestFlowerGeneration(biomegenerationsettings$builder);
 
-        DefaultBiomeFeatures.withSpawnsWithExtraChickens(mobspawninfo$builder);
+        DefaultBiomeFeatures.withSpawnsWithExtraChickens(mobspawninfoExtraChickens$builder);
 
         DefaultBiomeFeatures.withHostileMobs(mobspawninfoForMonster$builder
                 .withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.SPIDER, 100, 4, 4))
@@ -114,7 +115,9 @@ public class BiomeInit {
                         .setMoodSound(new MoodSoundAmbience(SoundEvents.AMBIENT_BASALT_DELTAS_MOOD, 6000, 8, 2.0D))
                         .setMusic(BackgroundMusicTracks.getDefaultBackgroundMusicSelector(SoundEvents.MUSIC_DRAGON))
                         .build())
-                .withMobSpawnSettings(mobspawninfo$builder.build())
+                .withMobSpawnSettings(mobspawninfoExtraChickens$builder.build())
+                .withMobSpawnSettings(mobspawninfoForCreature$builder.build())
+                .withMobSpawnSettings(mobspawninfoForMonster$builder.build())
                 .withGenerationSettings(biomegenerationsettings$builder.build())
                 .build();
 
