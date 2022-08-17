@@ -61,7 +61,6 @@ public class BiomeInit {
         mobspawninfoForCreature$builder.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(EntityType.CHICKEN, 8, 2, 4));
         mobspawninfoForCreature$builder.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(EntityType.COW, 6, 2, 4));
 
-
         DefaultBiomeFeatures.withOverworldOres(biomegenerationsettings$builder);
         DefaultBiomeFeatures.withDisks(biomegenerationsettings$builder);
         DefaultBiomeFeatures.withBadlandsOakTrees(biomegenerationsettings$builder);
