@@ -234,6 +234,11 @@ public class BasBossEntity extends MonsterEntity implements IAnimatable {
         return true;
     }
 
+    @Override
+    public boolean canSpawn(IWorld worldIn, SpawnReason spawnReasonIn) {
+        return true;
+    }
+
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 }
