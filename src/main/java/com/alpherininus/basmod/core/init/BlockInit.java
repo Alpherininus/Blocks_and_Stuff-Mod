@@ -50,10 +50,6 @@ public class BlockInit {
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // TODO BUILDINGBLOCKS magical_oak_stairs
 
-    public static final RegistryObject<Block> MAGICAL_OAK_DOOR = registryBlock("magical_oak_door",
-            () -> new MagicalOakDoorItem(AbstractBlock.Properties.create(Material.IRON, MaterialColor.OBSIDIAN).hardnessAndResistance(8f, 7f)
-                    .harvestTool(ToolType.PICKAXE).harvestLevel(2).sound(SoundType.METAL).notSolid()));
-
     public static final RegistryObject<Block> MAGICAL_OAK_LEAVES = registryBlock("magical_oak_leaves",
             () -> new LeavesBlock(AbstractBlock.Properties.create(Material.LEAVES, MaterialColor.OBSIDIAN)
                     .hardnessAndResistance(0.2f).tickRandomly().notSolid().sound(SoundType.PLANT)));
@@ -65,35 +61,38 @@ public class BlockInit {
                     .sound(SoundType.WOOD)));
 
     public static final RegistryObject<Block> MAGICAL_OAK_PLANKS = registryBlock("magical_oak_planks",
-            () -> new Block(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(8f, 7f)
+            () -> new Block(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2f, 3f)
                     .harvestTool(ToolType.AXE).harvestLevel(2).sound(SoundType.METAL)));
+
+    public static final RegistryObject<Block> MAGICAL_OAK_DOOR = registryBlock("magical_oak_door",
+            () -> new MagicalOakDoorItem(AbstractBlock.Properties.from(BlockInit.MAGICAL_OAK_PLANKS.get()).notSolid()));
 
     public static final RegistryObject<Block> MAGICAL_OAK_STAIRS = registryBlock("magical_oak_stairs",
             () -> new StairsBlock(() -> BlockInit.MAGICAL_OAK_PLANKS.get().getDefaultState(),
-                    AbstractBlock.Properties.create(Material.WOOD).harvestLevel(2).harvestTool(ToolType.AXE).setRequiresTool()));
+                    AbstractBlock.Properties.from(BlockInit.MAGICAL_OAK_PLANKS.get())));
 
     public static final RegistryObject<Block> MAGICAL_OAK_SLAB = registryBlock("magical_oak_slab",
-            () -> new SlabBlock(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(8f, 7f)
-                    .harvestTool(ToolType.AXE).harvestLevel(2).sound(SoundType.METAL)));
+            () -> new SlabBlock(AbstractBlock.Properties.from(BlockInit.MAGICAL_OAK_PLANKS.get())));
 
     public static final RegistryObject<Block> MAGICAL_OAK_TRAPDOOR = registryBlock("magical_oak_trapdoor",
-            () -> new TrapDoorBlock(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(8f, 7f)
-                    .harvestTool(ToolType.AXE).harvestLevel(2).sound(SoundType.METAL).notSolid()));
-
+            () -> new TrapDoorBlock(AbstractBlock.Properties.from(BlockInit.MAGICAL_OAK_PLANKS.get()).notSolid()));
 
     public static final RegistryObject<Block> UMBRAL_STEEL_BLOCK = registryBlock("umbral_steel_block",
-            () -> new Block(AbstractBlock.Properties.create(Material.IRON, MaterialColor.GRAY).hardnessAndResistance(7f, 6f)
+            () -> new Block(AbstractBlock.Properties.create(Material.IRON, MaterialColor.GRAY).hardnessAndResistance(6f, 7f)
                     .harvestTool(ToolType.PICKAXE).harvestLevel(2).sound(SoundType.STONE)));
 
     public static final RegistryObject<Block> STEEL_BLOCK = registryBlock("steel_block",
-            () -> new Block(AbstractBlock.Properties.create(Material.IRON, MaterialColor.GRAY).hardnessAndResistance(7f, 6f)
+            () -> new Block(AbstractBlock.Properties.create(Material.IRON, MaterialColor.GRAY).hardnessAndResistance(5f, 6f)
                     .harvestTool(ToolType.PICKAXE).harvestLevel(2).sound(SoundType.STONE)));
 
     public static final RegistryObject<Block> DARK_STEEL_BLOCK = registryBlock("dark_steel_block",
-            () -> new Block(AbstractBlock.Properties.create(Material.IRON, MaterialColor.GRAY).hardnessAndResistance(7f, 6f)
+            () -> new Block(AbstractBlock.Properties.create(Material.IRON, MaterialColor.GRAY).hardnessAndResistance(5f, 6f)
                     .harvestTool(ToolType.PICKAXE).harvestLevel(2).sound(SoundType.STONE)));
 
-
+    public static final RegistryObject<Block> RUBY_BLOCK = registryBlock("ruby_block",
+            () -> new Block(AbstractBlock.Properties.create(Material.IRON, MaterialColor.EMERALD)
+                    .setRequiresTool()
+                    .hardnessAndResistance(5.0F, 6.0F).sound(SoundType.METAL)));
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // TODO DECORATION AND FLOWERS :>
