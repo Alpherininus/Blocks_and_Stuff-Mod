@@ -10,6 +10,7 @@ import com.alpherininus.basmod.common.items.armor.JetPackArmorItem;
 import com.alpherininus.basmod.common.items.armor.models.renderer.JetPackArmorRenderer;
 import com.alpherininus.basmod.common.world.gen.BiomeGeneration;
 import com.alpherininus.basmod.common.world.gen.OreGeneration;
+import com.alpherininus.basmod.common.world.gen.TreeGeneration;
 import com.alpherininus.basmod.core.init.*;
 import com.alpherininus.basmod.core.util.BasmodConfig;
 import com.google.common.collect.ImmutableMap;
@@ -98,6 +99,7 @@ public class Basmod {
 
         event.enqueueWork(
                 BiomeGeneration::generateBiome
+
         );
     }
 

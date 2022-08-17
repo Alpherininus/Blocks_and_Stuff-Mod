@@ -1,7 +1,6 @@
 package com.alpherininus.basmod.core.init;
 
 import com.alpherininus.basmod.Basmod;
-import com.alpherininus.basmod.common.world.BasmodConfiguredFeatures;
 import com.alpherininus.basmod.common.world.BasmodConfiguredSurfacebuilder;
 import net.minecraft.client.audio.BackgroundMusicTracks;
 import net.minecraft.entity.EntityClassification;
@@ -10,7 +9,6 @@ import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.biome.*;
-import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.feature.Features;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.gen.feature.OreFeature;
@@ -31,8 +29,9 @@ public class BiomeInit {
             () -> makeDarkOfGodnessBiome(() -> BasmodConfiguredSurfacebuilder.DARK_OF_GODNESS, 0.250f, 0.15f));
 
     private static Biome makeDarkOfGodnessBiome(final Supplier<ConfiguredSurfaceBuilder<?>> surfaceBuilder, float tiefe, float massstab) {
-        BiomeGenerationSettings.Builder biomegenerationsettings$builder
-                = (new BiomeGenerationSettings.Builder()).withSurfaceBuilder(BasmodConfiguredSurfacebuilder.DARK_OF_GODNESS);
+        BiomeGenerationSettings.Builder biomegenerationsettings$builder = (new BiomeGenerationSettings.Builder()).withSurfaceBuilder(BasmodConfiguredSurfacebuilder.DARK_OF_GODNESS);
+        MobSpawnInfo.Builder mobspawninfo$builder = new MobSpawnInfo.Builder();
+
         DefaultBiomeFeatures.withOverworldOres(biomegenerationsettings$builder);
         DefaultBiomeFeatures.withDisks(biomegenerationsettings$builder);
         DefaultBiomeFeatures.withBadlandsOakTrees(biomegenerationsettings$builder);
@@ -48,18 +47,11 @@ public class BiomeInit {
         DefaultBiomeFeatures.withDefaultFlowers(biomegenerationsettings$builder);
         DefaultBiomeFeatures.withAllForestFlowerGeneration(biomegenerationsettings$builder);
 
-        biomegenerationsettings$builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BasmodConfiguredFeatures.MAGICAL_OAK_TREE);
-        biomegenerationsettings$builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BasmodConfiguredFeatures.MAGICALFLOWERS_CONFIG);
-
-        MobSpawnInfo.Builder mobspawninfo$builder = new MobSpawnInfo.Builder();
         DefaultBiomeFeatures.withSpawnsWithExtraChickens(mobspawninfo$builder);
-        mobspawninfo$builder
-                .withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityTypesInit.BASMOD_BOSS_ENTITY.get(), 1, 0, 1))
-                .withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.ILLUSIONER, 2, 0, 1));
+        mobspawninfo$builder.withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityTypesInit.BASMOD_BOSS_ENTITY.get(), 1, 0, 1));
+        mobspawninfo$builder.withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.ILLUSIONER, 2, 0, 1));
         mobspawninfo$builder.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(EntityType.FOX, 8, 2, 4));
         mobspawninfo$builder.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(EntityType.WOLF, 8, 4, 4));
-
-
 
         Features.ORE_ANDESITE.count(10);
         Features.ORE_DIORITE.count(15);
@@ -85,7 +77,6 @@ public class BiomeInit {
                 .temperature(0.6F)
                 .withTemperatureModifier(Biome.TemperatureModifier.NONE)
                 .downfall(0.6F)
-                .withMobSpawnSettings(MobSpawnInfo.EMPTY)
                 .setEffects((new BiomeAmbience.Builder())
                         .setWaterColor(563131)
                         .setWaterFogColor(563131)
@@ -99,6 +90,7 @@ public class BiomeInit {
                         .setMoodSound(new MoodSoundAmbience(SoundEvents.AMBIENT_BASALT_DELTAS_MOOD, 6000, 8, 2.0D))
                         .setMusic(BackgroundMusicTracks.getDefaultBackgroundMusicSelector(SoundEvents.MUSIC_DRAGON))
                         .build())
+                .withMobSpawnSettings(mobspawninfo$builder.build())
                 .withGenerationSettings(biomegenerationsettings$builder.build())
                 .build();
 
