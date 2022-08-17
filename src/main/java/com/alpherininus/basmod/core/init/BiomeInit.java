@@ -41,7 +41,8 @@ public class BiomeInit {
         MobSpawnInfo.Builder mobspawninfoForCreature$builder = new MobSpawnInfo.Builder();
 
         DefaultBiomeFeatures.withSpawnsWithExtraChickens(mobspawninfoExtraChickens$builder);
-        mobspawninfoExtraChickens$builder.withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityTypesInit.BASMOD_BOSS_ENTITY.get(), 1, 0, 1));
+        mobspawninfoExtraChickens$builder.withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityTypesInit.BASMOD_BOSS_ENTITY.get(), 2, 0, 1));
+        mobspawninfoExtraChickens$builder.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(EntityType.CHICKEN, 4, 2, 2));
 
         DefaultBiomeFeatures.withHostileMobs(mobspawninfoForMonster$builder, zombieWeight, zombieVillagerWeight, skeletonWeight);
         mobspawninfoForMonster$builder.withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.SPIDER, 100, 4, 4));
@@ -53,7 +54,7 @@ public class BiomeInit {
         mobspawninfoForMonster$builder.withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.ENDERMAN, 10, 1, 4));
         mobspawninfoForMonster$builder.withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.WITCH, 5, 1, 1));
         mobspawninfoForMonster$builder.withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.ILLUSIONER, 3, 1, 1));
-        mobspawninfoForMonster$builder.withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityTypesInit.BASMOD_BOSS_ENTITY.get(), 1, 1, 1));
+        mobspawninfoForMonster$builder.withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityTypesInit.BASMOD_BOSS_ENTITY.get(), 2, 1, 1));
 
         DefaultBiomeFeatures.withPassiveMobs(mobspawninfoForCreature$builder);
         mobspawninfoForCreature$builder.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(EntityType.SHEEP, 10, 2, 4));
