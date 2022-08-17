@@ -68,6 +68,7 @@ public class BiomeInit {
         DefaultBiomeFeatures.withTreesInWater(biomegenerationsettings$builder);
         DefaultBiomeFeatures.withLavaLakes(biomegenerationsettings$builder);
         DefaultBiomeFeatures.withCavesAndCanyons(biomegenerationsettings$builder);
+        DefaultBiomeFeatures.withMonsterRoom(biomegenerationsettings$builder);
 
         biomegenerationsettings$builder.withStructure(StructureFeatures.RUINED_PORTAL);
         biomegenerationsettings$builder.withStructure(StructureFeatures.VILLAGE_TAIGA);
