@@ -40,26 +40,6 @@ public class BiomeInit {
         MobSpawnInfo.Builder mobspawninfoForMonster$builder = new MobSpawnInfo.Builder();
         MobSpawnInfo.Builder mobspawninfoForCreature$builder = new MobSpawnInfo.Builder();
 
-        DefaultBiomeFeatures.withOverworldOres(biomegenerationsettings$builder);
-        DefaultBiomeFeatures.withDisks(biomegenerationsettings$builder);
-        DefaultBiomeFeatures.withBadlandsOakTrees(biomegenerationsettings$builder);
-        DefaultBiomeFeatures.withTreesInWater(biomegenerationsettings$builder);
-        DefaultBiomeFeatures.withLavaLakes(biomegenerationsettings$builder);
-        DefaultBiomeFeatures.withCavesAndCanyons(biomegenerationsettings$builder);
-        DefaultBiomeFeatures.withSparseBerries(biomegenerationsettings$builder);
-
-        biomegenerationsettings$builder.withStructure(StructureFeatures.RUINED_PORTAL);
-        biomegenerationsettings$builder.withStructure(StructureFeatures.VILLAGE_TAIGA);
-        biomegenerationsettings$builder.withStructure(StructureFeatures.STRONGHOLD);
-        biomegenerationsettings$builder.withStructure(StructureFeatures.MINESHAFT);
-
-        DefaultBiomeFeatures.withFossils(biomegenerationsettings$builder);
-        biomegenerationsettings$builder.withStructure(StructureFeatures.NETHER_FOSSIL);
-
-        DefaultBiomeFeatures.withIcebergs(biomegenerationsettings$builder);
-        DefaultBiomeFeatures.withDefaultFlowers(biomegenerationsettings$builder);
-        DefaultBiomeFeatures.withAllForestFlowerGeneration(biomegenerationsettings$builder);
-
         DefaultBiomeFeatures.withSpawnsWithExtraChickens(mobspawninfoExtraChickens$builder);
         mobspawninfoExtraChickens$builder.withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityTypesInit.BASMOD_BOSS_ENTITY.get(), 1, 0, 1));
 
@@ -80,6 +60,27 @@ public class BiomeInit {
         mobspawninfoForCreature$builder.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(EntityType.PIG, 8, 2, 4));
         mobspawninfoForCreature$builder.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(EntityType.CHICKEN, 8, 2, 4));
         mobspawninfoForCreature$builder.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(EntityType.COW, 6, 2, 4));
+
+
+        DefaultBiomeFeatures.withOverworldOres(biomegenerationsettings$builder);
+        DefaultBiomeFeatures.withDisks(biomegenerationsettings$builder);
+        DefaultBiomeFeatures.withBadlandsOakTrees(biomegenerationsettings$builder);
+        DefaultBiomeFeatures.withTreesInWater(biomegenerationsettings$builder);
+        DefaultBiomeFeatures.withLavaLakes(biomegenerationsettings$builder);
+        DefaultBiomeFeatures.withCavesAndCanyons(biomegenerationsettings$builder);
+        DefaultBiomeFeatures.withSparseBerries(biomegenerationsettings$builder);
+
+        biomegenerationsettings$builder.withStructure(StructureFeatures.RUINED_PORTAL);
+        biomegenerationsettings$builder.withStructure(StructureFeatures.VILLAGE_TAIGA);
+        biomegenerationsettings$builder.withStructure(StructureFeatures.STRONGHOLD);
+        biomegenerationsettings$builder.withStructure(StructureFeatures.MINESHAFT);
+
+        DefaultBiomeFeatures.withFossils(biomegenerationsettings$builder);
+        biomegenerationsettings$builder.withStructure(StructureFeatures.NETHER_FOSSIL);
+
+        DefaultBiomeFeatures.withIcebergs(biomegenerationsettings$builder);
+        DefaultBiomeFeatures.withDefaultFlowers(biomegenerationsettings$builder);
+        DefaultBiomeFeatures.withAllForestFlowerGeneration(biomegenerationsettings$builder);
 
         DefaultBiomeFeatures.withEmeraldOre(biomegenerationsettings$builder);
         DefaultBiomeFeatures.withDebrisOre(biomegenerationsettings$builder);
