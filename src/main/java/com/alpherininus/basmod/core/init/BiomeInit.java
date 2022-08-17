@@ -1,17 +1,20 @@
 package com.alpherininus.basmod.core.init;
 
 import com.alpherininus.basmod.Basmod;
+import com.alpherininus.basmod.common.world.BasmodConfiguredFeatures;
 import com.alpherininus.basmod.common.world.BasmodConfiguredSurfacebuilder;
-import com.alpherininus.basmod.common.world.gen.FlowerGeneration;
-import com.alpherininus.basmod.common.world.gen.TreeGeneration;
 import net.minecraft.client.audio.BackgroundMusicTracks;
+import net.minecraft.entity.EntityClassification;
+import net.minecraft.entity.EntityType;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.biome.*;
+import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.feature.Features;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.gen.feature.OreFeature;
+import net.minecraft.world.gen.feature.structure.StructureFeatures;
 import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilder;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.RegistryObject;
@@ -36,12 +39,27 @@ public class BiomeInit {
         DefaultBiomeFeatures.withLavaLakes(biomegenerationsettings$builder);
         DefaultBiomeFeatures.withCavesAndCanyons(biomegenerationsettings$builder);
 
+        biomegenerationsettings$builder.withStructure(StructureFeatures.RUINED_PORTAL);
+
         DefaultBiomeFeatures.withFossils(biomegenerationsettings$builder);
         DefaultBiomeFeatures.withFossils(biomegenerationsettings$builder);
 
         DefaultBiomeFeatures.withIcebergs(biomegenerationsettings$builder);
         DefaultBiomeFeatures.withDefaultFlowers(biomegenerationsettings$builder);
         DefaultBiomeFeatures.withAllForestFlowerGeneration(biomegenerationsettings$builder);
+
+        biomegenerationsettings$builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BasmodConfiguredFeatures.MAGICAL_OAK_TREE);
+        biomegenerationsettings$builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BasmodConfiguredFeatures.MAGICALFLOWERS_CONFIG);
+
+        MobSpawnInfo.Builder mobspawninfo$builder = new MobSpawnInfo.Builder();
+        DefaultBiomeFeatures.withSpawnsWithExtraChickens(mobspawninfo$builder);
+        mobspawninfo$builder
+                .withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityTypesInit.BASMOD_BOSS_ENTITY.get(), 1, 0, 1))
+                .withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.ILLUSIONER, 2, 0, 1));
+        mobspawninfo$builder.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(EntityType.FOX, 8, 2, 4));
+        mobspawninfo$builder.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(EntityType.WOLF, 8, 4, 4));
+
+
 
         Features.ORE_ANDESITE.count(10);
         Features.ORE_DIORITE.count(15);
