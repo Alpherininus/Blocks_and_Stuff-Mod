@@ -2,6 +2,7 @@ package com.alpherininus.basmod.core.init;
 
 import com.alpherininus.basmod.Basmod;
 import com.alpherininus.basmod.common.world.BasmodConfiguredSurfacebuilder;
+import com.alpherininus.basmod.common.world.gen.StructureGeneration;
 import com.alpherininus.basmod.common.world.gen.structures.MagicalWitchHouse;
 import net.minecraft.client.audio.BackgroundMusicTracks;
 import net.minecraft.entity.EntityClassification;
@@ -10,12 +11,11 @@ import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.biome.*;
-import net.minecraft.world.gen.feature.Features;
-import net.minecraft.world.gen.feature.NoFeatureConfig;
-import net.minecraft.world.gen.feature.OreFeature;
-import net.minecraft.world.gen.feature.StructureFeature;
+import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.feature.structure.StructureFeatures;
+import net.minecraft.world.gen.settings.StructureSeparationSettings;
+import net.minecraft.world.gen.settings.StructureSpreadSettings;
 import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilder;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.RegistryObject;
@@ -32,8 +32,16 @@ public class BiomeInit {
             () -> makeDarkOfGodnessBiome(() -> BasmodConfiguredSurfacebuilder.DARK_OF_GODNESS, 0.250f, 0.15f));
 
     private static Biome makeDarkOfGodnessBiome(final Supplier<ConfiguredSurfaceBuilder<?>> surfaceBuilder, float tiefe, float massstab) {
+
+        int zombieWeight = 200;
+        int zombieVillagerWeight = 50;
+        int skeletonWeight = 150;
+
         BiomeGenerationSettings.Builder biomegenerationsettings$builder = (new BiomeGenerationSettings.Builder()).withSurfaceBuilder(BasmodConfiguredSurfacebuilder.DARK_OF_GODNESS);
+
         MobSpawnInfo.Builder mobspawninfo$builder = new MobSpawnInfo.Builder();
+        MobSpawnInfo.Builder mobspawninfoForMonster$builder = new MobSpawnInfo.Builder();
+        MobSpawnInfo.Builder mobspawninfoForCreature$builder = new MobSpawnInfo.Builder();
 
         DefaultBiomeFeatures.withOverworldOres(biomegenerationsettings$builder);
         DefaultBiomeFeatures.withDisks(biomegenerationsettings$builder);
@@ -42,8 +50,6 @@ public class BiomeInit {
         DefaultBiomeFeatures.withCavesAndCanyons(biomegenerationsettings$builder);
 
         biomegenerationsettings$builder.withStructure(StructureFeatures.RUINED_PORTAL);
-        biomegenerationsettings$builder.withStructure(new MagicalWitchHouse().withConfiguration(NoFeatureConfig.NO_FEATURE_CONFIG));
-
 
         DefaultBiomeFeatures.withFossils(biomegenerationsettings$builder);
         DefaultBiomeFeatures.withFossils(biomegenerationsettings$builder);
@@ -53,10 +59,26 @@ public class BiomeInit {
         DefaultBiomeFeatures.withAllForestFlowerGeneration(biomegenerationsettings$builder);
 
         DefaultBiomeFeatures.withSpawnsWithExtraChickens(mobspawninfo$builder);
-        mobspawninfo$builder.withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityTypesInit.BASMOD_BOSS_ENTITY.get(), 1, 0, 1));
-        mobspawninfo$builder.withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.ILLUSIONER, 2, 0, 1));
-        mobspawninfo$builder.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(EntityType.FOX, 8, 2, 4));
-        mobspawninfo$builder.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(EntityType.WOLF, 8, 4, 4));
+
+        DefaultBiomeFeatures.withHostileMobs(mobspawninfoForMonster$builder
+                .withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.SPIDER, 100, 4, 4))
+                .withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.ZOMBIE, zombieWeight, 4, 4))
+                .withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.ZOMBIE_VILLAGER, zombieVillagerWeight, 1, 1))
+                .withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.SKELETON, skeletonWeight, 4, 4))
+                .withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.CREEPER, 100, 4, 4))
+                .withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.SLIME, 100, 4, 4))
+                .withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.ENDERMAN, 10, 1, 4))
+                .withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.WITCH, 5, 1, 1))
+                .withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityTypesInit.BASMOD_BOSS_ENTITY.get(), 1, 1, 1))
+                .withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.ILLUSIONER, 3, 1, 1)),
+                zombieWeight, zombieVillagerWeight, skeletonWeight);
+
+        DefaultBiomeFeatures.withPassiveMobs(mobspawninfoForCreature$builder
+                .withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(EntityType.SHEEP, 10, 2, 4))
+                .withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(EntityType.PIG, 8, 2, 4))
+                .withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(EntityType.CHICKEN, 8, 2, 4))
+                .withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(EntityType.COW, 6, 2, 4)));
+
 
         Features.ORE_ANDESITE.count(10);
         Features.ORE_DIORITE.count(15);
