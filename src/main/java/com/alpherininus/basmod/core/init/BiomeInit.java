@@ -52,7 +52,6 @@ public class BiomeInit {
         biomegenerationsettings$builder.withStructure(StructureFeatures.VILLAGE_TAIGA);
         biomegenerationsettings$builder.withStructure(StructureFeatures.STRONGHOLD);
         biomegenerationsettings$builder.withStructure(StructureFeatures.MINESHAFT);
-        biomegenerationsettings$builder.withStructure(StructureFeatures.MINESHAFT_BADLANDS);
 
         DefaultBiomeFeatures.withFossils(biomegenerationsettings$builder);
         biomegenerationsettings$builder.withStructure(StructureFeatures.NETHER_FOSSIL);
