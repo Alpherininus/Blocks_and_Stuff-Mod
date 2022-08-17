@@ -1,5 +1,7 @@
 {
 	"variants": {
-		"": { "model": "basmod:block/steel_block" }
+		"": {
+			"model": "basmod:block/steel_block"
+		}
 	}
 }
