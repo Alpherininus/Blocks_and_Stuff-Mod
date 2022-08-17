@@ -2,7 +2,7 @@ package com.alpherininus.basmod.core.init;
 
 import com.alpherininus.basmod.Basmod;
 import com.alpherininus.basmod.common.world.BasmodConfiguredSurfacebuilder;
-import com.alpherininus.basmod.common.world.BasmodStructureFeatures;
+import com.alpherininus.basmod.common.world.gen.structures.MagicalWitchHouse;
 import net.minecraft.client.audio.BackgroundMusicTracks;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
@@ -13,6 +13,8 @@ import net.minecraft.world.biome.*;
 import net.minecraft.world.gen.feature.Features;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.gen.feature.OreFeature;
+import net.minecraft.world.gen.feature.StructureFeature;
+import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.feature.structure.StructureFeatures;
 import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilder;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -40,7 +42,7 @@ public class BiomeInit {
         DefaultBiomeFeatures.withCavesAndCanyons(biomegenerationsettings$builder);
 
         biomegenerationsettings$builder.withStructure(StructureFeatures.RUINED_PORTAL);
-        biomegenerationsettings$builder.withStructure(BasmodStructureFeatures.MAGICAL_WITCH_HOUSE_FEATURE);
+        biomegenerationsettings$builder.withStructure(new MagicalWitchHouse().withConfiguration(NoFeatureConfig.NO_FEATURE_CONFIG));
 
 
         DefaultBiomeFeatures.withFossils(biomegenerationsettings$builder);
