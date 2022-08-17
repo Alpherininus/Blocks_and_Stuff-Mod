@@ -2,7 +2,6 @@ package com.alpherininus.basmod.core.init;
 
 import com.alpherininus.basmod.Basmod;
 import com.alpherininus.basmod.common.world.BasmodConfiguredSurfacebuilder;
-import com.alpherininus.basmod.common.world.gen.StructureGeneration;
 import net.minecraft.client.audio.BackgroundMusicTracks;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
@@ -13,7 +12,6 @@ import net.minecraft.world.biome.*;
 import net.minecraft.world.gen.feature.Features;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.gen.feature.OreFeature;
-import net.minecraft.world.gen.feature.OreFeatureConfig;
 import net.minecraft.world.gen.feature.structure.StructureFeatures;
 import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilder;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -48,6 +46,7 @@ public class BiomeInit {
         DefaultBiomeFeatures.withTreesInWater(biomegenerationsettings$builder);
         DefaultBiomeFeatures.withLavaLakes(biomegenerationsettings$builder);
         DefaultBiomeFeatures.withCavesAndCanyons(biomegenerationsettings$builder);
+        DefaultBiomeFeatures.withSparseBerries(biomegenerationsettings$builder);
 
         biomegenerationsettings$builder.withStructure(StructureFeatures.RUINED_PORTAL);
         biomegenerationsettings$builder.withStructure(StructureFeatures.VILLAGE_TAIGA);
@@ -56,6 +55,8 @@ public class BiomeInit {
         biomegenerationsettings$builder.withStructure(StructureFeatures.MINESHAFT_BADLANDS);
 
         DefaultBiomeFeatures.withFossils(biomegenerationsettings$builder);
+        biomegenerationsettings$builder.withStructure(StructureFeatures.NETHER_FOSSIL);
+
         DefaultBiomeFeatures.withFossils(biomegenerationsettings$builder);
 
         DefaultBiomeFeatures.withIcebergs(biomegenerationsettings$builder);
@@ -63,25 +64,25 @@ public class BiomeInit {
         DefaultBiomeFeatures.withAllForestFlowerGeneration(biomegenerationsettings$builder);
 
         DefaultBiomeFeatures.withSpawnsWithExtraChickens(mobspawninfoExtraChickens$builder);
+        mobspawninfoExtraChickens$builder.withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityTypesInit.BASMOD_BOSS_ENTITY.get(), 1, 0, 1));
 
-        DefaultBiomeFeatures.withHostileMobs(mobspawninfoForMonster$builder
-                .withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.SPIDER, 100, 4, 4))
-                .withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.ZOMBIE, zombieWeight, 4, 4))
-                .withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.ZOMBIE_VILLAGER, zombieVillagerWeight, 1, 1))
-                .withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.SKELETON, skeletonWeight, 4, 4))
-                .withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.CREEPER, 100, 4, 4))
-                .withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.SLIME, 100, 4, 4))
-                .withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.ENDERMAN, 10, 1, 4))
-                .withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.WITCH, 5, 1, 1))
-                .withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityTypesInit.BASMOD_BOSS_ENTITY.get(), 1, 0, 1))
-                .withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.ILLUSIONER, 3, 1, 1)),
-                zombieWeight, zombieVillagerWeight, skeletonWeight);
+        DefaultBiomeFeatures.withHostileMobs(mobspawninfoForMonster$builder, zombieWeight, zombieVillagerWeight, skeletonWeight);
+        mobspawninfoForMonster$builder.withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.SPIDER, 100, 4, 4));
+        mobspawninfoForMonster$builder.withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.ZOMBIE, zombieWeight, 4, 4));
+        mobspawninfoForMonster$builder.withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.ZOMBIE_VILLAGER, zombieVillagerWeight, 1, 1));
+        mobspawninfoForMonster$builder.withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.SKELETON, skeletonWeight, 4, 4));
+        mobspawninfoForMonster$builder.withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.CREEPER, 100, 4, 4));
+        mobspawninfoForMonster$builder.withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.SLIME, 100, 4, 4));
+        mobspawninfoForMonster$builder.withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.ENDERMAN, 10, 1, 4));
+        mobspawninfoForMonster$builder.withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.WITCH, 5, 1, 1));
+        mobspawninfoForMonster$builder.withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.ILLUSIONER, 3, 1, 1));
+        mobspawninfoForMonster$builder.withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityTypesInit.BASMOD_BOSS_ENTITY.get(), 1, 0, 1));
 
-        DefaultBiomeFeatures.withPassiveMobs(mobspawninfoForCreature$builder
-                .withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(EntityType.SHEEP, 10, 2, 4))
-                .withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(EntityType.PIG, 8, 2, 4))
-                .withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(EntityType.CHICKEN, 8, 2, 4))
-                .withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(EntityType.COW, 6, 2, 4)));
+        DefaultBiomeFeatures.withPassiveMobs(mobspawninfoForCreature$builder);
+        mobspawninfoForCreature$builder.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(EntityType.SHEEP, 10, 2, 4));
+        mobspawninfoForCreature$builder.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(EntityType.PIG, 8, 2, 4));
+        mobspawninfoForCreature$builder.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(EntityType.CHICKEN, 8, 2, 4));
+        mobspawninfoForCreature$builder.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(EntityType.COW, 6, 2, 4));
 
         DefaultBiomeFeatures.withEmeraldOre(biomegenerationsettings$builder);
         DefaultBiomeFeatures.withDebrisOre(biomegenerationsettings$builder);
