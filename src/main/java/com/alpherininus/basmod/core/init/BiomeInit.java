@@ -13,6 +13,7 @@ import net.minecraft.world.biome.*;
 import net.minecraft.world.gen.feature.Features;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.gen.feature.OreFeature;
+import net.minecraft.world.gen.feature.OreFeatureConfig;
 import net.minecraft.world.gen.feature.structure.StructureFeatures;
 import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilder;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -44,10 +45,15 @@ public class BiomeInit {
         DefaultBiomeFeatures.withOverworldOres(biomegenerationsettings$builder);
         DefaultBiomeFeatures.withDisks(biomegenerationsettings$builder);
         DefaultBiomeFeatures.withBadlandsOakTrees(biomegenerationsettings$builder);
+        DefaultBiomeFeatures.withTreesInWater(biomegenerationsettings$builder);
         DefaultBiomeFeatures.withLavaLakes(biomegenerationsettings$builder);
         DefaultBiomeFeatures.withCavesAndCanyons(biomegenerationsettings$builder);
 
         biomegenerationsettings$builder.withStructure(StructureFeatures.RUINED_PORTAL);
+        biomegenerationsettings$builder.withStructure(StructureFeatures.VILLAGE_TAIGA);
+        biomegenerationsettings$builder.withStructure(StructureFeatures.STRONGHOLD);
+        biomegenerationsettings$builder.withStructure(StructureFeatures.MINESHAFT);
+        biomegenerationsettings$builder.withStructure(StructureFeatures.MINESHAFT_BADLANDS);
 
         DefaultBiomeFeatures.withFossils(biomegenerationsettings$builder);
         DefaultBiomeFeatures.withFossils(biomegenerationsettings$builder);
@@ -67,7 +73,7 @@ public class BiomeInit {
                 .withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.SLIME, 100, 4, 4))
                 .withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.ENDERMAN, 10, 1, 4))
                 .withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.WITCH, 5, 1, 1))
-                .withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityTypesInit.BASMOD_BOSS_ENTITY.get(), 1, 1, 1))
+                .withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityTypesInit.BASMOD_BOSS_ENTITY.get(), 1, 0, 1))
                 .withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.ILLUSIONER, 3, 1, 1)),
                 zombieWeight, zombieVillagerWeight, skeletonWeight);
 
@@ -77,19 +83,31 @@ public class BiomeInit {
                 .withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(EntityType.CHICKEN, 8, 2, 4))
                 .withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(EntityType.COW, 6, 2, 4)));
 
+        DefaultBiomeFeatures.withEmeraldOre(biomegenerationsettings$builder);
+        DefaultBiomeFeatures.withDebrisOre(biomegenerationsettings$builder);
+        DefaultBiomeFeatures.withForestRocks(biomegenerationsettings$builder);
 
-        Features.ORE_ANDESITE.count(10);
-        Features.ORE_DIORITE.count(15);
-        Features.ORE_MAGMA.count(20);
-        Features.ORE_REDSTONE.count(10);
-        Features.ORE_SOUL_SAND.count(10);
-        Features.ORE_LAPIS.count(10);
-        Features.ORE_IRON.count(10);
-        Features.PATCH_BERRY_BUSH.count(5);
-        Features.PATCH_BERRY_DECORATED.count(15);
+        Features.ORE_ANDESITE.range(80).square().count(10);
+        Features.ORE_DIORITE.range(80).square().count(10);
+        Features.ORE_MAGMA.square().count(33);
+        Features.ORE_REDSTONE.range(16).square().count(8);
+        Features.ORE_SOUL_SAND.range(32).square().count(12);
+        Features.ORE_LAPIS.square().count(16);
+        Features.ORE_IRON.range(64).square().count(20);
+        Features.ORE_INFESTED.range(64).square().count(7);
 
-        Features.Placements.SPRING_PLACEMENT.count(10);
-        Features.Placements.VEGETATION_PLACEMENT.count(5);
+        Features.PATCH_BERRY_DECORATED.square().withPlacement(Features.Placements.VEGETATION_PLACEMENT).withChance(0.050F);
+        Features.PATCH_BERRY_SPARSE.square();
+        Features.PATCH_BERRY_BUSH.square().withPlacement(Features.Placements.PATCH_PLACEMENT).chance(12);
+
+        Features.LAKE_LAVA.square().chance(80);
+        Features.PLAIN_VEGETATION.square().count(1).withChance(0.33333334F);
+        Features.DARK_FOREST_VEGETATION_RED.square().count(8).withChance(0.025F);
+        Features.DARK_FOREST_VEGETATION_BROWN.square().count(4).withChance(0.050F);
+
+        Features.Placements.SPRING_PLACEMENT.square().count(8);
+        Features.Placements.VEGETATION_PLACEMENT.square().count(16);
+        Features.Placements.SEAGRASS_DISK_PLACEMENT.square().count(32);
 
         OreFeature.TWISTING_VINES.withConfiguration(NoFeatureConfig.INSTANCE);
         OreFeature.WEEPING_VINES.withConfiguration(NoFeatureConfig.INSTANCE);
