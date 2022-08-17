@@ -3,6 +3,7 @@ package com.alpherininus.basmod.common.events;
 import com.alpherininus.basmod.Basmod;
 import com.alpherininus.basmod.common.world.gen.EntityGeneration;
 import com.alpherininus.basmod.common.world.gen.FlowerGeneration;
+import com.alpherininus.basmod.common.world.gen.TreeGeneration;
 import com.alpherininus.basmod.core.init.ItemInit;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.entity.merchant.villager.VillagerProfession;
@@ -25,6 +26,7 @@ public class BasmodWorldEvents {
 
         EntityGeneration.onEntitySpawn(event);
         FlowerGeneration.generateFlowers(event);
+        TreeGeneration.generateTrees(event);
 
     }
 
