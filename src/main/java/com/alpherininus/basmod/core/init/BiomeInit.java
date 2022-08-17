@@ -68,7 +68,6 @@ public class BiomeInit {
         DefaultBiomeFeatures.withTreesInWater(biomegenerationsettings$builder);
         DefaultBiomeFeatures.withLavaLakes(biomegenerationsettings$builder);
         DefaultBiomeFeatures.withCavesAndCanyons(biomegenerationsettings$builder);
-        DefaultBiomeFeatures.withSparseBerries(biomegenerationsettings$builder);
 
         biomegenerationsettings$builder.withStructure(StructureFeatures.RUINED_PORTAL);
         biomegenerationsettings$builder.withStructure(StructureFeatures.VILLAGE_TAIGA);
@@ -94,10 +93,6 @@ public class BiomeInit {
         Features.ORE_LAPIS.square().count(16);
         Features.ORE_IRON.range(64).square().count(20);
         Features.ORE_INFESTED.range(64).square().count(7);
-
-        Features.PATCH_BERRY_DECORATED.square().withPlacement(Features.Placements.VEGETATION_PLACEMENT).withChance(0.050F);
-        Features.PATCH_BERRY_SPARSE.square();
-        Features.PATCH_BERRY_BUSH.square().withPlacement(Features.Placements.PATCH_PLACEMENT).chance(12);
 
         Features.LAKE_LAVA.square().chance(80);
         Features.PLAIN_VEGETATION.square().count(1).withChance(0.33333334F);
