@@ -25,8 +25,8 @@ public class BiomeInit {
     public static final DeferredRegister<Biome> BIOMES
             = DeferredRegister.create(ForgeRegistries.BIOMES, Basmod.MOD_ID);
 
-    public static final RegistryObject<Biome> DARK_OF_GODNESS_BIOME = BIOMES.register("dark_of_godness",
-            () -> makeDarkOfGodnessBiome(() -> BasmodConfiguredSurfacebuilder.DARK_OF_GODNESS, 0.250f, 0.15f));
+    public static final RegistryObject<Biome> BAS_MAGICAL_FOREST_BIOME = BIOMES.register("magical_forest",
+            () -> makeDarkOfGodnessBiome(() -> BasmodConfiguredSurfacebuilder.MAGICAL_FOREST, 0.250f, 0.15f));
 
     private static Biome makeDarkOfGodnessBiome(final Supplier<ConfiguredSurfaceBuilder<?>> surfaceBuilder, float tiefe, float massstab) {
 
@@ -34,7 +34,7 @@ public class BiomeInit {
         int zombieVillagerWeight = 50;
         int skeletonWeight = 150;
 
-        BiomeGenerationSettings.Builder biomegenerationsettings$builder = (new BiomeGenerationSettings.Builder()).withSurfaceBuilder(BasmodConfiguredSurfacebuilder.DARK_OF_GODNESS);
+        BiomeGenerationSettings.Builder biomegenerationsettings$builder = (new BiomeGenerationSettings.Builder()).withSurfaceBuilder(BasmodConfiguredSurfacebuilder.MAGICAL_FOREST);
 
         MobSpawnInfo.Builder mobspawninfoExtraChickens$builder = new MobSpawnInfo.Builder();
         MobSpawnInfo.Builder mobspawninfoForMonster$builder = new MobSpawnInfo.Builder();

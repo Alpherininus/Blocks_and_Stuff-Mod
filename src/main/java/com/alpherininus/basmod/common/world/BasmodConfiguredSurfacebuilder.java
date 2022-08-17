@@ -11,7 +11,7 @@ import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 
 public class BasmodConfiguredSurfacebuilder {
 
-    public static ConfiguredSurfaceBuilder<?> DARK_OF_GODNESS = register("dark_of_godness",
+    public static ConfiguredSurfaceBuilder<?> MAGICAL_FOREST = register("magical_forest",
             SurfaceBuilder.DEFAULT.func_242929_a(new SurfaceBuilderConfig(
                     Blocks.GRASS_BLOCK.getDefaultState(),
                     Blocks.COARSE_DIRT.getDefaultState(),
