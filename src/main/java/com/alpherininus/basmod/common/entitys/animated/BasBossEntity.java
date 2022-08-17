@@ -1,18 +1,22 @@
 package com.alpherininus.basmod.common.entitys.animated;
 
+import com.mojang.serialization.Dynamic;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.entity.ai.brain.Brain;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.merchant.villager.AbstractVillagerEntity;
+import net.minecraft.entity.merchant.villager.VillagerEntity;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.monster.SlimeEntity;
 import net.minecraft.entity.monster.ZombieEntity;
 import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.DamageSource;
@@ -20,6 +24,7 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BossInfo;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerBossInfo;
 import software.bernie.geckolib3.core.IAnimatable;
@@ -47,18 +52,20 @@ public class BasBossEntity extends MonsterEntity implements IAnimatable {
 
     @Override
     protected void registerGoals() {
-        this.goalSelector.addGoal(2, new SwimGoal(this));
         this.goalSelector.addGoal(1, new LookAtGoal(this, PlayerEntity.class, 64.0f));
-        this.goalSelector.addGoal(4, new LookRandomlyGoal(this));
-        this.goalSelector.addGoal(9, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
+        this.goalSelector.addGoal(2, new LookAtGoal(this, IronGolemEntity.class, 32.0f));
+        this.goalSelector.addGoal(3, new LookAtGoal(this, VillagerEntity.class, 32.0f));
+        this.goalSelector.addGoal(5, new LookAtGoal(this, PlayerEntity.class, 64.0f));
+        this.goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 32.0f));
 
-        this.targetSelector.addGoal(2, (new HurtByTargetGoal(this)).setCallsForHelp(BasBossEntity.class));
-        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
-        this.targetSelector.addGoal(8, new NearestAttackableTargetGoal<>(this, ZombieEntity.class, true));
-        this.targetSelector.addGoal(7, new NearestAttackableTargetGoal<>(this, SlimeEntity.class, true));
-        this.targetSelector.addGoal(6, new NearestAttackableTargetGoal<>(this, LivingEntity.class, true));
-        this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, AbstractVillagerEntity.class, false));
-        this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, IronGolemEntity.class, true));
+        this.goalSelector.addGoal(2, new SwimGoal(this));
+        this.goalSelector.addGoal(3, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
+        this.goalSelector.addGoal(4, new LookRandomlyGoal(this));
+
+        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
+        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, IronGolemEntity.class, true));
+        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractVillagerEntity.class, false));
+        this.targetSelector.addGoal(6, new MoveTowardsTargetGoal(this, 0.0D, 15.0F));
 
         super.registerGoals();
     }
@@ -191,4 +198,42 @@ public class BasBossEntity extends MonsterEntity implements IAnimatable {
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    @Override
+    public boolean isBurning() {
+        return false;
+    }
+
+    @Override
+    protected boolean isDespawnPeaceful() {
+        return false;
+    }
+
+    @Override
+    public boolean isSpinAttacking() {
+        return true;
+    }
+
+    @Override
+    public boolean canAttack(LivingEntity target) {
+        return true;
+    }
+
+    @Override
+    public boolean canBeHitWithPotion() {
+        return false;
+    }
+
+    @Override
+    public boolean canAttack(EntityType<?> typeIn) {
+        return true;
+    }
+
+    @Override
+    public boolean attackable() {
+        return true;
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 }
