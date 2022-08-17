@@ -56,7 +56,6 @@ public class BasBossEntity extends MonsterEntity implements IAnimatable {
         this.goalSelector.addGoal(2, new LookAtGoal(this, IronGolemEntity.class, 32.0f));
         this.goalSelector.addGoal(3, new LookAtGoal(this, VillagerEntity.class, 32.0f));
         this.goalSelector.addGoal(5, new LookAtGoal(this, PlayerEntity.class, 64.0f));
-        this.goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 32.0f));
 
         this.goalSelector.addGoal(2, new SwimGoal(this));
         this.goalSelector.addGoal(3, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
@@ -64,8 +63,9 @@ public class BasBossEntity extends MonsterEntity implements IAnimatable {
 
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, IronGolemEntity.class, true));
-        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractVillagerEntity.class, false));
-        this.targetSelector.addGoal(6, new MoveTowardsTargetGoal(this, 0.0D, 15.0F));
+        this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, AbstractVillagerEntity.class, false));
+        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, VillagerEntity.class, true));
+        this.targetSelector.addGoal(5, new MoveTowardsTargetGoal(this, 1.0D, 32.0F));
 
         super.registerGoals();
     }
