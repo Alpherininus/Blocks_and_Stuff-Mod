@@ -56,8 +56,6 @@ public class BiomeInit {
         DefaultBiomeFeatures.withFossils(biomegenerationsettings$builder);
         biomegenerationsettings$builder.withStructure(StructureFeatures.NETHER_FOSSIL);
 
-        DefaultBiomeFeatures.withFossils(biomegenerationsettings$builder);
-
         DefaultBiomeFeatures.withIcebergs(biomegenerationsettings$builder);
         DefaultBiomeFeatures.withDefaultFlowers(biomegenerationsettings$builder);
         DefaultBiomeFeatures.withAllForestFlowerGeneration(biomegenerationsettings$builder);
