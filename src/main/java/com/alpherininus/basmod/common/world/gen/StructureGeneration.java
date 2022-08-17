@@ -21,7 +21,13 @@ public class StructureGeneration {
         if(types.contains(BiomeDictionary.Type.PLAINS)) {
             List<Supplier<StructureFeature<?, ?>>> structures = event.getGeneration().getStructures();
 
-            structures.add(() -> StructureInit.MAGICAL_WITCH_HOUSE.get().withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG));
+            // structures.add(() -> StructureInit.MAGICAL_WITCH_HOUSE.get().withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG));
         }
+
+        if(types.contains(BiomeDictionary.Type.WATER)) {
+            List<Supplier<StructureFeature<?, ?>>> structures = event.getGeneration().getStructures();
+            //
+        }
+
     }
 }
