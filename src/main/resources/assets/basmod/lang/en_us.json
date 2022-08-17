@@ -25,36 +25,44 @@
 	"item.basmod.wither_spawn_egg": "Wither Spawn Egg",
 	"item.basmod.ender_dragon_spawn_egg": "Ender Dragon Spawn Egg",
 	"item.basmod.cooper_golem_spawn_egg": "Copper Golem Spawn Egg",
+
 	"item.basmod.seieorshell_spawn_egg": "Seiðr Shell",
 	"entity.basmod.seiorshell": "Seiðr Shell",
+
 	"item.basmod.bas_boss_spawn_egg": "Blocks and Stuff | Boss",
 	"entity.basmod.basmod_boss": "Blocks and Stuff | Boss",
+
 	"item.basmod.ruby_sword": "Ruby Sword",
 	"item.basmod.ruby_axt": "Ruby Axe",
 	"item.basmod.ruby_pickaxt": "Ruby Pickaxe",
 	"item.basmod.ruby_shovel": "Ruby Shovel",
 	"item.basmod.ruby_hoe": "Ruby Hoe",
+
 	"item.basmod.umbral_sword": "Umbral Sword",
 	"item.basmod.umbral_axt": "Umbral Axe",
 	"item.basmod.umbral_pickaxt": "Umbral Pickaxe",
 	"item.basmod.umbral_shovel": "Umbral Shovel",
 	"item.basmod.umbral_hoe": "Umbral Hoe",
+
 	"item.basmod.dark_steel_sword": "Dark Steel Sword",
 	"item.basmod.dark_steel_axt": "Dark Steel Axe",
 	"item.basmod.dark_steel_pickaxt": "Dark Steel Pickaxe",
 	"item.basmod.dark_steel_shovel": "Dark Steel Shovel",
 	"item.basmod.dark_steel_hoe": "Dark Steel Hoe",
+
 	"item.basmod.steel_sword": "Steel Sword",
 	"item.basmod.steel_axt": "Steel Axe",
 	"item.basmod.steel_pickaxt": "Steel Pickaxe",
 	"item.basmod.steel_shovel": "Steel Shovel",
 	"item.basmod.steel_hoe": "Steel Hoe",
+
 	"item.basmod.ring_of_lol": "Ring of LOL",
 	"item.basmod.ruby": "Ruby",
 	"item.basmod.steel": "Steel",
 	"item.basmod.relics": "Relics",
 	"item.basmod.dark_steel": "Dark Steel",
 	"item.basmod.umbral_steel": "Umbral Steel",
+
 	"block.basmod.key_door": "Key Door",
 	"block.basmod.blue_key_door": "Key Door",
 	"block.basmod.red_key_door": "Key Door",
@@ -63,19 +71,28 @@
 	"item.basmod.red_door_key": "Red Door Key",
 	"item.basmod.green_door_key": "Green Door Key",
 	"item.basmod.door_key": "Door Key",
+
 	"block.basmod.light_blocks": "Light Sword",
 	"item.basmod.light_sword": "Light Sword Item",
+
 	"item.basmod.magical_spell_arrow": "Magical Arrow",
 	"item.basmod.magical_staff": "Magical Staff",
 	"item.basmod.heal_staff": "Heal Staff",
 	"item.basmod.teleport_staff": "Teleport Staff",
+
 	"block.basmod.ruby_ore": "Ruby Ore",
 	"block.basmod.steel_ore": "Steel Ore",
 	"block.basmod.umbral_steel_ore": "Umbral Steel Ore",
 	"block.basmod.relics_ore": "Relics Ore",
 	"block.basmod.dark_steel_ore": "Dark Steel Ore",
-	"block.basmod.magical_flower": "Magical Flower",
 
+	"block.basmod.ruby_block": "Ruby Block",
+	"block.basmod.steel_block": "Steel Block",
+	"block.basmod.umbral_steel_block": "Umbral Steel Block",
+	"block.basmod.dark_steel_block": "Dark Steel Block",
+
+
+	"block.basmod.magical_flower": "Magical Flower",
 	"block.basmod.magical_grass": "Magical Grass",
 
 	"block.basmod.magical_oak_log": "Magical Logs",
@@ -87,6 +104,7 @@
 
 	"block.basmod.magical_oak_door": "Magical Oak Door",
 	"block.basmod.magical_oak_planks": "Magical Oak Planks",
+	"block.basmod.magical_oak_stairs": "Magical Oak Stairs",
 	"block.basmod.magical_oak_slab": "Magical Oak Slab",
 	"block.basmod.magical_oak_trapdoor": "Magical Oak Trapdoor",
 
