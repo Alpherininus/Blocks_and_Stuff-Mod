@@ -81,6 +81,20 @@ public class BlockInit {
                     .harvestTool(ToolType.AXE).harvestLevel(2).sound(SoundType.METAL).notSolid()));
 
 
+    public static final RegistryObject<Block> UMBRAL_STEEL_BLOCK = registryBlock("umbral_steel_block",
+            () -> new Block(AbstractBlock.Properties.create(Material.IRON, MaterialColor.GRAY).hardnessAndResistance(7f, 6f)
+                    .harvestTool(ToolType.PICKAXE).harvestLevel(2).sound(SoundType.STONE)));
+
+    public static final RegistryObject<Block> STEEL_BLOCK = registryBlock("steel_block",
+            () -> new Block(AbstractBlock.Properties.create(Material.IRON, MaterialColor.GRAY).hardnessAndResistance(7f, 6f)
+                    .harvestTool(ToolType.PICKAXE).harvestLevel(2).sound(SoundType.STONE)));
+
+    public static final RegistryObject<Block> DARK_STEEL_BLOCK = registryBlock("dark_steel_block",
+            () -> new Block(AbstractBlock.Properties.create(Material.IRON, MaterialColor.GRAY).hardnessAndResistance(7f, 6f)
+                    .harvestTool(ToolType.PICKAXE).harvestLevel(2).sound(SoundType.STONE)));
+
+
+
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // TODO DECORATION AND FLOWERS :>
 
