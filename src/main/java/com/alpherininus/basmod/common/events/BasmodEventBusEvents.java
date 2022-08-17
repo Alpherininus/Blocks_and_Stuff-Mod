@@ -7,19 +7,15 @@ import com.alpherininus.basmod.common.entitys.animated.BasBossEntity;
 import com.alpherininus.basmod.common.events.loots.BasmodAdditionModifier;
 import com.alpherininus.basmod.common.events.loots.BasmodStructureAdditionModifier;
 import com.alpherininus.basmod.common.items.SeioerShellSpawnEggItem;
-import com.alpherininus.basmod.common.items.armor.JetPackArmorItem;
-import com.alpherininus.basmod.common.items.armor.models.renderer.JetPackArmorRenderer;
 import com.alpherininus.basmod.common.items.models.BasmodSpawnEggItem;
 import com.alpherininus.basmod.core.init.EntityTypesInit;
 import net.minecraft.entity.EntityType;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.common.loot.GlobalLootModifierSerializer;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import software.bernie.geckolib3.renderers.geo.GeoArmorRenderer;
 
 import javax.annotation.Nonnull;
 

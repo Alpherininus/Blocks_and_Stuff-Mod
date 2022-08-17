@@ -10,16 +10,12 @@ import com.alpherininus.basmod.common.items.armor.JetPackArmorItem;
 import com.alpherininus.basmod.common.items.armor.models.renderer.JetPackArmorRenderer;
 import com.alpherininus.basmod.common.world.gen.BiomeGeneration;
 import com.alpherininus.basmod.common.world.gen.OreGeneration;
-import com.alpherininus.basmod.common.world.gen.TreeGeneration;
 import com.alpherininus.basmod.core.init.*;
 import com.alpherininus.basmod.core.util.BasmodConfig;
-import com.google.common.collect.ImmutableMap;
-import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
-import net.minecraft.item.AxeItem;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -61,6 +57,7 @@ public class Basmod {
         PaintingsInit.PAINTING_TYPES.register(eventbus);
         FluidInit.FLUIDS.register(eventbus);
         SoundInit.BAS_SOUND_EVENTS.register(eventbus);
+        StructureInit.STRUCTURES.register(eventbus);
 
         GeckoLib.initialize();
 
@@ -97,10 +94,9 @@ public class Basmod {
         // //         .put(BlockInit.MAGICAL_OAK_WOOD.get(), BlockInit.MAGICAL_STRIPPED_OAK_WOOD.get()).build()
         // // );
 
-        event.enqueueWork(
-                BiomeGeneration::generateBiome
+        event.enqueueWork(BiomeGeneration::generateBiome);
+        event.enqueueWork(StructureInit::setupStructures);
 
-        );
     }
 
     private void doClientStuff(final FMLClientSetupEvent event) {
