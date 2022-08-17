@@ -12,6 +12,7 @@ import net.minecraft.block.trees.OakTree;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.potion.Effects;
+import net.minecraft.util.Direction;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.RegistryObject;
@@ -50,27 +51,29 @@ public class BlockInit {
     // TODO BUILDINGBLOCKS
 
     public static final RegistryObject<Block> MAGICAL_OAK_DOOR = registryBlock("magical_oak_door",
-            () -> new MagicalOakDoorItem(AbstractBlock.Properties.create(Material.IRON, MaterialColor.PURPLE).hardnessAndResistance(8f, 7f)
+            () -> new MagicalOakDoorItem(AbstractBlock.Properties.create(Material.IRON, MaterialColor.OBSIDIAN).hardnessAndResistance(8f, 7f)
                     .harvestTool(ToolType.PICKAXE).harvestLevel(2).sound(SoundType.METAL).notSolid()));
 
     public static final RegistryObject<Block> MAGICAL_OAK_LEAVES = registryBlock("magical_oak_leaves",
-            () -> new LeavesBlock(AbstractBlock.Properties.create(Material.LEAVES, MaterialColor.PURPLE)
+            () -> new LeavesBlock(AbstractBlock.Properties.create(Material.LEAVES, MaterialColor.OBSIDIAN)
                     .hardnessAndResistance(0.2f).tickRandomly().notSolid().sound(SoundType.PLANT)));
 
     public static final RegistryObject<Block> MAGICAL_OAK_LOG = registryBlock("magical_oak_log",
-            () -> new MagicalOakLog(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.PURPLE).hardnessAndResistance(8f, 7f)
-                    .harvestTool(ToolType.AXE).harvestLevel(2).sound(SoundType.WOOD)));
+            () -> new RotatedPillarBlock(AbstractBlock.Properties
+                    .create(Material.WOOD, (state) -> state.get(RotatedPillarBlock.AXIS) == Direction.Axis.Y ? MaterialColor.WOOD : MaterialColor.OBSIDIAN)
+                    .hardnessAndResistance(2.0F)
+                    .sound(SoundType.WOOD)));
 
     public static final RegistryObject<Block> MAGICAL_OAK_PLANKS = registryBlock("magical_oak_planks",
-            () -> new Block(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.PURPLE).hardnessAndResistance(8f, 7f)
+            () -> new Block(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(8f, 7f)
                     .harvestTool(ToolType.AXE).harvestLevel(2).sound(SoundType.METAL)));
 
     public static final RegistryObject<Block> MAGICAL_OAK_SLAB = registryBlock("magical_oak_slab",
-            () -> new SlabBlock(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.PURPLE).hardnessAndResistance(8f, 7f)
+            () -> new SlabBlock(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(8f, 7f)
                     .harvestTool(ToolType.AXE).harvestLevel(2).sound(SoundType.METAL)));
 
     public static final RegistryObject<Block> MAGICAL_OAK_TRAPDOOR = registryBlock("magical_oak_trapdoor",
-            () -> new TrapDoorBlock(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.PURPLE).hardnessAndResistance(8f, 7f)
+            () -> new TrapDoorBlock(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(8f, 7f)
                     .harvestTool(ToolType.AXE).harvestLevel(2).sound(SoundType.METAL).notSolid()));
 
 
@@ -118,6 +121,7 @@ public class BlockInit {
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //TODO Registry -> registryBlock oder BLOCKS.register
+
     private static <T extends Block> RegistryObject<T> registryBlock(String name, Supplier<T> block) {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);
         registryBlock(name, toReturn);
