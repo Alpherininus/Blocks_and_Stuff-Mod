@@ -1,7 +1,6 @@
 package com.alpherininus.basmod.common.world.gen.structures;
 
 import com.alpherininus.basmod.Basmod;
-import com.mojang.serialization.Codec;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SharedSeedRandom;
