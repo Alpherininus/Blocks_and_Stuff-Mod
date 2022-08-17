@@ -13,7 +13,7 @@ import static net.minecraftforge.common.BiomeDictionary.Type.*;
 
 public class BiomeGeneration {
     public static void generateBiome() {
-        addBiome(BiomeInit.DARK_OF_GODNESS_BIOME.get(), BiomeManager.BiomeType.WARM, 10, HOT, DEAD, DRY);
+        addBiome(BiomeInit.BAS_MAGICAL_FOREST_BIOME.get(), BiomeManager.BiomeType.WARM, 10, HOT, DEAD, DRY);
     }
 
     private static void addBiome(Biome biome, BiomeManager.BiomeType type, int weight, BiomeDictionary.Type... types) {
