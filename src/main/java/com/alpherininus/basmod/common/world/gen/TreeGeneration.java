@@ -2,6 +2,7 @@ package com.alpherininus.basmod.common.world.gen;
 
 import com.alpherininus.basmod.common.blocks.trees.MagicalOakTree;
 import com.alpherininus.basmod.common.world.BasmodConfiguredFeatures;
+import com.alpherininus.basmod.core.init.BiomeInit;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.Biome;
@@ -27,10 +28,9 @@ public class TreeGeneration {
         RegistryKey<Biome> key = RegistryKey.getOrCreateKey(Registry.BIOME_KEY, event.getName());
         Set<BiomeDictionary.Type> types = BiomeDictionary.getTypes(key);
 
-        if (types.contains(BiomeDictionary.Type.FOREST)) {
+        if (types.contains(BiomeDictionary.Type.PLAINS)) {
             List<Supplier<ConfiguredFeature<?, ?>>> base =
-                    event.getGeneration()
-                            .getFeatures(GenerationStage.Decoration.VEGETAL_DECORATION);
+                    event.getGeneration().getFeatures(GenerationStage.Decoration.VEGETAL_DECORATION);
 
             base.add(() -> BasmodConfiguredFeatures.MAGICAL_OAK_TREE
                     .withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT)

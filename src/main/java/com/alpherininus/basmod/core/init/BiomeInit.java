@@ -2,6 +2,8 @@ package com.alpherininus.basmod.core.init;
 
 import com.alpherininus.basmod.Basmod;
 import com.alpherininus.basmod.common.world.BasmodConfiguredSurfacebuilder;
+import com.alpherininus.basmod.common.world.gen.FlowerGeneration;
+import com.alpherininus.basmod.common.world.gen.TreeGeneration;
 import net.minecraft.client.audio.BackgroundMusicTracks;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.SoundEvents;
