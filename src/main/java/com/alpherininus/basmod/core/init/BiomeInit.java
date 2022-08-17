@@ -2,6 +2,7 @@ package com.alpherininus.basmod.core.init;
 
 import com.alpherininus.basmod.Basmod;
 import com.alpherininus.basmod.common.world.BasmodConfiguredSurfacebuilder;
+import com.alpherininus.basmod.common.world.BasmodStructureFeatures;
 import net.minecraft.client.audio.BackgroundMusicTracks;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
@@ -39,6 +40,8 @@ public class BiomeInit {
         DefaultBiomeFeatures.withCavesAndCanyons(biomegenerationsettings$builder);
 
         biomegenerationsettings$builder.withStructure(StructureFeatures.RUINED_PORTAL);
+        biomegenerationsettings$builder.withStructure(BasmodStructureFeatures.MAGICAL_WITCH_HOUSE_FEATURE);
+
 
         DefaultBiomeFeatures.withFossils(biomegenerationsettings$builder);
         DefaultBiomeFeatures.withFossils(biomegenerationsettings$builder);
