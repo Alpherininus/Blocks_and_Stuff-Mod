@@ -64,12 +64,13 @@ public class BlockInit {
                     .hardnessAndResistance(2.0F)
                     .sound(SoundType.WOOD)));
 
-    public static final RegistryObject<Block> MAGICAL_OAK_STAIRS = registryBlock("magical_oak_stairs",
-            () -> new StairsBlock(BlockInit.MAGICAL_OAK_PLANKS.get().getDefaultState(), AbstractBlock.Properties.from(BlockInit.MAGICAL_OAK_PLANKS.get())));
-
     public static final RegistryObject<Block> MAGICAL_OAK_PLANKS = registryBlock("magical_oak_planks",
             () -> new Block(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(8f, 7f)
                     .harvestTool(ToolType.AXE).harvestLevel(2).sound(SoundType.METAL)));
+
+    public static final RegistryObject<Block> MAGICAL_OAK_STAIRS = registryBlock("magical_oak_stairs",
+            () -> new StairsBlock(() -> BlockInit.MAGICAL_OAK_PLANKS.get().getDefaultState(),
+                    AbstractBlock.Properties.create(Material.WOOD).harvestLevel(2).harvestTool(ToolType.AXE).setRequiresTool()));
 
     public static final RegistryObject<Block> MAGICAL_OAK_SLAB = registryBlock("magical_oak_slab",
             () -> new SlabBlock(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(8f, 7f)
