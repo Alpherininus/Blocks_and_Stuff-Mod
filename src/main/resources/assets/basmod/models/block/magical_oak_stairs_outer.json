@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "bottom": "basmod:block/magical_oak_planks",
+    "top": "basmod:block/magical_oak_planks",
+    "side": "basmod:block/magical_oak_planks"
+  }
+}

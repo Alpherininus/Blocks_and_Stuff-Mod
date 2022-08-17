@@ -48,7 +48,7 @@ public class BlockInit {
                     .harvestTool(ToolType.PICKAXE).harvestLevel(2).sound(SoundType.STONE)));
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // TODO BUILDINGBLOCKS
+    // TODO BUILDINGBLOCKS magical_oak_stairs
 
     public static final RegistryObject<Block> MAGICAL_OAK_DOOR = registryBlock("magical_oak_door",
             () -> new MagicalOakDoorItem(AbstractBlock.Properties.create(Material.IRON, MaterialColor.OBSIDIAN).hardnessAndResistance(8f, 7f)
@@ -63,6 +63,9 @@ public class BlockInit {
                     .create(Material.WOOD, (state) -> state.get(RotatedPillarBlock.AXIS) == Direction.Axis.Y ? MaterialColor.WOOD : MaterialColor.OBSIDIAN)
                     .hardnessAndResistance(2.0F)
                     .sound(SoundType.WOOD)));
+
+    public static final RegistryObject<Block> MAGICAL_OAK_STAIRS = registryBlock("magical_oak_stairs",
+            () -> new StairsBlock(BlockInit.MAGICAL_OAK_PLANKS.get().getDefaultState(), AbstractBlock.Properties.from(BlockInit.MAGICAL_OAK_PLANKS.get())));
 
     public static final RegistryObject<Block> MAGICAL_OAK_PLANKS = registryBlock("magical_oak_planks",
             () -> new Block(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(8f, 7f)
