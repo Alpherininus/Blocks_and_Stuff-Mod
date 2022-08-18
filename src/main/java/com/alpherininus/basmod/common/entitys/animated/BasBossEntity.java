@@ -9,6 +9,7 @@ import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.merchant.villager.AbstractVillagerEntity;
 import net.minecraft.entity.merchant.villager.VillagerEntity;
 import net.minecraft.entity.monster.CreeperEntity;
+import net.minecraft.entity.monster.SpiderEntity;
 import net.minecraft.entity.monster.ZombieEntity;
 import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -34,7 +35,7 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 import javax.annotation.Nullable;
 import java.util.function.Predicate;
 
-public class BasBossEntity extends ZombieEntity implements IAnimatable {
+public class BasBossEntity extends SpiderEntity implements IAnimatable {
     private static final EntityPredicate PLAYER_INVADER_CONDITION = (new EntityPredicate()).setDistance(64.0D);
 
     private static final Predicate<LivingEntity> NOT_UNDEAD = (p_213797_0_) -> p_213797_0_.getCreatureAttribute() != CreatureAttribute.UNDEAD && p_213797_0_.attackable();
@@ -42,7 +43,7 @@ public class BasBossEntity extends ZombieEntity implements IAnimatable {
 
     private AnimationFactory factory = new AnimationFactory(this);
 
-    public BasBossEntity(EntityType<? extends ZombieEntity> entityType, World worldIn) {
+    public BasBossEntity(EntityType<? extends SpiderEntity> entityType, World worldIn) {
         super(entityType, worldIn);
     }
 
