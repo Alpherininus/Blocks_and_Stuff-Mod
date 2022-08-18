@@ -21,7 +21,6 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BossInfo;
-import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerBossInfo;
 import software.bernie.geckolib3.core.IAnimatable;
