@@ -4,11 +4,13 @@ import com.alpherininus.basmod.Basmod;
 import com.alpherininus.basmod.core.util.BasmodConfig;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.EntityLeaveWorldEvent;
 import net.minecraftforge.event.entity.item.ItemTossEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.minecraftforge.event.entity.player.PlayerSleepInBedEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import org.apache.logging.log4j.LogManager;
@@ -51,6 +53,13 @@ public class BasmodPlayerEvents {
             LogManager.getLogger().info("INFO || Blocks and Stuff MOD -> Player Leave the World!, have a great time :)");
         }
 
+    }
+
+    @SubscribeEvent
+    public void onPlayerSleep(PlayerSleepInBedEvent event) {
+        if (!event.getPlayer().world.isDaytime() && !event.getPlayer().world.isRemote) {
+            event.getPlayer().sendStatusMessage(new StringTextComponent("is day you fool"), true);
+        }
     }
 
 }
