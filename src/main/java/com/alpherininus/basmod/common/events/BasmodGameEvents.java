@@ -60,7 +60,7 @@ public class BasmodGameEvents {
                 if (!mc.player.abilities.isCreativeMode) {
 
                     int posXWidth = event.getWindow().getScaledWidth() / 2 + 10;
-                    int posYHeight = event.getWindow().getScaledHeight() - 39;
+                    int posYHeight = event.getWindow().getScaledHeight() - 59;
 
                     int textureWidth = 90;
                     int textureHeight = 9;
