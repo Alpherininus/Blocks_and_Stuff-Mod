@@ -1,33 +1,30 @@
 package com.alpherininus.basmod.common.items;
 
-import com.alpherininus.basmod.common.entitys.ThrowingAxeEntity;
-import com.alpherininus.basmod.common.entitys.animated.BasBossEntity;
-import com.alpherininus.basmod.core.init.EntityTypesInit;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import net.minecraft.block.BlockState;
 import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.EntityType;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.MoverType;
 import net.minecraft.entity.ai.attributes.Attribute;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
-import net.minecraft.entity.projectile.TridentEntity;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.TridentItem;
-import net.minecraft.item.UseAction;
+import net.minecraft.item.*;
 import net.minecraft.stats.Stats;
-import net.minecraft.util.*;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
+import net.minecraftforge.event.ForgeEventFactory;
 
-public class ThrowingAxItem extends TridentItem {
+import java.util.function.Predicate;
+
+public class ThrowingAxItem extends ShootableItem {
 
     private final ImmutableMultimap<Attribute, AttributeModifier> throwingAx;
 
@@ -52,67 +49,84 @@ public class ThrowingAxItem extends TridentItem {
         return 72000;
     }
 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
     public void onPlayerStoppedUsing(ItemStack stack, World worldIn, LivingEntity entityLiving, int timeLeft) {
         if (entityLiving instanceof PlayerEntity) {
             PlayerEntity playerentity = (PlayerEntity)entityLiving;
-            int i = this.getUseDuration(stack) - timeLeft;
-            if (i >= 10) {
-                int j = EnchantmentHelper.getRiptideModifier(stack);
-                if (j <= 0 || playerentity.isWet()) {
-                    if (!worldIn.isRemote) {
-                        stack.damageItem(1, playerentity, (player) -> {
-                            player.sendBreakAnimation(entityLiving.getActiveHand());
-                        });
-                        if (j == 0) {
-                            ThrowingAxeEntity throwingAxe = new ThrowingAxeEntity(worldIn, playerentity, stack);
-                            throwingAxe.setDirectionAndMovement(playerentity, playerentity.rotationPitch, playerentity.rotationYaw, 0.0F, 2.5F + (float)j * 0.5F, 1.0F);
-                            if (playerentity.abilities.isCreativeMode) {
-                                throwingAxe.pickupStatus = AbstractArrowEntity.PickupStatus.CREATIVE_ONLY;
-                            }
+            boolean flag = playerentity.abilities.isCreativeMode || EnchantmentHelper.getEnchantmentLevel(Enchantments.INFINITY, stack) > 0;
+            ItemStack itemstack = playerentity.findAmmo(stack);
 
-                            worldIn.addEntity(throwingAxe);
-                            worldIn.playMovingSound((PlayerEntity)null, throwingAxe, SoundEvents.ITEM_TRIDENT_THROW, SoundCategory.PLAYERS, 1.0F, 1.0F);
-                            if (!playerentity.abilities.isCreativeMode) {
-                                playerentity.inventory.deleteStack(stack);
-                            }
+            int i = this.getUseDuration(stack) - timeLeft;
+            i = ForgeEventFactory.onArrowLoose(stack, worldIn, playerentity, i, !itemstack.isEmpty() || flag);
+            if (i < 0) return;
+
+            if (!itemstack.isEmpty() || flag) {
+                if (itemstack.isEmpty()) {
+                    itemstack = new ItemStack(Items.ARROW);
+                }
+
+                float f = getArrowVelocity(i);
+                if (!((double)f < 0.1D)) {
+                    boolean flag1 = playerentity.abilities.isCreativeMode || (itemstack.getItem() instanceof ArrowItem && ((ArrowItem)itemstack.getItem()).isInfinite(itemstack, stack, playerentity));
+                    if (!worldIn.isRemote) {
+                        ArrowItem arrowitem = (ArrowItem)(itemstack.getItem() instanceof ArrowItem ? itemstack.getItem() : Items.ARROW);
+                        AbstractArrowEntity abstractarrowentity = arrowitem.createArrow(worldIn, itemstack, playerentity);
+                        abstractarrowentity = customArrow(abstractarrowentity);
+                        abstractarrowentity.setDirectionAndMovement(playerentity, playerentity.rotationPitch, playerentity.rotationYaw, 0.0F, f * 3.0F, 1.0F);
+                        if (f == 1.0F) {
+                            abstractarrowentity.setIsCritical(true);
+                        }
+
+                        stack.damageItem(1, playerentity, (player) -> {
+                            player.sendBreakAnimation(playerentity.getActiveHand());
+                        });
+                        if (flag1 || playerentity.abilities.isCreativeMode && (itemstack.getItem() == Items.SPECTRAL_ARROW || itemstack.getItem() == Items.TIPPED_ARROW)) {
+                            abstractarrowentity.pickupStatus = AbstractArrowEntity.PickupStatus.CREATIVE_ONLY;
+                        }
+
+                        worldIn.addEntity(abstractarrowentity);
+                    }
+
+                    worldIn.playSound((PlayerEntity)null, playerentity.getPosX(), playerentity.getPosY(), playerentity.getPosZ(), SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.PLAYERS, 1.0F, 1.0F / (random.nextFloat() * 0.4F + 1.2F) + f * 0.5F);
+                    if (!flag1 && !playerentity.abilities.isCreativeMode) {
+                        itemstack.shrink(1);
+                        if (itemstack.isEmpty()) {
+                            playerentity.inventory.deleteStack(itemstack);
                         }
                     }
 
                     playerentity.addStat(Stats.ITEM_USED.get(this));
-                    if (j > 0) {
-                        float f7 = playerentity.rotationYaw;
-                        float f = playerentity.rotationPitch;
-                        float f1 = -MathHelper.sin(f7 * ((float)Math.PI / 180F)) * MathHelper.cos(f * ((float)Math.PI / 180F));
-                        float f2 = -MathHelper.sin(f * ((float)Math.PI / 180F));
-                        float f3 = MathHelper.cos(f7 * ((float)Math.PI / 180F)) * MathHelper.cos(f * ((float)Math.PI / 180F));
-                        float f4 = MathHelper.sqrt(f1 * f1 + f2 * f2 + f3 * f3);
-                        float f5 = 3.0F * ((1.0F + (float)j) / 4.0F);
-                        f1 = f1 * (f5 / f4);
-                        f2 = f2 * (f5 / f4);
-                        f3 = f3 * (f5 / f4);
-                        playerentity.addVelocity((double)f1, (double)f2, (double)f3);
-                        playerentity.startSpinAttack(20);
-                        if (playerentity.isOnGround()) {
-                            float f6 = 1.1999999F;
-                            playerentity.move(MoverType.SELF, new Vector3d(0.0D, (double)1.1999999F, 0.0D));
-                        }
-
-                        SoundEvent soundevent;
-                        if (j >= 3) {
-                            soundevent = SoundEvents.ITEM_TRIDENT_RIPTIDE_3;
-                        } else if (j == 2) {
-                            soundevent = SoundEvents.ITEM_TRIDENT_RIPTIDE_2;
-                        } else {
-                            soundevent = SoundEvents.ITEM_TRIDENT_RIPTIDE_1;
-                        }
-
-                        worldIn.playMovingSound((PlayerEntity)null, playerentity, soundevent, SoundCategory.PLAYERS, 1.0F, 1.0F);
-                    }
-
                 }
             }
         }
     }
+
+    public static float getArrowVelocity(int charge) {
+        float f = (float)charge / 20.0F;
+        f = (f * f + f * 2.0F) / 3.0F;
+        if (f > 1.0F) {
+            f = 1.0F;
+        }
+
+        return f;
+    }
+
+    @Override
+    public Predicate<ItemStack> getInventoryAmmoPredicate() {
+        return ARROWS;
+    }
+
+    @Override
+    public int func_230305_d_() {
+        return 15;
+    }
+
+    public AbstractArrowEntity customArrow(AbstractArrowEntity arrow) {
+        return arrow;
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
         ItemStack itemstack = playerIn.getHeldItem(handIn);

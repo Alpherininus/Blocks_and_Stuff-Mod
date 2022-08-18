@@ -4,12 +4,9 @@ import com.alpherininus.basmod.Basmod;
 import com.alpherininus.basmod.common.entitys.CopperGolemEntity;
 import com.alpherininus.basmod.common.entitys.MagicalSpellArrowEntity;
 import com.alpherininus.basmod.common.entitys.SeiorShellArmorEntity;
-import com.alpherininus.basmod.common.entitys.ThrowingAxeEntity;
 import com.alpherininus.basmod.common.entitys.animated.BasBossEntity;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.projectile.TridentEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.RegistryObject;
@@ -46,20 +43,6 @@ public class EntityTypesInit {
                             .create(BasBossEntity::new, EntityClassification.MONSTER)
                             .size(1.7F, 2.0F)
                             .build("basmod_boss"));
-
-    public static final RegistryObject<EntityType<ThrowingAxeEntity>> THROWING_AXE_ENTITY =
-            register("throw_ax",
-                    EntityType.Builder
-                            .create((EntityType.IFactory<ThrowingAxeEntity>) ThrowingAxeEntity::new, EntityClassification.MISC)
-                            .size(0.5F, 0.5F)
-                            .trackingRange(4)
-                            .updateInterval(20)
-                            .build("throw_ax"));
-
-    private static RegistryObject<EntityType<ThrowingAxeEntity>> register(String throw_ax, EntityType<ThrowingAxeEntity> throw_ax1) {
-        return null;
-    }
-
 
     public static void register(IEventBus eventBus) {
         ENTITY_TYPES.register(eventBus);

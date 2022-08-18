@@ -5,7 +5,6 @@ import com.alpherininus.basmod.common.entitys.animated.renerer.BasBossRenderer;
 import com.alpherininus.basmod.common.entitys.renderer.CopperGolemRenderer;
 import com.alpherininus.basmod.common.entitys.renderer.MagicalSpellArrowRenderer;
 import com.alpherininus.basmod.common.entitys.renderer.SeieorShellRenderer;
-import com.alpherininus.basmod.common.entitys.renderer.ThrowingAxeRenderer;
 import com.alpherininus.basmod.common.handlers.BasmodAnivilHandler;
 import com.alpherininus.basmod.common.items.armor.JetPackArmorItem;
 import com.alpherininus.basmod.common.items.armor.models.renderer.JetPackArmorRenderer;
@@ -129,9 +128,6 @@ public class Basmod {
         RenderingRegistry.registerEntityRenderingHandler(EntityTypesInit.MAGICAL_SPELL_ARROW.get(), MagicalSpellArrowRenderer::new);
 
         RenderingRegistry.registerEntityRenderingHandler(EntityTypesInit.BASMOD_BOSS_ENTITY.get(), BasBossRenderer::new);
-
-        assert EntityTypesInit.THROWING_AXE_ENTITY != null;
-        RenderingRegistry.registerEntityRenderingHandler(EntityTypesInit.THROWING_AXE_ENTITY.get(), ThrowingAxeRenderer::new);
 
         GeoArmorRenderer.registerArmorRenderer(JetPackArmorItem.class, JetPackArmorRenderer::new);
 
