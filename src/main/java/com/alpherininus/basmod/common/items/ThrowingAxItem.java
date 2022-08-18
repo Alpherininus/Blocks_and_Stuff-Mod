@@ -27,29 +27,25 @@ import java.util.function.Predicate;
 public class ThrowingAxItem extends ShootableItem {
 
     private final ImmutableMultimap<Attribute, AttributeModifier> throwingAx;
+    private final float attackDamage;
 
-    public ThrowingAxItem(Properties builderIn, float attackDamageIn, float attackSpeedIn) {
+    public ThrowingAxItem(IItemTier tier, Properties builderIn, float attackDamageIn, float attackSpeedIn) {
 
         super(builderIn);
+        this.attackDamage = (float)attackDamageIn + tier.getAttackDamage();
         ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
         builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Tool modifier", attackDamageIn, AttributeModifier.Operation.ADDITION));
         builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(ATTACK_SPEED_MODIFIER, "Tool modifier", attackSpeedIn, AttributeModifier.Operation.ADDITION));
         this.throwingAx = builder.build();
     }
 
+    public float getAttackDamage() {
+        return this.attackDamage;
+    }
+
     public boolean canPlayerBreakBlockWhileHolding(BlockState state, World worldIn, BlockPos pos, PlayerEntity player) {
         return !player.isCreative();
     }
-
-    public UseAction getUseAction(ItemStack stack) {
-        return UseAction.SPEAR;
-    }
-
-    public int getUseDuration(ItemStack stack) {
-        return 72000;
-    }
-
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     public void onPlayerStoppedUsing(ItemStack stack, World worldIn, LivingEntity entityLiving, int timeLeft) {
         if (entityLiving instanceof PlayerEntity) {
@@ -128,11 +124,24 @@ public class ThrowingAxItem extends ShootableItem {
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+    public int getUseDuration(ItemStack stack) {
+        return 72000;
+    }
+
+    public UseAction getUseAction(ItemStack stack) {
+        return UseAction.CROSSBOW;
+    }
+
+    @Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
         ItemStack itemstack = playerIn.getHeldItem(handIn);
-        if (itemstack.getDamage() >= itemstack.getMaxDamage() - 1) {
-            return ActionResult.resultFail(itemstack);
-        } else if (EnchantmentHelper.getRiptideModifier(itemstack) > 0 && !playerIn.isWet()) {
+        playerIn.setActiveHand(handIn);
+
+        boolean flag = !playerIn.findAmmo(itemstack).isEmpty();
+        ActionResult<ItemStack> ret = ForgeEventFactory.onArrowNock(itemstack, worldIn, playerIn, handIn, flag);
+
+        if (ret != null) return ret;
+        if (!playerIn.abilities.isCreativeMode && !flag) {
             return ActionResult.resultFail(itemstack);
         } else {
             playerIn.setActiveHand(handIn);
@@ -140,10 +149,11 @@ public class ThrowingAxItem extends ShootableItem {
         }
     }
 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    @Override
     public boolean hitEntity(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-        stack.damageItem(1, attacker, (entity) -> {
-            entity.sendBreakAnimation(EquipmentSlotType.MAINHAND);
-        });
+        stack.damageItem(1, attacker, (entity) -> entity.sendBreakAnimation(EquipmentSlotType.MAINHAND));
         return true;
     }
 

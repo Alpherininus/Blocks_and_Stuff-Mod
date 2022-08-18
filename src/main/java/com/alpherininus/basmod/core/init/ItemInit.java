@@ -77,7 +77,9 @@ public class ItemInit {
             () -> new Item(new Item.Properties()));
 
     public static final RegistryObject<Item> THROWING_AX_ITEM = ITEMS.register("throw_ax",
-            () -> new ThrowingAxItem(new Item.Properties().group(ModItemGroupWapons.BAS_MOD_WAPONS), 4f, -2f));
+            () -> new ThrowingAxItem(BasmodToolMaterial.B_TOOL_MATERIAL,
+                    new Item.Properties()
+                            .group(ModItemGroupWapons.BAS_MOD_WAPONS), 4f, -2f));
 
     public static final RegistryObject<Item> ASUKA_AXT = ITEMS.register("asuka_axt",
             () -> new AsukaAxt(BasmodToolMaterial.A_TOOL_MATERIAL, 3, -2f,
