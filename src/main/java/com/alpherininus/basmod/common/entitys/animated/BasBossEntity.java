@@ -210,11 +210,6 @@ public class BasBossEntity extends MonsterEntity implements IAnimatable {
     }
 
     @Override
-    public boolean isSpinAttacking() {
-        return true;
-    }
-
-    @Override
     public boolean canAttack(LivingEntity target) {
         return true;
     }
