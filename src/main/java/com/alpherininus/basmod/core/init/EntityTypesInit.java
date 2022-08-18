@@ -4,7 +4,9 @@ import com.alpherininus.basmod.Basmod;
 import com.alpherininus.basmod.common.entitys.CopperGolemEntity;
 import com.alpherininus.basmod.common.entitys.MagicalSpellArrowEntity;
 import com.alpherininus.basmod.common.entitys.SeiorShellArmorEntity;
+import com.alpherininus.basmod.common.entitys.ThrowingAxeEntity;
 import com.alpherininus.basmod.common.entitys.animated.BasBossEntity;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.util.ResourceLocation;
@@ -43,6 +45,15 @@ public class EntityTypesInit {
                             .create(BasBossEntity::new, EntityClassification.MONSTER)
                             .size(1.7F, 2.0F)
                             .build("basmod_boss"));
+
+    public static final RegistryObject<EntityType<Entity>> THROWING_AXE_ENTITY =
+            ENTITY_TYPES.register("throw_ax",
+                    () -> EntityType.Builder
+                            .create(ThrowingAxeEntity::new, EntityClassification.MISC)
+                            .size(0.25F, 0.25F)
+                            .trackingRange(4)
+                            .updateInterval(10)
+                            .build("throw_ax"));
 
     public static void register(IEventBus eventBus) {
         ENTITY_TYPES.register(eventBus);

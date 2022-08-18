@@ -1,9 +1,13 @@
 package com.alpherininus.basmod.common.items;
 
+import com.alpherininus.basmod.common.entitys.ThrowingAxeEntity;
+import com.alpherininus.basmod.common.entitys.animated.BasBossEntity;
+import com.alpherininus.basmod.core.init.EntityTypesInit;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import net.minecraft.block.BlockState;
 import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MoverType;
 import net.minecraft.entity.ai.attributes.Attribute;
@@ -60,14 +64,14 @@ public class ThrowingAxItem extends TridentItem {
                             player.sendBreakAnimation(entityLiving.getActiveHand());
                         });
                         if (j == 0) {
-                            TridentEntity tridententity = new TridentEntity(worldIn, playerentity, stack);
-                            tridententity.setDirectionAndMovement(playerentity, playerentity.rotationPitch, playerentity.rotationYaw, 0.0F, 2.5F + (float)j * 0.5F, 1.0F);
+                            ThrowingAxeEntity throwingAxe = new ThrowingAxeEntity(worldIn, playerentity, stack);
+                            throwingAxe.setDirectionAndMovement(playerentity, playerentity.rotationPitch, playerentity.rotationYaw, 0.0F, 2.5F + (float)j * 0.5F, 1.0F);
                             if (playerentity.abilities.isCreativeMode) {
-                                tridententity.pickupStatus = AbstractArrowEntity.PickupStatus.CREATIVE_ONLY;
+                                throwingAxe.pickupStatus = AbstractArrowEntity.PickupStatus.CREATIVE_ONLY;
                             }
 
-                            worldIn.addEntity(tridententity);
-                            worldIn.playMovingSound((PlayerEntity)null, tridententity, SoundEvents.ITEM_TRIDENT_THROW, SoundCategory.PLAYERS, 1.0F, 1.0F);
+                            worldIn.addEntity(throwingAxe);
+                            worldIn.playMovingSound((PlayerEntity)null, throwingAxe, SoundEvents.ITEM_TRIDENT_THROW, SoundCategory.PLAYERS, 1.0F, 1.0F);
                             if (!playerentity.abilities.isCreativeMode) {
                                 playerentity.inventory.deleteStack(stack);
                             }

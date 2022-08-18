@@ -25,6 +25,8 @@ import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
+import static com.alpherininus.basmod.core.init.EntityTypesInit.BASMOD_BOSS_ENTITY;
+
 public class ItemInit {
 
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Basmod.MOD_ID);
@@ -106,7 +108,7 @@ public class ItemInit {
                     new Item.Properties().group(ItemGroup.MISC)));
 
     public static final RegistryObject<BasmodSpawnEggItem> BASBOSS_SPAWN_EGG = ITEMS.register("bas_boss_spawn_egg",
-            () -> new BasmodSpawnEggItem(EntityTypesInit.BASMOD_BOSS_ENTITY, 13671252, 7969893,
+            () -> new BasmodSpawnEggItem(BASMOD_BOSS_ENTITY, 13671252, 7969893,
                     new Item.Properties().group(ItemGroup.MISC)));
 
     public static final RegistryObject<Item> EXPERIMENTAL_ITEM = ITEMS.register("experimental_item",
