@@ -25,11 +25,13 @@ public class BasmodGameEvents {
 
         ItemStack mainhand = mc.player.getItemStackFromSlot(EquipmentSlotType.MAINHAND);
 
+        boolean ignoreGamemode = !mc.player.abilities.isCreativeMode && !mc.player.isSpectator();
+
         boolean modifiExperience = !event.isCancelable() && event.getType() == RenderGameOverlayEvent.ElementType.EXPERIENCE;
         boolean modifiPotionIcon = !event.isCancelable() && event.getType() == RenderGameOverlayEvent.ElementType.POTION_ICONS;
 
         if (modifiExperience) {
-            if (!mc.player.abilities.isCreativeMode) {
+            if (ignoreGamemode) {
 
                 //int posXWidth = event.getWindow().getScaledWidth() / 2 + 10;
                 //int posYHeight = event.getWindow().getScaledHeight() - 48;
@@ -57,7 +59,7 @@ public class BasmodGameEvents {
 
         if (mainhand.getItem() == ItemInit.ANIMATED_MAGICAL_STAFF.get()) {
             if (modifiExperience) {
-                if (!mc.player.abilities.isCreativeMode) {
+                if (ignoreGamemode) {
 
                     int posXWidth = event.getWindow().getScaledWidth() / 2 + 10;
                     int posYHeight = event.getWindow().getScaledHeight() - 59;
