@@ -34,12 +34,9 @@ public class MagicalOakDoorItem extends DoorBlock {
 
         ItemStack mainhand = player.getItemStackFromSlot(EquipmentSlotType.MAINHAND);
 
-        boolean doorBlueKey = mainhand.getItem() == ItemInit.DOOR_BLUEKEY_ITEM.get() && this.material == Material.IRON;
-        boolean doorGreenKey = mainhand.getItem() == ItemInit.DOOR_GREENKEY_ITEM.get() && this.material == Material.IRON;
         boolean doorDefaultKey = mainhand.getItem() == ItemInit.DOOR_KEY_ITEM.get() && this.material == Material.IRON;
-        boolean doorRedKey = mainhand.getItem() == ItemInit.DOOR_REDKEY_ITEM.get() && this.material == Material.IRON;
 
-        if (doorBlueKey && doorGreenKey && doorRedKey && doorDefaultKey) {
+        if (doorDefaultKey) {
             state = state.cycleValue(OPEN);
             worldIn.setBlockState(pos, state, 10);
             worldIn.playEvent(player, state.get(OPEN) ? this.getOpenSound() : this.getCloseSound(), pos, 0);
