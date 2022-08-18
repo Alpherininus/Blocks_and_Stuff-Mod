@@ -130,6 +130,7 @@ public class Basmod {
 
         RenderingRegistry.registerEntityRenderingHandler(EntityTypesInit.BASMOD_BOSS_ENTITY.get(), BasBossRenderer::new);
 
+        assert EntityTypesInit.THROWING_AXE_ENTITY != null;
         RenderingRegistry.registerEntityRenderingHandler(EntityTypesInit.THROWING_AXE_ENTITY.get(), ThrowingAxeRenderer::new);
 
         GeoArmorRenderer.registerArmorRenderer(JetPackArmorItem.class, JetPackArmorRenderer::new);
