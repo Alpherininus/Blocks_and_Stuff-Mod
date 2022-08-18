@@ -11,11 +11,6 @@ public class CustomMainMenu {
     }
 
     public static void guiScreenEvent(GuiScreenEvent event) {
-        // event.getGui().getTitle().getStyle().applyFormatting(TextFormatting.DARK_BLUE);
-
-    }
-
-    public static void guiScreenEvent(GuiScreenEvent.InitGuiEvent event) {
 
     }
 }
