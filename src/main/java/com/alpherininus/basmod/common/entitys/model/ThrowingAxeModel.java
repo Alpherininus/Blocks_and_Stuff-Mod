@@ -5,8 +5,9 @@ import com.mojang.blaze3d.vertex.IVertexBuilder;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.projectile.TridentEntity;
 
-public class ThrowingAxeModel extends EntityModel<Entity> {
+public class ThrowingAxeModel<T extends TridentEntity> extends EntityModel<Entity> {
 	private final ModelRenderer axe;
 
 	public ThrowingAxeModel() {
