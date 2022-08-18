@@ -10,7 +10,6 @@ import net.minecraft.entity.merchant.villager.AbstractVillagerEntity;
 import net.minecraft.entity.merchant.villager.VillagerEntity;
 import net.minecraft.entity.monster.CreeperEntity;
 import net.minecraft.entity.monster.SpiderEntity;
-import net.minecraft.entity.monster.ZombieEntity;
 import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -223,11 +222,6 @@ public class BasBossEntity extends SpiderEntity implements IAnimatable {
 
     @Override
     public boolean canBeHitWithPotion() {
-        return false;
-    }
-
-    @Override
-    public boolean isDrowning() {
         return false;
     }
 
