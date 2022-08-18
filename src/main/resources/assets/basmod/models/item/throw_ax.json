@@ -1,10 +1,9 @@
 {
 	"parent": "item/generated",
 	"textures": {
-		"layer0": "basmod:entity/throw_axt",
-		"particle": "basmod:entity/throw_axt"
+		"layer0": "basmod:entity/throw_ax",
+		"particle": "basmod:entity/throw_ax"
 	},
-
 	"display": {
 		"thirdperson_righthand": {
 			"rotation": [-45, 0, 0],
