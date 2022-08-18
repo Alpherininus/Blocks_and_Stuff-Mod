@@ -1,15 +1,14 @@
 package com.alpherininus.basmod.common.events;
 
 import com.alpherininus.basmod.Basmod;
-import com.alpherininus.basmod.common.gui.BasmodStartGui;
 import com.alpherininus.basmod.core.init.ItemInit;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.GuiOpenEvent;
+import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -89,6 +88,13 @@ public class BasmodGameEvents {
     public void onGuiOpened(GuiOpenEvent event) {
 
     }
+
+    @SubscribeEvent
+    public void onGuiScreened(GuiScreenEvent event) {
+
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 }
 
