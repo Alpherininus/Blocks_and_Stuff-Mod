@@ -46,7 +46,7 @@ public class BasBossEntity extends MonsterEntity implements IAnimatable {
 
     private AnimationFactory factory = new AnimationFactory(this);
 
-    public BasBossEntity(EntityType<? extends MonsterEntity> entityType, World worldIn) {
+    public BasBossEntity(EntityType<? extends ZombieEntity> entityType, World worldIn) {
         super(entityType, worldIn);
     }
 
