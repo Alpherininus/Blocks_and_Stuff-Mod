@@ -65,7 +65,8 @@ public class BlockInit {
                     .harvestTool(ToolType.AXE).harvestLevel(2).sound(SoundType.METAL)));
 
     public static final RegistryObject<Block> MAGICAL_OAK_DOOR = registryBlock("magical_oak_door",
-            () -> new MagicalOakDoorItem(AbstractBlock.Properties.from(BlockInit.MAGICAL_OAK_PLANKS.get()).notSolid()));
+            () -> new MagicalOakDoorItem(AbstractBlock.Properties.create(Material.IRON, MaterialColor.OBSIDIAN).hardnessAndResistance(-1.0F, 3600000.0F)
+                    .harvestTool(ToolType.PICKAXE).harvestLevel(10).sound(SoundType.METAL).notSolid()));
 
     public static final RegistryObject<Block> MAGICAL_OAK_STAIRS = registryBlock("magical_oak_stairs",
             () -> new StairsBlock(() -> BlockInit.MAGICAL_OAK_PLANKS.get().getDefaultState(),
