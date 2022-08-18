@@ -8,10 +8,12 @@ import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.merchant.villager.AbstractVillagerEntity;
 import net.minecraft.entity.merchant.villager.VillagerEntity;
+import net.minecraft.entity.monster.CreeperEntity;
 import net.minecraft.entity.monster.ZombieEntity;
 import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.DamageSource;
@@ -156,10 +158,25 @@ public class BasBossEntity extends ZombieEntity implements IAnimatable {
     @Override
     protected void dropSpecialItems(DamageSource source, int looting, boolean recentlyHitIn) {
         super.dropSpecialItems(source, looting, recentlyHitIn);
+        Entity entity = source.getTrueSource();
         ItemEntity itementity = this.entityDropItem(Items.IRON_BLOCK);
         if (itementity != null) {
             itementity.setNoDespawn();
         }
+        if (entity instanceof CreeperEntity) {
+            CreeperEntity creeperentity = (CreeperEntity)entity;
+            if (creeperentity.ableToCauseSkullDrop()) {
+                ItemStack itemstack = this.getSkullDrop();
+                if (!itemstack.isEmpty()) {
+                    creeperentity.incrementDroppedSkulls();
+                    this.entityDropItem(itemstack);
+                }
+            }
+        }
+    }
+
+    protected ItemStack getSkullDrop() {
+        return new ItemStack(Items.ZOMBIE_HEAD);
     }
 
     public CreatureAttribute getCreatureAttribute() {
@@ -205,28 +222,13 @@ public class BasBossEntity extends ZombieEntity implements IAnimatable {
     }
 
     @Override
-    public boolean canAttack(LivingEntity target) {
-        return true;
-    }
-
-    @Override
     public boolean canBeHitWithPotion() {
         return false;
     }
 
     @Override
-    public boolean canAttack(EntityType<?> typeIn) {
-        return true;
-    }
-
-    @Override
-    public boolean attackable() {
-        return true;
-    }
-
-    @Override
-    public boolean canSpawn(IWorld worldIn, SpawnReason spawnReasonIn) {
-        return true;
+    public boolean isDrowning() {
+        return false;
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
