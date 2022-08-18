@@ -2,6 +2,7 @@ package com.alpherininus.basmod.common.entitys;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.entity.projectile.TridentEntity;
@@ -16,14 +17,17 @@ import net.minecraft.world.World;
 public class ThrowingAxeEntity extends TridentEntity {
     private static final DataParameter<Byte> LOYALTY_LEVEL = EntityDataManager.createKey(ThrowingAxeEntity.class, DataSerializers.BYTE);
 
-    public ThrowingAxeEntity(World worldIn, PlayerEntity playerentity, ItemStack stack) {
-        super(worldIn, playerentity, stack);
+    public ThrowingAxeEntity(EntityType<? extends TridentEntity> type, World worldIn) {
+        super(type, worldIn);
     }
 
-    public ThrowingAxeEntity(EntityType<Entity> entityEntityType, World world) {
-        super((EntityType<? extends TridentEntity>) entityEntityType, world);
+    public ThrowingAxeEntity(World worldIn, LivingEntity thrower, ItemStack thrownStackIn) {
+        super(worldIn, thrower, thrownStackIn);
     }
 
+    public ThrowingAxeEntity(World worldIn, double x, double y, double z) {
+        super(worldIn, x, y, z);
+    }
 
     protected SoundEvent getHitEntitySound() {
         return SoundEvents.ENTITY_ARROW_HIT_PLAYER;
