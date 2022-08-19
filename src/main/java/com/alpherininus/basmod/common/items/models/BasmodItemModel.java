@@ -5,17 +5,21 @@ import net.minecraft.item.ItemModelsProperties;
 import net.minecraft.util.ResourceLocation;
 
 public class BasmodItemModel {
+
     public static void makeBow(Item item) {
-        ItemModelsProperties.registerProperty(item, new ResourceLocation("pull"), (p_239429_0_, p_239429_1_, p_239429_2_) -> {
-            if (p_239429_2_ == null) {
+        ItemModelsProperties.registerProperty(item, new ResourceLocation("pull"), (stack, p_239429_1_, livingEntity) -> {
+            if (livingEntity == null) {
                 return 0.0F;
             } else {
-                return p_239429_2_.getActiveItemStack() != p_239429_0_ ? 0.0F : (float)(p_239429_0_.getUseDuration() - p_239429_2_.getItemInUseCount()) / 20.0F;
+                if (livingEntity.getActiveItemStack() != stack) {
+                    return 0.0F;
+                } else {
+                    return (float)(stack.getUseDuration() - livingEntity.getItemInUseCount()) / 20.0F;
+                }
             }
         });
 
-        ItemModelsProperties.registerProperty(item, new ResourceLocation("pulling"), (p_239428_0_, p_239428_1_, p_239428_2_) -> {
-            return p_239428_2_ != null && p_239428_2_.isHandActive() && p_239428_2_.getActiveItemStack() == p_239428_0_ ? 1.0F : 0.0F;
-        });
+        ItemModelsProperties.registerProperty(item, new ResourceLocation("pulling"),
+                (stack, p_239428_1_, livingEntity) -> livingEntity != null && livingEntity.isHandActive() && livingEntity.getActiveItemStack() == stack ? 1.0F : 0.0F);
     }
 }
