@@ -54,7 +54,14 @@ public class TrashbinBlock extends Block {
         if (worldIn.isRemote) {
 
         } else {
-            if (mainhand.getItem() == BasmodTags.Items.MAGICAL_ITEMS_FOR_OPEN_MAGICAL_DOOR) {
+            if (mainhand.getItem() == BasmodTags.Items.IS_TRASHABLE_ITEM) {
+
+                itemstack1.setDamage(itemstack1.getDamage() + 1);
+                if (itemstack1.getDamage() >= itemstack1.getMaxDamage()) itemstack1.setCount(0);
+
+            }
+
+            if (mainhand.getItem() == BasmodTags.Blocks.IS_TRASHABLE_BLOCK) {
 
                 itemstack1.setDamage(itemstack1.getDamage() + 1);
                 if (itemstack1.getDamage() >= itemstack1.getMaxDamage()) itemstack1.setCount(0);
