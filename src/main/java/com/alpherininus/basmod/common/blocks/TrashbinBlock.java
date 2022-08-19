@@ -45,10 +45,6 @@ public class TrashbinBlock extends Block {
         super.addInformation(stack, worldIn, tooltip, flagIn);
     }
 
-    public void onEntityWalk(World worldIn, BlockPos pos, Entity entityIn) {
-    }
-
-
     public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
 
         ItemStack itemstack1 = player.getHeldItem(handIn);
