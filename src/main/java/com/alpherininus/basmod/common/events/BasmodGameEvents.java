@@ -80,6 +80,31 @@ public class BasmodGameEvents {
 
             }
         }
+
+        if (mainhand.getItem() == ItemInit.ANIMATED_HEAL_STAFF.get()) {
+            if (modifiExperience) {
+                if (ignoreGamemode) {
+
+                    int posXWidth = event.getWindow().getScaledWidth() / 2 + 10;
+                    int posYHeight = event.getWindow().getScaledHeight() - 59;
+
+                    int textureWidth = 90;
+                    int textureHeight = 9;
+
+                    int barWidth = 88; // TODO barWidth => refill Manabar, default is 88 -> 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60, 64, 68, 72, 76, 80, 84, 88.
+                    int barHeight = 7;
+
+                    mc.getTextureManager().bindTexture(new ResourceLocation(Basmod.MOD_ID, "textures/gui/hud/mana_bar.png"));
+
+                    // TODO Manabar Outline
+                    mc.ingameGUI.blit(new MatrixStack(),posXWidth, posYHeight, 0, 36, textureWidth, textureHeight);
+
+                    // TODO Manabar
+                    mc.ingameGUI.blit(new MatrixStack(),posXWidth + 1, posYHeight + 1, 0, 46, barWidth, barHeight);
+
+                }
+            }
+        }
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////

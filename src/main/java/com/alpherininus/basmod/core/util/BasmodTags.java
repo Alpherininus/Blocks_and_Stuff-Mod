@@ -37,6 +37,7 @@ public class BasmodTags {
 
         public static final Tags.IOptionalNamedTag<Item> CRAFTING_WHITE_DYE = createItemTag("crafting_white_dye");
         public static final Tags.IOptionalNamedTag<Item> CRAFTING_BLUE_DYE = createItemTag("crafting_blue_dye");
+        public static final Tags.IOptionalNamedTag<Item> CRAFTING_BOW = createItemTag("crafting_bow");
 
         public static final Tags.IOptionalNamedTag<Item> JETPACK_ITEMS = createItemTag("jetpacks");
 
