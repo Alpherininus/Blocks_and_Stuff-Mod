@@ -4,6 +4,8 @@ import com.alpherininus.basmod.Basmod;
 import com.alpherininus.basmod.core.init.ItemInit;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.AbstractGui;
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -13,8 +15,14 @@ import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
+import java.awt.*;
+import java.io.IOException;
+
 @Mod.EventBusSubscriber(modid = Basmod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class BasmodGameEvents {
+
+    private Minecraft mc;
+    private static FontRenderer fontRenderer;
 
     @SubscribeEvent
     public static void onRenderGameOverlay(RenderGameOverlayEvent event) {
@@ -105,6 +113,15 @@ public class BasmodGameEvents {
                 }
             }
         }
+        //
+
+        if (fontRenderer == null) {
+            mc.textureManager.bindTexture(new ResourceLocation(Basmod.MOD_ID, "textures/fonts/ascii.png"));
+        }
+
+        AbstractGui.fill(new MatrixStack(), 5, 5, 30, 30, new Color(255, 0, 255, 5).getRGB());
+        fontRenderer.drawString(new MatrixStack(), "test", 5, 5, new Color(255, 0, 255, 5).getRGB());
+
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -120,6 +137,7 @@ public class BasmodGameEvents {
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 }
 

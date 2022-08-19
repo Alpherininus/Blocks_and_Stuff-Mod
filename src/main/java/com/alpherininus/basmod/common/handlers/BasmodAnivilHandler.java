@@ -1,5 +1,6 @@
 package com.alpherininus.basmod.common.handlers;
 
+import com.alpherininus.basmod.core.init.ItemInit;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -27,6 +28,11 @@ public class BasmodAnivilHandler {
 
     public static void initAnvilRecipes() {
         combineRecipes.add(new CombineRecipe(Items.BEEF, Items.COAL, Items.COOKED_BEEF));
+
+        combineRecipes.add(new CombineRecipe(ItemInit.MANA_BUCKET.get(), ItemInit.DARK_STEEL_ITEM.get(), ItemInit.MANA_BUCKET.get()));
+
+        combineRecipes.add(new CombineRecipe(ItemInit.STEEL_ITEM.get(), ItemInit.MANA_BUCKET.get(), ItemInit.DARK_STEEL_ITEM.get()));
+
     }
 
     @SubscribeEvent

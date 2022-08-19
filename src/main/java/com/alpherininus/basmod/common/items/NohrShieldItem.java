@@ -22,7 +22,7 @@ public class NohrShieldItem extends ShieldItem {
 
     @OnlyIn(Dist.CLIENT)
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-        tooltip.add(new StringTextComponent("Item inspired by the Fire Emblem universe."));
+        tooltip.add(new StringTextComponent("\u00A77Item inspired by the Fire Emblem universe."));
     }
 
     public UseAction getUseAction(ItemStack stack) {

@@ -64,7 +64,7 @@ public class SoleilsShineSword extends SwordItem {
     @Override
     public void addInformation(ItemStack stack, World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
         if (Screen.hasShiftDown()) {
-            tooltip.add(new StringTextComponent("Smile, \u00A76you are Dead!\nSword inspired by the Fire Emblem universe."));
+            tooltip.add(new StringTextComponent("Smile, \u00A76you are Dead!\n\u00A77Sword inspired by the Fire Emblem universe."));
 
         } else {
             tooltip.add(new StringTextComponent("Smile ..."));

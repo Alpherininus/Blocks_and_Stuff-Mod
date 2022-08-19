@@ -49,6 +49,6 @@ public class FireSweepSword extends SwordItem {
 
     @Override
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-        tooltip.add(new StringTextComponent("Sword inspired by the Fire Emblem universe."));
+        tooltip.add(new StringTextComponent("\u00A77Sword inspired by the Fire Emblem universe."));
     }
 }

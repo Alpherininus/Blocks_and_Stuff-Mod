@@ -72,7 +72,7 @@ public class ThunderSword extends SwordItem {
     public void addInformation(ItemStack stack, World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
         if (Screen.hasShiftDown()) {
             tooltip.add(new StringTextComponent("\u00A77Hit the Entity for Summon a Thunder"));
-            tooltip.add(new StringTextComponent("Sword inspired by the Fire Emblem universe."));
+            tooltip.add(new StringTextComponent("\u00A77Sword inspired by the Fire Emblem universe."));
 
         } else {
             tooltip.add(new StringTextComponent("Hold \u00A76SHIFT \u00A7ffor more Information"));

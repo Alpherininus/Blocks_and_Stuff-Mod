@@ -24,7 +24,10 @@ import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.LightType;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ToolType;
 
+import javax.annotation.Nullable;
+import javax.swing.*;
 import java.util.List;
 
 public class AsukaAxt extends SwordItem {
@@ -91,6 +94,25 @@ public class AsukaAxt extends SwordItem {
         return equipmentSlot == EquipmentSlotType.MAINHAND ? this.attributeModifiers : super.getAttributeModifiers(equipmentSlot);
     }
 
+    @Override
+    public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
 
+        if (flagIn.isAdvanced()) {
+            if (Screen.hasShiftDown()) {
+                tooltip.add(new StringTextComponent("Is Advanced"));
 
+            } else {
+                tooltip.add(new StringTextComponent("Hold \u00A76SHIFT \u00A7ffor more Information"));
+            }
+        } else {
+            if (Screen.hasShiftDown()) {
+                tooltip.add(new StringTextComponent("Is not Advanced"));
+
+            } else {
+                tooltip.add(new StringTextComponent("Hold \u00A76SHIFT \u00A7ffor more Information"));
+            }
+        }
+
+        super.addInformation(stack, worldIn, tooltip, flagIn);
+    }
 }

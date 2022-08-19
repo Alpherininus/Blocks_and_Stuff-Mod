@@ -41,6 +41,7 @@ import top.theillusivec4.curios.api.SlotTypePreset;
 public class Basmod {
 
     private static final Logger LOGGER = LogManager.getLogger();
+
     public static final String MOD_ID = "basmod";
 
     public Basmod() {
@@ -104,6 +105,7 @@ public class Basmod {
 
     private void doClientStuff(final FMLClientSetupEvent event) {
         Minecraft mc = Minecraft.getInstance();
+        mc = event.getMinecraftSupplier().get();
 
         event.enqueueWork(() -> {
 
