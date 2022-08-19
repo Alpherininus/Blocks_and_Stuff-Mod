@@ -11,7 +11,7 @@ import net.minecraft.item.ItemStack;
 public class FailnaughtBowItem extends BowItem {
     public FailnaughtBowItem(Properties builder) {
         super(builder);
-        this.setRegistryName("failnaught_bow");
+        // this.setRegistryName("failnaught_bow");
     }
 
     @Override

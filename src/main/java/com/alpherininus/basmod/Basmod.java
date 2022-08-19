@@ -12,7 +12,6 @@ import com.alpherininus.basmod.common.world.gen.BiomeGeneration;
 import com.alpherininus.basmod.common.world.gen.OreGeneration;
 import com.alpherininus.basmod.core.init.*;
 import com.alpherininus.basmod.core.util.BasmodConfig;
-import com.alpherininus.basmod.core.network.BasmodNetwork;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.renderer.RenderType;
@@ -89,7 +88,7 @@ public class Basmod {
     }
 
     private void setup(final FMLCommonSetupEvent event) {
-        BasmodNetwork.init();
+        // BasmodNetwork.init();
         BasmodAnivilHandler.initAnvilRecipes();
 
         // // event.enqueueWork(() -> AxeItem = new ImmutableMap.Builder<Block, Block>().putAll(AxeItem.BLOCK_STRIPPING_MAP)
