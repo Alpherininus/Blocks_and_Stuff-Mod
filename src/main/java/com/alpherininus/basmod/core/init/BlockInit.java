@@ -128,6 +128,12 @@ public class BlockInit {
             () -> new GreenKeyDoorBlock(AbstractBlock.Properties.create(Material.IRON, MaterialColor.GRAY).hardnessAndResistance(-1.0F, 3600000.0F)
                     .harvestTool(ToolType.PICKAXE).harvestLevel(10).sound(SoundType.STONE).notSolid()));
 
+
+    public static final RegistryObject<Block> TRASHBIN = registryBlock("trash",
+            () -> new TrashbinBlock(AbstractBlock.Properties.create(Material.WOOL, MaterialColor.GRAY)
+                    .hardnessAndResistance(8f, 7f)
+                    .harvestLevel(2).sound(SoundType.STONE)));
+
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // TODO BLOCKS
 

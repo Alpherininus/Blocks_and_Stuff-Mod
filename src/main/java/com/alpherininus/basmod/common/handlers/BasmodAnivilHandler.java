@@ -27,11 +27,11 @@ public class BasmodAnivilHandler {
     private static ArrayList<CombineRecipe> combineRecipes = new ArrayList<>();
 
     public static void initAnvilRecipes() {
-        combineRecipes.add(new CombineRecipe(Items.BEEF, Items.COAL, Items.COOKED_BEEF));
-
-        combineRecipes.add(new CombineRecipe(ItemInit.MANA_BUCKET.get(), ItemInit.DARK_STEEL_ITEM.get(), ItemInit.MANA_BUCKET.get()));
+        // combineRecipes.add(new CombineRecipe(Items.BEEF, Items.COAL, Items.COOKED_BEEF));
+        combineRecipes.add(new CombineRecipe(ItemInit.STEEL_ITEM.get(), ItemInit.MANA_BUCKET.get(), ItemInit.DARK_STEEL_ITEM.get()));
 
         combineRecipes.add(new CombineRecipe(ItemInit.STEEL_ITEM.get(), ItemInit.MANA_BUCKET.get(), ItemInit.DARK_STEEL_ITEM.get()));
+
 
     }
 
