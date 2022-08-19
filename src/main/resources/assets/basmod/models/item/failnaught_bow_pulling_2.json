@@ -1,5 +1,5 @@
 {
-    "parent": "item/bow",
+    "parent": "basmod:item/failnaught_bow",
     "textures": {
         "layer0": "basmod:items/failnaught_bow_pulling_2"
     }

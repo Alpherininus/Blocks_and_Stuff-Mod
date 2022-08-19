@@ -42,7 +42,7 @@ public class ItemInit {
                     new Item.Properties().group(ModItemGroupWapons.BAS_MOD_WAPONS)));
 
     public static final RegistryObject<Item> FAILNAUGHT_BOW = ITEMS.register("failnaught_bow",
-            () -> new FailnaughtBowItem(new Item.Properties().group(ModItemGroupWapons.BAS_MOD_WAPONS)));
+            () -> new FailnaughtBowItem(new Item.Properties().maxStackSize(1).group(ModItemGroupWapons.BAS_MOD_WAPONS)));
 
     public static final RegistryObject<Item> THUNDER_SWORD = ITEMS.register("thundersword",
             () -> new ThunderSword(BasmodToolMaterial.B_TOOL_MATERIAL, 1, -3f,

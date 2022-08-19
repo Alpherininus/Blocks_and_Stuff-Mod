@@ -8,6 +8,7 @@ import com.alpherininus.basmod.common.entitys.renderer.SeieorShellRenderer;
 import com.alpherininus.basmod.common.handlers.BasmodAnivilHandler;
 import com.alpherininus.basmod.common.items.armor.JetPackArmorItem;
 import com.alpherininus.basmod.common.items.armor.models.renderer.JetPackArmorRenderer;
+import com.alpherininus.basmod.common.items.models.BasmodItemModel;
 import com.alpherininus.basmod.common.world.gen.BiomeGeneration;
 import com.alpherininus.basmod.common.world.gen.OreGeneration;
 import com.alpherininus.basmod.core.init.*;
@@ -106,6 +107,8 @@ public class Basmod {
 
         event.enqueueWork(() -> {
 
+            BasmodItemModel.makeBow(ItemInit.FAILNAUGHT_BOW.get());
+
             RenderTypeLookup.setRenderLayer(BlockInit.BLUEKEY_DOOR.get(), RenderType.getCutout());
             RenderTypeLookup.setRenderLayer(BlockInit.GREENKEY_DOOR.get(), RenderType.getCutout());
             RenderTypeLookup.setRenderLayer(BlockInit.REDKEY_DOOR.get(), RenderType.getCutout());
@@ -124,6 +127,8 @@ public class Basmod {
             ScreenManager.registerFactory(ContainerInit.LIGHTNING_CHANNELER_CONTAINER.get(), BaSInfoScreen::new);
 
         });
+
+        // BasmodItemModel.makeBow(ItemInit.FAILNAUGHT_BOW.get());
 
         RenderingRegistry.registerEntityRenderingHandler(EntityTypesInit.BASMOD_COPPER_GOLEM.get(), CopperGolemRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityTypesInit.BASMOD_SEIORSHELL.get(), SeieorShellRenderer::new);
