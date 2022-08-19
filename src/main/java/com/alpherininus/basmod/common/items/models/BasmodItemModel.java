@@ -7,7 +7,7 @@ import net.minecraft.util.ResourceLocation;
 public class BasmodItemModel {
 
     public static void makeBow(Item item) {
-        ItemModelsProperties.registerProperty(item, new ResourceLocation("pull"), (stack, p_239429_1_, livingEntity) -> {
+        ItemModelsProperties.registerProperty(item, new ResourceLocation("pull"), (stack, clientWorld, livingEntity) -> {
             if (livingEntity == null) {
                 return 0.0F;
             } else {
@@ -20,6 +20,6 @@ public class BasmodItemModel {
         });
 
         ItemModelsProperties.registerProperty(item, new ResourceLocation("pulling"),
-                (stack, p_239428_1_, livingEntity) -> livingEntity != null && livingEntity.isHandActive() && livingEntity.getActiveItemStack() == stack ? 1.0F : 0.0F);
+                (stack, clientWorld, livingEntity) -> livingEntity != null && livingEntity.isHandActive() && livingEntity.getActiveItemStack() == stack ? 1.0F : 0.0F);
     }
 }
