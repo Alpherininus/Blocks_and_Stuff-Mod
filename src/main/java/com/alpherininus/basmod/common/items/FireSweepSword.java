@@ -1,5 +1,6 @@
 package com.alpherininus.basmod.common.items;
 
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -9,7 +10,12 @@ import net.minecraft.item.SwordItem;
 import net.minecraft.item.UseAction;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
+
+import javax.annotation.Nullable;
+import java.util.List;
 
 public class FireSweepSword extends SwordItem {
     public FireSweepSword(IItemTier tier, int attackDamageIn, float attackSpeedIn, Properties builderIn) {
@@ -39,5 +45,10 @@ public class FireSweepSword extends SwordItem {
             entity.sendBreakAnimation(EquipmentSlotType.MAINHAND);
         });
         return true;
+    }
+
+    @Override
+    public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+        tooltip.add(new StringTextComponent("Sword inspired by the Fire Emblem universe."));
     }
 }

@@ -7,6 +7,7 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -21,7 +22,7 @@ public class NohrShieldItem extends ShieldItem {
 
     @OnlyIn(Dist.CLIENT)
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-        // BannerItem.appendHoverTextFromTileEntityTag(stack, tooltip);
+        tooltip.add(new StringTextComponent("Item inspired by the Fire Emblem universe."));
     }
 
     public UseAction getUseAction(ItemStack stack) {
