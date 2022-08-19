@@ -1,10 +1,13 @@
 package com.alpherininus.basmod.core.init;
 
+import com.alpherininus.basmod.Basmod;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+
+import java.awt.event.KeyEvent;
 
 @OnlyIn(Dist.CLIENT)
 public class KeybindsInit {
@@ -19,11 +22,11 @@ public class KeybindsInit {
     }
 
     public static void register(FMLClientSetupEvent event) {
-        eYKeyBinding = create("keyY", 89);
-        eXKeyBinding = create("keyX", 88);
-        eVKeyBinding = create("keyV", 86);
-        eNKeyBinding = create("keyN", 78);
-        eMKeyBinding = create("keyM", 77);
+        eYKeyBinding = create("keyY", KeyEvent.VK_Y);
+        eXKeyBinding = create("keyX", KeyEvent.VK_X);
+        eVKeyBinding = create("keyV", KeyEvent.VK_V);
+        eNKeyBinding = create("keyN", KeyEvent.VK_N);
+        eMKeyBinding = create("keyM", KeyEvent.VK_M);
         ClientRegistry.registerKeyBinding(eYKeyBinding);
         ClientRegistry.registerKeyBinding(eXKeyBinding);
         ClientRegistry.registerKeyBinding(eVKeyBinding);
@@ -32,6 +35,6 @@ public class KeybindsInit {
     }
 
     private static KeyBinding create(String name, int key) {
-        return new KeyBinding("key.basmod." + name, key, "key.category.basmod");
+        return new KeyBinding("key." + Basmod.MOD_ID + "." + name, key, "key.category.basmod");
     }
 }
