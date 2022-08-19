@@ -29,6 +29,7 @@ public class TrashbinTileEntity extends LockableLootTileEntity {
     private final int inventorySlotSize = 27;
     private NonNullList<ItemStack> barrelContents = NonNullList.withSize(inventorySlotSize, satckEMPTY);
     private int numPlayersUsing;
+    private final Minecraft minecraft = Minecraft.getInstance();
 
     private TrashbinTileEntity(TileEntityType<?> barrelType) {
         super(barrelType);
@@ -63,22 +64,17 @@ public class TrashbinTileEntity extends LockableLootTileEntity {
     }
 
     public int getSizeInventory() {
-        return 27;
+        return inventorySlotSize;
     }
 
     protected NonNullList<ItemStack> getItems() {
-        return this.barrelContents;
+        assert this.minecraft.player != null;
+
+        this.minecraft.player.inventory.setItemStack(ItemStack.EMPTY);
+        return null;
     }
 
     protected void setItems(NonNullList<ItemStack> itemsIn) {
-        Minecraft minecraft = Minecraft.getInstance();
-        // this.minecraft.player.inventory.setItemStack(ItemStack.EMPTY);
-
-        for(int j = 0; j < minecraft.player.container.getInventory().size(); ++j) {
-            minecraft.playerController.sendSlotPacket(ItemStack.EMPTY, j);
-            // this.minecraft.player.inventory.setItemStack(ItemStack.EMPTY);
-        }
-
     }
 
     protected ITextComponent getDefaultName() {
