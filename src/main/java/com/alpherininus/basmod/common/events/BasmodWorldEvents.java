@@ -96,8 +96,6 @@ public class BasmodWorldEvents {
 
     }
 
-
-
     @SubscribeEvent
     public static void addDimensionalSpacing(final WorldEvent.Load event) {
         if (event.getWorld() instanceof ServerWorld) {

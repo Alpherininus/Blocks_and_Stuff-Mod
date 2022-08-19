@@ -43,6 +43,8 @@ public class BasmodInputEvents {
     private static void onInput(Minecraft mc, int key, int action) {
         PlayerEntity playerIn = null;
         if (mc.currentScreen == null && KeybindsInit.eMKeyBinding.isPressed()) {
+            // BasmodNetwork.SIMPLE_CHANNEL.sendToServer(new InputMessage(key));
+
         }
 
         if (mc.currentScreen == null && KeybindsInit.eNKeyBinding.isPressed()) {
