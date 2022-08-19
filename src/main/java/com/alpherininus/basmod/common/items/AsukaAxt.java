@@ -104,13 +104,10 @@ public class AsukaAxt extends SwordItem {
             } else {
                 tooltip.add(new StringTextComponent("Hold \u00A76SHIFT \u00A7ffor more Information"));
             }
+        } else if (Screen.hasShiftDown()) {
+            tooltip.add(new StringTextComponent("Is not Advanced"));
         } else {
-            if (Screen.hasShiftDown()) {
-                tooltip.add(new StringTextComponent("Is not Advanced"));
-
-            } else {
-                tooltip.add(new StringTextComponent("Hold \u00A76SHIFT \u00A7ffor more Information"));
-            }
+            tooltip.add(new StringTextComponent("Hold \u00A76SHIFT \u00A7ffor more Information"));
         }
 
         super.addInformation(stack, worldIn, tooltip, flagIn);

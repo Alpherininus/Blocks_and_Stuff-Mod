@@ -2,6 +2,8 @@ package com.alpherininus.basmod.common.blocks;
 
 import com.alpherininus.basmod.common.tileentitys.TrashbinTileEntity;
 import net.minecraft.block.*;
+import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.monster.piglin.PiglinTasks;
 import net.minecraft.entity.player.PlayerEntity;
@@ -23,11 +25,14 @@ import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
 import javax.annotation.Nullable;
+import java.util.List;
 import java.util.Random;
 
 public class TrashbinBlock extends ContainerBlock {
@@ -94,8 +99,6 @@ public class TrashbinBlock extends ContainerBlock {
 
     }
 
-    //
-
     public boolean hasComparatorInputOverride(BlockState state) {
         return true;
     }
@@ -120,4 +123,20 @@ public class TrashbinBlock extends ContainerBlock {
         return this.getDefaultState().with(PROPERTY_FACING, context.getNearestLookingDirection().getOpposite());
     }
 
+    //
+
+    @Override
+    public void addInformation(ItemStack stack, @Nullable IBlockReader worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+        if (Screen.hasShiftDown()) {
+            tooltip.add(new StringTextComponent("Is a Trashbin"));
+        } else {
+            tooltip.add(new StringTextComponent("Hold \u00A76SHIFT \u00A7ffor more Information"));
+        }
+        super.addInformation(stack, worldIn, tooltip, flagIn);
+    }
+
+    @Override
+    public boolean isAir(BlockState state, IBlockReader world, BlockPos pos) {
+        return false;
+    }
 }
