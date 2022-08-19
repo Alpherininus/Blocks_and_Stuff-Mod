@@ -115,13 +115,6 @@ public class BasmodGameEvents {
         }
         //
 
-        if (fontRenderer == null) {
-            mc.textureManager.bindTexture(new ResourceLocation(Basmod.MOD_ID, "textures/fonts/ascii.png"));
-        }
-
-        AbstractGui.fill(new MatrixStack(), 5, 5, 30, 30, new Color(255, 0, 255, 5).getRGB());
-        fontRenderer.drawString(new MatrixStack(), "test", 5, 5, new Color(255, 0, 255, 5).getRGB());
-
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
