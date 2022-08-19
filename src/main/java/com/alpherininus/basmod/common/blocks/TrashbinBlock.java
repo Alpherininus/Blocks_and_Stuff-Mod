@@ -1,6 +1,5 @@
 package com.alpherininus.basmod.common.blocks;
 
-import com.alpherininus.basmod.core.init.BlockInit;
 import com.alpherininus.basmod.core.init.FluidInit;
 import com.alpherininus.basmod.core.init.ItemInit;
 import net.minecraft.block.Block;
@@ -47,53 +46,28 @@ public class TrashbinBlock extends Block {
     }
 
     public void onEntityWalk(World worldIn, BlockPos pos, Entity entityIn) {
-
-        PlayerEntity playerIn = null;
-        Hand handIn = null;
-        assert false;
-        ItemStack stackIn = playerIn.getHeldItem(handIn);
-        BlockPos blockpos = playerIn.getPosition();
-        BlockState blockstate = worldIn.getBlockState(blockpos);
-
-        boolean mana = blockstate.getBlock() == BlockInit.TRASHBIN.get().getBlock();
-        if (mana) {
-            if (playerIn.shouldHeal()) {
-                playerIn.heal(1.0F);
-            }
-            stackIn.setDamage(stackIn.getDamage() + 1);
-            if (stackIn.getDamage() >= stackIn.getMaxDamage()) stackIn.setCount(0);
-
-        }
     }
 
-    private void deleteItemstack(BlockState blockState, ItemStack stack, PlayerEntity player, World worldIn, BlockPos pos) {
-        ItemStack mainhand = player.getItemStackFromSlot(EquipmentSlotType.MAINHAND);
-        Item getitem = mainhand.getItem();
-
-        boolean test = getitem.isDamaged(mainhand);
-
-        if (test) {
-            stack.setDamage(stack.getDamage() + 1);
-            if (stack.getDamage() >= stack.getMaxDamage()) stack.setCount(0);
-
-        }
-    }
 
     public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+
+        ItemStack itemstack1 = player.getHeldItem(handIn);
+        ItemStack mainhand = player.getItemStackFromSlot(EquipmentSlotType.MAINHAND);
+
         if (worldIn.isRemote) {
 
         } else {
-            activate(state, worldIn, pos);
+            if (mainhand.getItem() == ItemInit.DOOR_GREENKEY_ITEM.get() && this.material == Material.IRON) {
+
+                itemstack1.setDamage(itemstack1.getDamage() + 1);
+                if (itemstack1.getDamage() >= itemstack1.getMaxDamage()) itemstack1.setCount(0);
+
+            }
+
         }
 
         ItemStack itemstack = player.getHeldItem(handIn);
         return itemstack.getItem() instanceof BlockItem && (new BlockItemUseContext(player, handIn, itemstack, hit)).canPlace() ? ActionResultType.PASS : ActionResultType.SUCCESS;
     }
-
-    private static void activate(BlockState state, World world, BlockPos pos) {
-        if (!state.get(LIT)) {
-            world.setBlockState(pos, state.with(LIT, Boolean.TRUE), 3);
-        }
-    }
-
 }
+
