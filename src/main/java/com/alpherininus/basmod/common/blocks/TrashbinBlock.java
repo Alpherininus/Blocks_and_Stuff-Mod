@@ -2,6 +2,7 @@ package com.alpherininus.basmod.common.blocks;
 
 import com.alpherininus.basmod.core.init.FluidInit;
 import com.alpherininus.basmod.core.init.ItemInit;
+import com.alpherininus.basmod.core.util.BasmodTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.material.Material;
@@ -53,12 +54,16 @@ public class TrashbinBlock extends Block {
         if (worldIn.isRemote) {
 
         } else {
-            if (mainhand.getItem() == ItemInit.DOOR_GREENKEY_ITEM.get() && this.material == Material.IRON) {
+            if (mainhand.getItem() == BasmodTags.Items.MAGICAL_ITEMS_FOR_OPEN_MAGICAL_DOOR) {
 
                 itemstack1.setDamage(itemstack1.getDamage() + 1);
                 if (itemstack1.getDamage() >= itemstack1.getMaxDamage()) itemstack1.setCount(0);
 
             }
+
+
+            ItemStack itemstack = player.getHeldItem(handIn);
+            return itemstack.getItem() instanceof BlockItem && (new BlockItemUseContext(player, handIn, itemstack, hit)).canPlace() ? ActionResultType.PASS : ActionResultType.CONSUME;
 
         }
 
