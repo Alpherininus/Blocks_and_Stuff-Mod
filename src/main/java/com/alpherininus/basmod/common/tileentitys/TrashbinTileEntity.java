@@ -154,4 +154,13 @@ public class TrashbinTileEntity extends LockableLootTileEntity {
         this.world.playSound(null, d0, d1, d2, sound, SoundCategory.BLOCKS, 0.5F, this.world.rand.nextFloat() * 0.1F + 0.9F);
     }
 
+    @Override
+    public boolean isRemoved() {
+        return false;
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return false;
+    }
 }
