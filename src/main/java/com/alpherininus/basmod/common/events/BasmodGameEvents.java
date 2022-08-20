@@ -130,7 +130,7 @@ public class BasmodGameEvents {
                     int textureWidth = 265;
                     int textureHeight = 265;
 
-                    int barWidth = 250; // TODO barWidth => refill Manabar, default is 88 -> 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60, 64, 68, 72, 76, 80, 84, 88.
+                    int barWidth = 250;
                     int barHeight = 250;
 
                     mc.getTextureManager().bindTexture(new ResourceLocation(Basmod.MOD_ID, "textures/misc/diving_helmet_overlay.png"));
