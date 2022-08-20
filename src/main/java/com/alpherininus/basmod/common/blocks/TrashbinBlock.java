@@ -1,9 +1,8 @@
 package com.alpherininus.basmod.common.blocks;
 
-import com.alpherininus.basmod.core.util.BasmodTags;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.RotatedPillarBlock;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.PlayerEntity;
@@ -11,8 +10,6 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
@@ -25,7 +22,7 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class TrashbinBlock extends Block {
+public class TrashbinBlock extends RotatedPillarBlock {
 
     public TrashbinBlock(Properties properties) {
         super(properties);
