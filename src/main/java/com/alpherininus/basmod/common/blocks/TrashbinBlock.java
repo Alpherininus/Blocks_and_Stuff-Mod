@@ -3,6 +3,7 @@ package com.alpherininus.basmod.common.blocks;
 import com.alpherininus.basmod.core.util.BasmodTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.PlayerEntity;
@@ -10,6 +11,8 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
@@ -31,7 +34,7 @@ public class TrashbinBlock extends Block {
     @Override
     public void addInformation(ItemStack stack, @Nullable IBlockReader worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
         if (Screen.hasShiftDown()) {
-            tooltip.add(new StringTextComponent("Is a Trashbin"));
+            tooltip.add(new StringTextComponent("Trashbin for DIRT, ANDESITE, GRANITE, DIORITE, COARSE_DIRT, ..."));
         } else {
             tooltip.add(new StringTextComponent("Hold \u00A76SHIFT \u00A7ffor more Information"));
         }
@@ -46,20 +49,27 @@ public class TrashbinBlock extends Block {
         if (worldIn.isRemote) {
 
         } else {
-            if (mainhand.getItem() == BasmodTags.Items.IS_TRASHABLE_ITEM) {
 
+            if (mainhand.getItem() == Blocks.DIRT.asItem()) {
                 itemstack1.setDamage(itemstack1.getDamage() + 1);
                 if (itemstack1.getDamage() >= itemstack1.getMaxDamage()) itemstack1.setCount(0);
-
             }
-
-            if (mainhand.getItem() == BasmodTags.Blocks.IS_TRASHABLE_BLOCK) {
-
+            if (mainhand.getItem() == Blocks.ANDESITE.asItem()) {
                 itemstack1.setDamage(itemstack1.getDamage() + 1);
                 if (itemstack1.getDamage() >= itemstack1.getMaxDamage()) itemstack1.setCount(0);
-
             }
-
+            if (mainhand.getItem() == Blocks.GRANITE.asItem()) {
+                itemstack1.setDamage(itemstack1.getDamage() + 1);
+                if (itemstack1.getDamage() >= itemstack1.getMaxDamage()) itemstack1.setCount(0);
+            }
+            if (mainhand.getItem() == Blocks.DIORITE.asItem()) {
+                itemstack1.setDamage(itemstack1.getDamage() + 1);
+                if (itemstack1.getDamage() >= itemstack1.getMaxDamage()) itemstack1.setCount(0);
+            }
+            if (mainhand.getItem() == Blocks.COARSE_DIRT.asItem()) {
+                itemstack1.setDamage(itemstack1.getDamage() + 1);
+                if (itemstack1.getDamage() >= itemstack1.getMaxDamage()) itemstack1.setCount(0);
+            }
 
             ItemStack itemstack = player.getHeldItem(handIn);
             return itemstack.getItem() instanceof BlockItem && (new BlockItemUseContext(player, handIn, itemstack, hit)).canPlace() ? ActionResultType.PASS : ActionResultType.CONSUME;
@@ -69,5 +79,6 @@ public class TrashbinBlock extends Block {
         ItemStack itemstack = player.getHeldItem(handIn);
         return itemstack.getItem() instanceof BlockItem && (new BlockItemUseContext(player, handIn, itemstack, hit)).canPlace() ? ActionResultType.PASS : ActionResultType.SUCCESS;
     }
+
 }
 
