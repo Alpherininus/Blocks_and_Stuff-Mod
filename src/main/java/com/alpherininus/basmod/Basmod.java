@@ -17,6 +17,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -35,6 +36,8 @@ import software.bernie.geckolib3.GeckoLib;
 import software.bernie.geckolib3.renderers.geo.GeoArmorRenderer;
 import top.theillusivec4.curios.api.SlotTypeMessage;
 import top.theillusivec4.curios.api.SlotTypePreset;
+
+import java.io.InputStream;
 
 @Mod("basmod")
 @Mod.EventBusSubscriber(modid = Basmod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -61,13 +64,15 @@ public class Basmod {
         SoundInit.BAS_SOUND_EVENTS.register(eventbus);
         StructureInit.STRUCTURES.register(eventbus);
 
-
         GeckoLib.initialize();
 
         // TODO EVENTS
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::enqueueIMC);
+        //
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setuponRenderGameOverlay);
+
 
         // TODO EVENTBUS
         MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGH, OreGeneration::addOres);
@@ -144,6 +149,21 @@ public class Basmod {
 
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    }
+
+    private void setuponRenderGameOverlay(RenderGameOverlayEvent event) {
+
+        InputStream icon16x = this.getClass().getResourceAsStream(Basmod.MOD_ID + "client/icon16x.png");
+        InputStream icon32x = this.getClass().getResourceAsStream(Basmod.MOD_ID + "client/icon32x.png");
+
+        if (!event.getWindow().isFullscreen()) {
+            event.getWindow().setWindowTitle("Blocks and Stuff Mod" + Minecraft.getInstance().getVersionType() + "-" + Minecraft.getInstance().getVersionType());
+        }
+
+        assert icon32x != null;
+        assert icon16x != null;
+        event.getWindow().setWindowIcon(icon16x, icon32x);
 
     }
 

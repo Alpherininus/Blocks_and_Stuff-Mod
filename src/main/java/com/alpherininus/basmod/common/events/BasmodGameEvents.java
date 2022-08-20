@@ -22,7 +22,6 @@ import java.io.IOException;
 public class BasmodGameEvents {
 
     protected static final ResourceLocation MANA_BARS = new ResourceLocation(Basmod.MOD_ID, "textures/gui/hud/mana_bar.png");
-    protected static final ResourceLocation DIVING_HELMET_OVERLAY = new ResourceLocation(Basmod.MOD_ID, "textures/misc/diving_helmet_overlay.png");
 
     private Minecraft mc;
     private static FontRenderer fontRenderer;
@@ -46,8 +45,6 @@ public class BasmodGameEvents {
         boolean isInWater = mc.player.isInWater();
 
         boolean modifiExperience = !event.isCancelable() && event.getType() == RenderGameOverlayEvent.ElementType.EXPERIENCE;
-        boolean modifiVignette = !event.isCancelable() && event.getType() == RenderGameOverlayEvent.ElementType.VIGNETTE;
-        boolean modifiPotionIcon = !event.isCancelable() && event.getType() == RenderGameOverlayEvent.ElementType.POTION_ICONS;
 
         if (isNotInWater) {
             if (modifiExperience) {
@@ -132,36 +129,6 @@ public class BasmodGameEvents {
             }
         }
 
-        // TODO Diving Helmet
-        if (head.getItem() == ItemInit.DIVING_HELMET_HELMET.get()) {
-            event.getWindow().setWindowTitle("Hello im Diving!");
-
-            if (modifiVignette) {
-                if (notIgnoreGamemode) {
-
-                    int posXWidth = event.getWindow().getScaledWidth() / 2 + 20;
-                    int posYHeight = event.getWindow().getScaledHeight() - 84;
-
-                    int textureWidth = 265;
-                    int textureHeight = 265;
-
-                    int barWidth = 250;
-                    int barHeight = 250;
-
-                    mc.getTextureManager().bindTexture(DIVING_HELMET_OVERLAY);
-
-                    // TODO Helmet Screen
-                    mc.ingameGUI.blit(new MatrixStack(), posXWidth, posYHeight, 0, 0, textureWidth, textureHeight);
-
-                    // TODO Closed texture
-                    if (mc.player.isInWater()) {
-                        mc.ingameGUI.blit(new MatrixStack(), posXWidth + 3, posYHeight + 3, 0, 0, barWidth, barHeight);
-                    }
-
-
-                }
-            }
-        }
     }
 
 
