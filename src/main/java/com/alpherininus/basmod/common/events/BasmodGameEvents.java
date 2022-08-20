@@ -8,7 +8,9 @@ import net.minecraft.client.gui.AbstractGui;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.client.event.GuiOpenEvent;
 import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
@@ -132,23 +134,14 @@ public class BasmodGameEvents {
             }
         }
 
-        // TODO Window Title and More
-
-        if (mc.isSingleplayer()) {
-            event.getWindow().setWindowTitle("Blocks and Stuff Mod " + Minecraft.getInstance().getVersion() + "Singleplayer");
+        if (mainhand.getItem() == ItemInit.SOLEILS_SHINE.get()) {
+            event.getWindow().setWindowTitle("Smile you are Dead");
         }
 
-        if (mc.isGamePaused()) {
-            event.getWindow().setWindowTitle("Blocks and Stuff Mod " + Minecraft.getInstance().getVersion() + " Paused");
-        }
-
-        if (event.getWindow().shouldClose()) {
-            event.getWindow().setWindowTitle("Blocks and Stuff Mod SHOULD CLOSED");
-        }
-
-        if (mc.player.isAutoJumpEnabled()) {
-            event.getWindow().setWindowTitle("Blocks and Stuff Mod " + Minecraft.getInstance().getVersion() + "Singleplayer" + mc.player.isAutoJumpEnabled());
-
+        if (isInWater) {
+            if (head.getItem() == ItemInit.DIVING_HELMET_HELMET.get()) {
+                event.getWindow().setWindowTitle("I am going diving lol :D");
+            }
         }
 
     }
