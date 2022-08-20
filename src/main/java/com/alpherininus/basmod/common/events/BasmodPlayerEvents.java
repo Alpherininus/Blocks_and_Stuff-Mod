@@ -46,6 +46,7 @@ public class BasmodPlayerEvents {
             LogManager.getLogger().info("INFO || Blocks and Stuff MOD -> Player Joined the World!");
 
         }
+
     }
 
     @SubscribeEvent

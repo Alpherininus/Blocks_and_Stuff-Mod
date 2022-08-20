@@ -12,11 +12,13 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.GuiOpenEvent;
 import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
+import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 import java.awt.*;
 import java.io.IOException;
+import java.io.InputStream;
 
 @Mod.EventBusSubscriber(modid = Basmod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class BasmodGameEvents {
@@ -127,6 +129,11 @@ public class BasmodGameEvents {
 
                 }
             }
+        }
+
+        if (!event.getWindow().isFullscreen()) {
+            event.getWindow().setWindowTitle("Blocks and Stuff Mod " + Minecraft.getInstance().getVersionType() + ForgeMod.VERSION_CHECK_CAT + "bus " + Mod.EventBusSubscriber.Bus.MOD.name() + " - " + Minecraft.getInstance().getVersionType());
+
         }
 
     }

@@ -70,9 +70,6 @@ public class Basmod {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::enqueueIMC);
-        //
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setuponRenderGameOverlay);
-
 
         // TODO EVENTBUS
         MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGH, OreGeneration::addOres);
@@ -146,24 +143,6 @@ public class Basmod {
         GeoArmorRenderer.registerArmorRenderer(JetPackArmorItem.class, JetPackArmorRenderer::new);
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-    }
-
-    private void setuponRenderGameOverlay(RenderGameOverlayEvent event) {
-
-        InputStream icon16x = this.getClass().getResourceAsStream(Basmod.MOD_ID + "client/icon16x.png");
-        InputStream icon32x = this.getClass().getResourceAsStream(Basmod.MOD_ID + "client/icon32x.png");
-
-        if (!event.getWindow().isFullscreen()) {
-            event.getWindow().setWindowTitle("Blocks and Stuff Mod" + Minecraft.getInstance().getVersionType() + "-" + Minecraft.getInstance().getVersionType());
-        }
-
-        assert icon32x != null;
-        assert icon16x != null;
-        event.getWindow().setWindowIcon(icon16x, icon32x);
 
     }
 
