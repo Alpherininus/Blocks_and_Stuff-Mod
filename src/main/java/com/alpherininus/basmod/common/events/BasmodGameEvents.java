@@ -142,29 +142,11 @@ public class BasmodGameEvents {
                 }
             }
         }
-        
-        LivingEntity user = null;
-        Entity target = null;
-        
-        if (mainhand.getItem() == ItemInit.SOLEILS_SHINE.get()) {
-            if (target.hitByEntity(user)) {
-                event.getWindow().setWindowTitle("Smile you are Dead");
-            }
-        }
 
         if (mc.player.isSleeping()) {
             event.getWindow().setWindowTitle("Good Night :D!");
 
         }
-
-    }
-
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-    @SubscribeEvent
-    public void onLivingAttTarget(LivingSetAttackTargetEvent event) {
-        assert mc.player != null;
-        ItemStack mainhand = mc.player.getItemStackFromSlot(EquipmentSlotType.MAINHAND);
 
     }
 
