@@ -15,6 +15,9 @@ public class PaintingsInit {
     public static final RegistryObject<PaintingType> ASUKA_PAINTING =
             PAINTING_TYPES.register("asuka", () -> new PaintingType(32, 16));
 
+    public static final RegistryObject<PaintingType> DUCK_ATTACK =
+            PAINTING_TYPES.register("duck_att", () -> new PaintingType(48, 48));
+
     public static final RegistryObject<PaintingType> BASMOD_PAINTING =
             PAINTING_TYPES.register("basmod", () -> new PaintingType(16, 16));
 

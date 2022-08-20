@@ -37,8 +37,10 @@ public class BasmodGameEvents {
         ItemStack feet = mc.player.getItemStackFromSlot(EquipmentSlotType.FEET);
 
         boolean ignoreGamemode = !mc.player.abilities.isCreativeMode && !mc.player.isSpectator();
+        boolean notIgnoreGamemode = mc.player.abilities.isCreativeMode && !mc.player.isSpectator();
 
         boolean modifiExperience = !event.isCancelable() && event.getType() == RenderGameOverlayEvent.ElementType.EXPERIENCE;
+        boolean modifiVignette = !event.isCancelable() && event.getType() == RenderGameOverlayEvent.ElementType.VIGNETTE;
         boolean modifiPotionIcon = !event.isCancelable() && event.getType() == RenderGameOverlayEvent.ElementType.POTION_ICONS;
 
         if (modifiExperience) {
@@ -120,12 +122,12 @@ public class BasmodGameEvents {
         }
         //
 
-        if (mainhand.getItem() == ItemInit.ANIMATED_MAGICAL_STAFF.get()) {
+        if (head.getItem() == ItemInit.DIVING_HELMET_HELMET.get()) {
             if (modifiExperience) {
-                if (ignoreGamemode) {
+                if (notIgnoreGamemode) {
 
-                    int posXWidth = event.getWindow().getScaledWidth() / 2;
-                    int posYHeight = event.getWindow().getScaledHeight();
+                    int posXWidth = event.getWindow().getScaledWidth() / 2 + 1;
+                    int posYHeight = event.getWindow().getScaledHeight() - 1;
 
                     int textureWidth = 265;
                     int textureHeight = 265;
