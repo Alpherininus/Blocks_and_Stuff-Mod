@@ -30,6 +30,11 @@ public class BasmodGameEvents {
         assert mc.player != null;
 
         ItemStack mainhand = mc.player.getItemStackFromSlot(EquipmentSlotType.MAINHAND);
+        ItemStack offhand = mc.player.getItemStackFromSlot(EquipmentSlotType.OFFHAND);
+        ItemStack head = mc.player.getItemStackFromSlot(EquipmentSlotType.HEAD);
+        ItemStack chest = mc.player.getItemStackFromSlot(EquipmentSlotType.CHEST);
+        ItemStack leg = mc.player.getItemStackFromSlot(EquipmentSlotType.LEGS);
+        ItemStack feet = mc.player.getItemStackFromSlot(EquipmentSlotType.FEET);
 
         boolean ignoreGamemode = !mc.player.abilities.isCreativeMode && !mc.player.isSpectator();
 
@@ -54,10 +59,10 @@ public class BasmodGameEvents {
                 mc.getTextureManager().bindTexture(new ResourceLocation(Basmod.MOD_ID, "textures/gui/hud/mana_bar.png"));
 
                 // TODO Manabar Outline
-                mc.ingameGUI.blit(new MatrixStack(),posXWidth, posYHeight, 0, 0, textureWidth, textureHeight);
+                mc.ingameGUI.blit(new MatrixStack(), posXWidth, posYHeight, 0, 0, textureWidth, textureHeight);
 
                 // TODO Manabar
-                mc.ingameGUI.blit(new MatrixStack(),posXWidth + 1, posYHeight + 1, 0, 9, barWidth, barHeight);
+                mc.ingameGUI.blit(new MatrixStack(), posXWidth + 1, posYHeight + 1, 0, 9, barWidth, barHeight);
 
             }
 
@@ -79,10 +84,10 @@ public class BasmodGameEvents {
                     mc.getTextureManager().bindTexture(new ResourceLocation(Basmod.MOD_ID, "textures/gui/hud/mana_bar.png"));
 
                     // TODO Manabar Outline
-                    mc.ingameGUI.blit(new MatrixStack(),posXWidth, posYHeight, 0, 18, textureWidth, textureHeight);
+                    mc.ingameGUI.blit(new MatrixStack(), posXWidth, posYHeight, 0, 18, textureWidth, textureHeight);
 
                     // TODO Manabar
-                    mc.ingameGUI.blit(new MatrixStack(),posXWidth + 1, posYHeight + 1, 0, 28, barWidth, barHeight);
+                    mc.ingameGUI.blit(new MatrixStack(), posXWidth + 1, posYHeight + 1, 0, 28, barWidth, barHeight);
 
                 }
 
@@ -105,16 +110,43 @@ public class BasmodGameEvents {
                     mc.getTextureManager().bindTexture(new ResourceLocation(Basmod.MOD_ID, "textures/gui/hud/mana_bar.png"));
 
                     // TODO Manabar Outline
-                    mc.ingameGUI.blit(new MatrixStack(),posXWidth, posYHeight, 0, 36, textureWidth, textureHeight);
+                    mc.ingameGUI.blit(new MatrixStack(), posXWidth, posYHeight, 0, 36, textureWidth, textureHeight);
 
                     // TODO Manabar
-                    mc.ingameGUI.blit(new MatrixStack(),posXWidth + 1, posYHeight + 1, 0, 46, barWidth, barHeight);
+                    mc.ingameGUI.blit(new MatrixStack(), posXWidth + 1, posYHeight + 1, 0, 46, barWidth, barHeight);
 
                 }
             }
         }
         //
 
+        if (mainhand.getItem() == ItemInit.ANIMATED_MAGICAL_STAFF.get()) {
+            if (modifiExperience) {
+                if (ignoreGamemode) {
+
+                    int posXWidth = event.getWindow().getScaledWidth() / 2;
+                    int posYHeight = event.getWindow().getScaledHeight();
+
+                    int textureWidth = 265;
+                    int textureHeight = 265;
+
+                    int barWidth = 250; // TODO barWidth => refill Manabar, default is 88 -> 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60, 64, 68, 72, 76, 80, 84, 88.
+                    int barHeight = 250;
+
+                    mc.getTextureManager().bindTexture(new ResourceLocation(Basmod.MOD_ID, "textures/misc/diving_helmet_overlay.png"));
+
+                    // TODO Helmet Screen
+                    mc.ingameGUI.blit(new MatrixStack(), posXWidth, posYHeight, 0, 0, textureWidth, textureHeight);
+
+                    // TODO Closed texture
+                    if (mc.player.isInWater()) {
+                        mc.ingameGUI.blit(new MatrixStack(), posXWidth + 3, posYHeight + 3, 0, 265, barWidth, barHeight);
+                    }
+
+
+                }
+            }
+        }
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -1,15 +1,17 @@
 package com.alpherininus.basmod.core.init;
 
 import com.alpherininus.basmod.Basmod;
+import com.alpherininus.basmod.common.items.*;
 import com.alpherininus.basmod.common.items.animated.HealStaffItem;
 import com.alpherininus.basmod.common.items.animated.MagicalStaffItem;
 import com.alpherininus.basmod.common.items.animated.TeleportStaffItem;
 import com.alpherininus.basmod.common.items.animated.renderer.HealStaffItemRenderer;
 import com.alpherininus.basmod.common.items.animated.renderer.MagicalStaffItemRenderer;
 import com.alpherininus.basmod.common.items.animated.renderer.TeleportStaffItemRenderer;
-import com.alpherininus.basmod.common.items.armor.*;
-import com.alpherininus.basmod.common.items.LightsaberExampleItem;
-import com.alpherininus.basmod.common.items.*;
+import com.alpherininus.basmod.common.items.armor.DivingHelmetItem;
+import com.alpherininus.basmod.common.items.armor.ExperiArmorItem;
+import com.alpherininus.basmod.common.items.armor.ExperiHorseArmorItem;
+import com.alpherininus.basmod.common.items.armor.JetPackArmorItem;
 import com.alpherininus.basmod.common.items.models.BasmodSpawnEggItem;
 import com.alpherininus.basmod.common.materials.BasmodArmorMaterial;
 import com.alpherininus.basmod.common.materials.BasmodToolMaterial;
@@ -19,7 +21,6 @@ import com.alpherininus.basmod.core.util.BasmodConfig;
 import net.minecraft.entity.EntityType;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
-import net.minecraft.util.SoundEvents;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -196,113 +197,9 @@ public class ItemInit {
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    public static final RegistryObject<Item> A_HELMET = ITEMS.register("material_a_helmet", () -> new MaterialAArmorItem(BasmodArmorMaterial.A_ARMOR_MATERIAL, EquipmentSlotType.HEAD, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> B_HELMET = ITEMS.register("material_b_helmet", () -> new MaterialBArmorItem(BasmodArmorMaterial.B_ARMOR_MATERIAL, EquipmentSlotType.HEAD, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> C_HELMET = ITEMS.register("material_c_helmet", () -> new MaterialCArmorItem(BasmodArmorMaterial.C_ARMOR_MATERIAL, EquipmentSlotType.HEAD, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> D_HELMET = ITEMS.register("material_d_helmet", () -> new MaterialDArmorItem(BasmodArmorMaterial.D_ARMOR_MATERIAL, EquipmentSlotType.HEAD, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> E_HELMET = ITEMS.register("material_e_helmet", () -> new MaterialEArmorItem(BasmodArmorMaterial.E_ARMOR_MATERIAL, EquipmentSlotType.HEAD, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> F_HELMET = ITEMS.register("material_f_helmet", () -> new MaterialFArmorItem(BasmodArmorMaterial.F_ARMOR_MATERIAL, EquipmentSlotType.HEAD, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> G_HELMET = ITEMS.register("material_g_helmet", () -> new MaterialGArmorItem(BasmodArmorMaterial.G_ARMOR_MATERIAL, EquipmentSlotType.HEAD, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> H_HELMET = ITEMS.register("material_h_helmet", () -> new MaterialHArmorItem(BasmodArmorMaterial.H_ARMOR_MATERIAL, EquipmentSlotType.HEAD, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> I_HELMET = ITEMS.register("material_i_helmet", () -> new MaterialIArmorItem(BasmodArmorMaterial.I_ARMOR_MATERIAL, EquipmentSlotType.HEAD, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> J_HELMET = ITEMS.register("material_j_helmet", () -> new MaterialJArmorItem(BasmodArmorMaterial.J_ARMOR_MATERIAL, EquipmentSlotType.HEAD, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> K_HELMET = ITEMS.register("material_k_helmet", () -> new MaterialKArmorItem(BasmodArmorMaterial.K_ARMOR_MATERIAL, EquipmentSlotType.HEAD, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> L_HELMET = ITEMS.register("material_l_helmet", () -> new MaterialLArmorItem(BasmodArmorMaterial.L_ARMOR_MATERIAL, EquipmentSlotType.HEAD, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> M_HELMET = ITEMS.register("material_m_helmet", () -> new MaterialMArmorItem(BasmodArmorMaterial.M_ARMOR_MATERIAL, EquipmentSlotType.HEAD, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> N_HELMET = ITEMS.register("material_n_helmet", () -> new MaterialNArmorItem(BasmodArmorMaterial.N_ARMOR_MATERIAL, EquipmentSlotType.HEAD, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> O_HELMET = ITEMS.register("material_o_helmet", () -> new MaterialOArmorItem(BasmodArmorMaterial.O_ARMOR_MATERIAL, EquipmentSlotType.HEAD, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> P_HELMET = ITEMS.register("material_p_helmet", () -> new MaterialPArmorItem(BasmodArmorMaterial.P_ARMOR_MATERIAL, EquipmentSlotType.HEAD, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> Q_HELMET = ITEMS.register("material_q_helmet", () -> new MaterialQArmorItem(BasmodArmorMaterial.Q_ARMOR_MATERIAL, EquipmentSlotType.HEAD, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> R_HELMET = ITEMS.register("material_r_helmet", () -> new MaterialRArmorItem(BasmodArmorMaterial.R_ARMOR_MATERIAL, EquipmentSlotType.HEAD, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> S_HELMET = ITEMS.register("material_s_helmet", () -> new MaterialSArmorItem(BasmodArmorMaterial.S_ARMOR_MATERIAL, EquipmentSlotType.HEAD, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> T_HELMET = ITEMS.register("material_t_helmet", () -> new MaterialTArmorItem(BasmodArmorMaterial.T_ARMOR_MATERIAL, EquipmentSlotType.HEAD, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> U_HELMET = ITEMS.register("material_u_helmet", () -> new MaterialUArmorItem(BasmodArmorMaterial.U_ARMOR_MATERIAL, EquipmentSlotType.HEAD, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> V_HELMET = ITEMS.register("material_v_helmet", () -> new MaterialVArmorItem(BasmodArmorMaterial.V_ARMOR_MATERIAL, EquipmentSlotType.HEAD, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> W_HELMET = ITEMS.register("material_w_helmet", () -> new MaterialWArmorItem(BasmodArmorMaterial.W_ARMOR_MATERIAL, EquipmentSlotType.HEAD, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> X_HELMET = ITEMS.register("material_x_helmet", () -> new MaterialXArmorItem(BasmodArmorMaterial.X_ARMOR_MATERIAL, EquipmentSlotType.HEAD, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> Y_HELMET = ITEMS.register("material_y_helmet", () -> new MaterialYArmorItem(BasmodArmorMaterial.Y_ARMOR_MATERIAL, EquipmentSlotType.HEAD, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> Z_HELMET = ITEMS.register("material_z_helmet", () -> new MaterialZArmorItem(BasmodArmorMaterial.Z_ARMOR_MATERIAL, EquipmentSlotType.HEAD, new Item.Properties().group(ItemGroup.COMBAT)));
-
-    public static final RegistryObject<Item> A_CHEST = ITEMS.register("material_a_chestplate", () -> new MaterialAArmorItem(BasmodArmorMaterial.A_ARMOR_MATERIAL, EquipmentSlotType.CHEST, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> B_CHEST = ITEMS.register("material_b_chestplate", () -> new MaterialBArmorItem(BasmodArmorMaterial.B_ARMOR_MATERIAL, EquipmentSlotType.CHEST, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> C_CHEST = ITEMS.register("material_c_chestplate", () -> new MaterialCArmorItem(BasmodArmorMaterial.C_ARMOR_MATERIAL, EquipmentSlotType.CHEST, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> D_CHEST = ITEMS.register("material_d_chestplate", () -> new MaterialDArmorItem(BasmodArmorMaterial.D_ARMOR_MATERIAL, EquipmentSlotType.CHEST, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> E_CHEST = ITEMS.register("material_e_chestplate", () -> new MaterialEArmorItem(BasmodArmorMaterial.E_ARMOR_MATERIAL, EquipmentSlotType.CHEST, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> F_CHEST = ITEMS.register("material_f_chestplate", () -> new MaterialFArmorItem(BasmodArmorMaterial.F_ARMOR_MATERIAL, EquipmentSlotType.CHEST, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> G_CHEST = ITEMS.register("material_g_chestplate", () -> new MaterialGArmorItem(BasmodArmorMaterial.G_ARMOR_MATERIAL, EquipmentSlotType.CHEST, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> H_CHEST = ITEMS.register("material_h_chestplate", () -> new MaterialHArmorItem(BasmodArmorMaterial.H_ARMOR_MATERIAL, EquipmentSlotType.CHEST, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> I_CHEST = ITEMS.register("material_i_chestplate", () -> new MaterialIArmorItem(BasmodArmorMaterial.I_ARMOR_MATERIAL, EquipmentSlotType.CHEST, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> J_CHEST = ITEMS.register("material_j_chestplate", () -> new MaterialJArmorItem(BasmodArmorMaterial.J_ARMOR_MATERIAL, EquipmentSlotType.CHEST, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> K_CHEST = ITEMS.register("material_k_chestplate", () -> new MaterialKArmorItem(BasmodArmorMaterial.K_ARMOR_MATERIAL, EquipmentSlotType.CHEST, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> L_CHEST = ITEMS.register("material_l_chestplate", () -> new MaterialLArmorItem(BasmodArmorMaterial.L_ARMOR_MATERIAL, EquipmentSlotType.CHEST, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> M_CHEST = ITEMS.register("material_m_chestplate", () -> new MaterialMArmorItem(BasmodArmorMaterial.M_ARMOR_MATERIAL, EquipmentSlotType.CHEST, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> N_CHEST = ITEMS.register("material_n_chestplate", () -> new MaterialNArmorItem(BasmodArmorMaterial.N_ARMOR_MATERIAL, EquipmentSlotType.CHEST, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> O_CHEST = ITEMS.register("material_o_chestplate", () -> new MaterialOArmorItem(BasmodArmorMaterial.O_ARMOR_MATERIAL, EquipmentSlotType.CHEST, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> P_CHEST = ITEMS.register("material_p_chestplate", () -> new MaterialPArmorItem(BasmodArmorMaterial.P_ARMOR_MATERIAL, EquipmentSlotType.CHEST, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> Q_CHEST = ITEMS.register("material_q_chestplate", () -> new MaterialQArmorItem(BasmodArmorMaterial.Q_ARMOR_MATERIAL, EquipmentSlotType.CHEST, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> R_CHEST = ITEMS.register("material_r_chestplate", () -> new MaterialRArmorItem(BasmodArmorMaterial.R_ARMOR_MATERIAL, EquipmentSlotType.CHEST, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> S_CHEST = ITEMS.register("material_s_chestplate", () -> new MaterialSArmorItem(BasmodArmorMaterial.S_ARMOR_MATERIAL, EquipmentSlotType.CHEST, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> T_CHEST = ITEMS.register("material_t_chestplate", () -> new MaterialTArmorItem(BasmodArmorMaterial.T_ARMOR_MATERIAL, EquipmentSlotType.CHEST, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> U_CHEST = ITEMS.register("material_u_chestplate", () -> new MaterialUArmorItem(BasmodArmorMaterial.U_ARMOR_MATERIAL, EquipmentSlotType.CHEST, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> V_CHEST = ITEMS.register("material_v_chestplate", () -> new MaterialVArmorItem(BasmodArmorMaterial.V_ARMOR_MATERIAL, EquipmentSlotType.CHEST, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> W_CHEST = ITEMS.register("material_w_chestplate", () -> new MaterialWArmorItem(BasmodArmorMaterial.W_ARMOR_MATERIAL, EquipmentSlotType.CHEST, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> X_CHEST = ITEMS.register("material_x_chestplate", () -> new MaterialXArmorItem(BasmodArmorMaterial.X_ARMOR_MATERIAL, EquipmentSlotType.CHEST, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> Y_CHEST = ITEMS.register("material_y_chestplate", () -> new MaterialYArmorItem(BasmodArmorMaterial.Y_ARMOR_MATERIAL, EquipmentSlotType.CHEST, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> Z_CHEST = ITEMS.register("material_z_chestplate", () -> new MaterialZArmorItem(BasmodArmorMaterial.Z_ARMOR_MATERIAL, EquipmentSlotType.CHEST, new Item.Properties().group(ItemGroup.COMBAT)));
-
-    public static final RegistryObject<Item> A_LEG = ITEMS.register("material_a_leggings", () -> new MaterialAArmorItem(BasmodArmorMaterial.A_ARMOR_MATERIAL, EquipmentSlotType.LEGS, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> B_LEG = ITEMS.register("material_b_leggings", () -> new MaterialBArmorItem(BasmodArmorMaterial.B_ARMOR_MATERIAL, EquipmentSlotType.LEGS, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> C_LEG = ITEMS.register("material_c_leggings", () -> new MaterialCArmorItem(BasmodArmorMaterial.C_ARMOR_MATERIAL, EquipmentSlotType.LEGS, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> D_LEG = ITEMS.register("material_d_leggings", () -> new MaterialDArmorItem(BasmodArmorMaterial.D_ARMOR_MATERIAL, EquipmentSlotType.LEGS, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> E_LEG = ITEMS.register("material_e_leggings", () -> new MaterialEArmorItem(BasmodArmorMaterial.E_ARMOR_MATERIAL, EquipmentSlotType.LEGS, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> F_LEG = ITEMS.register("material_f_leggings", () -> new MaterialFArmorItem(BasmodArmorMaterial.F_ARMOR_MATERIAL, EquipmentSlotType.LEGS, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> G_LEG = ITEMS.register("material_g_leggings", () -> new MaterialGArmorItem(BasmodArmorMaterial.G_ARMOR_MATERIAL, EquipmentSlotType.LEGS, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> H_LEG = ITEMS.register("material_h_leggings", () -> new MaterialHArmorItem(BasmodArmorMaterial.H_ARMOR_MATERIAL, EquipmentSlotType.LEGS, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> I_LEG = ITEMS.register("material_i_leggings", () -> new MaterialIArmorItem(BasmodArmorMaterial.I_ARMOR_MATERIAL, EquipmentSlotType.LEGS, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> J_LEG = ITEMS.register("material_j_leggings", () -> new MaterialJArmorItem(BasmodArmorMaterial.J_ARMOR_MATERIAL, EquipmentSlotType.LEGS, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> K_LEG = ITEMS.register("material_k_leggings", () -> new MaterialKArmorItem(BasmodArmorMaterial.K_ARMOR_MATERIAL, EquipmentSlotType.LEGS, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> L_LEG = ITEMS.register("material_l_leggings", () -> new MaterialLArmorItem(BasmodArmorMaterial.L_ARMOR_MATERIAL, EquipmentSlotType.LEGS, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> M_LEG = ITEMS.register("material_m_leggings", () -> new MaterialMArmorItem(BasmodArmorMaterial.M_ARMOR_MATERIAL, EquipmentSlotType.LEGS, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> N_LEG = ITEMS.register("material_n_leggings", () -> new MaterialNArmorItem(BasmodArmorMaterial.N_ARMOR_MATERIAL, EquipmentSlotType.LEGS, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> O_LEG = ITEMS.register("material_o_leggings", () -> new MaterialOArmorItem(BasmodArmorMaterial.O_ARMOR_MATERIAL, EquipmentSlotType.LEGS, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> P_LEG = ITEMS.register("material_p_leggings", () -> new MaterialPArmorItem(BasmodArmorMaterial.P_ARMOR_MATERIAL, EquipmentSlotType.LEGS, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> Q_LEG = ITEMS.register("material_q_leggings", () -> new MaterialQArmorItem(BasmodArmorMaterial.Q_ARMOR_MATERIAL, EquipmentSlotType.LEGS, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> R_LEG = ITEMS.register("material_r_leggings", () -> new MaterialRArmorItem(BasmodArmorMaterial.R_ARMOR_MATERIAL, EquipmentSlotType.LEGS, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> S_LEG = ITEMS.register("material_s_leggings", () -> new MaterialSArmorItem(BasmodArmorMaterial.S_ARMOR_MATERIAL, EquipmentSlotType.LEGS, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> T_LEG = ITEMS.register("material_t_leggings", () -> new MaterialTArmorItem(BasmodArmorMaterial.T_ARMOR_MATERIAL, EquipmentSlotType.LEGS, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> U_LEG = ITEMS.register("material_u_leggings", () -> new MaterialUArmorItem(BasmodArmorMaterial.U_ARMOR_MATERIAL, EquipmentSlotType.LEGS, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> V_LEG = ITEMS.register("material_v_leggings", () -> new MaterialVArmorItem(BasmodArmorMaterial.V_ARMOR_MATERIAL, EquipmentSlotType.LEGS, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> W_LEG = ITEMS.register("material_w_leggings", () -> new MaterialWArmorItem(BasmodArmorMaterial.W_ARMOR_MATERIAL, EquipmentSlotType.LEGS, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> X_LEG = ITEMS.register("material_x_leggings", () -> new MaterialXArmorItem(BasmodArmorMaterial.X_ARMOR_MATERIAL, EquipmentSlotType.LEGS, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> Y_LEG = ITEMS.register("material_y_leggings", () -> new MaterialYArmorItem(BasmodArmorMaterial.Y_ARMOR_MATERIAL, EquipmentSlotType.LEGS, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> Z_LEG = ITEMS.register("material_z_leggings", () -> new MaterialZArmorItem(BasmodArmorMaterial.Z_ARMOR_MATERIAL, EquipmentSlotType.LEGS, new Item.Properties().group(ItemGroup.COMBAT)));
-
-    public static final RegistryObject<Item> A_BOOTS = ITEMS.register("material_a_boots", () -> new MaterialAArmorItem(BasmodArmorMaterial.A_ARMOR_MATERIAL, EquipmentSlotType.FEET, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> B_BOOTS = ITEMS.register("material_b_boots", () -> new MaterialBArmorItem(BasmodArmorMaterial.B_ARMOR_MATERIAL, EquipmentSlotType.FEET, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> C_BOOTS = ITEMS.register("material_c_boots", () -> new MaterialCArmorItem(BasmodArmorMaterial.C_ARMOR_MATERIAL, EquipmentSlotType.FEET, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> D_BOOTS = ITEMS.register("material_d_boots", () -> new MaterialDArmorItem(BasmodArmorMaterial.D_ARMOR_MATERIAL, EquipmentSlotType.FEET, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> E_BOOTS = ITEMS.register("material_e_boots", () -> new MaterialEArmorItem(BasmodArmorMaterial.E_ARMOR_MATERIAL, EquipmentSlotType.FEET, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> F_BOOTS = ITEMS.register("material_f_boots", () -> new MaterialFArmorItem(BasmodArmorMaterial.F_ARMOR_MATERIAL, EquipmentSlotType.FEET, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> G_BOOTS = ITEMS.register("material_g_boots", () -> new MaterialGArmorItem(BasmodArmorMaterial.G_ARMOR_MATERIAL, EquipmentSlotType.FEET, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> H_BOOTS = ITEMS.register("material_h_boots", () -> new MaterialHArmorItem(BasmodArmorMaterial.H_ARMOR_MATERIAL, EquipmentSlotType.FEET, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> I_BOOTS = ITEMS.register("material_i_boots", () -> new MaterialIArmorItem(BasmodArmorMaterial.I_ARMOR_MATERIAL, EquipmentSlotType.FEET, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> J_BOOTS = ITEMS.register("material_j_boots", () -> new MaterialJArmorItem(BasmodArmorMaterial.J_ARMOR_MATERIAL, EquipmentSlotType.FEET, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> K_BOOTS = ITEMS.register("material_k_boots", () -> new MaterialKArmorItem(BasmodArmorMaterial.K_ARMOR_MATERIAL, EquipmentSlotType.FEET, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> L_BOOTS = ITEMS.register("material_l_boots", () -> new MaterialLArmorItem(BasmodArmorMaterial.L_ARMOR_MATERIAL, EquipmentSlotType.FEET, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> M_BOOTS = ITEMS.register("material_m_boots", () -> new MaterialMArmorItem(BasmodArmorMaterial.M_ARMOR_MATERIAL, EquipmentSlotType.FEET, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> N_BOOTS = ITEMS.register("material_n_boots", () -> new MaterialNArmorItem(BasmodArmorMaterial.N_ARMOR_MATERIAL, EquipmentSlotType.FEET, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> O_BOOTS = ITEMS.register("material_o_boots", () -> new MaterialOArmorItem(BasmodArmorMaterial.O_ARMOR_MATERIAL, EquipmentSlotType.FEET, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> P_BOOTS = ITEMS.register("material_p_boots", () -> new MaterialPArmorItem(BasmodArmorMaterial.P_ARMOR_MATERIAL, EquipmentSlotType.FEET, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> Q_BOOTS = ITEMS.register("material_q_boots", () -> new MaterialQArmorItem(BasmodArmorMaterial.Q_ARMOR_MATERIAL, EquipmentSlotType.FEET, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> R_BOOTS = ITEMS.register("material_r_boots", () -> new MaterialRArmorItem(BasmodArmorMaterial.R_ARMOR_MATERIAL, EquipmentSlotType.FEET, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> S_BOOTS = ITEMS.register("material_s_boots", () -> new MaterialSArmorItem(BasmodArmorMaterial.S_ARMOR_MATERIAL, EquipmentSlotType.FEET, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> T_BOOTS = ITEMS.register("material_t_boots", () -> new MaterialTArmorItem(BasmodArmorMaterial.T_ARMOR_MATERIAL, EquipmentSlotType.FEET, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> U_BOOTS = ITEMS.register("material_u_boots", () -> new MaterialUArmorItem(BasmodArmorMaterial.U_ARMOR_MATERIAL, EquipmentSlotType.FEET, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> V_BOOTS = ITEMS.register("material_v_boots", () -> new MaterialVArmorItem(BasmodArmorMaterial.V_ARMOR_MATERIAL, EquipmentSlotType.FEET, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> W_BOOTS = ITEMS.register("material_w_boots", () -> new MaterialWArmorItem(BasmodArmorMaterial.W_ARMOR_MATERIAL, EquipmentSlotType.FEET, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> X_BOOTS = ITEMS.register("material_x_boots", () -> new MaterialXArmorItem(BasmodArmorMaterial.X_ARMOR_MATERIAL, EquipmentSlotType.FEET, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> Y_BOOTS = ITEMS.register("material_y_boots", () -> new MaterialYArmorItem(BasmodArmorMaterial.Y_ARMOR_MATERIAL, EquipmentSlotType.FEET, new Item.Properties().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> Z_BOOTS = ITEMS.register("material_z_boots", () -> new MaterialZArmorItem(BasmodArmorMaterial.Z_ARMOR_MATERIAL, EquipmentSlotType.FEET, new Item.Properties().group(ItemGroup.COMBAT)));
+    public static final RegistryObject<Item> DIVING_HELMET_HELMET = ITEMS.register("diving_helmet",
+            () -> new DivingHelmetItem(BasmodArmorMaterial.EXPERIMENTALITEM, EquipmentSlotType.HEAD,
+                    new Item.Properties().group(ModItemGroupWapons.BAS_MOD_WAPONS)));
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // TODO TOOLS
