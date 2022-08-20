@@ -28,35 +28,24 @@ public class BasmodPlayerEvents {
 
     @SubscribeEvent
     public static void onPlayerToss(ItemTossEvent event) {
-        System.out.println("Integer:" + BasmodConfig.config_integer.get());
-        System.out.println("String:" + BasmodConfig.config_string.get());
-
     }
 
     @SubscribeEvent
     public static void onPlayerEvent(PlayerEvent event) {
-
     }
 
     @SubscribeEvent
     public static void onPlayerJoinEvent(EntityJoinWorldEvent event) {
         Minecraft mc = Minecraft.getInstance();
-
         if ((event.getEntity() instanceof PlayerEntity)) {
-            LogManager.getLogger().info("INFO || Blocks and Stuff MOD -> Player Joined the World!");
-
         }
-
     }
 
     @SubscribeEvent
     public static void onPlayerLeaveEvent(EntityLeaveWorldEvent event) {
         Minecraft mc = Minecraft.getInstance();
-
         if ((event.getEntity() instanceof PlayerEntity)) {
-            LogManager.getLogger().info("INFO || Blocks and Stuff MOD -> Player Leave the World!, have a great time :)");
         }
-
     }
 
     @SubscribeEvent

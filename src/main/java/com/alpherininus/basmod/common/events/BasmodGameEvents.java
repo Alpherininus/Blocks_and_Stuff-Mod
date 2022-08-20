@@ -6,18 +6,26 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.AbstractGui;
 import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.dispenser.IPosition;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.client.event.GuiOpenEvent;
 import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.entity.living.LivingSetAttackTargetEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
+import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 import java.io.InputStream;
@@ -133,12 +141,19 @@ public class BasmodGameEvents {
                 }
             }
         }
-
+        
+        LivingEntity user = null;
+        Entity target = null;
+        
         if (mainhand.getItem() == ItemInit.SOLEILS_SHINE.get()) {
-            if (modifiText) {
-                event.getWindow().setWindowTitle("Smile you are Dead");
-            } else {
-                event.getWindow().toggleFullscreen();
+            if (!user.world.isRemote()) {
+                ServerWorld world = (ServerWorld) user.world;
+                ServerPlayerEntity player = ((ServerPlayerEntity) user);
+                BlockPos pos = target.getPosition();
+                
+                if (pos.withinDistance((IPosition) target, 1)) {
+                    event.getWindow().setWindowTitle("Smile you are Dead");
+                }
             }
         }
 
@@ -146,6 +161,15 @@ public class BasmodGameEvents {
             event.getWindow().setWindowTitle("Good Night :D!");
 
         }
+
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    @SubscribeEvent
+    public void onLivingAttTarget(LivingSetAttackTargetEvent event) {
+
+        ItemStack mainhand = mc.player.getItemStackFromSlot(EquipmentSlotType.MAINHAND);
 
     }
 
