@@ -149,7 +149,6 @@ public class BasmodGameEvents {
                     int barHeight = 250;
 
                     mc.getTextureManager().bindTexture(DIVING_HELMET_OVERLAY);
-                    event.getWindow().setGuiScale(768.0D);
 
                     // TODO Helmet Screen
                     mc.ingameGUI.blit(new MatrixStack(), posXWidth, posYHeight, 0, 0, textureWidth, textureHeight);
