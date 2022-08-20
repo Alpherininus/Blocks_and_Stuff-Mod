@@ -8,7 +8,6 @@ import net.minecraft.client.gui.AbstractGui;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.client.event.GuiOpenEvent;
@@ -50,6 +49,7 @@ public class BasmodGameEvents {
         boolean isInWater = mc.player.isInWater();
 
         boolean modifiExperience = !event.isCancelable() && event.getType() == RenderGameOverlayEvent.ElementType.EXPERIENCE;
+        boolean modifiText = !event.isCanceled() && event.getType() == RenderGameOverlayEvent.ElementType.TEXT;
 
         if (isNotInWater) {
             if (modifiExperience) {
@@ -135,13 +135,16 @@ public class BasmodGameEvents {
         }
 
         if (mainhand.getItem() == ItemInit.SOLEILS_SHINE.get()) {
-            event.getWindow().setWindowTitle("Smile you are Dead");
+            if (modifiText) {
+                event.getWindow().setWindowTitle("Smile you are Dead");
+            } else {
+                event.getWindow().toggleFullscreen();
+            }
         }
 
-        if (isInWater) {
-            if (head.getItem() == ItemInit.DIVING_HELMET_HELMET.get()) {
-                event.getWindow().setWindowTitle("I am going diving lol :D");
-            }
+        if (mc.player.isSleeping()) {
+            event.getWindow().setWindowTitle("Good Night :D!");
+
         }
 
     }
