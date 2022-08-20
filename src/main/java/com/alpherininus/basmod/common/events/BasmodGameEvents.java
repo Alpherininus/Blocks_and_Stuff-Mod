@@ -13,6 +13,7 @@ import net.minecraftforge.client.event.GuiOpenEvent;
 import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.common.ForgeMod;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -131,13 +132,26 @@ public class BasmodGameEvents {
             }
         }
 
-        if (!event.getWindow().isFullscreen()) {
-            event.getWindow().setWindowTitle("Blocks and Stuff Mod " + Minecraft.getInstance().getVersionType() + ForgeMod.VERSION_CHECK_CAT + "bus " + Mod.EventBusSubscriber.Bus.MOD.name() + " - " + Minecraft.getInstance().getVersionType());
+        // TODO Window Title and More
+
+        if (mc.isSingleplayer()) {
+            event.getWindow().setWindowTitle("Blocks and Stuff Mod " + Minecraft.getInstance().getVersion() + "Singleplayer");
+        }
+
+        if (mc.isGamePaused()) {
+            event.getWindow().setWindowTitle("Blocks and Stuff Mod " + Minecraft.getInstance().getVersion() + " Paused");
+        }
+
+        if (event.getWindow().shouldClose()) {
+            event.getWindow().setWindowTitle("Blocks and Stuff Mod SHOULD CLOSED");
+        }
+
+        if (mc.player.isAutoJumpEnabled()) {
+            event.getWindow().setWindowTitle("Blocks and Stuff Mod " + Minecraft.getInstance().getVersion() + "Singleplayer" + mc.player.isAutoJumpEnabled());
 
         }
 
     }
-
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
