@@ -139,8 +139,8 @@ public class BasmodGameEvents {
             if (modifiVignette) {
                 if (notIgnoreGamemode) {
 
-                    int posXWidth = event.getWindow().getScaledWidth() / 2 + 768;
-                    int posYHeight = event.getWindow().getScaledHeight() + 1024;
+                    int posXWidth = event.getWindow().getScaledWidth() / 2 + 20;
+                    int posYHeight = event.getWindow().getScaledHeight() - 84;
 
                     int textureWidth = 265;
                     int textureHeight = 265;
