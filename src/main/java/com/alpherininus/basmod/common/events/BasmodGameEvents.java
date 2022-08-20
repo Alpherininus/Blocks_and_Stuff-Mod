@@ -42,6 +42,7 @@ public class BasmodGameEvents {
     public static void onRenderGameOverlay(RenderGameOverlayEvent event) {
         Minecraft mc = Minecraft.getInstance();
         assert mc.player != null;
+        assert false;
 
         ItemStack mainhand = mc.player.getItemStackFromSlot(EquipmentSlotType.MAINHAND);
         ItemStack offhand = mc.player.getItemStackFromSlot(EquipmentSlotType.OFFHAND);
@@ -146,14 +147,8 @@ public class BasmodGameEvents {
         Entity target = null;
         
         if (mainhand.getItem() == ItemInit.SOLEILS_SHINE.get()) {
-            if (!user.world.isRemote()) {
-                ServerWorld world = (ServerWorld) user.world;
-                ServerPlayerEntity player = ((ServerPlayerEntity) user);
-                BlockPos pos = target.getPosition();
-                
-                if (pos.withinDistance((IPosition) target, 1)) {
-                    event.getWindow().setWindowTitle("Smile you are Dead");
-                }
+            if (target.hitByEntity(user)) {
+                event.getWindow().setWindowTitle("Smile you are Dead");
             }
         }
 
@@ -168,7 +163,7 @@ public class BasmodGameEvents {
 
     @SubscribeEvent
     public void onLivingAttTarget(LivingSetAttackTargetEvent event) {
-
+        assert mc.player != null;
         ItemStack mainhand = mc.player.getItemStackFromSlot(EquipmentSlotType.MAINHAND);
 
     }
