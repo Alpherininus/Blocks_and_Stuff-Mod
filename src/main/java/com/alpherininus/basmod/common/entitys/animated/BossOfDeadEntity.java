@@ -6,11 +6,10 @@ import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.entity.merchant.villager.AbstractVillagerEntity;
-import net.minecraft.entity.merchant.villager.VillagerEntity;
 import net.minecraft.entity.monster.CreeperEntity;
-import net.minecraft.entity.monster.SpiderEntity;
-import net.minecraft.entity.passive.IronGolemEntity;
+import net.minecraft.entity.monster.MonsterEntity;
+import net.minecraft.entity.monster.VexEntity;
+import net.minecraft.entity.passive.BatEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -20,7 +19,10 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.BossInfo;
+import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerBossInfo;
 import software.bernie.geckolib3.core.IAnimatable;
@@ -36,17 +38,22 @@ import software.bernie.geckolib3.network.ISyncable;
 import javax.annotation.Nullable;
 import java.util.function.Predicate;
 
-public class BossOfDeadEntity extends SpiderEntity implements IAnimatable, ISyncable {
-    private static final EntityPredicate PLAYER_INVADER_CONDITION = (new EntityPredicate()).setDistance(64.0D);
+public class BossOfDeadEntity extends VexEntity implements IAnimatable, ISyncable {
 
+    private static final EntityPredicate PLAYER_INVADER_CONDITION = (new EntityPredicate()).setDistance(64.0D);
     private static final Predicate<LivingEntity> NOT_UNDEAD = (p_213797_0_) -> p_213797_0_.getCreatureAttribute() != CreatureAttribute.UNDEAD && p_213797_0_.attackable();
     private final ServerBossInfo bossInfo = (ServerBossInfo)(new ServerBossInfo(this.getDisplayName(), BossInfo.Color.RED, BossInfo.Overlay.PROGRESS)).setDarkenSky(true);
     private final int id = 1;
     private final int state = 0;
 
+    private <E extends IAnimatable>PlayState predicate(AnimationEvent<E> event) {
+        event.getController().setAnimation(new AnimationBuilder().addAnimation("idle", true));
+        return PlayState.CONTINUE;
+    }
+
     private AnimationFactory factory = new AnimationFactory(this);
 
-    public BossOfDeadEntity(EntityType<? extends SpiderEntity> entityType, World worldIn) {
+    public BossOfDeadEntity(EntityType<? extends VexEntity> entityType, World worldIn) {
         super(entityType, worldIn);
 
         GeckoLibNetwork.getSyncable("attack");
@@ -56,19 +63,13 @@ public class BossOfDeadEntity extends SpiderEntity implements IAnimatable, ISync
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(1, new LookAtGoal(this, PlayerEntity.class, 64.0f));
-        this.goalSelector.addGoal(2, new LookAtGoal(this, IronGolemEntity.class, 32.0f));
-        this.goalSelector.addGoal(3, new LookAtGoal(this, VillagerEntity.class, 32.0f));
-        this.goalSelector.addGoal(5, new LookAtGoal(this, PlayerEntity.class, 64.0f));
 
         this.goalSelector.addGoal(2, new SwimGoal(this));
         this.goalSelector.addGoal(3, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
         this.goalSelector.addGoal(4, new LookRandomlyGoal(this));
 
-        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
-        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, IronGolemEntity.class, true));
-        this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, AbstractVillagerEntity.class, false));
-        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, VillagerEntity.class, true));
-        this.targetSelector.addGoal(5, new MoveTowardsTargetGoal(this, 1.0D, 32.0F));
+        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, false));
+        this.targetSelector.addGoal(5, new MoveTowardsTargetGoal(this, 1.0D, 70.0F));
 
         super.registerGoals();
     }
@@ -89,20 +90,19 @@ public class BossOfDeadEntity extends SpiderEntity implements IAnimatable, ISync
         return true;
     }
 
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-    private <E extends IAnimatable>PlayState predicate(AnimationEvent<E> event) {
-
-        event.getController().setAnimation(new AnimationBuilder().addAnimation("idle", true));
-        return PlayState.CONTINUE;
-
+    @Override
+    public boolean hitByEntity(Entity entityIn) {
+        return super.hitByEntity(entityIn);
     }
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     private <E extends IAnimatable>PlayState predicateAttack(AnimationEvent<E> event) {
 
-        if (isAggressive()) {
+        if (hitByEntity(this)) {
             event.getController().setAnimation(new AnimationBuilder().addAnimation("attack", true));
             return PlayState.CONTINUE;
+
         }
 
         return PlayState.CONTINUE;
@@ -134,7 +134,7 @@ public class BossOfDeadEntity extends SpiderEntity implements IAnimatable, ISync
     @Nullable
     @Override
     protected SoundEvent getAmbientSound() {
-        return SoundEvents.EVENT_RAID_HORN;
+        return SoundEvents.ENTITY_VILLAGER_CELEBRATE;
     }
 
     @Nullable
@@ -152,6 +152,16 @@ public class BossOfDeadEntity extends SpiderEntity implements IAnimatable, ISync
     @Override
     protected float getSoundVolume() {
         return 10.5F;
+    }
+
+    @Override
+    public boolean isNotColliding(IWorldReader worldIn) {
+        return false;
+    }
+
+    @Override
+    protected void doBlockCollisions() {
+        this.doBlockCollisions();
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -235,5 +245,7 @@ public class BossOfDeadEntity extends SpiderEntity implements IAnimatable, ISync
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 
 }
