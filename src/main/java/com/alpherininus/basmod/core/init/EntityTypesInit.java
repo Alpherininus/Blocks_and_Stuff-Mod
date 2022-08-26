@@ -44,6 +44,13 @@ public class EntityTypesInit {
                             .size(1.7F, 2.0F)
                             .build("basmod_boss"));
 
+    public static final RegistryObject<EntityType<BasBossEntity>> BOSS_OF_DEAD_ENTITY =
+            ENTITY_TYPES.register("boss_of_dead",
+                    () -> EntityType.Builder
+                            .create(BasBossEntity::new, EntityClassification.MONSTER)
+                            .size(1.2F, 2.1F)
+                            .build("boss_of_dead"));
+
     public static void register(IEventBus eventBus) {
         ENTITY_TYPES.register(eventBus);
     }
