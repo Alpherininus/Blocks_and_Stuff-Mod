@@ -28,6 +28,8 @@ import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
+import java.util.Random;
+
 import static com.alpherininus.basmod.core.init.EntityTypesInit.BASMOD_BOSS_ENTITY;
 
 public class ItemInit {
@@ -159,7 +161,7 @@ public class ItemInit {
                     new Item.Properties().setISTER(() -> TeleportStaffItemRenderer::new).maxStackSize(1).group(ModItemGroupWapons.BAS_MOD_WAPONS)));
 
     public static final RegistryObject<Item> ANIMATED_NOSFARATU_BOOK = ITEMS.register("nosfaratu_book",
-            () -> new NosfaratuBookItem(new Item.Properties().setISTER(() -> NosfaratuBookItemRenderer::new).maxStackSize(1).group(ModItemGroupWapons.BAS_MOD_WAPONS)));
+            () -> new NosfaratuBookItem(new Item.Properties().setISTER(() -> NosfaratuBookItemRenderer::new).maxStackSize(1).group(ModItemGroupWapons.BAS_MOD_WAPONS), new Random(3)));
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // TODO SWORDS

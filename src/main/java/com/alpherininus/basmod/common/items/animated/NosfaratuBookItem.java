@@ -2,10 +2,12 @@ package com.alpherininus.basmod.common.items.animated;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.player.ClientPlayerEntity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ShootableItem;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.Effects;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.text.StringTextComponent;
@@ -24,16 +26,18 @@ import software.bernie.geckolib3.network.GeckoLibNetwork;
 import software.bernie.geckolib3.network.ISyncable;
 import software.bernie.geckolib3.util.GeckoLibUtil;
 
-import java.util.function.Predicate;
+import java.util.Random;
 
 public class NosfaratuBookItem extends Item implements IAnimatable, ISyncable {
 
     private static final String CONTROLLER_NAME = "Controller";
     private static final int ANIM_OPEN = 0;
     public AnimationFactory factory = new AnimationFactory(this);
+    private final Random rand;
 
-    public NosfaratuBookItem(Properties properties) {
+    public NosfaratuBookItem(Properties properties, Random rand) {
         super(properties);
+        this.rand = rand;
         GeckoLibNetwork.registerSyncable(this);
 
     }
@@ -70,6 +74,17 @@ public class NosfaratuBookItem extends Item implements IAnimatable, ISyncable {
 
         }
         return super.onItemRightClick(worldIn, playerIn, handIn);
+    }
+
+    @Override
+    public boolean hitEntity(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+        if (attacker.isHandActive()) {
+            target.addPotionEffect(new EffectInstance(Effects.INSTANT_DAMAGE, 1, 1));
+        }
+
+        stack.setDamage(stack.getDamage() + this.rand.nextInt(2));
+
+        return super.hitEntity(stack, target, attacker);
     }
 
     @Override
