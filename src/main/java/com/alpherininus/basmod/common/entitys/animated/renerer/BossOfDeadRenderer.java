@@ -1,9 +1,7 @@
 package com.alpherininus.basmod.common.entitys.animated.renerer;
 
 import com.alpherininus.basmod.Basmod;
-import com.alpherininus.basmod.common.entitys.animated.BasBossEntity;
 import com.alpherininus.basmod.common.entitys.animated.BossOfDeadEntity;
-import com.alpherininus.basmod.common.entitys.animated.model.BasBossModel;
 import com.alpherininus.basmod.common.entitys.animated.model.BossOfDeadModel;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;

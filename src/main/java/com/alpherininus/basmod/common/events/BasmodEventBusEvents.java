@@ -4,6 +4,7 @@ import com.alpherininus.basmod.Basmod;
 import com.alpherininus.basmod.common.entitys.CopperGolemEntity;
 import com.alpherininus.basmod.common.entitys.SeiorShellArmorEntity;
 import com.alpherininus.basmod.common.entitys.animated.BasBossEntity;
+import com.alpherininus.basmod.common.entitys.animated.BossOfDeadEntity;
 import com.alpherininus.basmod.common.events.loots.BasmodAdditionModifier;
 import com.alpherininus.basmod.common.events.loots.BasmodStructureAdditionModifier;
 import com.alpherininus.basmod.common.items.SeioerShellSpawnEggItem;
@@ -27,7 +28,7 @@ public class BasmodEventBusEvents {
         event.put(EntityTypesInit.BASMOD_SEIORSHELL.get(), SeiorShellArmorEntity.setCustomAttributes().create());
 
         event.put(EntityTypesInit.BASMOD_BOSS_ENTITY.get(), BasBossEntity.setCustomBasbossAttributes());
-
+        event.put(EntityTypesInit.BOSS_OF_DEAD_ENTITY.get(), BossOfDeadEntity.setCustomBossOfDeadAttributes());
 
     }
 

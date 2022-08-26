@@ -30,20 +30,27 @@ import software.bernie.geckolib3.core.controller.AnimationController;
 import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
+import software.bernie.geckolib3.network.GeckoLibNetwork;
+import software.bernie.geckolib3.network.ISyncable;
 
 import javax.annotation.Nullable;
 import java.util.function.Predicate;
 
-public class BossOfDeadEntity extends SpiderEntity implements IAnimatable {
+public class BossOfDeadEntity extends SpiderEntity implements IAnimatable, ISyncable {
     private static final EntityPredicate PLAYER_INVADER_CONDITION = (new EntityPredicate()).setDistance(64.0D);
 
     private static final Predicate<LivingEntity> NOT_UNDEAD = (p_213797_0_) -> p_213797_0_.getCreatureAttribute() != CreatureAttribute.UNDEAD && p_213797_0_.attackable();
-    private final ServerBossInfo bossInfo = (ServerBossInfo)(new ServerBossInfo(this.getDisplayName(), BossInfo.Color.YELLOW, BossInfo.Overlay.PROGRESS)).setDarkenSky(true);
+    private final ServerBossInfo bossInfo = (ServerBossInfo)(new ServerBossInfo(this.getDisplayName(), BossInfo.Color.RED, BossInfo.Overlay.PROGRESS)).setDarkenSky(true);
+    private final int id = 1;
+    private final int state = 0;
 
     private AnimationFactory factory = new AnimationFactory(this);
 
     public BossOfDeadEntity(EntityType<? extends SpiderEntity> entityType, World worldIn) {
         super(entityType, worldIn);
+
+        GeckoLibNetwork.getSyncable("attack");
+
     }
 
     @Override
@@ -66,14 +73,14 @@ public class BossOfDeadEntity extends SpiderEntity implements IAnimatable {
         super.registerGoals();
     }
 
-    public static AttributeModifierMap setCustomBasbossAttributes() {
+    public static AttributeModifierMap setCustomBossOfDeadAttributes() {
         return MobEntity.func_233666_p_()
-                .createMutableAttribute(Attributes.MAX_HEALTH, 500.0D)
-                .createMutableAttribute(Attributes.ATTACK_DAMAGE, 3.5f)
+                .createMutableAttribute(Attributes.MAX_HEALTH, 1500.0D)
+                .createMutableAttribute(Attributes.ATTACK_DAMAGE, 5.0f)
                 .createMutableAttribute(Attributes.ATTACK_SPEED, 2.0f)
-                .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.50D)
-                .createMutableAttribute(Attributes.FOLLOW_RANGE, 35.0D)
-                .createMutableAttribute(Attributes.ATTACK_KNOCKBACK, 1.5f).create();
+                .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.5001D)
+                .createMutableAttribute(Attributes.FOLLOW_RANGE, 64.0D)
+                .createMutableAttribute(Attributes.ATTACK_KNOCKBACK, 1.0f).create();
 
     }
 
@@ -86,11 +93,6 @@ public class BossOfDeadEntity extends SpiderEntity implements IAnimatable {
 
     private <E extends IAnimatable>PlayState predicate(AnimationEvent<E> event) {
 
-        if (event.isMoving()) {
-            event.getController().setAnimation(new AnimationBuilder().addAnimation("walk", true));
-            return PlayState.CONTINUE;
-        }
-
         event.getController().setAnimation(new AnimationBuilder().addAnimation("idle", true));
         return PlayState.CONTINUE;
 
@@ -98,7 +100,7 @@ public class BossOfDeadEntity extends SpiderEntity implements IAnimatable {
 
     private <E extends IAnimatable>PlayState predicateAttack(AnimationEvent<E> event) {
 
-        if (isSpinAttacking()) {
+        if (isAggressive()) {
             event.getController().setAnimation(new AnimationBuilder().addAnimation("attack", true));
             return PlayState.CONTINUE;
         }
@@ -109,7 +111,7 @@ public class BossOfDeadEntity extends SpiderEntity implements IAnimatable {
     @Override
     public void registerControllers(AnimationData animationData) {
         animationData.addAnimationController(
-                new AnimationController(this, "basRobotBossController", 0, this::predicate));
+                new AnimationController(this, "BossController", 0, this::predicate));
 
         animationData.addAnimationController(
                 new AnimationController(this, "attackController", 0, this::predicateAttack));
@@ -158,7 +160,7 @@ public class BossOfDeadEntity extends SpiderEntity implements IAnimatable {
     protected void dropSpecialItems(DamageSource source, int looting, boolean recentlyHitIn) {
         super.dropSpecialItems(source, looting, recentlyHitIn);
         Entity entity = source.getTrueSource();
-        ItemEntity itementity = this.entityDropItem(Items.IRON_BLOCK);
+        ItemEntity itementity = this.entityDropItem(Items.DIAMOND_HOE);
         if (itementity != null) {
             itementity.setNoDespawn();
         }
@@ -223,6 +225,13 @@ public class BossOfDeadEntity extends SpiderEntity implements IAnimatable {
     @Override
     public boolean canBeHitWithPotion() {
         return false;
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    @Override
+    public void onAnimationSync(int id, int state) {
+
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

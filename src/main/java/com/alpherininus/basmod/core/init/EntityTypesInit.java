@@ -5,6 +5,7 @@ import com.alpherininus.basmod.common.entitys.CopperGolemEntity;
 import com.alpherininus.basmod.common.entitys.MagicalSpellArrowEntity;
 import com.alpherininus.basmod.common.entitys.SeiorShellArmorEntity;
 import com.alpherininus.basmod.common.entitys.animated.BasBossEntity;
+import com.alpherininus.basmod.common.entitys.animated.BossOfDeadEntity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.util.ResourceLocation;
@@ -44,10 +45,10 @@ public class EntityTypesInit {
                             .size(1.7F, 2.0F)
                             .build("basmod_boss"));
 
-    public static final RegistryObject<EntityType<BasBossEntity>> BOSS_OF_DEAD_ENTITY =
+    public static final RegistryObject<EntityType<BossOfDeadEntity>> BOSS_OF_DEAD_ENTITY =
             ENTITY_TYPES.register("boss_of_dead",
                     () -> EntityType.Builder
-                            .create(BasBossEntity::new, EntityClassification.MONSTER)
+                            .create(BossOfDeadEntity::new, EntityClassification.MONSTER)
                             .size(1.2F, 2.1F)
                             .build("boss_of_dead"));
 
