@@ -31,6 +31,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import java.util.Random;
 
 import static com.alpherininus.basmod.core.init.EntityTypesInit.BASMOD_BOSS_ENTITY;
+import static com.alpherininus.basmod.core.init.EntityTypesInit.BOSS_OF_DEAD_ENTITY;
 
 public class ItemInit {
 
@@ -114,6 +115,10 @@ public class ItemInit {
 
     public static final RegistryObject<BasmodSpawnEggItem> BASBOSS_SPAWN_EGG = ITEMS.register("bas_boss_spawn_egg",
             () -> new BasmodSpawnEggItem(BASMOD_BOSS_ENTITY, 13671252, 7969893,
+                    new Item.Properties().group(ItemGroup.MISC)));
+
+    public static final RegistryObject<BasmodSpawnEggItem> BOSS_OF_DEAD_SPAWN_EGG = ITEMS.register("boss_of_dead_spawn_egg",
+            () -> new BasmodSpawnEggItem(BOSS_OF_DEAD_ENTITY, 13671252, 7969893,
                     new Item.Properties().group(ItemGroup.MISC)));
 
     public static final RegistryObject<Item> EXPERIMENTAL_ITEM = ITEMS.register("experimental_item",
