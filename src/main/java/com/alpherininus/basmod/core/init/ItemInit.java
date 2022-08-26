@@ -4,9 +4,11 @@ import com.alpherininus.basmod.Basmod;
 import com.alpherininus.basmod.common.items.*;
 import com.alpherininus.basmod.common.items.animated.HealStaffItem;
 import com.alpherininus.basmod.common.items.animated.MagicalStaffItem;
+import com.alpherininus.basmod.common.items.animated.NosfaratuBookItem;
 import com.alpherininus.basmod.common.items.animated.TeleportStaffItem;
 import com.alpherininus.basmod.common.items.animated.renderer.HealStaffItemRenderer;
 import com.alpherininus.basmod.common.items.animated.renderer.MagicalStaffItemRenderer;
+import com.alpherininus.basmod.common.items.animated.renderer.NosfaratuBookItemRenderer;
 import com.alpherininus.basmod.common.items.animated.renderer.TeleportStaffItemRenderer;
 import com.alpherininus.basmod.common.items.armor.DivingHelmetItem;
 import com.alpherininus.basmod.common.items.armor.ExperiArmorItem;
@@ -155,6 +157,9 @@ public class ItemInit {
     public static final RegistryObject<Item> ANIMATED_TELEPORTER_STAFF = ITEMS.register("teleport_staff",
             () -> new TeleportStaffItem(BasmodToolMaterial.A_TOOL_MATERIAL, 1, 1,
                     new Item.Properties().setISTER(() -> TeleportStaffItemRenderer::new).maxStackSize(1).group(ModItemGroupWapons.BAS_MOD_WAPONS)));
+
+    public static final RegistryObject<Item> ANIMATED_NOSFARATU_BOOK = ITEMS.register("nosfaratu_book",
+            () -> new NosfaratuBookItem(new Item.Properties().setISTER(() -> NosfaratuBookItemRenderer::new).maxStackSize(1).group(ModItemGroupWapons.BAS_MOD_WAPONS)));
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // TODO SWORDS

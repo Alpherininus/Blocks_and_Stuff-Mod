@@ -7,7 +7,7 @@
 				"cover_left_rotation": {
 					"rotation": {
 						"0.0": {
-							"vector": [0, 90, 0]
+							"vector": [0, 89.5, 0]
 						},
 						"0.5": {
 							"vector": [0, 90, 0]
@@ -17,7 +17,7 @@
 				"cover_right_rotation": {
 					"rotation": {
 						"0.0": {
-							"vector": [0, -90, 0]
+							"vector": [0, -89.5, 0]
 						},
 						"0.5": {
 							"vector": [0, -90, 0]
@@ -73,7 +73,7 @@
 				"cover_left_rotation": {
 					"rotation": {
 						"0.0": {
-							"vector": [0, 90, 0]
+							"vector": [0, 89.5, 0]
 						},
 						"0.5": {
 							"vector": [0, 10, 0]
@@ -86,7 +86,7 @@
 				"cover_right_rotation": {
 					"rotation": {
 						"0.0": {
-							"vector": [0, -90, 0]
+							"vector": [0, -89.5, 0]
 						},
 						"0.5": {
 							"vector": [0, -10, 0]

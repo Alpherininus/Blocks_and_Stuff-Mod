@@ -5,6 +5,7 @@ import net.minecraft.client.entity.player.ClientPlayerEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ShootableItem;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.text.StringTextComponent;
@@ -23,6 +24,8 @@ import software.bernie.geckolib3.network.GeckoLibNetwork;
 import software.bernie.geckolib3.network.ISyncable;
 import software.bernie.geckolib3.util.GeckoLibUtil;
 
+import java.util.function.Predicate;
+
 public class NosfaratuBookItem extends Item implements IAnimatable, ISyncable {
 
     private static final String CONTROLLER_NAME = "Controller";
@@ -31,6 +34,8 @@ public class NosfaratuBookItem extends Item implements IAnimatable, ISyncable {
 
     public NosfaratuBookItem(Properties properties) {
         super(properties);
+        GeckoLibNetwork.registerSyncable(this);
+
     }
 
     private <P extends Item & IAnimatable> PlayState predicate(AnimationEvent<P> event) {
@@ -55,11 +60,14 @@ public class NosfaratuBookItem extends Item implements IAnimatable, ISyncable {
 
     @Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
-        if (!worldIn.isRemote) {
-            final ItemStack stack = playerIn.getHeldItem(handIn);
-            final int id = GeckoLibUtil.guaranteeIDForStack(stack, (ServerWorld) worldIn);
-            final PacketDistributor.PacketTarget target = PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> playerIn);
-            GeckoLibNetwork.syncAnimation(target, this, id, ANIM_OPEN);
+        if (playerIn.isSneaking()) {
+            if (!worldIn.isRemote) {
+                final ItemStack stack = playerIn.getHeldItem(handIn);
+                final int id = GeckoLibUtil.guaranteeIDForStack(stack, (ServerWorld) worldIn);
+                final PacketDistributor.PacketTarget target = PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> playerIn);
+                GeckoLibNetwork.syncAnimation(target, this, id, ANIM_OPEN);
+            }
+
         }
         return super.onItemRightClick(worldIn, playerIn, handIn);
     }
