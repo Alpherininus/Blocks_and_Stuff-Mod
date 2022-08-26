@@ -4,12 +4,15 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.player.ClientPlayerEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
@@ -64,25 +67,41 @@ public class NosfaratuBookItem extends Item implements IAnimatable, ISyncable {
 
     @Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
+        final ItemStack stack = playerIn.getHeldItem(handIn);
         if (playerIn.isSneaking()) {
             if (!worldIn.isRemote) {
-                final ItemStack stack = playerIn.getHeldItem(handIn);
                 final int id = GeckoLibUtil.guaranteeIDForStack(stack, (ServerWorld) worldIn);
                 final PacketDistributor.PacketTarget target = PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> playerIn);
                 GeckoLibNetwork.syncAnimation(target, this, id, ANIM_OPEN);
+
+                playerIn.addPotionEffect(new EffectInstance(Effects.REGENERATION, 1, 5));
             }
 
         }
+
+        if (!worldIn.isRemote()) {
+            final int id = GeckoLibUtil.guaranteeIDForStack(stack, (ServerWorld) worldIn);
+            final PacketDistributor.PacketTarget target = PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> playerIn);
+            GeckoLibNetwork.syncAnimation(target, this, id, ANIM_OPEN);
+
+        }
+        stack.damageItem(3, playerIn, (entity) -> entity.sendBreakAnimation(EquipmentSlotType.MAINHAND));
+
         return super.onItemRightClick(worldIn, playerIn, handIn);
     }
 
     @Override
     public boolean hitEntity(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-        if (attacker.isHandActive()) {
+
+        if (!attacker.world.isRemote()) {
+            ServerWorld world = (ServerWorld) attacker.world;
+            ServerPlayerEntity player = ((ServerPlayerEntity) attacker);
+            BlockPos pos = target.getPosition();
+
             target.addPotionEffect(new EffectInstance(Effects.INSTANT_DAMAGE, 1, 1));
         }
 
-        stack.setDamage(stack.getDamage() + this.rand.nextInt(2));
+        stack.damageItem(3, attacker, (entity) -> entity.sendBreakAnimation(EquipmentSlotType.MAINHAND));
 
         return super.hitEntity(stack, target, attacker);
     }
