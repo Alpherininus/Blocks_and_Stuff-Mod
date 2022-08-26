@@ -7,9 +7,6 @@ import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.monster.CreeperEntity;
-import net.minecraft.entity.monster.MonsterEntity;
-import net.minecraft.entity.monster.VexEntity;
-import net.minecraft.entity.passive.BatEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -19,10 +16,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.BossInfo;
-import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerBossInfo;
 import software.bernie.geckolib3.core.IAnimatable;
@@ -38,7 +32,7 @@ import software.bernie.geckolib3.network.ISyncable;
 import javax.annotation.Nullable;
 import java.util.function.Predicate;
 
-public class BossOfDeadEntity extends VexEntity implements IAnimatable, ISyncable {
+public class BossOfDeadEntity extends FlyingEntity implements IAnimatable, ISyncable {
 
     private static final EntityPredicate PLAYER_INVADER_CONDITION = (new EntityPredicate()).setDistance(64.0D);
     private static final Predicate<LivingEntity> NOT_UNDEAD = (p_213797_0_) -> p_213797_0_.getCreatureAttribute() != CreatureAttribute.UNDEAD && p_213797_0_.attackable();
@@ -53,7 +47,7 @@ public class BossOfDeadEntity extends VexEntity implements IAnimatable, ISyncabl
 
     private AnimationFactory factory = new AnimationFactory(this);
 
-    public BossOfDeadEntity(EntityType<? extends VexEntity> entityType, World worldIn) {
+    public BossOfDeadEntity(EntityType<? extends FlyingEntity> entityType, World worldIn) {
         super(entityType, worldIn);
 
         GeckoLibNetwork.getSyncable("attack");
@@ -62,14 +56,12 @@ public class BossOfDeadEntity extends VexEntity implements IAnimatable, ISyncabl
 
     @Override
     protected void registerGoals() {
-        this.goalSelector.addGoal(1, new LookAtGoal(this, PlayerEntity.class, 64.0f));
-
-        this.goalSelector.addGoal(2, new SwimGoal(this));
-        this.goalSelector.addGoal(3, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
-        this.goalSelector.addGoal(4, new LookRandomlyGoal(this));
+        this.goalSelector.addGoal(0, new SwimGoal(this));
+        this.goalSelector.addGoal(1, new LookAtGoal(this, PlayerEntity.class, 70.0f));
+        this.goalSelector.addGoal(2, new LookRandomlyGoal(this));
 
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, false));
-        this.targetSelector.addGoal(5, new MoveTowardsTargetGoal(this, 1.0D, 70.0F));
+        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
 
         super.registerGoals();
     }
@@ -152,16 +144,6 @@ public class BossOfDeadEntity extends VexEntity implements IAnimatable, ISyncabl
     @Override
     protected float getSoundVolume() {
         return 10.5F;
-    }
-
-    @Override
-    public boolean isNotColliding(IWorldReader worldIn) {
-        return false;
-    }
-
-    @Override
-    protected void doBlockCollisions() {
-        this.doBlockCollisions();
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
