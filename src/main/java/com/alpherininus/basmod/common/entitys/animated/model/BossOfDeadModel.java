@@ -1,7 +1,6 @@
 package com.alpherininus.basmod.common.entitys.animated.model;
 
 import com.alpherininus.basmod.Basmod;
-import com.alpherininus.basmod.common.entitys.animated.BasBossEntity;
 import com.alpherininus.basmod.common.entitys.animated.BossOfDeadEntity;
 import net.minecraft.util.ResourceLocation;
 import software.bernie.geckolib3.model.AnimatedGeoModel;
