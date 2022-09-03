@@ -127,6 +127,9 @@ public class ItemInit {
     public static final RegistryObject<Item> RING_OFLOLITEM = ITEMS.register("ring_of_lol",
             () -> new BaSRingItem(new Item.Properties().group(ModItemGroupItems.BAS_MOD_ITEMS)));
 
+    public static final RegistryObject<Item> TOTEM_OFF_DESPAWN = ITEMS.register("totem_of_despawn",
+            () -> new Item(new Item.Properties().group(ModItemGroupItems.BAS_MOD_ITEMS)));
+
     public static final RegistryObject<Item> DOOR_KEY_ITEM = ITEMS.register("door_key",
             () -> new Item(new Item.Properties().maxStackSize(1).group(ModItemGroupItems.BAS_MOD_ITEMS)));
 

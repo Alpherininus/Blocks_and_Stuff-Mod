@@ -24,15 +24,20 @@
 	"item.basmod.illusioner_spawn_egg": "Illusioner Spawn Egg",
 	"item.basmod.wither_spawn_egg": "Wither Spawn Egg",
 	"item.basmod.ender_dragon_spawn_egg": "Ender Dragon Spawn Egg",
-	"item.basmod.cooper_golem_spawn_egg": "Copper Golem Spawn Egg",
+	"item.basmod.copper_golem_spawn_egg": "Copper Golem Spawn Egg",
 
 	"container.basmod.trash_bin": "Trash",
 
 	"item.basmod.seieorshell_spawn_egg": "Seiðr Shell",
 	"entity.basmod.seiorshell": "Seiðr Shell",
 
-	"item.basmod.bas_boss_spawn_egg": "Blocks and Stuff | Boss",
+	"item.basmod.bas_boss_spawn_egg": "Blocks and Stuff | Boss 'Robot'",
 	"entity.basmod.basmod_boss": "Blocks and Stuff | Boss",
+
+	"item.basmod.boss_of_dead_spawn_egg": "Blocks and Stuff | Boss 'Reaper'",
+	"entity.basmod.boss_of_dead.talking.last_talk": "Good Bye",
+	"entity.basmod.boss_of_dead.talking.0": "Hello",
+	"entity.basmod.boss_of_dead": "Dance of Death",
 
 	"item.basmod.ruby_sword": "Ruby Sword",
 	"item.basmod.ruby_axt": "Ruby Axe",
