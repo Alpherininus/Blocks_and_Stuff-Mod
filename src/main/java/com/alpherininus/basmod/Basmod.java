@@ -11,10 +11,12 @@ import com.alpherininus.basmod.common.items.armor.JetPackArmorItem;
 import com.alpherininus.basmod.common.items.armor.models.renderer.JetPackArmorRenderer;
 import com.alpherininus.basmod.common.items.models.BasmodItemModel;
 import com.alpherininus.basmod.common.recipes.BasmodBrewing;
+import com.alpherininus.basmod.common.recipes.BasmodBrewingPotion;
 import com.alpherininus.basmod.common.world.gen.BiomeGeneration;
 import com.alpherininus.basmod.common.world.gen.OreGeneration;
 import com.alpherininus.basmod.core.init.*;
 import com.alpherininus.basmod.core.util.BasmodConfig;
+import net.minecraft.block.Blocks;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.renderer.RenderType;
@@ -22,6 +24,7 @@ import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.potion.Potion;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.brewing.BrewingRecipeRegistry;
 import net.minecraftforge.common.brewing.IBrewingRecipe;
@@ -68,6 +71,7 @@ public class Basmod {
         SoundInit.BAS_SOUND_EVENTS.register(eventbus);
         StructureInit.STRUCTURES.register(eventbus);
         PotionInit.POTIONS.register(eventbus);
+        EffectInit.POTIONS.register(eventbus);
 
         GeckoLib.initialize();
 
@@ -123,10 +127,15 @@ public class Basmod {
                     Ingredient.fromStacks(new ItemStack(BlockInit.MAGICAL_FLOWER.get())),
                     new ItemStack(ItemInit.MANA_BUCKET.get())));
 
-            BrewingRecipeRegistry.addRecipe(new BasmodBrewing(
+            BrewingRecipeRegistry.addRecipe(new BasmodBrewingPotion(
+                    Ingredient.fromStacks(new ItemStack(Items.GLASS_BOTTLE)),
+                    Ingredient.fromStacks(new ItemStack(Blocks.FROSTED_ICE)),
+                    PotionInit.FREEZE_POTION.get()));
+
+            BrewingRecipeRegistry.addRecipe(new BasmodBrewingPotion(
                     Ingredient.fromStacks(new ItemStack(Items.GLASS_BOTTLE)),
                     Ingredient.fromStacks(new ItemStack(BlockInit.MAGICAL_FLOWER.get())),
-                    new ItemStack(ItemInit.MANA_POTION.get())));
+                    PotionInit.MANA.get()));
         });
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////

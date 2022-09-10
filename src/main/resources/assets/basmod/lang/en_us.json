@@ -39,6 +39,9 @@
 	"entity.basmod.boss_of_dead.talking.0": "Hello",
 	"entity.basmod.boss_of_dead": "Dance of Death",
 
+	"effect.basmod.freeze": "Freeze",
+	"effect.basmod.mana": "Mana",
+
 	"item.basmod.ruby_sword": "Ruby Sword",
 	"item.basmod.ruby_axt": "Ruby Axe",
 	"item.basmod.ruby_pickaxt": "Ruby Pickaxe",
