@@ -107,6 +107,8 @@ public class Basmod {
                     new ItemStack(Items.DIAMOND_SWORD)));
         });
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
         // // event.enqueueWork(() -> AxeItem = new ImmutableMap.Builder<Block, Block>().putAll(AxeItem.BLOCK_STRIPPING_MAP)
         // //         .put(BlockInit.MAGICAL_OAK_LOG.get(), BlockInit.MAGICAL_STRIPPED_OAK_LOG.get())
         // //         .put(BlockInit.MAGICAL_OAK_WOOD.get(), BlockInit.MAGICAL_STRIPPED_OAK_WOOD.get()).build()
