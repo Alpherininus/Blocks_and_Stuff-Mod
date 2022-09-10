@@ -1,6 +1,7 @@
 package com.alpherininus.basmod.common.effekts;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.AbstractGui;
 import net.minecraft.client.gui.DisplayEffectsScreen;
 import net.minecraft.entity.LivingEntity;
@@ -27,6 +28,8 @@ public class ManaEffect extends Effect {
 
     @Override
     public void renderHUDEffect(EffectInstance effect, AbstractGui gui, MatrixStack mStack, int x, int y, float z, float alpha) {
+        effect.getEffectInstance().getPotion().renderHUDEffect(effect.getEffectInstance(), gui, mStack, x, y, z, alpha);
+
         super.renderHUDEffect(effect, gui, mStack, x, y, z, alpha);
     }
 
