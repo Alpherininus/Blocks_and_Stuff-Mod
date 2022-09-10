@@ -1,0 +1,9 @@
+{
+    "type": "minecraft:smelting",
+    "ingredient": {
+        "item": "basmod:magical_oak_log"
+    },
+    "result": "basmod:magical_coal",
+    "experience": 0.1,
+    "cookingtime": 350
+}

@@ -1,0 +1,9 @@
+{
+    "type": "minecraft:blasting",
+    "ingredient": {
+        "item": "basmod:magical_oak_log"
+    },
+    "result": "basmod:magical_coal",
+    "experience": 0.2,
+    "cookingtime": 175
+}

@@ -145,6 +145,9 @@ public class ItemInit {
     public static final RegistryObject<Item> MAGICAL_SPELL_ARROWITEM = ITEMS.register("magical_spell_arrow",
             () -> new MagicalSpellArrowItem(new Item.Properties().maxStackSize(16).group(ModItemGroupItems.BAS_MOD_ITEMS)));
 
+    public static final RegistryObject<Item> MAGICAL_COAL = ITEMS.register("magical_coal",
+            () -> new MagicalCoalItem(new Item.Properties().maxStackSize(8).group(ModItemGroupItems.BAS_MOD_ITEMS)));
+
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     public static final RegistryObject<Item> THEME_MUSICDISC = ITEMS.register("theme_music_disc",
