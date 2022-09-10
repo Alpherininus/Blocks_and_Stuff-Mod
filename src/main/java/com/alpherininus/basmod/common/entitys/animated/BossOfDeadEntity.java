@@ -2,8 +2,10 @@ package com.alpherininus.basmod.common.entitys.animated;
 
 import com.alpherininus.basmod.Basmod;
 import com.alpherininus.basmod.core.init.ItemInit;
+import jdk.nashorn.internal.runtime.ParserException;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
+import net.minecraft.dispenser.IPosition;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -27,6 +29,7 @@ import net.minecraft.potion.Effects;
 import net.minecraft.stats.Stats;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.vector.Vector3i;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.BossInfo;
@@ -249,30 +252,6 @@ public class BossOfDeadEntity extends MonsterEntity implements IAnimatable, ISyn
             this.heal(500.5F);
         }
 
-        if (this.world.isThundering()) {
-            this.setAggroed(true);
-            if (this.isAggressive()) {
-                if (this.ticksExisted % 5 == 0) {
-                    this.heal(50.5F);
-                }
-            }
-            if ((this.ticksExisted + this.getEntityId()) % 1200 == 0) {
-                Effect effect1w = Effects.WITHER;
-                List<ServerPlayerEntity> list = ((ServerWorld) this.world).getPlayers((p_210138_1_) -> this.getDistanceSq(p_210138_1_) < 2500.0D && p_210138_1_.interactionManager.survivalOrAdventure());
-                int j = 2;
-                int k = 6000;
-                int l = 1200;
-
-                for (ServerPlayerEntity serverplayerentity : list) {
-                    if (!serverplayerentity.isPotionActive(effect1w) || serverplayerentity.getActivePotionEffect(effect1w).getAmplifier() < 1 || serverplayerentity.getActivePotionEffect(effect1w).getDuration() < 1200) {
-                        serverplayerentity.connection.sendPacket(new SChangeGameStatePacket(SChangeGameStatePacket.HIT_PLAYER_ARROW, this.isSilent() ? 0.0F : 1.0F));
-                        serverplayerentity.addPotionEffect(new EffectInstance(effect1w, 3000, 1));
-                    }
-
-                }
-            }
-        }
-
         int i = 1200;
         if ((this.ticksExisted + this.getEntityId()) % 1200 == 0) {
             Effect effect1 = Effects.WEAKNESS;
@@ -323,23 +302,6 @@ public class BossOfDeadEntity extends MonsterEntity implements IAnimatable, ISyn
         this.bossInfo.removePlayer(player);
     }
 
-    public ActionResultType getEntityInteractionResult(PlayerEntity playerIn, Hand hand) {
-
-        Minecraft mc = Minecraft.getInstance();
-        ItemStack itemstack = playerIn.getHeldItem(hand);
-
-        if (!world.isRemote()) {
-            assert mc.world != null;
-            if (this.getHealth() <= 10.5F)
-                mc.player.sendMessage(new TranslationTextComponent("entity." + Basmod.MOD_ID + ".boss_of_dead" + ".talking" + ".last_talk"), UUID.randomUUID());
-
-            playerIn.addStat(Stats.TALKED_TO_VILLAGER);
-
-        }
-
-        return ActionResultType.func_233537_a_(world.isRemote);
-    }
-
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     @Override
@@ -373,14 +335,6 @@ public class BossOfDeadEntity extends MonsterEntity implements IAnimatable, ISyn
     @Override
     public void livingTick() {
         super.livingTick();
-
-        if (this.world.isRemote) {
-
-            for(int i = 0; i < 2; ++i) {
-                this.world.addParticle(ParticleTypes.FALLING_LAVA, this.getPosXRandom(0.15D), this.getPosYRandom(), this.getPosZRandom(0.15D), 0.0D, 0.0D, 0.0D);
-            }
-        }
-
     }
 
 }
