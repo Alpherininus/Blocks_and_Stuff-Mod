@@ -365,12 +365,6 @@ public class BossOfDeadEntity extends MonsterEntity implements IAnimatable, ISyn
             this.idleTime = 0;
         }
 
-        ItemStack offhand = mc.player.getItemStackFromSlot(EquipmentSlotType.OFFHAND);
-        if (offhand.getItem() == ItemInit.TOTEM_OFF_DESPAWN.get()) {
-            this.remove();
-        } else {
-            this.idleTime = 5;
-        }
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
