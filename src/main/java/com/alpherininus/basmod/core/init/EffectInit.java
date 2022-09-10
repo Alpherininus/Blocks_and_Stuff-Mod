@@ -13,9 +13,9 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class EffectInit {
     public static final DeferredRegister<Effect> POTIONS = DeferredRegister.create(ForgeRegistries.POTIONS, Basmod.MOD_ID);
 
-    public static final RegistryObject<Effect> FREEZE = POTIONS.register("freeze", () -> new FreezeEffect(EffectType.HARMFUL, 3124687));
+    public static final RegistryObject<Effect> FREEZE = POTIONS.register("freeze", () -> new FreezeEffect(EffectType.HARMFUL, 137207240));
 
-    public static final RegistryObject<Effect> MANA = POTIONS.register("mana", () -> new ManaEffect(EffectType.BENEFICIAL, 3124687));
+    public static final RegistryObject<Effect> MANA = POTIONS.register("mana", () -> new ManaEffect(EffectType.BENEFICIAL, 1360255));
 
 
     public static void register(IEventBus eventBus) {

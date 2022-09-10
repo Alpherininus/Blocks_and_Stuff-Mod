@@ -16,7 +16,7 @@ public class ManaEffect extends Effect {
 
     @Override
     public void performEffect(LivingEntity entityLivingBaseIn, int amplifier) {
-
+        // Effect funktion
         super.performEffect(entityLivingBaseIn, amplifier);
     }
 
