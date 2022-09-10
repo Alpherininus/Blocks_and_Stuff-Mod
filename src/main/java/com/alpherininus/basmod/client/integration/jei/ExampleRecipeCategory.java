@@ -1,4 +1,4 @@
-package com.alpherininus.basmod.client.plugin.jei;
+package com.alpherininus.basmod.client.integration.jei;
 
 import com.alpherininus.basmod.Basmod;
 import com.alpherininus.basmod.common.recipes.jei.ExampleRecipe;
