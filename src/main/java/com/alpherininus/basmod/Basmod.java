@@ -24,6 +24,7 @@ import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.brewing.BrewingRecipeRegistry;
+import net.minecraftforge.common.brewing.IBrewingRecipe;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.InterModComms;
@@ -115,6 +116,11 @@ public class Basmod {
                     Ingredient.fromStacks(new ItemStack(ItemInit.SUBLIME_CREATOR_SWORD.get())),
                     Ingredient.fromStacks(new ItemStack(Items.PRISMARINE_SHARD)),
                     new ItemStack(ItemInit.LIGHT_SWORD.get())));
+
+            BrewingRecipeRegistry.addRecipe(new BasmodBrewing(
+                    Ingredient.fromStacks(new ItemStack(Items.BUCKET)),
+                    Ingredient.fromStacks(new ItemStack(BlockInit.MAGICAL_FLOWER.get())),
+                    new ItemStack(ItemInit.MANA_BUCKET.get())));
         });
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
