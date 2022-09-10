@@ -47,6 +47,7 @@ public class ExampleRecipe implements IRecipe<IInventory> {
     public NonNullList<Ingredient> getIngredients() {
         NonNullList<Ingredient> i = NonNullList.create();
         i.add(input);
+        i.add(Ingredient.fromStacks(new ItemStack(this.block)));
         return i;
     }
 
