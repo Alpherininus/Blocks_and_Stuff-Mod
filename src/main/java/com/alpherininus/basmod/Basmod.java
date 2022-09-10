@@ -102,9 +102,19 @@ public class Basmod {
 
         event.enqueueWork(() -> {
             BrewingRecipeRegistry.addRecipe(new BasmodBrewing(
-                    Ingredient.fromStacks(new ItemStack(Items.DIAMOND)),
                     Ingredient.fromStacks(new ItemStack(Items.STICK)),
+                    Ingredient.fromStacks(new ItemStack(Items.DIAMOND)),
                     new ItemStack(Items.DIAMOND_SWORD)));
+
+            BrewingRecipeRegistry.addRecipe(new BasmodBrewing(
+                    Ingredient.fromStacks(new ItemStack(ItemInit.CREATOR_SWORD.get())),
+                    Ingredient.fromStacks(new ItemStack(ItemInit.RELICS_ITEM.get())),
+                    new ItemStack(ItemInit.SUBLIME_CREATOR_SWORD.get())));
+
+            BrewingRecipeRegistry.addRecipe(new BasmodBrewing(
+                    Ingredient.fromStacks(new ItemStack(ItemInit.SUBLIME_CREATOR_SWORD.get())),
+                    Ingredient.fromStacks(new ItemStack(Items.PRISMARINE_SHARD)),
+                    new ItemStack(ItemInit.LIGHT_SWORD.get())));
         });
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
