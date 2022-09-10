@@ -17,13 +17,16 @@ import net.minecraft.util.text.TranslationTextComponent;
 
 public class ExampleRecipeCategory implements IRecipeCategory<ExampleRecipe> {
 
-    public static final ResourceLocation ID = new ResourceLocation(Basmod.MOD_ID, ".example_recipe_category");
+    public static final ResourceLocation ID = new ResourceLocation(Basmod.MOD_ID, "example_recipe_category");
+
+    public final static ResourceLocation TEXTURE =
+            new ResourceLocation(Basmod.MOD_ID, "textures/gui/example_recipe_category.png");
 
     private final IDrawable back;
     private final IDrawable icon;
 
     public ExampleRecipeCategory(IGuiHelper helper) {
-        this.back = helper.createBlankDrawable(180, 100);
+        this.back = helper.createDrawable(TEXTURE, 0, 0, 180, 100);
         this.icon = helper.createDrawableIngredient(new ItemStack(ItemInit.EXPERIMENTAL_ITEM.get()));
     }
 
@@ -44,12 +47,12 @@ public class ExampleRecipeCategory implements IRecipeCategory<ExampleRecipe> {
 
     @Override
     public IDrawable getBackground() {
-        return back;
+        return this.back;
     }
 
     @Override
     public IDrawable getIcon() {
-        return icon;
+        return this.icon;
     }
 
     @Override
