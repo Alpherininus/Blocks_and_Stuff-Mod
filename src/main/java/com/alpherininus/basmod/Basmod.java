@@ -67,6 +67,7 @@ public class Basmod {
         FluidInit.FLUIDS.register(eventbus);
         SoundInit.BAS_SOUND_EVENTS.register(eventbus);
         StructureInit.STRUCTURES.register(eventbus);
+        PotionInit.POTIONS.register(eventbus);
 
         GeckoLib.initialize();
 
@@ -121,6 +122,11 @@ public class Basmod {
                     Ingredient.fromStacks(new ItemStack(Items.BUCKET)),
                     Ingredient.fromStacks(new ItemStack(BlockInit.MAGICAL_FLOWER.get())),
                     new ItemStack(ItemInit.MANA_BUCKET.get())));
+
+            BrewingRecipeRegistry.addRecipe(new BasmodBrewing(
+                    Ingredient.fromStacks(new ItemStack(Items.GLASS_BOTTLE)),
+                    Ingredient.fromStacks(new ItemStack(BlockInit.MAGICAL_FLOWER.get())),
+                    new ItemStack(ItemInit.MANA_POTION.get())));
         });
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
