@@ -23,6 +23,9 @@ public class SoundInit {
     public static final RegistryObject<SoundEvent> MUSIC_BASMOD_BOSS_BATTLEMUSIC =
             registerSoundEvent("basmod_boss_battlemusic");
 
+    public static final RegistryObject<SoundEvent> RANDOM_OLD_HURT =
+            registerSoundEvent("oldhurt");
+
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     private static RegistryObject<SoundEvent> registerSoundEvent(String name) {

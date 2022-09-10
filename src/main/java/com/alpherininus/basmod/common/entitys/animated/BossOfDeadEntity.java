@@ -1,37 +1,28 @@
 package com.alpherininus.basmod.common.entitys.animated;
 
-import com.alpherininus.basmod.Basmod;
-import com.alpherininus.basmod.core.init.ItemInit;
-import jdk.nashorn.internal.runtime.ParserException;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
-import net.minecraft.dispenser.IPosition;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.entity.monster.CreeperEntity;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.ShootableItem;
-import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.network.play.server.SChangeGameStatePacket;
-import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
-import net.minecraft.stats.Stats;
-import net.minecraft.util.*;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.SoundEvent;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.vector.Vector3i;
 import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.BossInfo;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.World;
@@ -48,14 +39,14 @@ import software.bernie.geckolib3.network.ISyncable;
 
 import javax.annotation.Nullable;
 import java.util.List;
-import java.util.UUID;
 import java.util.function.Predicate;
 
 public class BossOfDeadEntity extends MonsterEntity implements IAnimatable, ISyncable {
 
     private static final EntityPredicate PLAYER_INVADER_CONDITION = (new EntityPredicate()).setDistance(64.0D);
     private static final Predicate<LivingEntity> NOT_UNDEAD = (p_213797_0_) -> p_213797_0_.getCreatureAttribute() != CreatureAttribute.UNDEAD && p_213797_0_.attackable();
-    private final ServerBossInfo bossInfo = (ServerBossInfo)(new ServerBossInfo(new StringTextComponent("-= Dance of Death =-"), BossInfo.Color.RED, BossInfo.Overlay.PROGRESS)).setPlayEndBossMusic(true).setDarkenSky(true).setCreateFog(true);
+    private final ServerBossInfo bossInfo = (ServerBossInfo)(new ServerBossInfo(new StringTextComponent("Dance of Death"), BossInfo.Color.RED, BossInfo.Overlay.PROGRESS)).setDarkenSky(true).setCreateFog(true);
+
     private final int id = 1;
     private final int state = 0;
     private boolean slowed;
@@ -77,10 +68,9 @@ public class BossOfDeadEntity extends MonsterEntity implements IAnimatable, ISyn
 
     protected void registerGoals() {
         this.addSwimGoals();
-        this.goalSelector.addGoal(3, new LookAtGoal(this, LivingEntity.class, 16.0F));
+        this.goalSelector.addGoal(3, new LookAtGoal(this, PlayerEntity.class, 16.0F));
 
         this.goalSelector.addGoal(2, new LookAtGoal(this, PlayerEntity.class, 32.0F));
-        this.goalSelector.addGoal(2, new TemptGoal(this, 1.0D, Ingredient.fromItems(ItemInit.TOTEM_OFF_DESPAWN.get()), true));
 
         this.goalSelector.addGoal(1, new LookRandomlyGoal(this));
         this.addTargetGoals();
@@ -197,7 +187,7 @@ public class BossOfDeadEntity extends MonsterEntity implements IAnimatable, ISyn
 
     @Override
     protected float getSoundVolume() {
-        return 10.5F;
+        return 5.5F;
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -210,16 +200,23 @@ public class BossOfDeadEntity extends MonsterEntity implements IAnimatable, ISyn
         if (itementity != null) {
             itementity.setNoDespawn();
         }
-        if (entity instanceof CreeperEntity) {
-            CreeperEntity creeperentity = (CreeperEntity)entity;
-            if (creeperentity.ableToCauseSkullDrop()) {
+        if (entity instanceof BossOfDeadEntity) {
+            BossOfDeadEntity bossOfDead = (BossOfDeadEntity)entity;
+            if (bossOfDead.ableToCauseSkullDrop()) {
                 ItemStack itemstack = this.getSkullDrop();
                 if (!itemstack.isEmpty()) {
-                    creeperentity.incrementDroppedSkulls();
+                    bossOfDead.incrementDroppedSkulls();
                     this.entityDropItem(itemstack);
                 }
             }
         }
+    }
+
+    private void incrementDroppedSkulls() {
+    }
+
+    private boolean ableToCauseSkullDrop() {
+        return true;
     }
 
     protected ItemStack getSkullDrop() {
@@ -252,6 +249,8 @@ public class BossOfDeadEntity extends MonsterEntity implements IAnimatable, ISyn
             this.heal(500.5F);
         }
 
+        this.bossInfo.setPercent(this.getHealth() / this.getMaxHealth());
+
         int i = 1200;
         if ((this.ticksExisted + this.getEntityId()) % 1200 == 0) {
             Effect effect1 = Effects.WEAKNESS;
@@ -282,14 +281,9 @@ public class BossOfDeadEntity extends MonsterEntity implements IAnimatable, ISyn
                         serverplayerentity.connection.sendPacket(new SChangeGameStatePacket(SChangeGameStatePacket.HIT_PLAYER_ARROW, this.isSilent() ? 0.0F : 1.0F));
                         serverplayerentity.addPotionEffect(new EffectInstance(effect3, 6000, 2));
                     }
-
                 }
-
             }
         }
-
-        this.bossInfo.setPercent(this.getHealth() / this.getMaxHealth());
-
     }
 
     public void addTrackingPlayer(ServerPlayerEntity player) {

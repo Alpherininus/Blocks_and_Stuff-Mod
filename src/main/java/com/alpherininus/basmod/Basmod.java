@@ -10,6 +10,7 @@ import com.alpherininus.basmod.common.handlers.BasmodAnivilHandler;
 import com.alpherininus.basmod.common.items.armor.JetPackArmorItem;
 import com.alpherininus.basmod.common.items.armor.models.renderer.JetPackArmorRenderer;
 import com.alpherininus.basmod.common.items.models.BasmodItemModel;
+import com.alpherininus.basmod.common.recipes.BasmodBrewing;
 import com.alpherininus.basmod.common.world.gen.BiomeGeneration;
 import com.alpherininus.basmod.common.world.gen.OreGeneration;
 import com.alpherininus.basmod.core.init.*;
@@ -18,8 +19,11 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
-import net.minecraftforge.client.event.RenderGameOverlayEvent;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.item.crafting.Ingredient;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.brewing.BrewingRecipeRegistry;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.InterModComms;
@@ -35,11 +39,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import software.bernie.geckolib3.GeckoLib;
 import software.bernie.geckolib3.renderers.geo.GeoArmorRenderer;
-import software.bernie.geckolib3.renderers.geo.GeoItemRenderer;
 import top.theillusivec4.curios.api.SlotTypeMessage;
 import top.theillusivec4.curios.api.SlotTypePreset;
-
-import java.io.InputStream;
 
 @Mod("basmod")
 @Mod.EventBusSubscriber(modid = Basmod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -96,6 +97,15 @@ public class Basmod {
     private void setup(final FMLCommonSetupEvent event) {
         // BasmodNetwork.init();
         BasmodAnivilHandler.initAnvilRecipes();
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        event.enqueueWork(() -> {
+            BrewingRecipeRegistry.addRecipe(new BasmodBrewing(
+                    Ingredient.fromStacks(new ItemStack(Items.DIAMOND)),
+                    Ingredient.fromStacks(new ItemStack(Items.STICK)),
+                    new ItemStack(Items.DIAMOND_SWORD)));
+        });
 
         // // event.enqueueWork(() -> AxeItem = new ImmutableMap.Builder<Block, Block>().putAll(AxeItem.BLOCK_STRIPPING_MAP)
         // //         .put(BlockInit.MAGICAL_OAK_LOG.get(), BlockInit.MAGICAL_STRIPPED_OAK_LOG.get())
