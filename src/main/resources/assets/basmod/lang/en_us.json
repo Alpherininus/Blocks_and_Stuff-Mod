@@ -27,6 +27,7 @@
 	"item.basmod.copper_golem_spawn_egg": "Copper Golem Spawn Egg",
 
 	"container.basmod.trash_bin": "Trash",
+	"category.basmod.example_recipe": "Example Recipe Category",
 
 	"item.basmod.seieorshell_spawn_egg": "Seiðr Shell",
 	"entity.basmod.seiorshell": "Seiðr Shell",

@@ -21,6 +21,7 @@ import com.alpherininus.basmod.core.itemgroup.ModItemGroupItems;
 import com.alpherininus.basmod.core.itemgroup.ModItemGroupWapons;
 import com.alpherininus.basmod.core.util.BasmodConfig;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -40,11 +41,11 @@ public class ItemInit {
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // TODO FIRE EMBLEM THEME
     public static final RegistryObject<Item> SUBLIME_CREATOR_SWORD = ITEMS.register("sublime_creator_sword",
-            () -> new SublimeCreatorSword(BasmodToolMaterial.SUBLIME_SWORD_MATERIAL, 2, -2f,
+            () -> new SublimeCreatorSword(BasmodToolMaterial.SUBLIME_SWORD_MATERIAL, 4, -2f,
                     new Item.Properties().group(ModItemGroupWapons.BAS_MOD_WAPONS)));
 
     public static final RegistryObject<Item> CREATOR_SWORD = ITEMS.register("creator_sword",
-            () -> new CreatorSword(BasmodToolMaterial.CREATOR_SWORD_MATERIAL, 2, -2f,
+            () -> new CreatorSword(BasmodToolMaterial.CREATOR_SWORD_MATERIAL, 3, -2f,
                     new Item.Properties().group(ModItemGroupWapons.BAS_MOD_WAPONS)));
 
     public static final RegistryObject<Item> FAILNAUGHT_BOW = ITEMS.register("failnaught_bow",

@@ -2,6 +2,7 @@ package com.alpherininus.basmod.common.recipes;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.util.NonNullList;
 import net.minecraftforge.common.brewing.IBrewingRecipe;
 
 import javax.annotation.Nonnull;
@@ -49,4 +50,5 @@ public class BasmodBrewing implements IBrewingRecipe {
     {
         return this.ingredient.test(ingredient);
     }
+
 }
