@@ -1,7 +1,7 @@
 package com.alpherininus.basmod.core.init;
 
-import com.alpherininus.basmod.common.recipes.ExampleRecipe;
-import com.alpherininus.basmod.common.recipes.ExampleRecipeType;
+import com.alpherininus.basmod.common.recipes.jei.ExampleRecipe;
+import com.alpherininus.basmod.common.recipes.jei.ExampleRecipeType;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.IRecipeType;

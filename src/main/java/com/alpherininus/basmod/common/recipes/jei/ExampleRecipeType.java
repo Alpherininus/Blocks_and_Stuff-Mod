@@ -1,4 +1,4 @@
-package com.alpherininus.basmod.common.recipes;
+package com.alpherininus.basmod.common.recipes.jei;
 
 import com.alpherininus.basmod.Basmod;
 import net.minecraft.item.crafting.IRecipeType;

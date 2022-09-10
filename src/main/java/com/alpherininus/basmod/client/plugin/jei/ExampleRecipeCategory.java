@@ -1,7 +1,7 @@
 package com.alpherininus.basmod.client.plugin.jei;
 
 import com.alpherininus.basmod.Basmod;
-import com.alpherininus.basmod.common.recipes.ExampleRecipe;
+import com.alpherininus.basmod.common.recipes.jei.ExampleRecipe;
 import com.alpherininus.basmod.core.init.ItemInit;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import mezz.jei.api.constants.VanillaTypes;
