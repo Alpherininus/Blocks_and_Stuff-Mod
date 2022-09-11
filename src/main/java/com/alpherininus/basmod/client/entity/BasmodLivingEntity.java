@@ -51,7 +51,7 @@ public abstract class BasmodLivingEntity extends Entity {
                 .createMutableAttribute(net.minecraftforge.common.ForgeMod.SWIM_SPEED.get())
                 .createMutableAttribute(net.minecraftforge.common.ForgeMod.NAMETAG_DISTANCE.get())
                 .createMutableAttribute(net.minecraftforge.common.ForgeMod.ENTITY_GRAVITY.get())
-                .createMutableAttribute(AttributesInit.MAX_MANA);
+                .createMutableAttribute(AttributesInit.MAX_MANA.get());
     }
 
     @Override
@@ -98,7 +98,7 @@ public abstract class BasmodLivingEntity extends Entity {
     }
 
     public final float getMaxMana() {
-        return (float)this.getAttributeValue(AttributesInit.MAX_MANA);
+        return (float)this.getAttributeValue(AttributesInit.MAX_MANA.get());
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
