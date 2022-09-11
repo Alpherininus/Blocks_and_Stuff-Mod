@@ -25,7 +25,7 @@ import java.util.Map;
 public abstract class BasmodLivingEntity extends Entity {
     private static final DataParameter<Float> MANA = EntityDataManager.createKey(BasmodLivingEntity.class, DataSerializers.FLOAT);
     private final Map<Effect, EffectInstance> activePotionsMap = Maps.newHashMap();
-    private AttributeModifierManager attributes;
+    private final AttributeModifierManager attributes;
 
 
     protected BasmodLivingEntity(EntityType<? extends LivingEntity> entityTypeIn, World worldIn) {
