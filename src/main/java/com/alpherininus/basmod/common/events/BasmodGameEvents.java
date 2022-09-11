@@ -24,18 +24,18 @@ public class BasmodGameEvents {
 
     protected static final ResourceLocation MANA_BARS = new ResourceLocation(Basmod.MOD_ID, "textures/gui/hud/mana_bar.png");
 
-    private Minecraft mc;
+    private static final Minecraft mc = Minecraft.getInstance();
+
+    private static final LivingEntity user = null;
+    private static final ServerPlayerEntity serverPlayer = ((ServerPlayerEntity) user);
+    private static final BasmodLivingEntity basmodLiving = null;
+
     private static FontRenderer fontRenderer;
 
     @SubscribeEvent
     public static void onRenderGameOverlay(RenderGameOverlayEvent event) {
-        LivingEntity user = null;
-        BasmodLivingEntity basmodLiving = null;
-        ServerPlayerEntity player = ((ServerPlayerEntity) user);
-        Minecraft mc = Minecraft.getInstance();
-        assert mc.player != null;
-        assert false;
 
+        assert mc.player != null;
         ItemStack mainhand = mc.player.getItemStackFromSlot(EquipmentSlotType.MAINHAND);
         ItemStack offhand = mc.player.getItemStackFromSlot(EquipmentSlotType.OFFHAND);
         ItemStack head = mc.player.getItemStackFromSlot(EquipmentSlotType.HEAD);
@@ -65,6 +65,7 @@ public class BasmodGameEvents {
                     int textureWidth = 90;
                     int textureHeight = 9;
 
+                    assert false;
                     int barWidth = (int) (basmodLiving.getMana() / basmodLiving.getMaxMana()); // TODO barWidth => refill Manabar, default is 88 -> 8, 16, 24, 32, 40, 48, 56, 64, 72, 80, 88. / ( 22 = 25% / 44 = 50% / 66 = 75% / 88 = 100% )
                     int barHeight = 7;
 
@@ -135,6 +136,7 @@ public class BasmodGameEvents {
             }
         }
 
+        // TODO When Player is Sleeping.
         if (mc.player.isSleeping()) {
             event.getWindow().setWindowTitle("Good Night :D!");
 
