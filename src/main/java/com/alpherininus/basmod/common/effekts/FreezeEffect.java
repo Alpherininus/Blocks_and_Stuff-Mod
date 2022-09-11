@@ -31,13 +31,4 @@ public class FreezeEffect extends Effect {
         return true;
     }
 
-    @Override
-    public void renderHUDEffect(EffectInstance effect, AbstractGui gui, MatrixStack mStack, int x, int y, float z, float alpha) {
-        super.renderHUDEffect(effect, gui, mStack, x, y, z, alpha);
-    }
-
-    @Override
-    public void renderInventoryEffect(EffectInstance effect, DisplayEffectsScreen<?> gui, MatrixStack mStack, int x, int y, float z) {
-        super.renderInventoryEffect(effect, gui, mStack, x, y, z);
-    }
 }

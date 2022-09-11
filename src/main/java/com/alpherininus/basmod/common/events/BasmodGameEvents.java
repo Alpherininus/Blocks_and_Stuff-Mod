@@ -1,6 +1,7 @@
 package com.alpherininus.basmod.common.events;
 
 import com.alpherininus.basmod.Basmod;
+import com.alpherininus.basmod.client.entity.BasmodLivingEntity;
 import com.alpherininus.basmod.core.init.ItemInit;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.Minecraft;
@@ -29,6 +30,7 @@ public class BasmodGameEvents {
     @SubscribeEvent
     public static void onRenderGameOverlay(RenderGameOverlayEvent event) {
         LivingEntity user = null;
+        BasmodLivingEntity basmodLiving = null;
         ServerPlayerEntity player = ((ServerPlayerEntity) user);
         Minecraft mc = Minecraft.getInstance();
         assert mc.player != null;
@@ -63,7 +65,7 @@ public class BasmodGameEvents {
                     int textureWidth = 90;
                     int textureHeight = 9;
 
-                    int barWidth = 8; // TODO barWidth => refill Manabar, default is 88 -> 8, 16, 24, 32, 40, 48, 56, 64, 72, 80, 88. / ( 22 = 25% / 44 = 50% / 66 = 75% / 88 = 100% )
+                    int barWidth = (int) (basmodLiving.getMana() / basmodLiving.getMaxMana()); // TODO barWidth => refill Manabar, default is 88 -> 8, 16, 24, 32, 40, 48, 56, 64, 72, 80, 88. / ( 22 = 25% / 44 = 50% / 66 = 75% / 88 = 100% )
                     int barHeight = 7;
 
                     mc.getTextureManager().bindTexture(MANA_BARS);

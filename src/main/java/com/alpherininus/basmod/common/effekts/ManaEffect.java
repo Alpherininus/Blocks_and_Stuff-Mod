@@ -47,7 +47,11 @@ public class ManaEffect extends Effect {
 
     @Override
     public void renderInventoryEffect(EffectInstance effect, DisplayEffectsScreen<?> gui, MatrixStack mStack, int x, int y, float z) {
-        super.renderInventoryEffect(effect, gui, mStack, x, y, z);
+        effect.getEffectInstance().getPotion().renderInventoryEffect(effect.getEffectInstance(), gui, mStack, x, y, z);
     }
 
+    @Override
+    public boolean shouldRenderHUD(EffectInstance effect) {
+        return effect.getEffectInstance().getPotion().shouldRenderHUD(effect.getEffectInstance());
+    }
 }

@@ -1,7 +1,6 @@
 package com.alpherininus.basmod.common.events;
 
 import com.alpherininus.basmod.Basmod;
-import com.alpherininus.basmod.client.entity.BasmodLivingEntity;
 import com.alpherininus.basmod.common.entitys.CopperGolemEntity;
 import com.alpherininus.basmod.common.entitys.SeiorShellArmorEntity;
 import com.alpherininus.basmod.common.entitys.animated.BasBossEntity;
@@ -11,6 +10,7 @@ import com.alpherininus.basmod.common.events.loots.BasmodStructureAdditionModifi
 import com.alpherininus.basmod.common.items.SeioerShellSpawnEggItem;
 import com.alpherininus.basmod.common.items.models.BasmodSpawnEggItem;
 import com.alpherininus.basmod.core.init.EntityTypesInit;
+import com.alpherininus.basmod.core.init.AttributesInit;
 import net.minecraft.entity.EntityType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.loot.GlobalLootModifierSerializer;
@@ -32,7 +32,6 @@ public class BasmodEventBusEvents {
         event.put(EntityTypesInit.BOSS_OF_DEAD_ENTITY.get(), BossOfDeadEntity.setCustomBossOfDeadAttributes());
 
         // Player and Living - Entity
-        BasmodLivingEntity.registerBasmodLivingEntityAttributes();
 
     }
 

@@ -23,12 +23,9 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.potion.Potion;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.brewing.BrewingRecipeRegistry;
-import net.minecraftforge.common.brewing.IBrewingRecipe;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.InterModComms;
@@ -73,6 +70,7 @@ public class Basmod {
         StructureInit.STRUCTURES.register(eventbus);
         PotionInit.POTIONS.register(eventbus);
         EffectInit.POTIONS.register(eventbus);
+        AttributesInit.ATTRIBUTES_DEFERRED_REGISTER.register(eventbus);
 
         GeckoLib.initialize();
 
