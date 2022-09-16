@@ -2,6 +2,8 @@ package com.alpherininus.basmod.client.events;
 
 import com.alpherininus.basmod.Basmod;
 import com.alpherininus.basmod.client.entity.BasmodLivingEntity;
+import com.alpherininus.basmod.common.effekts.ManaEffect;
+import com.alpherininus.basmod.core.init.EffectInit;
 import com.alpherininus.basmod.core.init.ItemInit;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.Minecraft;
@@ -11,6 +13,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Effect;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.server.ServerWorld;
@@ -26,9 +29,8 @@ public class BasmodGameEvents {
     protected static final ResourceLocation MANA_BARS = new ResourceLocation(Basmod.MOD_ID, "textures/gui/hud/mana_bar.png");
 
     private static final Minecraft mc = Minecraft.getInstance();
-
-    private static final Basmod.OtherStuff eulaIsTrue = null;
-
+    
+    private static final BasmodLivingEntity basmodLiving = null;
     private static final LivingEntity user = null;
     private static final ServerPlayerEntity serverPlayer = ((ServerPlayerEntity) user);
 
@@ -69,7 +71,8 @@ public class BasmodGameEvents {
 
                     assert false;
                     // TODO barWidth => refill Manabar, default is 88 -> 8, 16, 24, 32, 40, 48, 56, 64, 72, 80, 88. / ( 22 = 25% / 44 = 50% / 66 = 75% / 88 = 100% )
-                    int barWidth = 16;
+
+                    int barWidth = (int) (basmodLiving.getMana() + 8);
                     int barHeight = 7;
 
                     mc.getTextureManager().bindTexture(MANA_BARS);
@@ -140,8 +143,7 @@ public class BasmodGameEvents {
         if (mc.player.isSleeping()) {
             event.getWindow().setWindowTitle("Good Night :D!");
         }
-
-
+        
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
