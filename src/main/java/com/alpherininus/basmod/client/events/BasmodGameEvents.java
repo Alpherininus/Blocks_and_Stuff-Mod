@@ -27,6 +27,8 @@ public class BasmodGameEvents {
 
     private static final Minecraft mc = Minecraft.getInstance();
 
+    private static final Basmod.OtherStuff eulaIsTrue = null;
+
     private static final LivingEntity user = null;
     private static final ServerPlayerEntity serverPlayer = ((ServerPlayerEntity) user);
 
@@ -137,8 +139,8 @@ public class BasmodGameEvents {
         // TODO When Player is Sleeping.
         if (mc.player.isSleeping()) {
             event.getWindow().setWindowTitle("Good Night :D!");
-
         }
+
 
     }
 

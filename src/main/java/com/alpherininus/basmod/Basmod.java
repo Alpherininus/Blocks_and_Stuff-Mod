@@ -1,5 +1,6 @@
 package com.alpherininus.basmod;
 
+import com.alpherininus.basmod.client.entity.BasmodLivingEntity;
 import com.alpherininus.basmod.client.handlers.BasmodAnivilHandler;
 import com.alpherininus.basmod.common.containers.screen.BaSInfoScreen;
 import com.alpherininus.basmod.common.entitys.animated.renerer.BasBossRenderer;
@@ -22,9 +23,12 @@ import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.crash.CrashReport;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.brewing.BrewingRecipeRegistry;
 import net.minecraftforge.eventbus.api.EventPriority;
@@ -108,9 +112,6 @@ public class Basmod {
     }
 
     private void setup(final FMLCommonSetupEvent event) {
-
-        new otherStuff().info();
-        new otherStuff().registerEulaText();
 
         BasmodAnivilHandler.initAnvilRecipes();
 
@@ -205,47 +206,8 @@ public class Basmod {
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     }
 
-    public static class otherStuff {
+    public static class OtherStuff {
 
-        private static final String directory = "config/basmod";
-        private static final Path directorypath = Paths.get(directory);
-
-        private static final String datei = "basmod-eula.txt";
-        private static final String filename = directory + "/" + datei;
-        private static final Path filepath = Paths.get(filename);
-
-        public void registerEulaText() {
-
-            try {
-                if (!Files.exists(directorypath)) {
-                    Files.createDirectory(directorypath);
-                    LOGGER.debug("-> New Directory created! " + directory);
-                } else {
-                    LOGGER.info("-> Directory " + directory + " already exists");
-                }
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-
-        public void info() {
-            if (isEulaTrue()) {
-                LOGGER.info("-> EULA is confirmed.");
-            } else {
-                LOGGER.warn("-> EULA is not confirmed, some side futures may not work. Check folder" + directory);
-            }
-        }
-
-        private boolean isEulaTrue() {
-            try {
-                String text = new String(Files.readAllBytes(filepath));
-                text.contains("eula=true");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return true;
-        }
     }
 
 }
