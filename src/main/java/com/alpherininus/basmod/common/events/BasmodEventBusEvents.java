@@ -10,7 +10,6 @@ import com.alpherininus.basmod.common.events.loots.BasmodStructureAdditionModifi
 import com.alpherininus.basmod.common.items.SeioerShellSpawnEggItem;
 import com.alpherininus.basmod.common.items.models.BasmodSpawnEggItem;
 import com.alpherininus.basmod.core.init.EntityTypesInit;
-import com.alpherininus.basmod.core.init.AttributesInit;
 import net.minecraft.entity.EntityType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.loot.GlobalLootModifierSerializer;

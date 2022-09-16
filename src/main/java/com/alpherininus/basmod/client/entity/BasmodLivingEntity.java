@@ -1,6 +1,5 @@
 package com.alpherininus.basmod.client.entity;
 
-import com.alpherininus.basmod.core.init.AttributesInit;
 import com.google.common.collect.Maps;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -39,19 +38,6 @@ public abstract class BasmodLivingEntity extends Entity {
     protected void registerData() {
         this.dataManager.register(MANA, 1.0F);
 
-    }
-
-    public static void registerBasmodLivingEntityAttributes() {
-        AttributeModifierMap.createMutableAttribute()
-                .createMutableAttribute(Attributes.MAX_HEALTH)
-                .createMutableAttribute(Attributes.KNOCKBACK_RESISTANCE)
-                .createMutableAttribute(Attributes.MOVEMENT_SPEED)
-                .createMutableAttribute(Attributes.ARMOR)
-                .createMutableAttribute(Attributes.ARMOR_TOUGHNESS)
-                .createMutableAttribute(net.minecraftforge.common.ForgeMod.SWIM_SPEED.get())
-                .createMutableAttribute(net.minecraftforge.common.ForgeMod.NAMETAG_DISTANCE.get())
-                .createMutableAttribute(net.minecraftforge.common.ForgeMod.ENTITY_GRAVITY.get())
-                .createMutableAttribute(AttributesInit.MAX_MANA.get());
     }
 
     @Override
@@ -98,7 +84,7 @@ public abstract class BasmodLivingEntity extends Entity {
     }
 
     public final float getMaxMana() {
-        return (float)this.getAttributeValue(AttributesInit.MAX_MANA.get());
+        return 88.0F;
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
