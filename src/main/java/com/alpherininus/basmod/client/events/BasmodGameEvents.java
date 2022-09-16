@@ -12,6 +12,7 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.client.event.GuiOpenEvent;
 import net.minecraftforge.client.event.GuiScreenEvent;
@@ -28,7 +29,6 @@ public class BasmodGameEvents {
 
     private static final LivingEntity user = null;
     private static final ServerPlayerEntity serverPlayer = ((ServerPlayerEntity) user);
-    private static final BasmodLivingEntity basmodLiving = null;
 
     private static FontRenderer fontRenderer;
 
@@ -66,7 +66,8 @@ public class BasmodGameEvents {
                     int textureHeight = 9;
 
                     assert false;
-                    int barWidth = (int) (basmodLiving.getMana() / basmodLiving.getMaxMana()); // TODO barWidth => refill Manabar, default is 88 -> 8, 16, 24, 32, 40, 48, 56, 64, 72, 80, 88. / ( 22 = 25% / 44 = 50% / 66 = 75% / 88 = 100% )
+                    // TODO barWidth => refill Manabar, default is 88 -> 8, 16, 24, 32, 40, 48, 56, 64, 72, 80, 88. / ( 22 = 25% / 44 = 50% / 66 = 75% / 88 = 100% )
+                    int barWidth = 16;
                     int barHeight = 7;
 
                     mc.getTextureManager().bindTexture(MANA_BARS);
@@ -78,16 +79,13 @@ public class BasmodGameEvents {
                     mc.ingameGUI.blit(new MatrixStack(), posXWidth + 1, posYHeight + 1, 0, 9, barWidth, barHeight);
 
                 }
-
             }
         }
-
         // TODO Eqip Items
-
         if (mainhand.getItem() == ItemInit.ANIMATED_MAGICAL_STAFF.get()) {
 
             if (modifiExperience) {
-                if (ignoreGamemode) {
+                if (notIgnoreGamemode) {
 
                     int posXWidth = event.getWindow().getScaledWidth() / 2 + 10;
                     int posYHeight = event.getWindow().getScaledHeight() - 59;

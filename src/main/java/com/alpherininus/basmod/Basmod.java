@@ -1,12 +1,12 @@
 package com.alpherininus.basmod;
 
+import com.alpherininus.basmod.client.handlers.BasmodAnivilHandler;
 import com.alpherininus.basmod.common.containers.screen.BaSInfoScreen;
 import com.alpherininus.basmod.common.entitys.animated.renerer.BasBossRenderer;
 import com.alpherininus.basmod.common.entitys.animated.renerer.BossOfDeadRenderer;
 import com.alpherininus.basmod.common.entitys.renderer.CopperGolemRenderer;
 import com.alpherininus.basmod.common.entitys.renderer.MagicalSpellArrowRenderer;
 import com.alpherininus.basmod.common.entitys.renderer.SeieorShellRenderer;
-import com.alpherininus.basmod.client.handlers.BasmodAnivilHandler;
 import com.alpherininus.basmod.common.items.armor.JetPackArmorItem;
 import com.alpherininus.basmod.common.items.armor.models.renderer.JetPackArmorRenderer;
 import com.alpherininus.basmod.common.items.models.BasmodItemModel;
@@ -21,6 +21,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
+import net.minecraft.crash.CrashReport;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
@@ -44,9 +45,17 @@ import software.bernie.geckolib3.renderers.geo.GeoArmorRenderer;
 import top.theillusivec4.curios.api.SlotTypeMessage;
 import top.theillusivec4.curios.api.SlotTypePreset;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 @Mod("basmod")
 @Mod.EventBusSubscriber(modid = Basmod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class Basmod {
+
 
     private static final Logger LOGGER = LogManager.getLogger();
 
@@ -70,7 +79,6 @@ public class Basmod {
         StructureInit.STRUCTURES.register(eventbus);
         PotionInit.POTIONS.register(eventbus);
         EffectInit.POTIONS.register(eventbus);
-        AttributesInit.ATTRIBUTES_DEFERRED_REGISTER.register(eventbus);
 
         GeckoLib.initialize();
 
@@ -82,7 +90,7 @@ public class Basmod {
         // TODO EVENTBUS
         MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGH, OreGeneration::addOres);
 
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, BasmodConfig.COMMON_SPEC, "basmod-common.toml");
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, BasmodConfig.COMMON_SPEC, "basmod/basmod-common.toml");
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
@@ -100,7 +108,10 @@ public class Basmod {
     }
 
     private void setup(final FMLCommonSetupEvent event) {
-        // BasmodNetwork.init();
+
+        new otherStuff().info();
+        new otherStuff().registerEulaText();
+
         BasmodAnivilHandler.initAnvilRecipes();
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -153,6 +164,10 @@ public class Basmod {
         Minecraft mc = Minecraft.getInstance();
         mc = event.getMinecraftSupplier().get();
 
+        if (mc.isDemo()) {
+            mc.crashed(CrashReport.makeCrashReport(new Throwable(), "Please Buy Minecraft, and have Fun."));
+        }
+
         event.enqueueWork(() -> {
 
             BasmodItemModel.makeBow(ItemInit.FAILNAUGHT_BOW.get());
@@ -188,7 +203,49 @@ public class Basmod {
         GeoArmorRenderer.registerArmorRenderer(JetPackArmorItem.class, JetPackArmorRenderer::new);
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    }
 
+    public static class otherStuff {
+
+        private static final String directory = "config/basmod";
+        private static final Path directorypath = Paths.get(directory);
+
+        private static final String datei = "basmod-eula.txt";
+        private static final String filename = directory + "/" + datei;
+        private static final Path filepath = Paths.get(filename);
+
+        public void registerEulaText() {
+
+            try {
+                if (!Files.exists(directorypath)) {
+                    Files.createDirectory(directorypath);
+                    LOGGER.debug("-> New Directory created! " + directory);
+                } else {
+                    LOGGER.info("-> Directory " + directory + " already exists");
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        public void info() {
+            if (isEulaTrue()) {
+                LOGGER.info("-> EULA is confirmed.");
+            } else {
+                LOGGER.warn("-> EULA is not confirmed, some side futures may not work. Check folder" + directory);
+            }
+        }
+
+        private boolean isEulaTrue() {
+            try {
+                String text = new String(Files.readAllBytes(filepath));
+                text.contains("eula=true");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return true;
+        }
     }
 
 }

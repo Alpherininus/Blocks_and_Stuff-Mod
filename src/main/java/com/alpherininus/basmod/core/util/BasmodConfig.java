@@ -6,6 +6,7 @@ public class BasmodConfig {
     public static final ForgeConfigSpec.Builder CONFIG_BUILDER = new ForgeConfigSpec.Builder();
     public static ForgeConfigSpec COMMON_SPEC;
     public static ForgeConfigSpec COMMON_SPEC_ITEM;
+    public static ForgeConfigSpec CLIENT_SPEC;
 
 
     public static final ForgeConfigSpec.ConfigValue<Integer> config_integer;
@@ -19,8 +20,6 @@ public class BasmodConfig {
     public static final ForgeConfigSpec.ConfigValue<Boolean> config_firework_magical_staff;
 
     public static final ForgeConfigSpec.ConfigValue<String> config_notices_magical_staff;
-
-
 
 
     static {
@@ -50,8 +49,6 @@ public class BasmodConfig {
         config_notices_magical_staff = CONFIG_BUILDER.comment("This is an integer. Default value is \"Basmod Item\".").define("Notices", "\u00A76Basmod Item");
 
         //
-
-
         CONFIG_BUILDER.pop();
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
