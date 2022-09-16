@@ -6,7 +6,7 @@ import com.alpherininus.basmod.common.entitys.animated.renerer.BossOfDeadRendere
 import com.alpherininus.basmod.common.entitys.renderer.CopperGolemRenderer;
 import com.alpherininus.basmod.common.entitys.renderer.MagicalSpellArrowRenderer;
 import com.alpherininus.basmod.common.entitys.renderer.SeieorShellRenderer;
-import com.alpherininus.basmod.common.handlers.BasmodAnivilHandler;
+import com.alpherininus.basmod.client.handlers.BasmodAnivilHandler;
 import com.alpherininus.basmod.common.items.armor.JetPackArmorItem;
 import com.alpherininus.basmod.common.items.armor.models.renderer.JetPackArmorRenderer;
 import com.alpherininus.basmod.common.items.models.BasmodItemModel;

@@ -1,4 +1,4 @@
-package com.alpherininus.basmod.common.events;
+package com.alpherininus.basmod.client.events;
 
 import com.alpherininus.basmod.Basmod;
 import com.alpherininus.basmod.core.init.KeybindsInit;

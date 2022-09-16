@@ -1,4 +1,4 @@
-package com.alpherininus.basmod.common.handlers;
+package com.alpherininus.basmod.client.handlers;
 
 import com.alpherininus.basmod.core.init.ItemInit;
 import net.minecraft.item.Item;

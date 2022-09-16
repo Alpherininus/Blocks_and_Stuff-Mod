@@ -1,12 +1,12 @@
-package com.alpherininus.basmod.common.events;
+package com.alpherininus.basmod.client.events;
 
 import com.alpherininus.basmod.Basmod;
 import com.alpherininus.basmod.common.entitys.CopperGolemEntity;
 import com.alpherininus.basmod.common.entitys.SeiorShellArmorEntity;
 import com.alpherininus.basmod.common.entitys.animated.BasBossEntity;
 import com.alpherininus.basmod.common.entitys.animated.BossOfDeadEntity;
-import com.alpherininus.basmod.common.events.loots.BasmodAdditionModifier;
-import com.alpherininus.basmod.common.events.loots.BasmodStructureAdditionModifier;
+import com.alpherininus.basmod.client.events.loots.BasmodAdditionModifier;
+import com.alpherininus.basmod.client.events.loots.BasmodStructureAdditionModifier;
 import com.alpherininus.basmod.common.items.SeioerShellSpawnEggItem;
 import com.alpherininus.basmod.common.items.models.BasmodSpawnEggItem;
 import com.alpherininus.basmod.core.init.EntityTypesInit;

@@ -1,4 +1,4 @@
-package com.alpherininus.basmod.common.events.loots;
+package com.alpherininus.basmod.client.events.loots;
 
 import com.google.gson.JsonObject;
 import net.minecraft.item.Item;
@@ -14,11 +14,11 @@ import net.minecraftforge.registries.ForgeRegistries;
 import javax.annotation.Nonnull;
 import java.util.List;
 
-public class BasmodStructureAdditionModifier extends LootModifier {
+public class BasmodAdditionModifier extends LootModifier {
 
     private final Item addition;
 
-    protected BasmodStructureAdditionModifier(ILootCondition[] conditionsIn, Item addition) {
+    protected BasmodAdditionModifier(ILootCondition[] conditionsIn, Item addition) {
         super(conditionsIn);
         this.addition = addition;
     }
@@ -28,26 +28,25 @@ public class BasmodStructureAdditionModifier extends LootModifier {
     protected List<ItemStack> doApply(List<ItemStack> generatedLoot, LootContext context) {
         // generatedLoot is the loot that would be dropped, if we wouldn't add or replace
         // anything!
-        if(context.getRandom().nextFloat() > 0.15) {
-            generatedLoot.add(new ItemStack(addition, 1));
-        }
+        generatedLoot.add(new ItemStack(addition, 1));
         return generatedLoot;
     }
 
-    public static class Serializer extends GlobalLootModifierSerializer<BasmodStructureAdditionModifier> {
+    public static class Serializer extends GlobalLootModifierSerializer<BasmodAdditionModifier> {
 
         @Override
-        public BasmodStructureAdditionModifier read(ResourceLocation name, JsonObject object, ILootCondition[] conditionsIn) {
+        public BasmodAdditionModifier read(ResourceLocation name, JsonObject object, ILootCondition[] conditionsIn) {
             Item addition = ForgeRegistries.ITEMS.getValue(
                     new ResourceLocation(JSONUtils.getString(object, "addition")));
-            return new BasmodStructureAdditionModifier(conditionsIn, addition);
+            return new BasmodAdditionModifier(conditionsIn, addition);
         }
 
         @Override
-        public JsonObject write(BasmodStructureAdditionModifier instance) {
+        public JsonObject write(BasmodAdditionModifier instance) {
             JsonObject json = makeConditions(instance.conditions);
             json.addProperty("addition", ForgeRegistries.ITEMS.getKey(instance.addition).toString());
             return json;
         }
     }
 }
+
