@@ -1,22 +1,16 @@
 package com.alpherininus.basmod.client.events;
 
 import com.alpherininus.basmod.Basmod;
-import com.alpherininus.basmod.client.entity.BasmodLivingEntity;
-import com.alpherininus.basmod.common.effekts.ManaEffect;
-import com.alpherininus.basmod.core.init.EffectInit;
+import com.alpherininus.basmod.client.entity.BasmodPlayerEntity;
 import com.alpherininus.basmod.core.init.ItemInit;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.Effect;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.client.event.GuiOpenEvent;
 import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
@@ -30,14 +24,14 @@ public class BasmodGameEvents {
 
     private static final Minecraft mc = Minecraft.getInstance();
     
-    private static final BasmodLivingEntity basmodLiving = null;
+    private static final BasmodPlayerEntity basmodplayer = null;
     private static final LivingEntity user = null;
     private static final ServerPlayerEntity serverPlayer = ((ServerPlayerEntity) user);
 
     private static FontRenderer fontRenderer;
 
     @SubscribeEvent
-    public static void onRenderGameOverlay(RenderGameOverlayEvent event) {
+    public static void onRenderGameOverlay(RenderGameOverlayEvent event) throws Exception {
 
         assert mc.player != null;
         ItemStack mainhand = mc.player.getItemStackFromSlot(EquipmentSlotType.MAINHAND);
@@ -54,7 +48,7 @@ public class BasmodGameEvents {
         boolean isInWater = mc.player.isInWater();
 
         boolean modifiText = !event.isCanceled() && event.getType() == RenderGameOverlayEvent.ElementType.TEXT;
-
+        boolean modifiHealth = !event.isCancelable() && event.getType() == RenderGameOverlayEvent.ElementType.HEALTH;
         boolean modifiExperience = !event.isCancelable() && event.getType() == RenderGameOverlayEvent.ElementType.EXPERIENCE;
 
         if (isNotInWater) {
@@ -73,7 +67,7 @@ public class BasmodGameEvents {
                     assert false;
                     // TODO barWidth => refill Manabar, default is 88 -> 8, 16, 24, 32, 40, 48, 56, 64, 72, 80, 88. / ( 22 = 25% / 44 = 50% / 66 = 75% / 88 = 100% )
 
-                    int barWidth = basmodLiving.setMana(basmodLiving.getMaxMana());
+                    int barWidth = 8;
                     int barHeight = 7;
 
                     mc.getTextureManager().bindTexture(MANA_BARS);
@@ -91,7 +85,7 @@ public class BasmodGameEvents {
         if (mainhand.getItem() == ItemInit.ANIMATED_MAGICAL_STAFF.get()) {
 
             if (modifiExperience) {
-                if (notIgnoreGamemode) {
+                if (ignoreGamemode) {
 
                     int posXWidth = event.getWindow().getScaledWidth() / 2 + 10;
                     int posYHeight = event.getWindow().getScaledHeight() - 59;
@@ -160,7 +154,6 @@ public class BasmodGameEvents {
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 
 }
 

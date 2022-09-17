@@ -1,6 +1,7 @@
 package com.alpherininus.basmod.client.events;
 
 import com.alpherininus.basmod.Basmod;
+import com.alpherininus.basmod.client.entity.BasmodPlayerEntity;
 import com.alpherininus.basmod.common.entitys.CopperGolemEntity;
 import com.alpherininus.basmod.common.entitys.SeiorShellArmorEntity;
 import com.alpherininus.basmod.common.entitys.animated.BasBossEntity;
@@ -29,8 +30,6 @@ public class BasmodEventBusEvents {
 
         event.put(EntityTypesInit.BASMOD_BOSS_ENTITY.get(), BasBossEntity.setCustomBasbossAttributes());
         event.put(EntityTypesInit.BOSS_OF_DEAD_ENTITY.get(), BossOfDeadEntity.setCustomBossOfDeadAttributes());
-
-        // Player and Living - Entity
 
     }
 
