@@ -47,8 +47,6 @@ public class BasmodGameEvents {
         boolean isNotInWater = !mc.player.isInWater();
         boolean isInWater = mc.player.isInWater();
 
-        boolean modifiText = !event.isCanceled() && event.getType() == RenderGameOverlayEvent.ElementType.TEXT;
-        boolean modifiHealth = !event.isCancelable() && event.getType() == RenderGameOverlayEvent.ElementType.HEALTH;
         boolean modifiExperience = !event.isCancelable() && event.getType() == RenderGameOverlayEvent.ElementType.EXPERIENCE;
 
         if (isNotInWater) {

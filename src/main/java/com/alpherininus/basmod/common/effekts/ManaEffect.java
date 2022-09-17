@@ -14,14 +14,18 @@ public class ManaEffect extends Effect {
     }
 
     @Override
-    public void performEffect(LivingEntity entityLivingBaseIn, int amplifier) {
-        BasmodPlayerEntity basmodLiving = null;
+    public void performEffect(LivingEntity entityLivBaseIn, int amplifier) {
+
+        BasmodPlayerEntity entityLivingBaseIn = null;
+
         if (this == EffectInit.MANA.get()) {
             assert false;
-            if (basmodLiving.getMana() < basmodLiving.getMaxMana()) {
-                basmodLiving.mana(1);
+            if (entityLivingBaseIn.getMana() < entityLivingBaseIn.getMaxMana()) {
+                entityLivingBaseIn.mana(1);
             }
         }
+
+        assert false;
         super.performEffect(entityLivingBaseIn, amplifier);
     }
 
