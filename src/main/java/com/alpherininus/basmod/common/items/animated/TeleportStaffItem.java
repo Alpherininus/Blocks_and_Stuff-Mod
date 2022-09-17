@@ -2,6 +2,7 @@ package com.alpherininus.basmod.common.items.animated;
 
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
+import com.google.gson.internal.bind.JsonTreeReader;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.ai.attributes.Attribute;
@@ -35,6 +36,7 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 import javax.annotation.Nullable;
 import java.util.List;
+import java.util.Random;
 
 public class TeleportStaffItem extends Item implements IAnimatable {
 
@@ -133,6 +135,7 @@ public class TeleportStaffItem extends Item implements IAnimatable {
         float f7 = f2 * f4;
         Vector3d vector3d1 = vector3d.add((double)f6 * range, (double)f5 * range, (double)f7 * range);
         return world.rayTraceBlocks(new RayTraceContext(vector3d, vector3d1, RayTraceContext.BlockMode.OUTLINE, fluidMode, player));
+
     }
 
 }

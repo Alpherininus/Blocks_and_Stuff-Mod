@@ -53,8 +53,9 @@ public class BasmodGameEvents {
         boolean isNotInWater = !mc.player.isInWater();
         boolean isInWater = mc.player.isInWater();
 
-        boolean modifiExperience = !event.isCancelable() && event.getType() == RenderGameOverlayEvent.ElementType.EXPERIENCE;
         boolean modifiText = !event.isCanceled() && event.getType() == RenderGameOverlayEvent.ElementType.TEXT;
+
+        boolean modifiExperience = !event.isCancelable() && event.getType() == RenderGameOverlayEvent.ElementType.EXPERIENCE;
 
         if (isNotInWater) {
             if (modifiExperience) {
@@ -72,7 +73,9 @@ public class BasmodGameEvents {
                     assert false;
                     // TODO barWidth => refill Manabar, default is 88 -> 8, 16, 24, 32, 40, 48, 56, 64, 72, 80, 88. / ( 22 = 25% / 44 = 50% / 66 = 75% / 88 = 100% )
 
-                    int barWidth = (int) (basmodLiving.getMana() + 8);
+                    int getmana = (int) basmodLiving.getMana();
+
+                    int barWidth = getmana + 8;
                     int barHeight = 7;
 
                     mc.getTextureManager().bindTexture(MANA_BARS);

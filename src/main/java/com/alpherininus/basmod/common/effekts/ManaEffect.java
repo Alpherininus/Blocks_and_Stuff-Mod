@@ -22,7 +22,6 @@ public class ManaEffect extends Effect {
 
     @Override
     public void performEffect(LivingEntity entityLivingBaseIn, int amplifier) {
-        // Effect funktion
         BasmodLivingEntity basmodLiving = null;
         if (this == EffectInit.MANA.get()) {
             assert false;
