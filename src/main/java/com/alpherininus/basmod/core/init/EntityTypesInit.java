@@ -6,13 +6,20 @@ import com.alpherininus.basmod.common.entitys.MagicalSpellArrowEntity;
 import com.alpherininus.basmod.common.entitys.SeiorShellArmorEntity;
 import com.alpherininus.basmod.common.entitys.animated.BasBossEntity;
 import com.alpherininus.basmod.common.entitys.animated.BossOfDeadEntity;
-import net.minecraft.entity.EntityClassification;
-import net.minecraft.entity.EntityType;
+import net.minecraft.entity.*;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+
+import javax.annotation.Nullable;
 
 public class EntityTypesInit {
     public static DeferredRegister<EntityType<?>> ENTITY_TYPES
@@ -52,6 +59,7 @@ public class EntityTypesInit {
                             .size(1.2F, 2.1F)
                             .build("boss_of_dead"));
 
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     public static void register(IEventBus eventBus) {
         ENTITY_TYPES.register(eventBus);

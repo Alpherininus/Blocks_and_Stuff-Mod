@@ -1,6 +1,5 @@
 package com.alpherininus.basmod;
 
-import com.alpherininus.basmod.client.entity.BasmodLivingEntity;
 import com.alpherininus.basmod.client.handlers.BasmodAnivilHandler;
 import com.alpherininus.basmod.common.containers.screen.BaSInfoScreen;
 import com.alpherininus.basmod.common.entitys.animated.renerer.BasBossRenderer;
@@ -23,12 +22,9 @@ import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.crash.CrashReport;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.brewing.BrewingRecipeRegistry;
 import net.minecraftforge.eventbus.api.EventPriority;
@@ -48,13 +44,6 @@ import software.bernie.geckolib3.GeckoLib;
 import software.bernie.geckolib3.renderers.geo.GeoArmorRenderer;
 import top.theillusivec4.curios.api.SlotTypeMessage;
 import top.theillusivec4.curios.api.SlotTypePreset;
-
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 @Mod("basmod")
 @Mod.EventBusSubscriber(modid = Basmod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)

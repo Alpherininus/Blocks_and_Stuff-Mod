@@ -34,7 +34,7 @@ public class SeiorShellArmorEntity extends MuleEntity {
         return MobEntity.func_233666_p_()
                 .createMutableAttribute(Attributes.MAX_HEALTH, 40.0D)
                 .createMutableAttribute(Attributes.HORSE_JUMP_STRENGTH, 0.5D)
-                .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.500D)
+                .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.25D)
                 .createMutableAttribute(Attributes.ARMOR_TOUGHNESS, 100.0D);
     }
 
@@ -43,8 +43,7 @@ public class SeiorShellArmorEntity extends MuleEntity {
     protected void registerGoals() {
         super.registerGoals();
         this.goalSelector.addGoal(0, new SwimGoal(this));
-        this.goalSelector.addGoal(1, new WaterAvoidingRandomWalkingGoal(this, 0.350D));
-        this.goalSelector.addGoal(2, new MoveTowardsTargetGoal(this, 0.250D, 15.0F));
+        this.goalSelector.addGoal(1, new WaterAvoidingRandomWalkingGoal(this, 0.3D));
     }
 
     @Override
@@ -53,6 +52,11 @@ public class SeiorShellArmorEntity extends MuleEntity {
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    @Override
+    protected double getModifiedMovementSpeed() {
+        return 0.25D;
+    }
 
     @Override
     protected boolean isMovementBlocked() {

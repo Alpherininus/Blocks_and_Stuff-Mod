@@ -26,7 +26,7 @@ public class ManaEffect extends Effect {
         if (this == EffectInit.MANA.get()) {
             assert false;
             if (basmodLiving.getMana() < basmodLiving.getMaxMana()) {
-                basmodLiving.mana(1.0F);
+                basmodLiving.mana(1);
             }
         }
         super.performEffect(entityLivingBaseIn, amplifier);

@@ -1,17 +1,14 @@
 package com.alpherininus.basmod.client.entity;
 
+import com.alpherininus.basmod.client.events.BasmodGameEvents;
 import com.google.common.collect.Maps;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.SoundType;
+import com.mojang.blaze3d.matrix.MatrixStack;
+import net.minecraft.client.MainWindow;
 import net.minecraft.entity.CreatureAttribute;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.*;
-import net.minecraft.item.ArmorItem;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
 import net.minecraft.network.IPacket;
@@ -24,112 +21,50 @@ import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.potion.PotionUtils;
-import net.minecraft.scoreboard.ScorePlayerTeam;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.Direction;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.*;
+import java.util.Collection;
+import java.util.ConcurrentModificationException;
+import java.util.Iterator;
+import java.util.Map;
 
-public abstract class BasmodLivingEntity extends Entity {
+public abstract class BasmodLivingEntity extends LivingEntity {
     private static final LivingEntity livingEntity = null;
-    private static final DataParameter<Float> MANA = EntityDataManager.createKey(BasmodLivingEntity.class, DataSerializers.FLOAT);
+    private static final DataParameter<Integer> MANA = EntityDataManager.createKey(BasmodLivingEntity.class, DataSerializers.VARINT);
 
-    private static final UUID SOUL_SPEED_BOOT_ID = UUID.fromString("87f46a96-686f-4796-b035-22e16ee9e038");
-    protected static final DataParameter<Byte> LIVING_FLAGS = EntityDataManager.createKey(LivingEntity.class, DataSerializers.BYTE);
     private static final DataParameter<Float> HEALTH = EntityDataManager.createKey(LivingEntity.class, DataSerializers.FLOAT);
     private static final DataParameter<Integer> POTION_EFFECTS = EntityDataManager.createKey(LivingEntity.class, DataSerializers.VARINT);
     private static final DataParameter<Boolean> HIDE_PARTICLES = EntityDataManager.createKey(LivingEntity.class, DataSerializers.BOOLEAN);
-    private static final DataParameter<Integer> ARROW_COUNT_IN_ENTITY = EntityDataManager.createKey(LivingEntity.class, DataSerializers.VARINT);
-    private static final DataParameter<Integer> BEE_STING_COUNT = EntityDataManager.createKey(LivingEntity.class, DataSerializers.VARINT);
-    private static final DataParameter<Optional<BlockPos>> BED_POSITION = EntityDataManager.createKey(LivingEntity.class, DataSerializers.OPTIONAL_BLOCK_POS);
+
     private final AttributeModifierManager attributes;
     private final Map<Effect, EffectInstance> activePotionsMap = Maps.newHashMap();
-    public int hurtTime;
-    public int deathTime;
-    public final float randomUnused2;
-    public final float randomUnused1;
-    public float rotationYawHead;
-    protected int idleTime;
-    private boolean potionsNeedUpdate = true;
-    private int revengeTimer;
+    private boolean potionsNeedUpdate;
 
     protected BasmodLivingEntity(EntityType<? extends LivingEntity> type, World worldIn) {
         super(type, worldIn);
         this.attributes = new AttributeModifierManager(GlobalEntityTypeAttributes.getAttributesForEntity(type));
-        this.setHealth(this.getMaxHealth());
         this.setMana(this.getMaxMana());
-        this.preventEntitySpawning = true;
-        this.randomUnused1 = (float)((Math.random() + 1.0D) * (double)0.01F);
-        this.recenterBoundingBox();
-        this.randomUnused2 = (float)Math.random() * 12398.0F;
-        this.rotationYaw = (float)(Math.random() * (double)((float)Math.PI * 2F));
-        this.rotationYawHead = this.rotationYaw;
-        this.stepHeight = 0.6F;
     }
 
     protected void registerData() {
-        this.dataManager.register(LIVING_FLAGS, (byte)0);
-        this.dataManager.register(POTION_EFFECTS, 0);
-        this.dataManager.register(HIDE_PARTICLES, false);
-        this.dataManager.register(ARROW_COUNT_IN_ENTITY, 0);
-        this.dataManager.register(BEE_STING_COUNT, 0);
+        this.dataManager.register(MANA, 1);
         this.dataManager.register(HEALTH, 1.0F);
-        this.dataManager.register(BED_POSITION, Optional.empty());
-
-        this.dataManager.register(MANA, 1.0F);
     }
 
     public static AttributeModifierMap.MutableAttribute registerAttributes() {
         return AttributeModifierMap.createMutableAttribute().createMutableAttribute(Attributes.MAX_HEALTH).createMutableAttribute(Attributes.KNOCKBACK_RESISTANCE).createMutableAttribute(Attributes.MOVEMENT_SPEED).createMutableAttribute(Attributes.ARMOR).createMutableAttribute(Attributes.ARMOR_TOUGHNESS).createMutableAttribute(net.minecraftforge.common.ForgeMod.SWIM_SPEED.get()).createMutableAttribute(net.minecraftforge.common.ForgeMod.NAMETAG_DISTANCE.get()).createMutableAttribute(net.minecraftforge.common.ForgeMod.ENTITY_GRAVITY.get());
     }
 
-    protected void func_233641_cN_() {
-        ModifiableAttributeInstance modifiableattributeinstance = this.getAttribute(Attributes.MOVEMENT_SPEED);
-        if (modifiableattributeinstance != null) {
-            if (modifiableattributeinstance.getModifier(SOUL_SPEED_BOOT_ID) != null) {
-                modifiableattributeinstance.removeModifier(SOUL_SPEED_BOOT_ID);
-            }
-
-        }
-    }
-
-    public int getIdleTime() {
-        return this.idleTime;
-    }
-
-    public void setIdleTime(int idleTimeIn) {
-        this.idleTime = idleTimeIn;
-    }
-
-    protected void playEquipSound(ItemStack stack) {
-        if (!stack.isEmpty()) {
-            SoundEvent soundevent = SoundEvents.ITEM_ARMOR_EQUIP_GENERIC;
-            Item item = stack.getItem();
-            if (item instanceof ArmorItem) {
-                soundevent = ((ArmorItem)item).getArmorMaterial().getSoundEvent();
-            } else if (item == Items.ELYTRA) {
-                soundevent = SoundEvents.ITEM_ARMOR_EQUIP_ELYTRA;
-            }
-
-            this.playSound(soundevent, 1.0F, 1.0F);
-        }
-    }
-
     public void writeAdditional(CompoundNBT compound) {
-        compound.putFloat("Mana", this.getMana());
+        compound.putInt("Mana", this.getMana());
         compound.putFloat("Health", this.getHealth());
-        compound.putShort("HurtTime", (short)this.hurtTime);
-        compound.putInt("HurtByTimestamp", this.revengeTimer);
-        compound.putShort("DeathTime", (short)this.deathTime);
         compound.put("Attributes", this.getAttributeManager().serialize());
         if (!this.activePotionsMap.isEmpty()) {
             ListNBT listnbt = new ListNBT();
@@ -163,20 +98,8 @@ public abstract class BasmodLivingEntity extends Entity {
             this.setHealth(compound.getFloat("Health"));
         }
 
-        this.hurtTime = compound.getShort("HurtTime");
-        this.deathTime = compound.getShort("DeathTime");
-        this.revengeTimer = compound.getInt("HurtByTimestamp");
-        if (compound.contains("Team", 8)) {
-            String s = compound.getString("Team");
-            ScorePlayerTeam scoreplayerteam = this.world.getScoreboard().getTeam(s);
-            boolean flag = scoreplayerteam != null && this.world.getScoreboard().addPlayerToTeam(this.getCachedUniqueIdString(), scoreplayerteam);
-            if (!flag) {
-                LOGGER.warn("Unable to add mob to team \"{}\" (that team probably doesn't exist)", (Object) s);
-            }
-        }
-
-        if (compound.getBoolean("FallFlying")) {
-            this.setFlag(7, true);
+        if (compound.contains("Mana", 99)) {
+            this.setMana(compound.getInt("Mana"));
         }
     }
 
@@ -390,28 +313,6 @@ public abstract class BasmodLivingEntity extends Entity {
 
     }
 
-    public void heal(float healAmount) {
-        healAmount = net.minecraftforge.event.ForgeEventFactory.onLivingHeal(livingEntity, healAmount);
-        if (healAmount <= 0) return;
-        float f = this.getHealth();
-        if (f > 0.0F) {
-            this.setHealth(f + healAmount);
-        }
-
-    }
-
-    public float getHealth() {
-        return this.dataManager.get(HEALTH);
-    }
-
-    public void setHealth(float health) {
-        this.dataManager.set(HEALTH, MathHelper.clamp(health, 0.0F, this.getMaxHealth()));
-    }
-
-    public final float getMaxHealth() {
-        return (float)this.getAttributeValue(Attributes.MAX_HEALTH);
-    }
-
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // TODO Wichtig
 
@@ -477,27 +378,24 @@ public abstract class BasmodLivingEntity extends Entity {
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Basmod
 
-    public void mana(float manaAmount) {
-        LivingEntity living = null;
-
-        manaAmount = net.minecraftforge.event.ForgeEventFactory.onLivingHeal(living, manaAmount);
-        if (manaAmount <= 0) return;
-        float f = this.getMana();
+    public void mana(int manaAmount) {
+        int f = this.getMana();
         if (f > 0.0F) {
             this.setMana(f + manaAmount);
         }
     }
 
-    public float getMana() {
+    public int getMana() {
         return this.dataManager.get(MANA);
     }
 
-    public void setMana(float mana) {
-        this.dataManager.set(MANA, MathHelper.clamp(mana, 0.0F, this.getMaxMana()));
+    public int setMana(int mana) {
+        this.dataManager.set(MANA, MathHelper.clamp(mana, 0, this.getMaxMana()));
+        return 0;
     }
 
-    public final float getMaxMana() {
-        return 88.0F;
+    public final int getMaxMana() {
+        return 88;
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
