@@ -1,12 +1,7 @@
 package com.alpherininus.basmod.common.entitys.animated.ai;
 
 import net.minecraft.entity.CreatureEntity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.ai.goal.LookRandomlyGoal;
 import net.minecraft.entity.ai.goal.MeleeAttackGoal;
-import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
-import net.minecraft.entity.monster.MonsterEntity;
-import net.minecraft.world.World;
 import software.bernie.geckolib3.core.AnimationState;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
@@ -27,11 +22,12 @@ public class AttackGoal extends MeleeAttackGoal implements IAnimatable {
         if (this.isSwingOnCooldown() && event.getController().getAnimationState().equals(AnimationState.Stopped)) {
             event.getController().markNeedsReload();
             event.getController().setAnimation(new AnimationBuilder().addAnimation("attack", false));
-            //this.isSwingOnCooldown() = false;
+
+            return PlayState.CONTINUE;
 
         }
 
-        return PlayState.CONTINUE;
+        return PlayState.STOP;
     }
 
     @Override

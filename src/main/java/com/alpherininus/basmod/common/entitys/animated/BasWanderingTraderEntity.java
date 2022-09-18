@@ -1,5 +1,6 @@
 package com.alpherininus.basmod.common.entitys.animated;
 
+import com.alpherininus.basmod.core.init.ItemInit;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
@@ -8,11 +9,14 @@ import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.merchant.villager.VillagerTrades;
 import net.minecraft.entity.merchant.villager.WanderingTraderEntity;
+import net.minecraft.entity.passive.SheepEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
+import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.NBTUtil;
 import net.minecraft.stats.Stats;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -42,10 +46,11 @@ public class BasWanderingTraderEntity extends WanderingTraderEntity implements I
 
     protected void registerGoals() {
 
-        this.goalSelector.addGoal(1, new PanicGoal(this, 0.5D));
-
+        this.goalSelector.addGoal(1, new PanicGoal(this, 1.5D));
         this.addSwimGoals();
         this.addLookGoals();
+        this.goalSelector.addGoal(3, new TemptGoal(this, 1.1D, Ingredient
+                .fromItems(Items.EMERALD, ItemInit.RUBY_ITEM.get(), Items.IRON_INGOT, ItemInit.RELICS_ITEM.get(), Items.DIAMOND, Items.GOLD_INGOT), false));
     }
 
     protected void addSwimGoals() {
@@ -56,7 +61,7 @@ public class BasWanderingTraderEntity extends WanderingTraderEntity implements I
     protected void addLookGoals() {
         this.goalSelector.addGoal(1, new LookAtGoal(this, PlayerEntity.class, 8.0F));
         this.goalSelector.addGoal(2, new LookRandomlyGoal(this));
-        this.goalSelector.addGoal(3, new LookAtWithoutMovingGoal(this, PlayerEntity.class, 3.0F, 1.0F));
+        this.goalSelector.addGoal(3, new LookAtWithoutMovingGoal(this, PlayerEntity.class, 16.0F, 1.0F));
 
     }
 

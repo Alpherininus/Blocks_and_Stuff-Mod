@@ -1,5 +1,6 @@
 package com.alpherininus.basmod.common.items;
 
+import com.alpherininus.basmod.core.init.ItemInit;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import net.minecraft.block.BlockState;
@@ -16,6 +17,8 @@ import net.minecraft.item.IItemTier;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
 import net.minecraft.item.UseAction;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.Effects;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
@@ -43,6 +46,7 @@ public class AsukaAxt extends SwordItem {
         builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Weapon modifier", (double)this.attackDamage, AttributeModifier.Operation.ADDITION));
         builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(ATTACK_SPEED_MODIFIER, "Weapon modifier", (double)attackSpeedIn, AttributeModifier.Operation.ADDITION));
         this.attributeModifiers = builder.build();
+
     }
 
     public float getAttackDamage() {
@@ -50,9 +54,7 @@ public class AsukaAxt extends SwordItem {
     }
 
     public boolean hitEntity(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-        stack.damageItem(1, attacker, (entity) -> {
-            entity.sendBreakAnimation(EquipmentSlotType.MAINHAND);
-        });
+        stack.damageItem(1, attacker, (entity) -> entity.sendBreakAnimation(EquipmentSlotType.MAINHAND));
         return true;
     }
 
@@ -76,15 +78,16 @@ public class AsukaAxt extends SwordItem {
 
     public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
         playerIn.getCooldownTracker().setCooldown(this, 90);
-        playerIn.fallDistance = 0F;
+        playerIn.fallDistance = 0.5F;
 
         ItemStack itemstack = playerIn.getHeldItem(handIn);
         playerIn.setActiveHand(handIn);
 
-        double x = 0;
-        double y = 1;
-        double z = 0;
+        double x = 0.0D;
+        double y = 0.55D;
+        double z = 0.0D;
         BlockPos pos = playerIn.getPosition();
+
         playerIn.setMotion(x, y, z);
 
         return ActionResult.resultConsume(itemstack);
@@ -112,4 +115,5 @@ public class AsukaAxt extends SwordItem {
 
         super.addInformation(stack, worldIn, tooltip, flagIn);
     }
+
 }

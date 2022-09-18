@@ -49,11 +49,12 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.function.Predicate;
 
-public class BossOfDeadEntity extends EndermanEntity implements IAnimatable, ISyncable {
+public class BossOfDeadEntity extends MonsterEntity implements IAnimatable, ISyncable {
 
     private static final EntityPredicate PLAYER_INVADER_CONDITION = (new EntityPredicate()).setDistance(64.0D);
     private static final Predicate<LivingEntity> NOT_UNDEAD = (p_213797_0_) -> p_213797_0_.getCreatureAttribute() != CreatureAttribute.UNDEAD && p_213797_0_.attackable();
-    private final ServerBossInfo bossInfo = (ServerBossInfo)(new ServerBossInfo(new StringTextComponent("Dance of Death"), BossInfo.Color.RED, BossInfo.Overlay.PROGRESS)).setDarkenSky(true).setCreateFog(true);
+
+    private final ServerBossInfo bossInfo1Phase = (ServerBossInfo)(new ServerBossInfo(new StringTextComponent("Dance of Death"), BossInfo.Color.PINK, BossInfo.Overlay.PROGRESS));
 
     private final int id = 1;
     private final int state = 0;
@@ -65,14 +66,14 @@ public class BossOfDeadEntity extends EndermanEntity implements IAnimatable, ISy
 
     private final AnimationFactory factory = new AnimationFactory(this);
 
-    public BossOfDeadEntity(EntityType<? extends EndermanEntity> entityType, World worldIn) {
+    public BossOfDeadEntity(EntityType<? extends MonsterEntity> entityType, World worldIn) {
         super(entityType, worldIn);
 
     }
 
     protected void registerGoals() {
 
-        this.goalSelector.addGoal(1, new AttackGoal(this, 1.2D, false));
+        this.goalSelector.addGoal(1, new AttackGoal(this, 1.2D, true));
         this.addLookGoals();
         this.addSwimGoals();
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, 10, true, false, field_213627_bA));
@@ -280,18 +281,18 @@ public class BossOfDeadEntity extends EndermanEntity implements IAnimatable, ISy
                 }
             }
         }
-        this.bossInfo.setPercent(this.getHealth() / this.getMaxHealth());
+        this.bossInfo1Phase.setPercent(this.getHealth() / this.getMaxHealth());
 
     }
 
     public void addTrackingPlayer(ServerPlayerEntity player) {
         super.addTrackingPlayer(player);
-        this.bossInfo.addPlayer(player);
+        this.bossInfo1Phase.addPlayer(player);
     }
 
     public void removeTrackingPlayer(ServerPlayerEntity player) {
         super.removeTrackingPlayer(player);
-        this.bossInfo.removePlayer(player);
+        this.bossInfo1Phase.addPlayer(player);
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
