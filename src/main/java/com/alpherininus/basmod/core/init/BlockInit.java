@@ -133,6 +133,10 @@ public class BlockInit {
                     .hardnessAndResistance(8f, 7f)
                     .harvestLevel(2).sound(SoundType.STONE)));
 
+    public static final RegistryObject<Block> LIGHT_BLOCK = registryBlock("light_block",
+            () -> new BasmodLightBlock(AbstractBlock.Properties.create(Material.REDSTONE_LIGHT, MaterialColor.YELLOW)
+                    .hardnessAndResistance(0f, 3f).sound(SoundType.GLASS)));
+
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // TODO BLOCKS
 
