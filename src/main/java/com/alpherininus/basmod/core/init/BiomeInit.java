@@ -28,11 +28,12 @@ public class BiomeInit {
     public static final RegistryObject<Biome> BAS_MAGICAL_FOREST_BIOME = BIOMES.register("magical_forest",
             () -> makeDarkOfGodnessBiome(() -> BasmodConfiguredSurfacebuilder.MAGICAL_FOREST, 0.250f, 0.15f));
 
+    // Dark Dimension
     public static final RegistryObject<Biome> BAS_DARK_FOREST_BIOME = BIOMES.register("dark_forest",
-            () -> makeDarkForestBiome(() -> BasmodConfiguredSurfacebuilder.DARK_FOREST, 0.250f, 0.15f));
+            () -> makeDarkForestBiome(() -> BasmodConfiguredSurfacebuilder.DARK_FOREST, 0.500f, 0.30f));
 
     public static final RegistryObject<Biome> BAS_DARK_PLAINS_BIOME = BIOMES.register("dark_plains",
-            () -> makeDarkPlainsBiome(() -> BasmodConfiguredSurfacebuilder.DARK_PLAINS, 0.250f, 0.15f));
+            () -> makeDarkPlainsBiome(() -> BasmodConfiguredSurfacebuilder.DARK_PLAINS, 0.505f, 0.35f));
 
     private static Biome makeDarkOfGodnessBiome(final Supplier<ConfiguredSurfaceBuilder<?>> surfaceBuilder, float tiefe, float massstab) {
 
