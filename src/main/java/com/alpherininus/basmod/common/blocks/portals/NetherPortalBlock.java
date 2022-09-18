@@ -1,45 +1,51 @@
-package com.alpherininus.basmod.common.blocks;
+package com.alpherininus.basmod.common.blocks.portals;
 
-import net.minecraft.block.*;
-import net.minecraft.block.material.Material;
-import net.minecraft.block.material.MaterialColor;
-import net.minecraft.client.Minecraft;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particles.BlockParticleData;
 import net.minecraft.particles.ParticleTypes;
-import net.minecraft.util.*;
+import net.minecraft.util.RegistryKey;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.util.math.shapes.IBooleanFunction;
+import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.world.*;
+import net.minecraft.world.IBlockReader;
+import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.ToolType;
-import net.minecraftforge.common.util.ITeleporter;
 
 import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Random;
-import java.util.function.Function;
 
-public class TeleporterBlock extends Block {
+public class NetherPortalBlock extends Block {
 
-    public TeleporterBlock() {
-        super(AbstractBlock.Properties
-                .create((Material.IRON), MaterialColor.GRAY)
-                .hardnessAndResistance(2, 5)
-                .harvestTool(ToolType.PICKAXE)
-                .harvestLevel(1)
-                .sound(SoundType.BONE).notSolid()
-                .setLightLevel(BlockState -> 13));
+    public NetherPortalBlock(Properties properties) {
+        super(properties);
+    }
+
+    @Override
+    public void onEntityWalk(World worldIn, BlockPos pos, Entity entityIn) {
+        BlockState state = worldIn.getBlockState(pos);
+
+        if (worldIn instanceof ServerWorld && !entityIn.isPassenger() && !entityIn.isBeingRidden() && entityIn.canChangeDimension() && VoxelShapes.compare(VoxelShapes.create(entityIn.getBoundingBox().offset((double)(-pos.getX()), (double)(-pos.getY()), (double)(-pos.getZ()))), state.getShape(worldIn, pos), IBooleanFunction.AND)) {
+            RegistryKey<World> registrykey = worldIn.getDimensionKey() == World.THE_NETHER ? World.OVERWORLD : World.THE_NETHER;
+            ServerWorld serverworld = ((ServerWorld)worldIn).getServer().getWorld(registrykey);
+            if (serverworld == null) {
+                return;
+            }
+
+            entityIn.changeDimension(serverworld);
+        }
+
+
+        super.onEntityWalk(worldIn, pos, entityIn);
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -65,7 +71,7 @@ public class TeleporterBlock extends Block {
     public void addInformation(ItemStack stack, @Nullable IBlockReader worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
 
         if (Screen.hasShiftDown()) {
-            tooltip.add(new StringTextComponent("\u00A76RIGHTCLICK \u00A7fto Teleport to Dimension."));
+            tooltip.add(new StringTextComponent("\u00A7fWalk onto the block to teleport"));
 
         } else {
             tooltip.add(new StringTextComponent("Hold \u00A76SHIFT \u00A7ffor more Information!"));
@@ -74,4 +80,5 @@ public class TeleporterBlock extends Block {
 
         super.addInformation(stack, worldIn, tooltip, flagIn);
     }
+
 }

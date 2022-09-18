@@ -1,6 +1,5 @@
 package com.alpherininus.basmod.common.items.animated;
 
-import com.alpherininus.basmod.core.init.ParticleInit;
 import com.alpherininus.basmod.core.util.BasmodConfig;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
@@ -20,10 +19,11 @@ import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 import net.minecraft.stats.Stats;
-import net.minecraft.util.*;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
@@ -186,13 +186,6 @@ public class MagicalStaffItem extends ShootableItem implements IAnimatable {
         }
     }
 
-    public ActionResultType onItemUse(ItemUseContext context, BlockPos blockPos) {
-
-        spawnFoundParticles(context, blockPos);
-
-        return super.onItemUse(context);
-    }
-
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     @Override
@@ -278,14 +271,5 @@ public class MagicalStaffItem extends ShootableItem implements IAnimatable {
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    private void spawnFoundParticles(ItemUseContext pContext, BlockPos positionClicked) {
-        for(int i = 0; i < 360; i++) {
-            if(i % 20 == 0) {
-                pContext.getWorld().addParticle(ParticleInit.MANA_PARTICLE.get(),
-                        positionClicked.getX() + 0.5d, positionClicked.getY() + 1, positionClicked.getZ() + 0.5d,
-                        Math.cos(i) * 0.15d, 0.15d, Math.sin(i) * 0.15d);
-            }
-        }
-    }
 }
 

@@ -2,7 +2,10 @@ package com.alpherininus.basmod.core.init;
 
 import com.alpherininus.basmod.Basmod;
 import com.alpherininus.basmod.common.blocks.*;
+import com.alpherininus.basmod.common.blocks.portals.DarkPortalBlock;
 import com.alpherininus.basmod.common.blocks.doorblock.*;
+import com.alpherininus.basmod.common.blocks.portals.EndPortalBlock;
+import com.alpherininus.basmod.common.blocks.portals.NetherPortalBlock;
 import com.alpherininus.basmod.common.blocks.trees.MagicalOakTree;
 import com.alpherininus.basmod.core.itemgroup.ModItemGroupBlocks;
 import net.minecraft.block.*;
@@ -136,6 +139,20 @@ public class BlockInit {
     public static final RegistryObject<Block> LIGHT_BLOCK = registryBlock("light_block",
             () -> new BasmodLightBlock(AbstractBlock.Properties.create(Material.REDSTONE_LIGHT, MaterialColor.YELLOW)
                     .hardnessAndResistance(0f, 3f).sound(SoundType.GLASS)));
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    public static final RegistryObject<Block> DARK_PORTAL_BLOCK = registryBlock("dark_portal_block",
+            () -> new DarkPortalBlock(AbstractBlock.Properties.create(Material.PORTAL, MaterialColor.OBSIDIAN)
+                    .hardnessAndResistance(7f, 3f).sound(SoundType.NETHERRACK).setLightLevel(BlockState -> 3)));
+
+    public static final RegistryObject<Block> END_PORTAL_BLOCK = registryBlock("end_portal_block",
+            () -> new EndPortalBlock(AbstractBlock.Properties.create(Material.PORTAL, MaterialColor.OBSIDIAN)
+                    .hardnessAndResistance(7f, 3f).sound(SoundType.NETHERRACK).setLightLevel(BlockState -> 3)));
+
+    public static final RegistryObject<Block> NETHER_PORTAL_BLOCK = registryBlock("nether_portal_block",
+            () -> new NetherPortalBlock(AbstractBlock.Properties.create(Material.PORTAL, MaterialColor.OBSIDIAN)
+                    .hardnessAndResistance(7f, 3f).sound(SoundType.NETHERRACK).setLightLevel(BlockState -> 3)));
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // TODO BLOCKS
