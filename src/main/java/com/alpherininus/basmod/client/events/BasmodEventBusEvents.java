@@ -6,6 +6,7 @@ import com.alpherininus.basmod.client.events.loots.BasmodStructureAdditionModifi
 import com.alpherininus.basmod.common.entitys.CopperGolemEntity;
 import com.alpherininus.basmod.common.entitys.SeiorShellArmorEntity;
 import com.alpherininus.basmod.common.entitys.animated.BasBossEntity;
+import com.alpherininus.basmod.common.entitys.animated.BasWanderingTraderEntity;
 import com.alpherininus.basmod.common.entitys.animated.BossOfDeadEntity;
 import com.alpherininus.basmod.common.items.theme.SeioerShellSpawnEggItem;
 import com.alpherininus.basmod.common.items.models.BasmodSpawnEggItem;
@@ -29,6 +30,8 @@ public class BasmodEventBusEvents {
 
         event.put(EntityTypesInit.BASMOD_BOSS_ENTITY.get(), BasBossEntity.setCustomBasbossAttributes());
         event.put(EntityTypesInit.BOSS_OF_DEAD_ENTITY.get(), BossOfDeadEntity.setCustomBossOfDeadAttributes());
+
+        event.put(EntityTypesInit.BASMOD_WANDERINGTRADER.get(), BasWanderingTraderEntity.setBasTraderAttributes());
 
     }
 

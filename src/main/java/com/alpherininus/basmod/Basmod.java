@@ -3,6 +3,7 @@ package com.alpherininus.basmod;
 import com.alpherininus.basmod.client.handlers.BasmodAnivilHandler;
 import com.alpherininus.basmod.common.containers.screen.BaSInfoScreen;
 import com.alpherininus.basmod.common.entitys.animated.renerer.BasBossRenderer;
+import com.alpherininus.basmod.common.entitys.animated.renerer.BasWanderingTraderRenderer;
 import com.alpherininus.basmod.common.entitys.animated.renerer.BossOfDeadRenderer;
 import com.alpherininus.basmod.common.entitys.renderer.CopperGolemRenderer;
 import com.alpherininus.basmod.common.entitys.renderer.MagicalSpellArrowRenderer;
@@ -189,6 +190,8 @@ public class Basmod {
 
         RenderingRegistry.registerEntityRenderingHandler(EntityTypesInit.BASMOD_BOSS_ENTITY.get(), BasBossRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityTypesInit.BOSS_OF_DEAD_ENTITY.get(), BossOfDeadRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityTypesInit.BASMOD_WANDERINGTRADER.get(), BasWanderingTraderRenderer::new);
+
 
         GeoArmorRenderer.registerArmorRenderer(JetPackArmorItem.class, JetPackArmorRenderer::new);
 

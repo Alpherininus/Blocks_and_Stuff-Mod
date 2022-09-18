@@ -6,6 +6,7 @@ import com.alpherininus.basmod.common.entitys.CopperGolemEntity;
 import com.alpherininus.basmod.common.entitys.MagicalSpellArrowEntity;
 import com.alpherininus.basmod.common.entitys.SeiorShellArmorEntity;
 import com.alpherininus.basmod.common.entitys.animated.BasBossEntity;
+import com.alpherininus.basmod.common.entitys.animated.BasWanderingTraderEntity;
 import com.alpherininus.basmod.common.entitys.animated.BossOfDeadEntity;
 import net.minecraft.entity.*;
 import net.minecraft.entity.player.PlayerEntity;
@@ -53,6 +54,13 @@ public class EntityTypesInit {
                             .create(BossOfDeadEntity::new, EntityClassification.MONSTER)
                             .size(1.2F, 2.1F)
                             .build("boss_of_dead"));
+
+    public static final RegistryObject<EntityType<BasWanderingTraderEntity>> BASMOD_WANDERINGTRADER =
+            ENTITY_TYPES.register("boss_wandering_trader",
+                    () -> EntityType.Builder
+                            .create(BasWanderingTraderEntity::new, EntityClassification.CREATURE)
+                            .size(1.0F, 2.0F)
+                            .build("boss_wandering_trader"));
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
