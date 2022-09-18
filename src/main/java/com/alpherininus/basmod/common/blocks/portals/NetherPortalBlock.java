@@ -35,13 +35,15 @@ public class NetherPortalBlock extends Block {
 
     @Override
     public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-        RegistryKey<World> registrykey = worldIn.getDimensionKey() == World.THE_NETHER ? World.OVERWORLD : World.THE_NETHER;
-        ServerWorld serverworld = ((ServerWorld)worldIn).getServer().getWorld(registrykey);
-        if (serverworld == null) {
-            return null;
-        }
+        if (player.isSneaking()) {
+            RegistryKey<World> registrykey = worldIn.getDimensionKey() == World.THE_NETHER ? World.OVERWORLD : World.THE_NETHER;
+            ServerWorld serverworld = ((ServerWorld) worldIn).getServer().getWorld(registrykey);
+            if (serverworld == null) {
+                return null;
+            }
 
-        player.changeDimension(serverworld);
+            player.changeDimension(serverworld);
+        }
 
         player.playSound(SoundEvents.BLOCK_PORTAL_TRAVEL, SoundCategory.BLOCKS, 50, 1);
 
@@ -71,7 +73,7 @@ public class NetherPortalBlock extends Block {
     public void addInformation(ItemStack stack, @Nullable IBlockReader worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
 
         if (Screen.hasShiftDown()) {
-            tooltip.add(new StringTextComponent("\u00A7fWalk onto the block to teleport"));
+            tooltip.add(new StringTextComponent("\u00A7fSneak and click block to teleport"));
 
         } else {
             tooltip.add(new StringTextComponent("Hold \u00A76SHIFT \u00A7ffor more Information!"));
