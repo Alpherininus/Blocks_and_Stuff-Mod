@@ -5,11 +5,13 @@ import net.minecraft.block.BlockState;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particles.BlockParticleData;
 import net.minecraft.particles.ParticleTypes;
-import net.minecraft.util.RegistryKey;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.IBooleanFunction;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.util.text.ITextComponent;
@@ -19,6 +21,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.client.event.sound.SoundEvent;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -31,21 +34,21 @@ public class NetherPortalBlock extends Block {
     }
 
     @Override
-    public void onEntityWalk(World worldIn, BlockPos pos, Entity entityIn) {
-        BlockState state = worldIn.getBlockState(pos);
+    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
 
-        if (worldIn instanceof ServerWorld && !entityIn.isPassenger() && !entityIn.isBeingRidden() && entityIn.canChangeDimension() && VoxelShapes.compare(VoxelShapes.create(entityIn.getBoundingBox().offset((double)(-pos.getX()), (double)(-pos.getY()), (double)(-pos.getZ()))), state.getShape(worldIn, pos), IBooleanFunction.AND)) {
+        if (worldIn instanceof ServerWorld && !player.isPassenger() && !player.isBeingRidden() && player.canChangeDimension() && VoxelShapes.compare(VoxelShapes.create(player.getBoundingBox().offset((double)(-pos.getX()), (double)(-pos.getY()), (double)(-pos.getZ()))), state.getShape(worldIn, pos), IBooleanFunction.AND)) {
             RegistryKey<World> registrykey = worldIn.getDimensionKey() == World.THE_NETHER ? World.OVERWORLD : World.THE_NETHER;
             ServerWorld serverworld = ((ServerWorld)worldIn).getServer().getWorld(registrykey);
             if (serverworld == null) {
-                return;
+                return null;
             }
 
-            entityIn.changeDimension(serverworld);
+            player.changeDimension(serverworld);
         }
 
+        player.playSound(SoundEvents.BLOCK_PORTAL_TRAVEL, SoundCategory.BLOCKS, 50, 1);
 
-        super.onEntityWalk(worldIn, pos, entityIn);
+        return super.onBlockActivated(state, worldIn, pos, player, handIn, hit);
     }
 
     @OnlyIn(Dist.CLIENT)
