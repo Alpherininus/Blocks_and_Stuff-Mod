@@ -1,6 +1,7 @@
 package com.alpherininus.basmod.client.events;
 
 import com.alpherininus.basmod.Basmod;
+import com.alpherininus.basmod.common.entitys.animated.BasWanderingTraderEntity;
 import com.alpherininus.basmod.common.world.gen.EntityGeneration;
 import com.alpherininus.basmod.common.world.gen.FlowerGeneration;
 import com.alpherininus.basmod.common.world.gen.StructureGeneration;
@@ -23,7 +24,9 @@ import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.settings.DimensionStructuresSettings;
 import net.minecraft.world.gen.settings.StructureSeparationSettings;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.common.BasicTrade;
 import net.minecraftforge.event.village.VillagerTradesEvent;
+import net.minecraftforge.event.village.WandererTradesEvent;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -35,6 +38,7 @@ import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 
 @Mod.EventBusSubscriber(modid = Basmod.MOD_ID)
@@ -93,6 +97,13 @@ public class BasmodWorldEvents {
             trades.get(villagerGoldLevel).add(((trader, rand) -> new MerchantOffer(
                     new ItemStack(Items.EMERALD, 32), stackRI, 3, 12, 0.09F)));
         }
+
+    }
+
+    @SubscribeEvent
+    public static void addCustomGunderTreades(WandererTradesEvent event) {
+        event.getGenericTrades().add(new BasicTrade(5, new ItemStack(ItemInit.RUBY_SWORD.get(), 5), 2, 10));
+        event.getGenericTrades().add(new BasicTrade(16, new ItemStack(ItemInit.SEIEORSHELL_SPAWN_EGG.get(), 5), 1, 20));
 
     }
 
