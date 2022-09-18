@@ -1,0 +1,5 @@
+{
+	"variants": {
+		"": { "model": "basmod:block/nether_portal_block" }
+	}
+}

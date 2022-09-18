@@ -9,14 +9,15 @@ import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.merchant.villager.VillagerTrades;
 import net.minecraft.entity.merchant.villager.WanderingTraderEntity;
-import net.minecraft.entity.passive.SheepEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.*;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.item.MerchantOffer;
+import net.minecraft.item.MerchantOffers;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.NBTUtil;
 import net.minecraft.stats.Stats;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -38,6 +39,16 @@ public class BasWanderingTraderEntity extends WanderingTraderEntity implements I
 
     private final AnimationFactory factory = new AnimationFactory(this);
 
+    private <E extends IAnimatable>PlayState predicate(AnimationEvent<E> event) {
+
+        if (event.isMoving()) {
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("walk", true));
+        } else {
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("idle", true));
+        }
+        return PlayState.CONTINUE;
+    }
+
     public BasWanderingTraderEntity(EntityType<? extends WanderingTraderEntity> type, World worldIn) {
         super(type, worldIn);
     }
@@ -49,8 +60,8 @@ public class BasWanderingTraderEntity extends WanderingTraderEntity implements I
         this.goalSelector.addGoal(1, new PanicGoal(this, 1.5D));
         this.addSwimGoals();
         this.addLookGoals();
-        this.goalSelector.addGoal(3, new TemptGoal(this, 1.1D, Ingredient
-                .fromItems(Items.EMERALD, ItemInit.RUBY_ITEM.get(), Items.IRON_INGOT, ItemInit.RELICS_ITEM.get(), Items.DIAMOND, Items.GOLD_INGOT), false));
+        this.addTemtGoals();
+        this.goalSelector.addGoal(3, new TemptGoal(this, 1.1D, Ingredient.fromItems(Items.EMERALD, ItemInit.RUBY_ITEM.get(), Items.IRON_INGOT, ItemInit.RELICS_ITEM.get(), Items.DIAMOND, Items.GOLD_INGOT), false));
     }
 
     protected void addSwimGoals() {
@@ -62,7 +73,15 @@ public class BasWanderingTraderEntity extends WanderingTraderEntity implements I
         this.goalSelector.addGoal(1, new LookAtGoal(this, PlayerEntity.class, 8.0F));
         this.goalSelector.addGoal(2, new LookRandomlyGoal(this));
         this.goalSelector.addGoal(3, new LookAtWithoutMovingGoal(this, PlayerEntity.class, 16.0F, 1.0F));
+    }
 
+    protected void addTemtGoals() {
+        this.goalSelector.addGoal(3, new TemptGoal(this, 1.1D, Ingredient.fromItems(Items.EMERALD), false));
+        this.goalSelector.addGoal(3, new TemptGoal(this, 1.1D, Ingredient.fromItems(ItemInit.RUBY_ITEM.get()), false));
+        this.goalSelector.addGoal(3, new TemptGoal(this, 1.1D, Ingredient.fromItems(Items.IRON_INGOT), false));
+        this.goalSelector.addGoal(3, new TemptGoal(this, 1.1D, Ingredient.fromItems(ItemInit.RELICS_ITEM.get()), false));
+        this.goalSelector.addGoal(3, new TemptGoal(this, 1.1D, Ingredient.fromItems(Items.DIAMOND), false));
+        this.goalSelector.addGoal(3, new TemptGoal(this, 1.1D, Ingredient.fromItems(Items.GOLD_INGOT), false));
     }
 
     public boolean hasXPBar() {
@@ -72,8 +91,6 @@ public class BasWanderingTraderEntity extends WanderingTraderEntity implements I
     public boolean canDespawn(double distanceToClosestPlayer) {
         return false;
     }
-
-
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -89,17 +106,27 @@ public class BasWanderingTraderEntity extends WanderingTraderEntity implements I
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    private <E extends IAnimatable>PlayState predicate(AnimationEvent<E> event) {
+    public ActionResultType getEntityInteractionResult(PlayerEntity playerIn, Hand hand) {
+        ItemStack itemstack = playerIn.getHeldItem(hand);
+        if (itemstack.getItem() != ItemInit.BASMOD_WANDERING_TRADER_SPAWN_EGG.get() && this.isAlive() && !this.hasCustomer() && !this.isChild()) {
+            if (hand == Hand.MAIN_HAND) {
+                playerIn.addStat(Stats.TALKED_TO_VILLAGER);
+            }
 
-        if (event.isMoving()) {
-            event.getController().setAnimation(new AnimationBuilder().addAnimation("walk", true));
-            return PlayState.CONTINUE;
+            if (!this.getOffers().isEmpty()) {
+                if (!this.world.isRemote) {
+                    this.setCustomer(playerIn);
+                    this.openMerchantContainer(playerIn, this.getDisplayName(), 1);
+                }
+
+            }
+            return ActionResultType.func_233537_a_(this.world.isRemote);
+        } else {
+            return super.getEntityInteractionResult(playerIn, hand);
         }
-
-        event.getController().setAnimation(new AnimationBuilder().addAnimation("idle", true));
-        return PlayState.CONTINUE;
-
     }
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     @Override
     public void registerControllers(AnimationData data) {
@@ -114,28 +141,6 @@ public class BasWanderingTraderEntity extends WanderingTraderEntity implements I
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-    public ActionResultType getEntityInteractionResult(PlayerEntity playerIn, Hand hand) {
-        ItemStack itemstack = playerIn.getHeldItem(hand);
-        if (itemstack.getItem() != Items.VILLAGER_SPAWN_EGG && this.isAlive() && !this.hasCustomer() && !this.isChild()) {
-            if (hand == Hand.MAIN_HAND) {
-                playerIn.addStat(Stats.TALKED_TO_VILLAGER);
-            }
-
-            if (this.getOffers().isEmpty()) {
-                return ActionResultType.func_233537_a_(this.world.isRemote);
-            } else {
-                if (!this.world.isRemote) {
-                    this.setCustomer(playerIn);
-                    this.openMerchantContainer(playerIn, this.getDisplayName(), 1);
-                }
-
-                return ActionResultType.func_233537_a_(this.world.isRemote);
-            }
-        } else {
-            return super.getEntityInteractionResult(playerIn, hand);
-        }
-    }
 
     protected void populateTradeData() {
         VillagerTrades.ITrade[] avillagertrades$itrade = VillagerTrades.field_221240_b.get(1);
@@ -180,7 +185,6 @@ public class BasWanderingTraderEntity extends WanderingTraderEntity implements I
             int i = 3 + this.rand.nextInt(4);
             this.world.addEntity(new ExperienceOrbEntity(this.world, this.getPosX(), this.getPosY() + 0.5D, this.getPosZ(), i));
         }
-
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////

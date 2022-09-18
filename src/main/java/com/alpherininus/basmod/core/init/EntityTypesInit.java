@@ -56,11 +56,11 @@ public class EntityTypesInit {
                             .build("boss_of_dead"));
 
     public static final RegistryObject<EntityType<BasWanderingTraderEntity>> BASMOD_WANDERINGTRADER =
-            ENTITY_TYPES.register("boss_wandering_trader",
+            ENTITY_TYPES.register("bas_wandering_trader",
                     () -> EntityType.Builder
                             .create(BasWanderingTraderEntity::new, EntityClassification.CREATURE)
                             .size(1.0F, 2.0F)
-                            .build("boss_wandering_trader"));
+                            .build("bas_wandering_trader"));
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

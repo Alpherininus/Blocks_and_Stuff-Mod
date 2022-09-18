@@ -26,8 +26,14 @@
 	"item.basmod.ender_dragon_spawn_egg": "Ender Dragon Spawn Egg",
 	"item.basmod.copper_golem_spawn_egg": "Copper Golem Spawn Egg",
 
+	"item.basmod.magical_coal": "Magical Coal",
+	"item.basmod.jetpack": "Jetpack",
+
 	"container.basmod.trash_bin": "Trash",
 	"category.basmod.example_recipe": "Example Recipe Category",
+
+	"entity.basmod.bas_wandering_trader": "Gunter",
+	"item.basmod.bas_wandering_trader_spawn_egg": "Blocks and Stuff | Wandering Trader",
 
 	"item.basmod.seieorshell_spawn_egg": "Seiðr Shell",
 	"entity.basmod.seiorshell": "Seiðr Shell",
@@ -82,6 +88,9 @@
 	"item.basmod.dark_steel": "Dark Steel",
 	"item.basmod.umbral_steel": "Umbral Steel",
 
+	"block.basmod.trash": "Trashbin",
+	"block.basmod.light_block": "Light Block",
+
 	"block.basmod.key_door": "Key Door",
 	"block.basmod.blue_key_door": "Key Door",
 	"block.basmod.red_key_door": "Key Door",
@@ -90,6 +99,10 @@
 	"item.basmod.red_door_key": "Red Door Key",
 	"item.basmod.green_door_key": "Green Door Key",
 	"item.basmod.door_key": "Door Key",
+
+	"block.basmod.dark_portal_block": "Dark Dimension Portal Block",
+	"block.basmod.end_portal_block": "End Dimension Portal Block",
+	"block.basmod.nether_portal_block": "Nether Dimension Portal Block",
 
 	"block.basmod.light_blocks": "Light Sword",
 	"item.basmod.light_sword": "Light Sword Item",
