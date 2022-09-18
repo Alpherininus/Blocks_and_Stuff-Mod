@@ -72,6 +72,7 @@ public class Basmod {
         StructureInit.STRUCTURES.register(eventbus);
         PotionInit.POTIONS.register(eventbus);
         EffectInit.POTIONS.register(eventbus);
+        ParticleInit.PARTICLE_TYPES.register(eventbus);
 
         GeckoLib.initialize();
 
