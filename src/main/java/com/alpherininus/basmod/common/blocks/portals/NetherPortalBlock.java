@@ -35,16 +35,13 @@ public class NetherPortalBlock extends Block {
 
     @Override
     public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-
-        if (worldIn instanceof ServerWorld && !player.isPassenger() && !player.isBeingRidden() && player.canChangeDimension() && VoxelShapes.compare(VoxelShapes.create(player.getBoundingBox().offset((double)(-pos.getX()), (double)(-pos.getY()), (double)(-pos.getZ()))), state.getShape(worldIn, pos), IBooleanFunction.AND)) {
-            RegistryKey<World> registrykey = worldIn.getDimensionKey() == World.THE_NETHER ? World.OVERWORLD : World.THE_NETHER;
-            ServerWorld serverworld = ((ServerWorld)worldIn).getServer().getWorld(registrykey);
-            if (serverworld == null) {
-                return null;
-            }
-
-            player.changeDimension(serverworld);
+        RegistryKey<World> registrykey = worldIn.getDimensionKey() == World.THE_NETHER ? World.OVERWORLD : World.THE_NETHER;
+        ServerWorld serverworld = ((ServerWorld)worldIn).getServer().getWorld(registrykey);
+        if (serverworld == null) {
+            return null;
         }
+
+        player.changeDimension(serverworld);
 
         player.playSound(SoundEvents.BLOCK_PORTAL_TRAVEL, SoundCategory.BLOCKS, 50, 1);
 
