@@ -26,11 +26,11 @@
 			}
 		]
 	},
-	"oldhurt": {
-		"subtitle": "sounds.oldminecraft.random.hurt",
+	"basmod_mystery": {
+		"subtitle": "sounds.basmod.ambient.mystery",
 		"sounds": [
 			{
-				"name": "basmod:entity/player/oldhurt",
+				"name": "basmod:ambient/mystery",
 				"stream": true
 			}
 		]

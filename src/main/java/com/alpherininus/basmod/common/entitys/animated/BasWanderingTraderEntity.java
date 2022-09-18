@@ -32,11 +32,6 @@ public class BasWanderingTraderEntity extends WanderingTraderEntity implements I
     private BlockPos wanderTarget;
     private int despawnDelay;
 
-    private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
-        event.getController().setAnimation(new AnimationBuilder().addAnimation("idle", true));
-        return PlayState.CONTINUE;
-    }
-
     private final AnimationFactory factory = new AnimationFactory(this);
 
     public BasWanderingTraderEntity(EntityType<? extends WanderingTraderEntity> type, World worldIn) {
@@ -88,6 +83,18 @@ public class BasWanderingTraderEntity extends WanderingTraderEntity implements I
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    private <E extends IAnimatable>PlayState predicate(AnimationEvent<E> event) {
+
+        if (event.isMoving()) {
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("walk", true));
+            return PlayState.CONTINUE;
+        }
+
+        event.getController().setAnimation(new AnimationBuilder().addAnimation("idle", true));
+        return PlayState.CONTINUE;
+
+    }
 
     @Override
     public void registerControllers(AnimationData data) {

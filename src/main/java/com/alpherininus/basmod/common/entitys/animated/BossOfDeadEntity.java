@@ -14,6 +14,9 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.ShootableItem;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.network.play.server.SChangeGameStatePacket;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
@@ -53,11 +56,7 @@ public class BossOfDeadEntity extends MonsterEntity implements IAnimatable, ISyn
 
     private final Minecraft mc = Minecraft.getInstance();
 
-
-    private <E extends IAnimatable>PlayState predicate(AnimationEvent<E> event) {
-        event.getController().setAnimation(new AnimationBuilder().addAnimation("idle", true));
-        return PlayState.CONTINUE;
-    }
+    private static final DataParameter<Boolean> ATTACKING = EntityDataManager.createKey(BossOfDeadEntity.class, DataSerializers.BOOLEAN);
 
     private AnimationFactory factory = new AnimationFactory(this);
 
@@ -67,28 +66,30 @@ public class BossOfDeadEntity extends MonsterEntity implements IAnimatable, ISyn
     }
 
     protected void registerGoals() {
+
+        this.goalSelector.addGoal(1, new PanicGoal(this, 0.5D));
+        this.addLookGoals();
+        this.addAttacksGoals();
         this.addSwimGoals();
-        this.goalSelector.addGoal(3, new LookAtGoal(this, PlayerEntity.class, 16.0F));
-
-        this.goalSelector.addGoal(2, new LookAtGoal(this, PlayerEntity.class, 32.0F));
-
-        this.goalSelector.addGoal(1, new LookRandomlyGoal(this));
-        this.addTargetGoals();
     }
 
     protected void addSwimGoals() {
         this.goalSelector.addGoal(0, new SwimGoal(this));
-        this.goalSelector.addGoal(1, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
+        this.goalSelector.addGoal(4, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
     }
 
-    protected void addTargetGoals() {
-        this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setCallsForHelp(BasBossEntity.class));
-        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
-        this.targetSelector.addGoal(2, new MoveTowardsTargetGoal(this, 1.0D, 32.0F));
-        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AnimalEntity.class, true));
-        this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, CreatureEntity.class, true));
+    protected void addLookGoals() {
+        this.goalSelector.addGoal(1, new LookAtGoal(this, PlayerEntity.class, 8.0F));
+        this.goalSelector.addGoal(3, new LookAtWithoutMovingGoal(this, PlayerEntity.class, 16.0F, 1.0F));
+        this.goalSelector.addGoal(5, new LookRandomlyGoal(this));
 
     }
+
+    public void addAttacksGoals() {
+        this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.2D, false));
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     public static AttributeModifierMap setCustomBossOfDeadAttributes() {
         return MobEntity.func_233666_p_()
@@ -117,27 +118,42 @@ public class BossOfDeadEntity extends MonsterEntity implements IAnimatable, ISyn
         return 5 + this.world.rand.nextInt(11);
     }
 
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    private <E extends IAnimatable>PlayState predicateAttack(AnimationEvent<E> event) {
+    private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
 
-        if (this.getAttackTarget() != null) {
-            event.getController().setAnimation(new AnimationBuilder().addAnimation("attack", false));
+        //if (event.isMoving()) {
+        //    event.getController().setAnimation(new AnimationBuilder().addAnimation("walk", true));
+        //    return PlayState.CONTINUE;
+        //}
+
+        event.getController().setAnimation(new AnimationBuilder().addAnimation("idle", true));
+        return PlayState.CONTINUE;
+
+    }
+
+    private PlayState attackPredicate(AnimationEvent event) {
+        if (this.isAttacking()) {
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("attack", true));
             return PlayState.CONTINUE;
 
-        }
+            //if (this.isSwimming() && event.getController().getAnimationState().equals(AnimationState.Stopped)) {
+            //    event.getController().markNeedsReload();
+            //    event.getController().setAnimation(new AnimationBuilder().addAnimation("attack", false));
+            //    this.isSwimming() = false;
+            //}
 
+        }
         return PlayState.STOP;
     }
 
     @Override
-    public void registerControllers(AnimationData animationData) {
-        animationData.addAnimationController(
-                new AnimationController(this, "BossController", 0, this::predicate));
+    public void registerControllers(AnimationData data) {
+        data.addAnimationController(
+                new AnimationController(this, "IDLEAnimateController", 0, this::predicate));
 
-        animationData.addAnimationController(
-                new AnimationController(this, "attackController", 0, this::predicateAttack));
-
+        data.addAnimationController(
+                new AnimationController(this, "AttackAnimateController", 0, this::attackPredicate));
 
     }
 
@@ -146,13 +162,21 @@ public class BossOfDeadEntity extends MonsterEntity implements IAnimatable, ISyn
         return this.factory;
     }
 
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public void setAttacking(boolean attackTarget) {
+        this.dataManager.set(ATTACKING, attackTarget);
+    }
 
+    public boolean isAttacking() {
+        return this.dataManager.get(ATTACKING);
+    }
 
     @Override
-    public void setAttackingPlayer(@Nullable PlayerEntity p_230246_1_) {
-        super.setAttackingPlayer(p_230246_1_);
+    protected void registerData() {
+        super.registerData();
+        this.dataManager.register(ATTACKING, false);
     }
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     @Override
     protected void playStepSound(BlockPos pos, BlockState blockIn) {

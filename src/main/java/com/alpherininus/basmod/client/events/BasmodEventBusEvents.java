@@ -7,7 +7,7 @@ import com.alpherininus.basmod.common.entitys.CopperGolemEntity;
 import com.alpherininus.basmod.common.entitys.SeiorShellArmorEntity;
 import com.alpherininus.basmod.common.entitys.animated.BasBossEntity;
 import com.alpherininus.basmod.common.entitys.animated.BossOfDeadEntity;
-import com.alpherininus.basmod.common.items.SeioerShellSpawnEggItem;
+import com.alpherininus.basmod.common.items.theme.SeioerShellSpawnEggItem;
 import com.alpherininus.basmod.common.items.models.BasmodSpawnEggItem;
 import com.alpherininus.basmod.core.init.EntityTypesInit;
 import net.minecraft.entity.EntityType;

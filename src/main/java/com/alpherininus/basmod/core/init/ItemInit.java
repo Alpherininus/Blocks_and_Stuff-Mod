@@ -15,13 +15,13 @@ import com.alpherininus.basmod.common.items.armor.ExperiArmorItem;
 import com.alpherininus.basmod.common.items.armor.ExperiHorseArmorItem;
 import com.alpherininus.basmod.common.items.armor.JetPackArmorItem;
 import com.alpherininus.basmod.common.items.models.BasmodSpawnEggItem;
+import com.alpherininus.basmod.common.items.theme.*;
 import com.alpherininus.basmod.common.materials.BasmodArmorMaterial;
 import com.alpherininus.basmod.common.materials.BasmodToolMaterial;
 import com.alpherininus.basmod.core.itemgroup.ModItemGroupItems;
 import com.alpherininus.basmod.core.itemgroup.ModItemGroupWapons;
 import com.alpherininus.basmod.core.util.BasmodConfig;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -155,7 +155,7 @@ public class ItemInit {
             () -> new MusicDiscItem(50, SoundInit.RECORDS_BASMOD_THEME, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC)));
 
     public static final RegistryObject<Item> GEARS_MUSICDISC = ITEMS.register("gears_music_disc",
-            () -> new MusicDiscItem(50, SoundInit.RECORDS_GEARS, new Item.Properties().maxStackSize(16).group(ItemGroup.MISC)));
+            () -> new MusicDiscItem(50, SoundInit.RECORDS_BASMOD_GEARS, new Item.Properties().maxStackSize(16).group(ItemGroup.MISC)));
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // TODO Animated Items

@@ -13,18 +13,25 @@ public class SoundInit {
             DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, Basmod.MOD_ID);
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // TODO Basmod Records
 
     public static final RegistryObject<SoundEvent> RECORDS_BASMOD_THEME =
             registerSoundEvent("theme_music_disc");
 
-    public static final RegistryObject<SoundEvent> RECORDS_GEARS =
+    public static final RegistryObject<SoundEvent> RECORDS_BASMOD_GEARS =
             registerSoundEvent("gears_music_disc");
 
-    public static final RegistryObject<SoundEvent> MUSIC_BASMOD_BOSS_BATTLEMUSIC =
-            registerSoundEvent("basmod_boss_battlemusic");
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // TODO Basmod Music
 
-    public static final RegistryObject<SoundEvent> RANDOM_OLD_HURT =
-            registerSoundEvent("oldhurt");
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // TODO Basmod Ambient
+
+    public static final RegistryObject<SoundEvent> AMBIENT_MYSTERY =
+            registerSoundEvent("mystery");
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // TODO Basmod Main Menu
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

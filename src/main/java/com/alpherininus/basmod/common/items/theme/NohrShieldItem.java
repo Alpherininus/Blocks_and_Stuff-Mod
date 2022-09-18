@@ -1,4 +1,4 @@
-package com.alpherininus.basmod.common.items;
+package com.alpherininus.basmod.common.items.theme;
 
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.PlayerEntity;

@@ -1,4 +1,4 @@
-package com.alpherininus.basmod.common.items;
+package com.alpherininus.basmod.common.items.theme;
 
 import com.alpherininus.basmod.core.init.ItemInit;
 import com.google.common.collect.ImmutableMultimap;
