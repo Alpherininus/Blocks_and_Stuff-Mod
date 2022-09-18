@@ -1,5 +1,6 @@
 package com.alpherininus.basmod.common.world.gen;
 
+import com.alpherininus.basmod.common.entitys.animated.BasWanderingTraderEntity;
 import com.alpherininus.basmod.core.init.BiomeInit;
 import com.alpherininus.basmod.core.init.EntityTypesInit;
 import net.minecraft.entity.EntityType;
@@ -19,8 +20,7 @@ public class EntityGeneration {
         //addEntityToSpecificBiomes(event, BasmodEntityTypes.ASUKA_NPC.get(), 2, 0, 1,
         //         Biomes.PLAINS, Biomes.FOREST);
 
-        addEntityToSpecificBiomes(event, EntityTypesInit.BASMOD_WANDERINGTRADER.get(), 6, 0, 4, BiomeInit.BAS_MAGICAL_FOREST_BIOME.get(), Biomes.PLAINS, Biomes.FOREST);
-
+        addEntityToSpecificBiomes(event, EntityTypesInit.BASMOD_WANDERINGTRADER.get(), 6, 1, 3, Biomes.PLAINS, Biomes.FOREST);
         //add method, addEntityToAllBiomesExceptThese/ addEntityToSpecificBiomes/ addEntityToAllBiomes
     }
 
@@ -38,7 +38,7 @@ public class EntityGeneration {
 
     @SafeVarargs
     private static void addEntityToSpecificBiomes(BiomeLoadingEvent event, EntityType<?> type,
-                                                  int weight, int minCount, int maxCount, Biome biome, RegistryKey<Biome>... biomes) {
+                                                  int weight, int minCount, int maxCount, RegistryKey<Biome>... biomes) {
         // Goes through each entry in the biomes and sees if it matches the current biome we are loading
         boolean isBiomeSelected = Arrays.stream(biomes).map(RegistryKey::getLocation)
                 .map(Object::toString).anyMatch(s -> s.equals(event.getName().toString()));

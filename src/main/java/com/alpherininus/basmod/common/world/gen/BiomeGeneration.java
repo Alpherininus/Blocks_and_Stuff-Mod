@@ -14,6 +14,9 @@ import static net.minecraftforge.common.BiomeDictionary.Type.*;
 public class BiomeGeneration {
     public static void generateBiome() {
         addBiome(BiomeInit.BAS_MAGICAL_FOREST_BIOME.get(), BiomeManager.BiomeType.WARM, 10, HOT, DEAD, DRY);
+        addBiome(BiomeInit.BAS_DARK_FOREST_BIOME.get(), BiomeManager.BiomeType.COOL, 10, HOT, DEAD, DRY);
+        addBiome(BiomeInit.BAS_DARK_PLAINS_BIOME.get(), BiomeManager.BiomeType.ICY, 10, HOT, DEAD, DRY);
+
     }
 
     private static void addBiome(Biome biome, BiomeManager.BiomeType type, int weight, BiomeDictionary.Type... types) {

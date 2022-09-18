@@ -174,9 +174,9 @@ public class Basmod {
             RenderTypeLookup.setRenderLayer(BlockInit.MAGICAL_FLOWER.get(), RenderType.getCutout());
             RenderTypeLookup.setRenderLayer(BlockInit.MAGICAL_OAK_SAPLING.get(), RenderType.getCutout());
 
-            RenderTypeLookup.setRenderLayer(FluidInit.MANA_FLUID.get(), RenderType.getTranslucent());
-            RenderTypeLookup.setRenderLayer(FluidInit.MANA_BLOCK.get(), RenderType.getTranslucent());
-            RenderTypeLookup.setRenderLayer(FluidInit.MANA_FLOWING.get(), RenderType.getTranslucent());
+            RenderTypeLookup.setRenderLayer(FluidInit.MANA_FLUID.get(), RenderType.getWaterMask());
+            RenderTypeLookup.setRenderLayer(FluidInit.MANA_BLOCK.get(), RenderType.getWaterMask());
+            RenderTypeLookup.setRenderLayer(FluidInit.MANA_FLOWING.get(), RenderType.getWaterMask());
 
             ScreenManager.registerFactory(ContainerInit.LIGHTNING_CHANNELER_CONTAINER.get(), BaSInfoScreen::new);
 

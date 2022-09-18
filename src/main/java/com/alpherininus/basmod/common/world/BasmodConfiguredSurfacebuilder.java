@@ -18,6 +18,20 @@ public class BasmodConfiguredSurfacebuilder {
                     Blocks.COARSE_DIRT.getDefaultState()
             )));
 
+    public static ConfiguredSurfaceBuilder<?> DARK_FOREST = register("dark_forest",
+            SurfaceBuilder.DEFAULT.func_242929_a(new SurfaceBuilderConfig(
+                    Blocks.GRASS_BLOCK.getDefaultState(),
+                    Blocks.COARSE_DIRT.getDefaultState(),
+                    Blocks.COARSE_DIRT.getDefaultState()
+            )));
+
+    public static ConfiguredSurfaceBuilder<?> DARK_PLAINS = register("dark_plains",
+            SurfaceBuilder.DEFAULT.func_242929_a(new SurfaceBuilderConfig(
+                    Blocks.GRASS_BLOCK.getDefaultState(),
+                    Blocks.COARSE_DIRT.getDefaultState(),
+                    Blocks.COARSE_DIRT.getDefaultState()
+            )));
+
     private static <SC extends ISurfaceBuilderConfig>ConfiguredSurfaceBuilder<SC> register(String name, ConfiguredSurfaceBuilder<SC> csb) {
 
         return WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_SURFACE_BUILDER,
