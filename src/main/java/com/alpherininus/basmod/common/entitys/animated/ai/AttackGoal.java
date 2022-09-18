@@ -21,7 +21,7 @@ public class AttackGoal extends MeleeAttackGoal implements IAnimatable {
     private PlayState attackPredicate(AnimationEvent event) {
         if (this.isSwingOnCooldown() && event.getController().getAnimationState().equals(AnimationState.Stopped)) {
             event.getController().markNeedsReload();
-            event.getController().setAnimation(new AnimationBuilder().addAnimation("attack", false));
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("attack", true));
 
             return PlayState.CONTINUE;
 

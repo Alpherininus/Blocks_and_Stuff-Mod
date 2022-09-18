@@ -9,19 +9,15 @@ import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.monster.EndermanEntity;
-import net.minecraft.entity.monster.EndermiteEntity;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.monster.ZombieEntity;
 import net.minecraft.entity.passive.AnimalEntity;
-import net.minecraft.entity.passive.IronGolemEntity;
+import net.minecraft.entity.passive.WaterMobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.ShootableItem;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.network.play.server.SChangeGameStatePacket;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
@@ -36,6 +32,7 @@ import net.minecraft.world.Difficulty;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerBossInfo;
 import net.minecraft.world.server.ServerWorld;
+import software.bernie.geckolib3.core.AnimationState;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;
@@ -47,9 +44,10 @@ import software.bernie.geckolib3.network.ISyncable;
 
 import javax.annotation.Nullable;
 import java.util.List;
+import java.util.Random;
 import java.util.function.Predicate;
 
-public class BossOfDeadEntity extends MonsterEntity implements IAnimatable, ISyncable {
+public class BossOfDeadEntity extends MonsterEntity implements IAnimatable {
 
     private static final EntityPredicate PLAYER_INVADER_CONDITION = (new EntityPredicate()).setDistance(64.0D);
     private static final Predicate<LivingEntity> NOT_UNDEAD = (p_213797_0_) -> p_213797_0_.getCreatureAttribute() != CreatureAttribute.UNDEAD && p_213797_0_.attackable();
@@ -62,33 +60,36 @@ public class BossOfDeadEntity extends MonsterEntity implements IAnimatable, ISyn
 
     private final Minecraft mc = Minecraft.getInstance();
 
-    private static final Predicate<LivingEntity> field_213627_bA = (p_213626_0_) -> p_213626_0_ instanceof PlayerEntity;
+    private static final Predicate<LivingEntity> field_213627_bA = (p_213626_0_) -> p_213626_0_ instanceof MobEntity;
 
     private final AnimationFactory factory = new AnimationFactory(this);
 
     public BossOfDeadEntity(EntityType<? extends MonsterEntity> entityType, World worldIn) {
         super(entityType, worldIn);
-
     }
 
     protected void registerGoals() {
-
         this.goalSelector.addGoal(1, new AttackGoal(this, 1.2D, true));
         this.addLookGoals();
         this.addSwimGoals();
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, 10, true, false, field_213627_bA));
+        this.addMoreTargets();
 
     }
 
     protected void addSwimGoals() {
         this.goalSelector.addGoal(0, new SwimGoal(this));
-        this.goalSelector.addGoal(4, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
+        this.goalSelector.addGoal(4, new WaterAvoidingRandomWalkingGoal(this, 2.5D));
     }
 
     protected void addLookGoals() {
-        this.goalSelector.addGoal(1, new LookAtGoal(this, PlayerEntity.class, 8.0F));
-        this.goalSelector.addGoal(3, new LookAtWithoutMovingGoal(this, PlayerEntity.class, 16.0F, 1.0F));
+        this.goalSelector.addGoal(1, new LookAtGoal(this, PlayerEntity.class, 16.0F));
+        this.goalSelector.addGoal(2, new LookAtWithoutMovingGoal(this, PlayerEntity.class, 15.5F, 1.0F));
+    }
 
+    protected void addMoreTargets() {
+        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, CreatureEntity.class, 5, true, false, field_213627_bA));
+        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, AnimalEntity.class, 5, true, false, field_213627_bA));
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -99,7 +100,7 @@ public class BossOfDeadEntity extends MonsterEntity implements IAnimatable, ISyn
                 .createMutableAttribute(Attributes.ATTACK_DAMAGE, 5.0f)
                 .createMutableAttribute(Attributes.ATTACK_SPEED, 2.0f)
                 .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.25D)
-                .createMutableAttribute(Attributes.FOLLOW_RANGE, 64.0D)
+                .createMutableAttribute(Attributes.ZOMBIE_SPAWN_REINFORCEMENTS, 64.0D)
                 .createMutableAttribute(Attributes.ATTACK_KNOCKBACK, 1.0f).create();
 
     }
@@ -304,13 +305,6 @@ public class BossOfDeadEntity extends MonsterEntity implements IAnimatable, ISyn
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    @Override
-    public void onAnimationSync(int id, int state) {
-
-    }
-
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
     public void checkDespawn() {
         assert mc.player != null;
 
@@ -324,11 +318,9 @@ public class BossOfDeadEntity extends MonsterEntity implements IAnimatable, ISyn
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
     @Override
     public void livingTick() {
         super.livingTick();
     }
-
 
 }

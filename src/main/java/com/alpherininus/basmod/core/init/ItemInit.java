@@ -31,8 +31,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.Random;
 
-import static com.alpherininus.basmod.core.init.EntityTypesInit.BASMOD_BOSS_ENTITY;
-import static com.alpherininus.basmod.core.init.EntityTypesInit.BOSS_OF_DEAD_ENTITY;
+import static com.alpherininus.basmod.core.init.EntityTypesInit.*;
 
 public class ItemInit {
 
@@ -122,14 +121,12 @@ public class ItemInit {
             () -> new BasmodSpawnEggItem(BOSS_OF_DEAD_ENTITY, 13671252, 7969893,
                     new Item.Properties().group(ItemGroup.MISC)));
 
+    public static final RegistryObject<BasmodSpawnEggItem> BASMOD_WANDERING_TRADER_SPAWN_EGG = ITEMS.register("bas_wandering_trader_spawn_egg",
+            () -> new BasmodSpawnEggItem(BASMOD_WANDERINGTRADER, 13671252, 7969893,
+                    new Item.Properties().group(ItemGroup.MISC)));
+
     public static final RegistryObject<Item> EXPERIMENTAL_ITEM = ITEMS.register("experimental_item",
             () -> new ExperimentalItem(new Item.Properties().group(ModItemGroupItems.BAS_MOD_ITEMS)));
-
-    public static final RegistryObject<Item> RING_OFLOLITEM = ITEMS.register("ring_of_lol",
-            () -> new BaSRingItem(new Item.Properties().group(ModItemGroupItems.BAS_MOD_ITEMS)));
-
-    public static final RegistryObject<Item> TOTEM_OFF_DESPAWN = ITEMS.register("totem_of_despawn",
-            () -> new Item(new Item.Properties().group(ModItemGroupItems.BAS_MOD_ITEMS)));
 
     public static final RegistryObject<Item> DOOR_KEY_ITEM = ITEMS.register("door_key",
             () -> new Item(new Item.Properties().maxStackSize(1).group(ModItemGroupItems.BAS_MOD_ITEMS)));

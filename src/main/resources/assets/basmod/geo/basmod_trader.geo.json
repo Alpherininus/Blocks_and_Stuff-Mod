@@ -1,0 +1,85 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.unknown",
+				"texture_width": 128,
+				"texture_height": 128,
+				"visible_bounds_width": 3,
+				"visible_bounds_height": 3.5,
+				"visible_bounds_offset": [0, 1.25, 0]
+			},
+			"bones": [
+				{
+					"name": "head",
+					"pivot": [0, 24, 0],
+					"cubes": [
+						{"origin": [-4, 24, -4], "size": [8, 8, 8], "uv": [0, 13]}
+					]
+				},
+				{
+					"name": "hat",
+					"parent": "head",
+					"pivot": [0, 30, 0],
+					"cubes": [
+						{"origin": [-4.25, 30, -4.25], "size": [8.5, 4, 8.5], "uv": [24, 21]},
+						{"origin": [-6.25, 30, -6.25], "size": [12.5, 1, 12.5], "uv": [0, 0]}
+					]
+				},
+				{
+					"name": "body",
+					"pivot": [0, 24, 0],
+					"cubes": [
+						{"origin": [-4, 12, -2], "size": [8, 12, 4], "uv": [40, 33]}
+					]
+				},
+				{
+					"name": "bagpack",
+					"parent": "body",
+					"pivot": [0, 22, 0],
+					"cubes": [
+						{"origin": [-3.5, 11, -3], "size": [1, 10, 1], "uv": [4, 0]},
+						{"origin": [-3.5, 21, -3], "size": [7, 2, 1], "uv": [24, 13]},
+						{"origin": [2.5, 11, -3], "size": [1, 10, 1], "uv": [0, 0]},
+						{"origin": [-4.5, 21, -3], "size": [1, 2, 12.5], "uv": [14, 33]},
+						{"origin": [3, 11, 3], "size": [1, 13, 6], "uv": [0, 43]},
+						{"origin": [-4, 11, 3], "size": [1, 13, 6], "uv": [14, 47]},
+						{"origin": [-4, 11, 2], "size": [8, 13, 1], "uv": [48, 11]},
+						{"origin": [-4, 11.5, 9], "size": [8, 12.5, 1], "uv": [64, 25]},
+						{"origin": [-3, 10.5, 3], "size": [6, 5, 6], "uv": [36, 0]},
+						{"origin": [3.5, 21, -3], "size": [1, 2, 12.5], "uv": [0, 29]}
+					]
+				},
+				{
+					"name": "left_arm",
+					"pivot": [-5, 22, 0],
+					"cubes": [
+						{"origin": [4, 12, -2], "size": [4, 12, 4], "uv": [56, 61]}
+					]
+				},
+				{
+					"name": "right_arm",
+					"pivot": [5, 22, 0],
+					"cubes": [
+						{"origin": [-8, 12, -2], "size": [4, 12, 4], "uv": [60, 45]}
+					]
+				},
+				{
+					"name": "left_leg",
+					"pivot": [-2, 12, 0],
+					"cubes": [
+						{"origin": [0, 0, -2], "size": [4, 12, 4], "uv": [44, 49]}
+					]
+				},
+				{
+					"name": "right_leg",
+					"pivot": [2, 12, 0],
+					"cubes": [
+						{"origin": [-4, 0, -2], "size": [4, 12, 4], "uv": [28, 47]}
+					]
+				}
+			]
+		}
+	]
+}
