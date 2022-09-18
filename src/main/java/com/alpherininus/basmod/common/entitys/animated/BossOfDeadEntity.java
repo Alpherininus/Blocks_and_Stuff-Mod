@@ -1,5 +1,6 @@
 package com.alpherininus.basmod.common.entitys.animated;
 
+import com.alpherininus.basmod.common.entitys.animated.ai.AttackGoal;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.*;
@@ -56,9 +57,7 @@ public class BossOfDeadEntity extends MonsterEntity implements IAnimatable, ISyn
 
     private final Minecraft mc = Minecraft.getInstance();
 
-    private static final DataParameter<Boolean> ATTACKING = EntityDataManager.createKey(BossOfDeadEntity.class, DataSerializers.BOOLEAN);
-
-    private AnimationFactory factory = new AnimationFactory(this);
+    private final AnimationFactory factory = new AnimationFactory(this);
 
     public BossOfDeadEntity(EntityType<? extends MonsterEntity> entityType, World worldIn) {
         super(entityType, worldIn);
@@ -67,9 +66,8 @@ public class BossOfDeadEntity extends MonsterEntity implements IAnimatable, ISyn
 
     protected void registerGoals() {
 
-        this.goalSelector.addGoal(1, new PanicGoal(this, 0.5D));
+        this.goalSelector.addGoal(1, new AttackGoal(this, 1.2D, false));
         this.addLookGoals();
-        this.addAttacksGoals();
         this.addSwimGoals();
     }
 
@@ -81,12 +79,6 @@ public class BossOfDeadEntity extends MonsterEntity implements IAnimatable, ISyn
     protected void addLookGoals() {
         this.goalSelector.addGoal(1, new LookAtGoal(this, PlayerEntity.class, 8.0F));
         this.goalSelector.addGoal(3, new LookAtWithoutMovingGoal(this, PlayerEntity.class, 16.0F, 1.0F));
-        this.goalSelector.addGoal(5, new LookRandomlyGoal(this));
-
-    }
-
-    public void addAttacksGoals() {
-        this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.2D, false));
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -132,48 +124,16 @@ public class BossOfDeadEntity extends MonsterEntity implements IAnimatable, ISyn
 
     }
 
-    private PlayState attackPredicate(AnimationEvent event) {
-        if (this.isAttacking()) {
-            event.getController().setAnimation(new AnimationBuilder().addAnimation("attack", true));
-            return PlayState.CONTINUE;
-
-            //if (this.isSwimming() && event.getController().getAnimationState().equals(AnimationState.Stopped)) {
-            //    event.getController().markNeedsReload();
-            //    event.getController().setAnimation(new AnimationBuilder().addAnimation("attack", false));
-            //    this.isSwimming() = false;
-            //}
-
-        }
-        return PlayState.STOP;
-    }
-
     @Override
     public void registerControllers(AnimationData data) {
         data.addAnimationController(
                 new AnimationController(this, "IDLEAnimateController", 0, this::predicate));
-
-        data.addAnimationController(
-                new AnimationController(this, "AttackAnimateController", 0, this::attackPredicate));
 
     }
 
     @Override
     public AnimationFactory getFactory() {
         return this.factory;
-    }
-
-    public void setAttacking(boolean attackTarget) {
-        this.dataManager.set(ATTACKING, attackTarget);
-    }
-
-    public boolean isAttacking() {
-        return this.dataManager.get(ATTACKING);
-    }
-
-    @Override
-    protected void registerData() {
-        super.registerData();
-        this.dataManager.register(ATTACKING, false);
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -273,8 +233,6 @@ public class BossOfDeadEntity extends MonsterEntity implements IAnimatable, ISyn
             this.heal(500.5F);
         }
 
-        this.bossInfo.setPercent(this.getHealth() / this.getMaxHealth());
-
         int i = 1200;
         if ((this.ticksExisted + this.getEntityId()) % 1200 == 0) {
             Effect effect1 = Effects.WEAKNESS;
@@ -308,6 +266,8 @@ public class BossOfDeadEntity extends MonsterEntity implements IAnimatable, ISyn
                 }
             }
         }
+        this.bossInfo.setPercent(this.getHealth() / this.getMaxHealth());
+
     }
 
     public void addTrackingPlayer(ServerPlayerEntity player) {
