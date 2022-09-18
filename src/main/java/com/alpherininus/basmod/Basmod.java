@@ -192,7 +192,6 @@ public class Basmod {
         RenderingRegistry.registerEntityRenderingHandler(EntityTypesInit.BOSS_OF_DEAD_ENTITY.get(), BossOfDeadRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityTypesInit.BASMOD_WANDERINGTRADER.get(), BasWanderingTraderRenderer::new);
 
-
         GeoArmorRenderer.registerArmorRenderer(JetPackArmorItem.class, JetPackArmorRenderer::new);
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
