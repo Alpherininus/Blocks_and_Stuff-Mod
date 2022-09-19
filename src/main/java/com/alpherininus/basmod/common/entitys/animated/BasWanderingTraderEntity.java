@@ -39,15 +39,18 @@ public class BasWanderingTraderEntity extends WanderingTraderEntity implements I
 
     private final AnimationFactory factory = new AnimationFactory(this);
 
-    private <E extends IAnimatable>PlayState predicate(AnimationEvent<E> event) {
-
-        if (event.isMoving()) {
-            event.getController().setAnimation(new AnimationBuilder().addAnimation("walk", true));
-        }
-
+    private <E extends IAnimatable>PlayState IDLEpredicate(AnimationEvent<E> event) {
         event.getController().setAnimation(new AnimationBuilder().addAnimation("idle", true));
         return PlayState.CONTINUE;
     }
+
+    private <E extends IAnimatable>PlayState WALKpredicate(AnimationEvent<E> event) {
+        if (event.isMoving()) {
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("walk", true));
+        }
+        return PlayState.CONTINUE;
+    }
+
 
     public BasWanderingTraderEntity(EntityType<? extends WanderingTraderEntity> type, World worldIn) {
         super(type, worldIn);
@@ -130,7 +133,9 @@ public class BasWanderingTraderEntity extends WanderingTraderEntity implements I
     @Override
     public void registerControllers(AnimationData data) {
         data.addAnimationController(
-                new AnimationController(this, "IDLEandWALKController", 0, this::predicate));
+                new AnimationController(this, "idle_controller", 0, this::IDLEpredicate));
+        data.addAnimationController(
+                new AnimationController(this, "walk_controller", 0, this::IDLEpredicate));
 
     }
 
