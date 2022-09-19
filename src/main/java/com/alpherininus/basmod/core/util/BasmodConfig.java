@@ -15,7 +15,6 @@ public class BasmodConfig {
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     public static final ForgeConfigSpec.ConfigValue<Integer> config_integer_ad_magical_staff;
-    public static final ForgeConfigSpec.ConfigValue<Float> config_float_as_magical_staff;
     public static final ForgeConfigSpec.ConfigValue<Boolean> config_thunder_magical_staff;
     public static final ForgeConfigSpec.ConfigValue<Boolean> config_tnt_magical_staff;
     public static final ForgeConfigSpec.ConfigValue<Boolean> config_fireball_magical_staff;
@@ -39,7 +38,6 @@ public class BasmodConfig {
 
         // Magical Staff
         config_integer_ad_magical_staff = CONFIG_BUILDER.comment("Default value is 2.").worldRestart().define("Magical Staff Attackdamadge", 2);
-        config_float_as_magical_staff = CONFIG_BUILDER.comment("Default value is -2.0F.").define("Magical Staff Attackspeed", 0.20F);
         config_thunder_magical_staff = CONFIG_BUILDER.comment("Default value is true.").define("Spawn Thunder", true);
         config_tnt_magical_staff = CONFIG_BUILDER.comment("Default value is false.").define("Spawn TNT", false);
         config_fireball_magical_staff = CONFIG_BUILDER.comment("Default value is false.").define("Spawn Fireball", false);

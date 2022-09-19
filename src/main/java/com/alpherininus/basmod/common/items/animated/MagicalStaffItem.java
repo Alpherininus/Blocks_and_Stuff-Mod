@@ -242,7 +242,6 @@ public class MagicalStaffItem extends ShootableItem implements IAnimatable {
         if (Screen.hasShiftDown()) {
             tooltip.add(new StringTextComponent("\u00A77Settings:"));
             tooltip.add(new StringTextComponent("\u0020\u00A7b" + BasmodConfig.config_integer_ad_magical_staff.get() + "\u0020\u00A79+1 Attack Damadge"));
-            tooltip.add(new StringTextComponent("\u0020\u00A7b" + BasmodConfig.config_float_as_magical_staff.get() + "\u0020\u00A79Attack Speed"));
             tooltip.add(new StringTextComponent("\u00A79\u0020Spawn Thunder:\u0020\u00A7c" + BasmodConfig.config_thunder_magical_staff.get()));
             tooltip.add(new StringTextComponent("\u00A79\u0020Spawn TNT:\u0020\u00A7c" + BasmodConfig.config_tnt_magical_staff.get()));
             tooltip.add(new StringTextComponent("\u00A79\u0020Spawn Fireball:\u0020\u00A7c" + BasmodConfig.config_fireball_magical_staff.get()));

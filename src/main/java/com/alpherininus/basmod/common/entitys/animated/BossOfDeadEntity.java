@@ -15,9 +15,11 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.ShootableItem;
+import net.minecraft.item.UseAction;
 import net.minecraft.network.play.server.SChangeGameStatePacket;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.EffectUtils;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
@@ -42,6 +44,14 @@ import java.util.List;
 import java.util.function.Predicate;
 
 public class BossOfDeadEntity extends MonsterEntity implements IAnimatable {
+
+    private int getArmSwingAnimationEnd() {
+        if (EffectUtils.hasMiningSpeedup(this)) {
+            return 6 - (1 + EffectUtils.getMiningSpeedup(this));
+        } else {
+            return this.isPotionActive(Effects.MINING_FATIGUE) ? 6 + (1 + this.getActivePotionEffect(Effects.MINING_FATIGUE).getAmplifier()) * 2 : 6;
+        }
+    }
 
     private static final EntityPredicate PLAYER_INVADER_CONDITION = (new EntityPredicate()).setDistance(64.0D);
     private static final Predicate<LivingEntity> NOT_UNDEAD = (p_213797_0_) -> p_213797_0_.getCreatureAttribute() != CreatureAttribute.UNDEAD && p_213797_0_.attackable();
@@ -88,6 +98,24 @@ public class BossOfDeadEntity extends MonsterEntity implements IAnimatable {
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+    public boolean isTwoHandedAnimationRunning() {
+        return this.isSpellCasting() || this.isSpinToWinActive() || this.isWieldingTwoHandedWeapon();
+    }
+
+    public boolean isSpinToWinActive() {
+        return false;
+    }
+
+    public boolean isSpellCasting() {
+        return false;
+    }
+
+    public boolean isWieldingTwoHandedWeapon() {
+        return false;
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
     public static AttributeModifierMap setCustomBossOfDeadAttributes() {
         return MobEntity.func_233666_p_()
                 .createMutableAttribute(Attributes.MAX_HEALTH, 1500.0D)
@@ -98,6 +126,8 @@ public class BossOfDeadEntity extends MonsterEntity implements IAnimatable {
                 .createMutableAttribute(Attributes.ATTACK_KNOCKBACK, 1.0f).create();
 
     }
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     @Override
     public ItemStack findAmmo(ItemStack shootable) {
@@ -123,21 +153,25 @@ public class BossOfDeadEntity extends MonsterEntity implements IAnimatable {
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
-
-        //if (event.isMoving()) {
-        //    event.getController().setAnimation(new AnimationBuilder().addAnimation("walk", true));
-        //    return PlayState.CONTINUE;
-        //}
-
         event.getController().setAnimation(new AnimationBuilder().addAnimation("idle", true));
         return PlayState.CONTINUE;
 
     }
 
+    private <E extends IAnimatable> PlayState predicateTwoHandedSwing(AnimationEvent<E> event) {
+        if (this.isTwoHandedAnimationRunning() && this.isSwingInProgress) {
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("attack", false));
+        }
+        return PlayState.STOP;
+    }
+
     @Override
     public void registerControllers(AnimationData data) {
         data.addAnimationController(
-                new AnimationController(this, "IDLEAnimateController", 0, this::predicate));
+                new AnimationController(this, "ontroller_idle", 0, this::predicate));
+
+        data.addAnimationController(
+                new AnimationController(this, "controller_attack", 10, this::predicateTwoHandedSwing));
 
     }
 
@@ -288,6 +322,21 @@ public class BossOfDeadEntity extends MonsterEntity implements IAnimatable {
     public void removeTrackingPlayer(ServerPlayerEntity player) {
         super.removeTrackingPlayer(player);
         this.bossInfo1Phase.addPlayer(player);
+    }
+
+    protected void updateArmSwingProgress() {
+        int i = this.getArmSwingAnimationEnd();
+        if (this.isSwingInProgress) {
+            ++this.swingProgressInt;
+            if (this.swingProgressInt >= i) {
+                this.swingProgressInt = 0;
+                this.isSwingInProgress = false;
+            }
+        } else {
+            this.swingProgressInt = 0;
+        }
+
+        this.swingProgress = (float)this.swingProgressInt / (float)i;
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -158,7 +158,7 @@ public class ItemInit {
     // TODO Animated Items
 
     public static final RegistryObject<Item> ANIMATED_MAGICAL_STAFF = ITEMS.register("magical_staff",
-            () -> new MagicalStaffItem(BasmodToolMaterial.A_TOOL_MATERIAL, BasmodConfig.config_integer_ad_magical_staff.get(), BasmodConfig.config_float_as_magical_staff.get(),
+            () -> new MagicalStaffItem(BasmodToolMaterial.A_TOOL_MATERIAL, BasmodConfig.config_integer_ad_magical_staff.get(), 0.20F,
                     new Item.Properties().setISTER(() -> MagicalStaffItemRenderer::new).maxStackSize(1).group(ModItemGroupWapons.BAS_MOD_WAPONS)));
 
     public static final RegistryObject<Item> ANIMATED_HEAL_STAFF = ITEMS.register("heal_staff",

@@ -43,9 +43,9 @@ public class BasWanderingTraderEntity extends WanderingTraderEntity implements I
 
         if (event.isMoving()) {
             event.getController().setAnimation(new AnimationBuilder().addAnimation("walk", true));
-        } else {
-            event.getController().setAnimation(new AnimationBuilder().addAnimation("idle", true));
         }
+
+        event.getController().setAnimation(new AnimationBuilder().addAnimation("idle", true));
         return PlayState.CONTINUE;
     }
 
@@ -61,7 +61,6 @@ public class BasWanderingTraderEntity extends WanderingTraderEntity implements I
         this.addSwimGoals();
         this.addLookGoals();
         this.addTemtGoals();
-        this.goalSelector.addGoal(3, new TemptGoal(this, 1.1D, Ingredient.fromItems(Items.EMERALD, ItemInit.RUBY_ITEM.get(), Items.IRON_INGOT, ItemInit.RELICS_ITEM.get(), Items.DIAMOND, Items.GOLD_INGOT), false));
     }
 
     protected void addSwimGoals() {
@@ -131,7 +130,7 @@ public class BasWanderingTraderEntity extends WanderingTraderEntity implements I
     @Override
     public void registerControllers(AnimationData data) {
         data.addAnimationController(
-                new AnimationController(this, "IDLEAnimateController", 0, this::predicate));
+                new AnimationController(this, "IDLEandWALKController", 0, this::predicate));
 
     }
 
