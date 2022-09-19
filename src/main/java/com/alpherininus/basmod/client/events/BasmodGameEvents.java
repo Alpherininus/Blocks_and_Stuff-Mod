@@ -3,6 +3,7 @@ package com.alpherininus.basmod.client.events;
 import com.alpherininus.basmod.Basmod;
 import com.alpherininus.basmod.client.entity.BasmodPlayerEntity;
 import com.alpherininus.basmod.core.init.ItemInit;
+import com.alpherininus.basmod.core.util.BasmodConfig;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
@@ -65,7 +66,7 @@ public class BasmodGameEvents {
                     assert false;
                     // TODO barWidth => refill Manabar, default is 88 -> 8, 16, 24, 32, 40, 48, 56, 64, 72, 80, 88. / ( 22 = 25% / 44 = 50% / 66 = 75% / 88 = 100% )
 
-                    int barWidth = 8;
+                    int barWidth = BasmodConfig.config_integer_manabar.get();
                     int barHeight = 7;
 
                     mc.getTextureManager().bindTexture(MANA_BARS);
@@ -91,7 +92,7 @@ public class BasmodGameEvents {
                     int textureWidth = 90;
                     int textureHeight = 9;
 
-                    int barWidth = 88; // TODO barWidth => refill Manabar, default is 88 -> 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60, 64, 68, 72, 76, 80, 84, 88.
+                    int barWidth = BasmodConfig.config_integer_magicalstaff.get(); // TODO barWidth => refill Manabar, default is 88 -> 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60, 64, 68, 72, 76, 80, 84, 88.
                     int barHeight = 7;
 
                     mc.getTextureManager().bindTexture(MANA_BARS);
@@ -117,7 +118,7 @@ public class BasmodGameEvents {
                     int textureWidth = 90;
                     int textureHeight = 9;
 
-                    int barWidth = 88; // TODO barWidth => refill Manabar, default is 88 -> 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60, 64, 68, 72, 76, 80, 84, 88.
+                    int barWidth = BasmodConfig.config_integer_healstaff.get(); // TODO barWidth => refill Manabar, default is 88 -> 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60, 64, 68, 72, 76, 80, 84, 88.
                     int barHeight = 7;
 
                     mc.getTextureManager().bindTexture(MANA_BARS);

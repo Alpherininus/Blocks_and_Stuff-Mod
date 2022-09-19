@@ -4,8 +4,6 @@ import net.minecraftforge.common.ForgeConfigSpec;
 
 public class BasmodConfig {
     public static final ForgeConfigSpec.Builder CONFIG_BUILDER = new ForgeConfigSpec.Builder();
-    public static ForgeConfigSpec COMMON_SPEC;
-    public static ForgeConfigSpec COMMON_SPEC_ITEM;
     public static ForgeConfigSpec COMMON_SPEC_GENERAL;
 
 
@@ -35,19 +33,13 @@ public class BasmodConfig {
 
         //
 
-        CONFIG_BUILDER.pop();
-
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        COMMON_SPEC_GENERAL = CONFIG_BUILDER.build();
-    }
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    static {
-        CONFIG_BUILDER.comment("Config your Item").push("Magical Staff Configs");
+        CONFIG_BUILDER.comment("config your item").push("Magical Staff Configs");
 
         // Magical Staff
         config_integer_ad_magical_staff = CONFIG_BUILDER.comment("Default value is 2.").worldRestart().define("Magical Staff Attackdamadge", 2);
-        config_float_as_magical_staff = CONFIG_BUILDER.comment("Default value is -2.0F.").worldRestart().define("Magical Staff Attackspeed", 0.20F);
+        config_float_as_magical_staff = CONFIG_BUILDER.comment("Default value is -2.0F.").define("Magical Staff Attackspeed", 0.20F);
         config_thunder_magical_staff = CONFIG_BUILDER.comment("Default value is true.").define("Spawn Thunder", true);
         config_tnt_magical_staff = CONFIG_BUILDER.comment("Default value is false.").define("Spawn TNT", false);
         config_fireball_magical_staff = CONFIG_BUILDER.comment("Default value is false.").define("Spawn Fireball", false);
@@ -56,11 +48,8 @@ public class BasmodConfig {
 
         //
 
-        CONFIG_BUILDER.pop();
-
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        COMMON_SPEC_ITEM = CONFIG_BUILDER.build();
+        CONFIG_BUILDER.pop();
+        COMMON_SPEC_GENERAL = CONFIG_BUILDER.build();
     }
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 }
