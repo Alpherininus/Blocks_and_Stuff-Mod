@@ -1,4 +1,4 @@
-package com.alpherininus.basmod.common.entitys.animated.ai;
+package com.alpherininus.basmod.common.entitys.ai;
 
 import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.ai.goal.MeleeAttackGoal;

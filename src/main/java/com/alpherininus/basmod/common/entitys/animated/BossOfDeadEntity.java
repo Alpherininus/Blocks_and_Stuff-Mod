@@ -1,6 +1,6 @@
 package com.alpherininus.basmod.common.entitys.animated;
 
-import com.alpherininus.basmod.common.entitys.animated.ai.AttackGoal;
+import com.alpherininus.basmod.common.entitys.ai.AttackGoal;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.*;
@@ -8,11 +8,8 @@ import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.entity.monster.EndermanEntity;
 import net.minecraft.entity.monster.MonsterEntity;
-import net.minecraft.entity.monster.ZombieEntity;
 import net.minecraft.entity.passive.AnimalEntity;
-import net.minecraft.entity.passive.WaterMobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -32,7 +29,6 @@ import net.minecraft.world.Difficulty;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerBossInfo;
 import net.minecraft.world.server.ServerWorld;
-import software.bernie.geckolib3.core.AnimationState;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;
@@ -40,11 +36,9 @@ import software.bernie.geckolib3.core.controller.AnimationController;
 import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
-import software.bernie.geckolib3.network.ISyncable;
 
 import javax.annotation.Nullable;
 import java.util.List;
-import java.util.Random;
 import java.util.function.Predicate;
 
 public class BossOfDeadEntity extends MonsterEntity implements IAnimatable {
