@@ -1,7 +1,7 @@
 package com.alpherininus.basmod.common.blocks;
 
+import com.alpherininus.basmod.core.util.BasmodTags;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.block.RotatedPillarBlock;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.ITooltipFlag;
@@ -9,6 +9,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.BlockItemUseContext;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
@@ -46,35 +47,32 @@ public class TrashbinBlock extends RotatedPillarBlock {
         if (worldIn.isRemote) {
 
         } else {
+            if (blocksIsHasBeenTrashed(state)) {
+                itemstack1.setDamage(itemstack1.getDamage() + 1);
+                if (itemstack1.getDamage() >= itemstack1.getMaxDamage()) itemstack1.setCount(0);
+            }
+        }
 
-            if (mainhand.getItem() == Blocks.DIRT.asItem()) {
-                itemstack1.setDamage(itemstack1.getDamage() + 1);
-                if (itemstack1.getDamage() >= itemstack1.getMaxDamage()) itemstack1.setCount(0);
-            }
-            if (mainhand.getItem() == Blocks.ANDESITE.asItem()) {
-                itemstack1.setDamage(itemstack1.getDamage() + 1);
-                if (itemstack1.getDamage() >= itemstack1.getMaxDamage()) itemstack1.setCount(0);
-            }
-            if (mainhand.getItem() == Blocks.GRANITE.asItem()) {
-                itemstack1.setDamage(itemstack1.getDamage() + 1);
-                if (itemstack1.getDamage() >= itemstack1.getMaxDamage()) itemstack1.setCount(0);
-            }
-            if (mainhand.getItem() == Blocks.DIORITE.asItem()) {
-                itemstack1.setDamage(itemstack1.getDamage() + 1);
-                if (itemstack1.getDamage() >= itemstack1.getMaxDamage()) itemstack1.setCount(0);
-            }
-            if (mainhand.getItem() == Blocks.COARSE_DIRT.asItem()) {
-                itemstack1.setDamage(itemstack1.getDamage() + 1);
-                if (itemstack1.getDamage() >= itemstack1.getMaxDamage()) itemstack1.setCount(0);
-            }
+        if (worldIn.isRemote) {
 
-            ItemStack itemstack = player.getHeldItem(handIn);
-            return itemstack.getItem() instanceof BlockItem && (new BlockItemUseContext(player, handIn, itemstack, hit)).canPlace() ? ActionResultType.PASS : ActionResultType.CONSUME;
+        } else {
+            if (itemsIsHasBeenTrashed(mainhand.getItem())) {
 
+                itemstack1.setDamage(itemstack1.getDamage() + 1);
+                if (itemstack1.getDamage() >= itemstack1.getMaxDamage()) itemstack1.setCount(0);
+            }
         }
 
         ItemStack itemstack = player.getHeldItem(handIn);
         return itemstack.getItem() instanceof BlockItem && (new BlockItemUseContext(player, handIn, itemstack, hit)).canPlace() ? ActionResultType.PASS : ActionResultType.SUCCESS;
+    }
+
+    private boolean blocksIsHasBeenTrashed(BlockState clickedBlock) {
+        return clickedBlock.isIn(BasmodTags.Blocks.TRASHABLE_BLOCKS);
+    }
+
+    private boolean itemsIsHasBeenTrashed(Item clickedBlock) {
+        return clickedBlock.isIn(BasmodTags.Items.TRASHABLE_ITEM);
     }
 
 }

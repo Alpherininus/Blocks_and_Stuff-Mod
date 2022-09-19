@@ -14,10 +14,7 @@ public class BasmodTags {
     public static class Blocks {
 
         public static final Tags.IOptionalNamedTag<Block> CLICKABLE_BLOCKS_FFIRE = createBlockTag("clickable_blocks_for_fire");
-        public static final Tags.IOptionalNamedTag<Block> IS_TRASHABLE_BLOCK = createBlockTag("is_trashable");
-
-        public static final Tags.IOptionalNamedTag<Block> BAS_PORTAL_FRAME_BLOCKS = createBlockTag("portal_frame_blocks");
-
+        public static final Tags.IOptionalNamedTag<Block> TRASHABLE_BLOCKS = createBlockTag("trashable_blocks");
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -33,18 +30,12 @@ public class BasmodTags {
 
     public static class Items {
 
+        public static final Tags.IOptionalNamedTag<Item> TRASHABLE_ITEM = createItemTag("trashable_items");
+
         public static final Tags.IOptionalNamedTag<Item> REPAIR_MOD_SWORDS = createItemTag("repair_swords");
-
-        public static final Tags.IOptionalNamedTag<Item> MAGICAL_ITEMS_FOR_OPEN_MAGICAL_DOOR = createItemTag("magical_items_for_open_door");
-
-        public static final Tags.IOptionalNamedTag<Item> IS_TRASHABLE_ITEM = createItemTag("is_trashable");
-
-
         public static final Tags.IOptionalNamedTag<Item> CRAFTING_WHITE_DYE = createItemTag("crafting_white_dye");
         public static final Tags.IOptionalNamedTag<Item> CRAFTING_BLUE_DYE = createItemTag("crafting_blue_dye");
         public static final Tags.IOptionalNamedTag<Item> CRAFTING_BOW = createItemTag("crafting_bow");
-
-        public static final Tags.IOptionalNamedTag<Item> JETPACK_ITEMS = createItemTag("jetpacks");
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

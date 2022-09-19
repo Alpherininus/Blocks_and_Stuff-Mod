@@ -1,0 +1,32 @@
+{
+  "replace:": false,
+  "values": [
+    "minecraft:dirt",
+    "minecraft:grass_block",
+    "minecraft:dorite",
+    "minecraft:polished_dorite",
+    "minecraft:andesite",
+    "minecraft:polished_andesite",
+    "minecraft:granite",
+    "minecraft:polished_granite",
+
+    "minecraft:coarse_dirt",
+    "minecraft:podzol",
+    "minecraft:crimson_nylium",
+    "minecraft:warped_nylium",
+
+    "minecraft:bedrock",
+    "minecraft:vine",
+
+    "#minecraft:saplings",
+    "#minecraft:buttons",
+    "#minecraft:flowers",
+    "#minecraft:tall_flowers",
+    "#minecraft:leaves",
+    "#minecraft:corals",
+    "#minecraft:corals_plants",
+
+    "#forge:dirt"
+
+  ]
+}
