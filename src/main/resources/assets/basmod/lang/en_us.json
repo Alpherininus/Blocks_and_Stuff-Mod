@@ -38,6 +38,12 @@
 	"item.basmod.seieorshell_spawn_egg": "Seiðr Shell",
 	"entity.basmod.seiorshell": "Seiðr Shell",
 
+	"entity.minecraft.villager.basmod.test": "Businessman",
+	"entity.minecraft.villager.basmod.testa": "Businessman",
+	"entity.minecraft.villager.basmod.testb": "Businessman",
+	"entity.minecraft.villager.basmod.testc": "Businessman",
+	"entity.minecraft.villager.basmod.testd": "Businessman",
+
 	"item.basmod.bas_boss_spawn_egg": "Blocks and Stuff | Boss 'Robot'",
 	"entity.basmod.basmod_boss": "Blocks and Stuff | Boss",
 

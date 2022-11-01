@@ -45,35 +45,20 @@ public class TrashbinBlock extends RotatedPillarBlock {
         ItemStack mainhand = player.getItemStackFromSlot(EquipmentSlotType.MAINHAND);
 
         if (worldIn.isRemote) {
-
+            if (itemstack1.isEmpty()) {
+                System.out.println("## Trashing has failed, No Blocks or Items in your Hand. ##");
+            }
         } else {
-            if (blocksIsHasBeenTrashed(state)) {
+            if (state.isIn(BasmodTags.Blocks.TRASHABLE_BLOCKS)) {
                 itemstack1.setDamage(itemstack1.getDamage() + 1);
                 if (itemstack1.getDamage() >= itemstack1.getMaxDamage()) itemstack1.setCount(0);
             }
+
+            ItemStack itemstack = player.getHeldItem(handIn);
+            return itemstack.getItem() instanceof BlockItem && (new BlockItemUseContext(player, handIn, itemstack, hit)).canPlace() ? ActionResultType.PASS : ActionResultType.SUCCESS;
         }
-
-        if (worldIn.isRemote) {
-
-        } else {
-            if (itemsIsHasBeenTrashed(mainhand.getItem())) {
-
-                itemstack1.setDamage(itemstack1.getDamage() + 1);
-                if (itemstack1.getDamage() >= itemstack1.getMaxDamage()) itemstack1.setCount(0);
-            }
-        }
-
         ItemStack itemstack = player.getHeldItem(handIn);
         return itemstack.getItem() instanceof BlockItem && (new BlockItemUseContext(player, handIn, itemstack, hit)).canPlace() ? ActionResultType.PASS : ActionResultType.SUCCESS;
     }
-
-    private boolean blocksIsHasBeenTrashed(BlockState clickedBlock) {
-        return clickedBlock.isIn(BasmodTags.Blocks.TRASHABLE_BLOCKS);
-    }
-
-    private boolean itemsIsHasBeenTrashed(Item clickedBlock) {
-        return clickedBlock.isIn(BasmodTags.Items.TRASHABLE_ITEM);
-    }
-
 }
 

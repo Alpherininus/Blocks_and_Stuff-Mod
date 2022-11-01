@@ -152,7 +152,10 @@ public class ItemInit {
             () -> new MusicDiscItem(50, SoundInit.RECORDS_BASMOD_THEME, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC)));
 
     public static final RegistryObject<Item> GEARS_MUSICDISC = ITEMS.register("gears_music_disc",
-            () -> new MusicDiscItem(50, SoundInit.RECORDS_BASMOD_GEARS, new Item.Properties().maxStackSize(16).group(ItemGroup.MISC)));
+            () -> new MusicDiscItem(50, SoundInit.RECORDS_BASMOD_GEARS, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC)));
+
+    public static final RegistryObject<Item> ROBOT_MUSICDISC = ITEMS.register("robot_music_disc",
+            () -> new MusicDiscItem(50, SoundInit.RECORDS_DER_ROBOTER, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC)));
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // TODO Animated Items

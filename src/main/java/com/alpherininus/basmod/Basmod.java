@@ -74,6 +74,9 @@ public class Basmod {
         PotionInit.POTIONS.register(eventbus);
         EffectInit.POTIONS.register(eventbus);
 
+        VillagerInit.POINT_OF_INTEREST_TYPES.register(eventbus);
+        VillagerInit.VILLAGER_PROFESSIONS.register(eventbus);
+
         GeckoLib.initialize();
 
         // TODO EVENTS
@@ -104,6 +107,10 @@ public class Basmod {
     private void setup(final FMLCommonSetupEvent event) {
 
         BasmodAnivilHandler.initAnvilRecipes();
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        event.enqueueWork(VillagerInit::registerPOI);
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

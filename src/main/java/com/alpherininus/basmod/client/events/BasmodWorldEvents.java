@@ -8,6 +8,7 @@ import com.alpherininus.basmod.common.world.gen.StructureGeneration;
 import com.alpherininus.basmod.common.world.gen.TreeGeneration;
 import com.alpherininus.basmod.core.init.ItemInit;
 import com.alpherininus.basmod.core.init.StructureInit;
+import com.alpherininus.basmod.core.init.VillagerInit;
 import com.mojang.serialization.Codec;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.entity.merchant.villager.VillagerProfession;
@@ -65,6 +66,15 @@ public class BasmodWorldEvents {
         int villagerDiamondLevel = 5; // max 1 - 5.
 
         if (event.getType() == VillagerProfession.TOOLSMITH) {
+            Int2ObjectMap<List<VillagerTrades.ITrade>> trades = event.getTrades();
+
+            ItemStack stack = new ItemStack(ItemInit.NOHR_SHIELD_RED.get(), 1);
+
+            trades.get(villagerStoneLevel).add(((trader, rand) -> new MerchantOffer(
+                    new ItemStack(Items.EMERALD, 3), stack, 10, 8, 0.02F)));
+        }
+
+        if (event.getType() == VillagerInit.TEST_VILLAGER_PROF.get()) {
             Int2ObjectMap<List<VillagerTrades.ITrade>> trades = event.getTrades();
 
             ItemStack stack = new ItemStack(ItemInit.NOHR_SHIELD_RED.get(), 1);

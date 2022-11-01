@@ -1,9 +1,6 @@
 {
   "replace:": false,
   "values": [
-    "minecraft:dirt",
-    "minecraft:grass_block",
-    "minecraft:dorite",
     "minecraft:polished_dorite",
     "minecraft:andesite",
     "minecraft:polished_andesite",

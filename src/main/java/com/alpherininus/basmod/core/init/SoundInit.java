@@ -21,6 +21,10 @@ public class SoundInit {
     public static final RegistryObject<SoundEvent> RECORDS_BASMOD_GEARS =
             registerSoundEvent("gears_music_disc");
 
+    public static final RegistryObject<SoundEvent> RECORDS_DER_ROBOTER =
+            registerSoundEvent("der_roboter");
+
+
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // TODO Basmod Music
 

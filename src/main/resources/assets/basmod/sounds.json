@@ -34,5 +34,14 @@
 				"stream": true
 			}
 		]
+	},
+	"the_robot_music_disc": {
+		"subtitle": "sounds.basmod.records.the_robot_music_disc",
+		"sounds": [
+			{
+				"name": "basmod:records/der_roboter",
+				"stream": true
+			}
+		]
 	}
 }
