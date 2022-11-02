@@ -1,14 +1,15 @@
 package com.alpherininus.basmod.client.events;
 
 import com.alpherininus.basmod.Basmod;
-import com.alpherininus.basmod.common.entitys.animated.BasWanderingTraderEntity;
 import com.alpherininus.basmod.common.world.gen.EntityGeneration;
 import com.alpherininus.basmod.common.world.gen.FlowerGeneration;
 import com.alpherininus.basmod.common.world.gen.StructureGeneration;
 import com.alpherininus.basmod.common.world.gen.TreeGeneration;
+import com.alpherininus.basmod.core.init.BlockInit;
 import com.alpherininus.basmod.core.init.ItemInit;
 import com.alpherininus.basmod.core.init.StructureInit;
-import com.alpherininus.basmod.core.init.VillagerInit;
+import com.alpherininus.basmod.core.init.villager.CustomTrades;
+import com.alpherininus.basmod.core.init.villager.ProfessionsInit;
 import com.mojang.serialization.Codec;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.entity.merchant.villager.VillagerProfession;
@@ -39,7 +40,6 @@ import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 
 
 @Mod.EventBusSubscriber(modid = Basmod.MOD_ID)
@@ -58,7 +58,10 @@ public class BasmodWorldEvents {
     }
 
     @SubscribeEvent
-    public  static void addCustomTrades(VillagerTradesEvent event) {
+    public static void addCustomTrades(VillagerTradesEvent event) {
+
+        CustomTrades.customVillagerTrades(event);
+        //
         int villagerStoneLevel = 1;
         int villagerIronLevel = 2;
         int villagerGoldLevel = 3;
@@ -66,15 +69,6 @@ public class BasmodWorldEvents {
         int villagerDiamondLevel = 5; // max 1 - 5.
 
         if (event.getType() == VillagerProfession.TOOLSMITH) {
-            Int2ObjectMap<List<VillagerTrades.ITrade>> trades = event.getTrades();
-
-            ItemStack stack = new ItemStack(ItemInit.NOHR_SHIELD_RED.get(), 1);
-
-            trades.get(villagerStoneLevel).add(((trader, rand) -> new MerchantOffer(
-                    new ItemStack(Items.EMERALD, 3), stack, 10, 8, 0.02F)));
-        }
-
-        if (event.getType() == VillagerInit.TEST_VILLAGER_PROF.get()) {
             Int2ObjectMap<List<VillagerTrades.ITrade>> trades = event.getTrades();
 
             ItemStack stack = new ItemStack(ItemInit.NOHR_SHIELD_RED.get(), 1);

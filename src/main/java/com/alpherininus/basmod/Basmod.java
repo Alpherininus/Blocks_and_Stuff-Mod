@@ -16,6 +16,8 @@ import com.alpherininus.basmod.common.recipes.BasmodBrewingPotion;
 import com.alpherininus.basmod.common.world.gen.BiomeGeneration;
 import com.alpherininus.basmod.common.world.gen.OreGeneration;
 import com.alpherininus.basmod.core.init.*;
+import com.alpherininus.basmod.core.init.villager.POITypesInit;
+import com.alpherininus.basmod.core.init.villager.ProfessionsInit;
 import com.alpherininus.basmod.core.util.BasmodConfig;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.Minecraft;
@@ -74,8 +76,8 @@ public class Basmod {
         PotionInit.POTIONS.register(eventbus);
         EffectInit.POTIONS.register(eventbus);
 
-        VillagerInit.POINT_OF_INTEREST_TYPES.register(eventbus);
-        VillagerInit.VILLAGER_PROFESSIONS.register(eventbus);
+        POITypesInit.POINT_OF_INTEREST_TYPES.register(eventbus);
+        ProfessionsInit.VILLAGER_PROFESSIONS.register(eventbus);
 
         GeckoLib.initialize();
 
@@ -110,25 +112,11 @@ public class Basmod {
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        event.enqueueWork(VillagerInit::registerPOI);
+        event.enqueueWork(POITypesInit::registerPOItypes);
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         event.enqueueWork(() -> {
-            BrewingRecipeRegistry.addRecipe(new BasmodBrewing(
-                    Ingredient.fromStacks(new ItemStack(Items.STICK)),
-                    Ingredient.fromStacks(new ItemStack(Items.DIAMOND)),
-                    new ItemStack(Items.DIAMOND_SWORD)));
-
-            BrewingRecipeRegistry.addRecipe(new BasmodBrewing(
-                    Ingredient.fromStacks(new ItemStack(ItemInit.CREATOR_SWORD.get())),
-                    Ingredient.fromStacks(new ItemStack(ItemInit.RELICS_ITEM.get())),
-                    new ItemStack(ItemInit.SUBLIME_CREATOR_SWORD.get())));
-
-            BrewingRecipeRegistry.addRecipe(new BasmodBrewing(
-                    Ingredient.fromStacks(new ItemStack(ItemInit.SUBLIME_CREATOR_SWORD.get())),
-                    Ingredient.fromStacks(new ItemStack(Items.PRISMARINE_SHARD)),
-                    new ItemStack(ItemInit.LIGHT_SWORD.get())));
 
             BrewingRecipeRegistry.addRecipe(new BasmodBrewing(
                     Ingredient.fromStacks(new ItemStack(Items.BUCKET)),
