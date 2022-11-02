@@ -4,8 +4,10 @@ import com.alpherininus.basmod.common.containers.BaSInfoContainer;
 import com.alpherininus.basmod.core.util.BasmodTags;
 import net.minecraft.block.AbstractFireBlock;
 import net.minecraft.block.BlockState;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.client.util.InputMappings;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -24,7 +26,10 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.network.NetworkHooks;
+import org.lwjgl.glfw.GLFW;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotTypePreset;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
@@ -79,6 +84,12 @@ public class ExperimentalItem extends Item implements ICurioItem{
     }
 
     @Override
+    public void onPlayerStoppedUsing(ItemStack stack, World worldIn, LivingEntity entityLiving, int timeLeft) {
+        super.onPlayerStoppedUsing(stack, worldIn, entityLiving, timeLeft);
+    }
+
+    @Override
+    @OnlyIn(Dist.CLIENT)
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
         if (Screen.hasShiftDown()) {
             tooltip.add(new TranslationTextComponent("tooltip.basmod.default_items_shift"));
@@ -88,14 +99,10 @@ public class ExperimentalItem extends Item implements ICurioItem{
         }
 
         if (Screen.hasControlDown()) {
-
             tooltip.add(new StringTextComponent("\u00A77Hello my Padawan :)\n\n\u00A77-> \u00A76Sneak \u00A77and \u00A76Rightclick \u00A77to Block with: \u00A7cclickable_blocks_for_fire -> Blocktag\u00A77\n or Obsidian, Netherrack and\nbecome random fireresistence effekt.\n\n\u00A77-> \u00A76Rightclick \u00A77to show a \u00A7dFancy GUI\u00A7f(Under Dev).\n\n\u00A77-> \u00A76When Thunder \u00A77is showing a \u00A7bYellow Symbol \u00A77on the GUI.\n\n"));
-
         } else {
             tooltip.add(new StringTextComponent("Hold \u00A76CONTROL \u00A7ffor more Information"));
-
         }
-
         super.addInformation(stack, worldIn, tooltip, flagIn);
     }
 

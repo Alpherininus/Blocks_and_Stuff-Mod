@@ -12,10 +12,42 @@ import net.minecraft.item.MerchantOffer;
 import net.minecraftforge.event.village.VillagerTradesEvent;
 
 import java.util.List;
+import java.util.Random;
 
 public class CustomTrades {
 
     public static void customVillagerTrades(final VillagerTradesEvent event) {
+
+        if (event.getType() == ProfessionsInit.BONER_VILLAGER_PROF.get()) {
+            Int2ObjectMap<List<VillagerTrades.ITrade>> trades = event.getTrades();
+
+            ItemStack stoneA = new ItemStack(Items.STICK, 2);
+            ItemStack stoneB = new ItemStack(Items.APPLE, 3);
+            ItemStack stoneC = new ItemStack(Items.ARROW, 5);
+            ItemStack stoneD = new ItemStack(Items.GOLD_NUGGET, 3);
+            ItemStack stoneE = new ItemStack(Items.FLINT, 2);
+            ItemStack stoneF = new ItemStack(Items.IRON_NUGGET, 2);
+            ItemStack stoneG = new ItemStack(Items.BLACKSTONE, 3);
+            ItemStack stoneH = new ItemStack(Items.QUARTZ, 1);
+
+            int villagerStoneLevel = 1;
+            trades.get(villagerStoneLevel).add(((trader, rand) -> new MerchantOffer(
+                    new ItemStack(Items.BONE, 3), stoneA, 10, 0, 0.12F)));
+            trades.get(villagerStoneLevel).add(((trader, rand) -> new MerchantOffer(
+                    new ItemStack(Items.BONE_MEAL, 10), stoneB, 10, 0, 0.05F)));
+            trades.get(villagerStoneLevel).add(((trader, rand) -> new MerchantOffer(
+                    new ItemStack(Items.BONE, 10), stoneC, 10, 0, 0.12F)));
+            trades.get(villagerStoneLevel).add(((trader, rand) -> new MerchantOffer(
+                    new ItemStack(Items.BONE_MEAL, 17), stoneD, 10, 0, 0.05F)));
+            trades.get(villagerStoneLevel).add(((trader, rand) -> new MerchantOffer(
+                    new ItemStack(Items.BONE, 23), stoneE, 10, 0, 0.12F)));
+            trades.get(villagerStoneLevel).add(((trader, rand) -> new MerchantOffer(
+                    new ItemStack(Items.BONE_MEAL, 32), stoneF, 10, 0, 0.05F)));
+            trades.get(villagerStoneLevel).add(((trader, rand) -> new MerchantOffer(
+                    new ItemStack(Items.BONE, 64), stoneG, 10, 0, 0.12F)));
+            trades.get(villagerStoneLevel).add(((trader, rand) -> new MerchantOffer(
+                    new ItemStack(Items.BONE_MEAL, 64), stoneH, 10, 0, 0.05F)));
+        }
 
         if (event.getType() == ProfessionsInit.JUNKY_VILLAGER_PROF.get()) {
             Int2ObjectMap<List<VillagerTrades.ITrade>> trades = event.getTrades();
