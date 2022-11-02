@@ -20,7 +20,6 @@ public class BasmodClientEvents {
         if (itemStack.getItem().equals(ItemInit.SOLEILS_SHINE.get())) {
             event.setCanceled(true);
         }
-
     }
 
 }

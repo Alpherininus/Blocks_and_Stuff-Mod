@@ -26,7 +26,6 @@ public class BasmodEventHandler {
         assert mc.player != null;
         ItemStack head = mc.player.getItemStackFromSlot(EquipmentSlotType.HEAD);
 
-
         if (head.getItem() == ItemInit.DIVING_HELMET_HELMET.get() && world instanceof World) {
             ArmorStandEntity armorStand = new ArmorStandEntity(EntityType.ARMOR_STAND, (World) world);
             armorStand.setPosition(pos.getX(), pos.getY(), pos.getZ());
