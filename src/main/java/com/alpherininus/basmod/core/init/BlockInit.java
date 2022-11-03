@@ -155,11 +155,27 @@ public class BlockInit {
                     .hardnessAndResistance(7f, 3f).sound(SoundType.NETHERRACK).setLightLevel(BlockState -> 3)));
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    public static final RegistryObject<Block> BOMB_BOX_LVL0 = registryBlock("bomb_box_tier0",
+            () -> new BombBox.Tier0(AbstractBlock.Properties.create(Material.PLANTS, MaterialColor.WOOD)
+                    .hardnessAndResistance(0.2f, 0.5f).sound(SoundType.WOOD)));
+
+    public static final RegistryObject<Block> BOMB_BOX_LVL1 = registryBlock("bomb_box_tier1",
+            () -> new BombBox.Tier1(AbstractBlock.Properties.create(Material.PLANTS, MaterialColor.WOOD)
+                    .hardnessAndResistance(0.2f, 0.5f).sound(SoundType.WOOD)));
+
+    public static final RegistryObject<Block> BOMB_BOX_LVL2 = registryBlock("bomb_box_tier2",
+            () -> new BombBox.Tier2(AbstractBlock.Properties.create(Material.PLANTS, MaterialColor.WOOD)
+                    .hardnessAndResistance(0.2f, 0.5f).sound(SoundType.WOOD)));
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // TODO BLOCKS
 
     public static final RegistryObject<Block> TELEPORTERBLOCK = registryBlock("teleporter_block", TeleporterBlock::new);
     public static final RegistryObject<Block> BOUNCEBLOCK_BLUE = registryBlock("jump_block", BouncSourceBlockBlue::new);
     public static final RegistryObject<Block> BOUNCEBLOCK_RED = registryBlock("jump_block_red", BouncSourceBlockRed::new);
+
+    public static final RegistryObject<Block> BASMOD_BLOCK = registryBlock("bas_block", BasmodBlock::new);
 
     public static final RegistryObject<Block> LIGHTSOURCE_BLOCKS = BLOCKS.register("light_blocks", LightSourceBlocks::new);
 
