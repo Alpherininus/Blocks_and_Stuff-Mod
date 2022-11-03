@@ -156,17 +156,9 @@ public class BlockInit {
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    public static final RegistryObject<Block> BOMB_BOX_LVL0 = registryBlock("bomb_box_tier0",
-            () -> new BombBox.Tier0(AbstractBlock.Properties.create(Material.PLANTS, MaterialColor.WOOD)
-                    .hardnessAndResistance(0.2f, 0.5f).sound(SoundType.WOOD)));
-
-    public static final RegistryObject<Block> BOMB_BOX_LVL1 = registryBlock("bomb_box_tier1",
-            () -> new BombBox.Tier1(AbstractBlock.Properties.create(Material.PLANTS, MaterialColor.WOOD)
-                    .hardnessAndResistance(0.2f, 0.5f).sound(SoundType.WOOD)));
-
-    public static final RegistryObject<Block> BOMB_BOX_LVL2 = registryBlock("bomb_box_tier2",
-            () -> new BombBox.Tier2(AbstractBlock.Properties.create(Material.PLANTS, MaterialColor.WOOD)
-                    .hardnessAndResistance(0.2f, 0.5f).sound(SoundType.WOOD)));
+    public static final RegistryObject<Block> BOMB_BOX = registryBlock("bomb_box",
+            () -> new BombBox(AbstractBlock.Properties.create(Material.PLANTS, MaterialColor.WOOD)
+                    .hardnessAndResistance(0.0f, 0.0f).sound(SoundType.WOOD)));
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // TODO BLOCKS

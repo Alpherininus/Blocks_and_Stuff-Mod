@@ -39,17 +39,6 @@ public class MagicalSpellArrowEntity extends AbstractArrowEntity {
 
     @Override
     protected void onInsideBlock(BlockState state) {
-        BlockPos pos = new BlockPos(this.getPosX(), this.getPosY(), this.getPosZ());
-
-        if (state.getBlock() == BlockInit.BOMB_BOX_LVL0.get()) {
-            world.destroyBlock(pos, false);
-        } else if (state.getBlock() == BlockInit.BOMB_BOX_LVL1.get()) {
-            world.destroyBlock(pos, false);
-        } else if (state.getBlock() == BlockInit.BOMB_BOX_LVL2.get()) {
-            world.destroyBlock(pos, false);
-        } else {
-            return;
-        }
 
         super.onInsideBlock(state);
     }

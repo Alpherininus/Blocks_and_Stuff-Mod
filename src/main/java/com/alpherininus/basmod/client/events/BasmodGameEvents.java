@@ -25,6 +25,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.GuiOpenEvent;
 import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
+import net.minecraftforge.common.animation.Event;
 import net.minecraftforge.event.entity.player.AdvancementEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -166,7 +167,6 @@ public class BasmodGameEvents {
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 
 }
 
