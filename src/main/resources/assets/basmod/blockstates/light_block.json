@@ -1,0 +1,5 @@
+{
+	"variants": {
+		"": { "model": "basmod:block/light_block" }
+	}
+}
