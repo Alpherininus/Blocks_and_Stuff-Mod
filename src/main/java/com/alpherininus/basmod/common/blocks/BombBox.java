@@ -53,7 +53,7 @@ public class BombBox extends Block {
             LightningBoltEntity armorStand = new LightningBoltEntity(EntityType.LIGHTNING_BOLT, worldIn);
             armorStand.setPosition(pos.getX(), pos.getY(), pos.getZ());
             worldIn.addEntity(armorStand);
-        } else if (worldIn instanceof ServerWorld && entityIn instanceof LivingEntity) {
+        } else if (worldIn instanceof ServerWorld && entityIn instanceof PlayerEntity) {
             worldIn.destroyBlock(new BlockPos(pos), true, entityIn);
 
             LightningBoltEntity armorStand = new LightningBoltEntity(EntityType.LIGHTNING_BOLT, worldIn);
