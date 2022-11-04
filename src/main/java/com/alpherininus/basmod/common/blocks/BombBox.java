@@ -9,15 +9,18 @@ import net.minecraft.block.FireBlock;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.crash.CrashReport;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.Pose;
+import net.minecraft.entity.*;
 import net.minecraft.entity.effect.LightningBoltEntity;
 import net.minecraft.entity.item.ArmorStandEntity;
+import net.minecraft.entity.item.TNTEntity;
+import net.minecraft.entity.monster.*;
+import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.entity.projectile.ArrowEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.particles.BlockParticleData;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
@@ -27,10 +30,13 @@ import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
+import java.util.Random;
 
 public class BombBox extends Block {
 
@@ -47,28 +53,64 @@ public class BombBox extends Block {
     @Override
     @ParametersAreNonnullByDefault
     public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
+
+        TNTEntity armorStand = new TNTEntity(EntityType.TNT, worldIn);
+        armorStand.setPosition(pos.getX(), pos.getY(), pos.getZ());
+
+        armorStand.setFire(0);
+        armorStand.setFuse(0);
+
+        armorStand.setInvisible(false);
+
         if (worldIn instanceof ServerWorld && entityIn instanceof ArrowEntity) {
             worldIn.destroyBlock(new BlockPos(pos), true, entityIn);
-
-            LightningBoltEntity armorStand = new LightningBoltEntity(EntityType.LIGHTNING_BOLT, worldIn);
-            armorStand.setPosition(pos.getX(), pos.getY(), pos.getZ());
-            worldIn.addEntity(armorStand);
-        } else if (worldIn instanceof ServerWorld && entityIn instanceof PlayerEntity) {
-            worldIn.destroyBlock(new BlockPos(pos), true, entityIn);
-
-            LightningBoltEntity armorStand = new LightningBoltEntity(EntityType.LIGHTNING_BOLT, worldIn);
-            armorStand.setPosition(pos.getX(), pos.getY(), pos.getZ());
             worldIn.addEntity(armorStand);
         }
+        if (worldIn instanceof ServerWorld && entityIn instanceof ZombieEntity) {
+            worldIn.destroyBlock(new BlockPos(pos), true, entityIn);
+            worldIn.addEntity(armorStand);
+        }
+        if (worldIn instanceof ServerWorld && entityIn instanceof SkeletonEntity) {
+            worldIn.destroyBlock(new BlockPos(pos), true, entityIn);
+            worldIn.addEntity(armorStand);
+        }
+        if (worldIn instanceof ServerWorld && entityIn instanceof CreeperEntity) {
+            worldIn.destroyBlock(new BlockPos(pos), true, entityIn);
+            worldIn.addEntity(armorStand);
+        }
+        if (worldIn instanceof ServerWorld && entityIn instanceof SpiderEntity) {
+            worldIn.destroyBlock(new BlockPos(pos), true, entityIn);
+            worldIn.addEntity(armorStand);
+        }
+
     }
 
     @Override
-    public void addInformation(ItemStack stack, @Nullable IBlockReader worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-        tooltip.add(new StringTextComponent("\u00A7fSummon a Lightningbolt, by Breaking the Block with Arrows."));
+    public void onEntityWalk(World worldIn, BlockPos pos, Entity entityIn) {
+        super.onEntityWalk(worldIn, pos, entityIn);
+    }
 
-        super.addInformation(stack, worldIn, tooltip, flagIn);
+    @OnlyIn(Dist.CLIENT)
+    public void animateTick(BlockState stateIn, World worldIn, BlockPos pos, Random rand) {
+
+        float chance = 0.35f;
+        if (chance < rand.nextFloat()) {
+            worldIn.addParticle(ParticleTypes.FLAME, pos.getX() + rand.nextDouble(),
+                    pos.getY() + 0.5D, pos.getZ() + rand.nextDouble(),
+                    0d, 0.05d, 0d);
+            worldIn.addParticle(ParticleTypes.FISHING, pos.getX() + rand.nextDouble(),
+                    pos.getY() + 0.5D, pos.getZ() + rand.nextDouble(),
+                    0d, 0.03d, 0d);
+        }
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    @Override
+    public void addInformation(ItemStack stack, @Nullable IBlockReader worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+        tooltip.add(new StringTextComponent("\u00A7fSummon a TNT, by Breaking the Block with Arrows."));
+
+        super.addInformation(stack, worldIn, tooltip, flagIn);
+    }
 
 }
