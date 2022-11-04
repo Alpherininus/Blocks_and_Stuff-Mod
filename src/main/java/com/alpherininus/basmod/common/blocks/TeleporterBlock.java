@@ -65,7 +65,7 @@ public class TeleporterBlock extends Block {
     public void addInformation(ItemStack stack, @Nullable IBlockReader worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
 
         if (Screen.hasShiftDown()) {
-            tooltip.add(new StringTextComponent("\u00A76RIGHTCLICK \u00A7fto Teleport to Dimension."));
+            tooltip.add(new StringTextComponent("\uEff0 #\u00A76RIGHTCLICK \u00A7fto Teleport to Dimension."));
 
         } else {
             tooltip.add(new StringTextComponent("Hold \u00A76SHIFT \u00A7ffor more Information!"));
