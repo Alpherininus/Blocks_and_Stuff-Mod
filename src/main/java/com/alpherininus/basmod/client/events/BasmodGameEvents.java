@@ -39,9 +39,9 @@ public class BasmodGameEvents {
 
     private static final Minecraft mc = Minecraft.getInstance();
     
-    private static final BasmodPlayerEntity basmodplayer = null;
     private static final LivingEntity user = null;
     private static final ServerPlayerEntity serverPlayer = ((ServerPlayerEntity) user);
+    private static final BasmodPlayerEntity basmodplayer = null;
 
     private static FontRenderer fontRenderer;
 
@@ -80,7 +80,7 @@ public class BasmodGameEvents {
                     assert false;
                     // TODO barWidth => refill Manabar, default is 88 -> 8, 16, 24, 32, 40, 48, 56, 64, 72, 80, 88. / ( 22 = 25% / 44 = 50% / 66 = 75% / 88 = 100% )
 
-                    int barWidth = BasmodConfig.config_integer_manabar.get();
+                    int barWidth = basmodplayer.getMana();
                     int barHeight = 7;
 
                     mc.getTextureManager().bindTexture(MANA_BARS);
@@ -90,58 +90,6 @@ public class BasmodGameEvents {
 
                     // TODO Manabar
                     mc.ingameGUI.blit(new MatrixStack(), posXWidth + 1, posYHeight + 1, 0, 9, barWidth, barHeight);
-
-                }
-            }
-        }
-        // TODO Eqip Items
-        if (mainhand.getItem() == ItemInit.ANIMATED_MAGICAL_STAFF.get()) {
-
-            if (modifiExperience) {
-                if (ignoreGamemode) {
-
-                    int posXWidth = event.getWindow().getScaledWidth() / 2 + 10;
-                    int posYHeight = event.getWindow().getScaledHeight() - 59;
-
-                    int textureWidth = 90;
-                    int textureHeight = 9;
-
-                    int barWidth = BasmodConfig.config_integer_magicalstaff.get(); // TODO barWidth => refill Manabar, default is 88 -> 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60, 64, 68, 72, 76, 80, 84, 88.
-                    int barHeight = 7;
-
-                    mc.getTextureManager().bindTexture(MANA_BARS);
-
-                    // TODO Manabar Outline
-                    mc.ingameGUI.blit(new MatrixStack(), posXWidth, posYHeight, 0, 18, textureWidth, textureHeight);
-
-                    // TODO Manabar
-                    mc.ingameGUI.blit(new MatrixStack(), posXWidth + 1, posYHeight + 1, 0, 28, barWidth, barHeight);
-
-                }
-
-            }
-        }
-
-        if (mainhand.getItem() == ItemInit.ANIMATED_HEAL_STAFF.get()) {
-            if (modifiExperience) {
-                if (ignoreGamemode) {
-
-                    int posXWidth = event.getWindow().getScaledWidth() / 2 + 10;
-                    int posYHeight = event.getWindow().getScaledHeight() - 59;
-
-                    int textureWidth = 90;
-                    int textureHeight = 9;
-
-                    int barWidth = BasmodConfig.config_integer_healstaff.get(); // TODO barWidth => refill Manabar, default is 88 -> 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60, 64, 68, 72, 76, 80, 84, 88.
-                    int barHeight = 7;
-
-                    mc.getTextureManager().bindTexture(MANA_BARS);
-
-                    // TODO Manabar Outline
-                    mc.ingameGUI.blit(new MatrixStack(), posXWidth, posYHeight, 0, 36, textureWidth, textureHeight);
-
-                    // TODO Manabar
-                    mc.ingameGUI.blit(new MatrixStack(), posXWidth + 1, posYHeight + 1, 0, 46, barWidth, barHeight);
 
                 }
             }

@@ -21,7 +21,10 @@ import net.minecraft.entity.projectile.ArrowEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particles.BlockParticleData;
 import net.minecraft.particles.ParticleTypes;
+import net.minecraft.potion.Effect;
+import net.minecraft.potion.Effects;
 import net.minecraft.util.ActionResultType;
+import net.minecraft.util.FoodStats;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
@@ -98,7 +101,7 @@ public class BombBox extends Block {
             worldIn.addParticle(ParticleTypes.FLAME, pos.getX() + rand.nextDouble(),
                     pos.getY() + 0.5D, pos.getZ() + rand.nextDouble(),
                     0d, 0.05d, 0d);
-            worldIn.addParticle(ParticleTypes.FISHING, pos.getX() + rand.nextDouble(),
+            worldIn.addParticle(ParticleTypes.FLASH, pos.getX() + rand.nextDouble(),
                     pos.getY() + 0.5D, pos.getZ() + rand.nextDouble(),
                     0d, 0.03d, 0d);
         }
@@ -112,5 +115,4 @@ public class BombBox extends Block {
 
         super.addInformation(stack, worldIn, tooltip, flagIn);
     }
-
 }

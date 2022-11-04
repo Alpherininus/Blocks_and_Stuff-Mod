@@ -1,11 +1,7 @@
 package com.alpherininus.basmod.common.effekts;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
-import net.minecraft.client.gui.AbstractGui;
-import net.minecraft.client.gui.DisplayEffectsScreen;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.potion.Effect;
-import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.EffectType;
 
 public class FreezeEffect extends Effect {
@@ -16,9 +12,9 @@ public class FreezeEffect extends Effect {
     @Override
     public void performEffect(LivingEntity entityLivingBaseIn, int amplifier) {
         if (!entityLivingBaseIn.world.isRemote()) {
-            Double x = entityLivingBaseIn.getPosX();
-            Double y = entityLivingBaseIn.getPosY();
-            Double z = entityLivingBaseIn.getPosZ();
+            double x = entityLivingBaseIn.getPosX();
+            double y = entityLivingBaseIn.getPosY();
+            double z = entityLivingBaseIn.getPosZ();
 
             entityLivingBaseIn.teleportKeepLoaded(x, y, z);
             entityLivingBaseIn.setMotion(0, 0, 0);
