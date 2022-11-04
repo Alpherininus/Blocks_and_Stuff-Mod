@@ -16,12 +16,17 @@ public class ManaEffect extends Effect {
     @Override
     public void performEffect(LivingEntity entityLivBaseIn, int amplifier) {
 
-        BasmodPlayerEntity entityLivingBaseIn = (BasmodPlayerEntity) entityLivBaseIn.getEntity();
+        BasmodPlayerEntity basPlayerEntity = (BasmodPlayerEntity) entityLivBaseIn.getEntity();
 
-        if (this == EffectInit.MANA.get()) {
-            assert false;
-            if (entityLivingBaseIn.getMana() < entityLivingBaseIn.getMaxMana()) {
-                entityLivingBaseIn.mana(amplifier);
+        //if (this == EffectInit.MANA.get()) {
+        //    if (entityLivingBaseIn.getMana() < entityLivingBaseIn.getMaxMana()) {
+        //        entityLivingBaseIn.mana(amplifier);
+        //    }
+        //}
+
+        if (!entityLivBaseIn.world.isRemote()) {
+            if (basPlayerEntity.getMana() < basPlayerEntity.getMaxMana()) {
+                basPlayerEntity.mana(amplifier);
             }
         }
     }
