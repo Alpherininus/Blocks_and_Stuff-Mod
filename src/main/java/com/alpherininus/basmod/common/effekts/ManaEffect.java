@@ -16,7 +16,6 @@ public class ManaEffect extends Effect {
     @Override
     public void performEffect(LivingEntity entityLivBaseIn, int amplifier) {
 
-        amplifier = 1;
         BasmodPlayerEntity entityLivingBaseIn = (BasmodPlayerEntity) entityLivBaseIn.getEntity();
 
         if (this == EffectInit.MANA.get()) {
