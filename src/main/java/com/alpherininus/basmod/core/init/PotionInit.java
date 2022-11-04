@@ -14,8 +14,8 @@ public class PotionInit {
     public static final RegistryObject<Potion> FREEZE_POTION = POTIONS.register("freeze_potion",
             () -> new Potion(new EffectInstance(EffectInit.FREEZE.get(), 200, 0)));
 
-    public static final RegistryObject<Potion> MANA = POTIONS.register("mana_potion",
-            () -> new Potion(new EffectInstance(EffectInit.MANA.get(), 100, 0)));
+    // public static final RegistryObject<Potion> MANA = POTIONS.register("mana_potion",
+    //        () -> new Potion(new EffectInstance(EffectInit.MANA.get(), 100, 0)));
 
 
 

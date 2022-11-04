@@ -1,66 +1,32 @@
 package com.alpherininus.basmod.client.events;
 
 import com.alpherininus.basmod.Basmod;
-import com.alpherininus.basmod.client.entity.BasmodPlayerEntity;
-import com.alpherininus.basmod.core.init.BlockInit;
-import com.alpherininus.basmod.core.init.ItemInit;
-import com.alpherininus.basmod.core.util.BasmodConfig;
 import com.mojang.blaze3d.matrix.MatrixStack;
-import net.minecraft.advancements.Advancement;
-import net.minecraft.advancements.AdvancementRewards;
-import net.minecraft.advancements.DisplayInfo;
-import net.minecraft.advancements.FrameType;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.command.FunctionObject;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ItemStack;
-import net.minecraft.scoreboard.Scoreboard;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.GuiOpenEvent;
 import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
-import net.minecraftforge.common.animation.Event;
-import net.minecraftforge.event.entity.player.AdvancementEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-
-import java.util.HashMap;
 
 @Mod.EventBusSubscriber(modid = Basmod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)
 public class BasmodGameEvents {
 
     protected static final ResourceLocation MANA_BARS = new ResourceLocation(Basmod.MOD_ID, "textures/gui/hud/mana_bar.png");
 
-    private static final Minecraft mc = Minecraft.getInstance();
-    
-    private static final LivingEntity user = null;
-    private static final ServerPlayerEntity serverPlayer = ((ServerPlayerEntity) user);
-    private static final BasmodPlayerEntity basmodplayer = null;
-
-    private static FontRenderer fontRenderer;
+    private static final Minecraft minecraft = Minecraft.getInstance();
 
     @SubscribeEvent
     public static void onRenderGameOverlay(RenderGameOverlayEvent event) throws Exception {
 
-        assert mc.player != null;
-        ItemStack mainhand = mc.player.getItemStackFromSlot(EquipmentSlotType.MAINHAND);
-        ItemStack offhand = mc.player.getItemStackFromSlot(EquipmentSlotType.OFFHAND);
-        ItemStack head = mc.player.getItemStackFromSlot(EquipmentSlotType.HEAD);
-        ItemStack chest = mc.player.getItemStackFromSlot(EquipmentSlotType.CHEST);
-        ItemStack leg = mc.player.getItemStackFromSlot(EquipmentSlotType.LEGS);
-        ItemStack feet = mc.player.getItemStackFromSlot(EquipmentSlotType.FEET);
+        assert minecraft.player != null;
+        boolean ignoreGamemode = !minecraft.player.abilities.isCreativeMode && !minecraft.player.isSpectator();
+        boolean notIgnoreGamemode = minecraft.player.abilities.isCreativeMode && !minecraft.player.isSpectator();
 
-        boolean ignoreGamemode = !mc.player.abilities.isCreativeMode && !mc.player.isSpectator();
-        boolean notIgnoreGamemode = mc.player.abilities.isCreativeMode && !mc.player.isSpectator();
-
-        boolean isNotInWater = !mc.player.isInWater();
-        boolean isInWater = mc.player.isInWater();
+        boolean isNotInWater = !minecraft.player.isInWater();
+        boolean isInWater = minecraft.player.isInWater();
 
         boolean modifiExperience = !event.isCancelable() && event.getType() == RenderGameOverlayEvent.ElementType.EXPERIENCE;
 
@@ -68,8 +34,8 @@ public class BasmodGameEvents {
             if (modifiExperience) {
                 if (ignoreGamemode) {
 
-                    //int posXWidth = event.getWindow().getScaledWidth() / 2 + 10;
-                    //int posYHeight = event.getWindow().getScaledHeight() - 48;
+                    // int posXWidth = event.getWindow().getScaledWidth() / 2 + 10;
+                    // int posYHeight = event.getWindow().getScaledHeight() - 48;
 
                     int posXWidth = event.getWindow().getScaledWidth() / 2 + 10;
                     int posYHeight = event.getWindow().getScaledHeight() - 49;
@@ -77,26 +43,26 @@ public class BasmodGameEvents {
                     int textureWidth = 90;
                     int textureHeight = 9;
 
-                    assert false;
                     // TODO barWidth => refill Manabar, default is 88 -> 8, 16, 24, 32, 40, 48, 56, 64, 72, 80, 88. / ( 22 = 25% / 44 = 50% / 66 = 75% / 88 = 100% )
 
-                    int barWidth = basmodplayer.getMana();
+                    assert false;
+                    int barWidth = 8;
                     int barHeight = 7;
 
-                    mc.getTextureManager().bindTexture(MANA_BARS);
+                    minecraft.getTextureManager().bindTexture(MANA_BARS);
 
                     // TODO Manabar Outline
-                    mc.ingameGUI.blit(new MatrixStack(), posXWidth, posYHeight, 0, 0, textureWidth, textureHeight);
+                    minecraft.ingameGUI.blit(new MatrixStack(), posXWidth, posYHeight, 0, 0, textureWidth, textureHeight);
 
                     // TODO Manabar
-                    mc.ingameGUI.blit(new MatrixStack(), posXWidth + 1, posYHeight + 1, 0, 9, barWidth, barHeight);
+                    minecraft.ingameGUI.blit(new MatrixStack(), posXWidth + 1, posYHeight + 1, 0, 9, barWidth, barHeight);
 
                 }
             }
         }
 
         // TODO When Player is Sleeping.
-        if (mc.player.isSleeping()) {
+        if (minecraft.player.isSleeping()) {
             event.getWindow().setWindowTitle("Good Night :D!");
         }
         

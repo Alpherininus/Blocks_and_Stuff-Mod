@@ -127,11 +127,6 @@ public class Basmod {
                     Ingredient.fromStacks(new ItemStack(Items.GLASS_BOTTLE)),
                     Ingredient.fromStacks(new ItemStack(Blocks.FROSTED_ICE)),
                     PotionInit.FREEZE_POTION.get()));
-
-            BrewingRecipeRegistry.addRecipe(new BasmodBrewingPotion(
-                    Ingredient.fromStacks(new ItemStack(Items.GLASS_BOTTLE)),
-                    Ingredient.fromStacks(new ItemStack(BlockInit.MAGICAL_FLOWER.get())),
-                    PotionInit.MANA.get()));
         });
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
