@@ -4,6 +4,7 @@ import com.alpherininus.basmod.Basmod;
 import com.alpherininus.basmod.client.events.loots.BasmodAdditionModifier;
 import com.alpherininus.basmod.client.events.loots.BasmodStructureAdditionModifier;
 import com.alpherininus.basmod.common.entitys.CopperGolemEntity;
+import com.alpherininus.basmod.common.entitys.NPCEntity;
 import com.alpherininus.basmod.common.entitys.SeiorShellArmorEntity;
 import com.alpherininus.basmod.common.entitys.animated.BasBossEntity;
 import com.alpherininus.basmod.common.entitys.animated.BasWanderingTraderEntity;
@@ -27,6 +28,7 @@ public class BasmodEventBusEvents {
     public static void addEntityAttributes(EntityAttributeCreationEvent event) {
         event.put(EntityTypesInit.BASMOD_COPPER_GOLEM.get(), CopperGolemEntity.setCustomCopperGolemAttributes().create());
         event.put(EntityTypesInit.BASMOD_SEIORSHELL.get(), SeiorShellArmorEntity.setCustomAttributes().create());
+        event.put(EntityTypesInit.BASMOD_NPC_TYPE.get(), NPCEntity.registerNPCAttributes().create());
 
         event.put(EntityTypesInit.BASMOD_BOSS_ENTITY.get(), BasBossEntity.setCustomBasbossAttributes());
         event.put(EntityTypesInit.BOSS_OF_DEAD_ENTITY.get(), BossOfDeadEntity.setCustomBossOfDeadAttributes());

@@ -3,6 +3,7 @@ package com.alpherininus.basmod.core.init;
 import com.alpherininus.basmod.Basmod;
 import com.alpherininus.basmod.common.entitys.CopperGolemEntity;
 import com.alpherininus.basmod.common.entitys.MagicalSpellArrowEntity;
+import com.alpherininus.basmod.common.entitys.NPCEntity;
 import com.alpherininus.basmod.common.entitys.SeiorShellArmorEntity;
 import com.alpherininus.basmod.common.entitys.animated.BasBossEntity;
 import com.alpherininus.basmod.common.entitys.animated.BasWanderingTraderEntity;
@@ -59,6 +60,14 @@ public class EntityTypesInit {
                             .create(BasWanderingTraderEntity::new, EntityClassification.CREATURE)
                             .size(1.0F, 2.0F)
                             .build("bas_wandering_trader"));
+
+    public static final RegistryObject<EntityType<NPCEntity>> BASMOD_NPC_TYPE =
+            ENTITY_TYPES.register("npc_type",
+                    () -> EntityType.Builder
+                            .create(NPCEntity::new, EntityClassification.CREATURE)
+                            .size(1.0f,2.0f)
+                            .build(new ResourceLocation(Basmod.MOD_ID, "npc_type").toString()));
+
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

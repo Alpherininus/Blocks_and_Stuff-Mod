@@ -7,6 +7,7 @@ import com.alpherininus.basmod.common.entitys.animated.renerer.BasWanderingTrade
 import com.alpherininus.basmod.common.entitys.animated.renerer.BossOfDeadRenderer;
 import com.alpherininus.basmod.common.entitys.renderer.CopperGolemRenderer;
 import com.alpherininus.basmod.common.entitys.renderer.MagicalSpellArrowRenderer;
+import com.alpherininus.basmod.common.entitys.renderer.NPCRenderer;
 import com.alpherininus.basmod.common.entitys.renderer.SeieorShellRenderer;
 import com.alpherininus.basmod.common.items.armor.JetPackArmorItem;
 import com.alpherininus.basmod.common.items.armor.models.renderer.JetPackArmorRenderer;
@@ -175,6 +176,7 @@ public class Basmod {
         // BasmodItemModel.makeBow(ItemInit.FAILNAUGHT_BOW.get());
 
         RenderingRegistry.registerEntityRenderingHandler(EntityTypesInit.BASMOD_COPPER_GOLEM.get(), CopperGolemRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityTypesInit.BASMOD_NPC_TYPE.get(), NPCRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityTypesInit.BASMOD_SEIORSHELL.get(), SeieorShellRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityTypesInit.MAGICAL_SPELL_ARROW.get(), MagicalSpellArrowRenderer::new);
 
