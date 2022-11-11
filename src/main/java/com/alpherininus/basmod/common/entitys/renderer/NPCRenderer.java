@@ -13,6 +13,10 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 @OnlyIn(Dist.CLIENT)
 public class NPCRenderer extends MobRenderer<NPCEntity, NPCModel<NPCEntity>> {
     private static final ResourceLocation DEFAULT_NPC = new ResourceLocation(Basmod.MOD_ID, "textures/entity/npc_types/npc_type.png");
+
+    private static final ResourceLocation KILLER_GUENTER = new ResourceLocation(Basmod.MOD_ID,"textures/entity/npc_types/guenter.png");
+    private static final ResourceLocation KILLER_WALTER = new ResourceLocation(Basmod.MOD_ID,"textures/entity/npc_types/walter.png");
+
     private static final ResourceLocation NPC_GUNTER = new ResourceLocation(Basmod.MOD_ID,"textures/entity/npc_types/gunter.png");
     private static final ResourceLocation NPC_LU = new ResourceLocation(Basmod.MOD_ID,"textures/entity/npc_types/lu.png");
     private static final ResourceLocation NPC_SOPHI = new ResourceLocation(Basmod.MOD_ID,"textures/entity/npc_types/sophi.png");
@@ -40,9 +44,27 @@ public class NPCRenderer extends MobRenderer<NPCEntity, NPCModel<NPCEntity>> {
                 case 0:
                 default:
                     return DEFAULT_NPC;
+
+                case 90:
+                    return NPC_GUNTER;
+                case 91:
+                    return NPC_LU;
+                case 92:
+                    return NPC_SOPHI;
+                case 93:
+
+                case 94:
+                case 95:
+                case 96:
+                case 97:
+
+                case 98:
+                    return KILLER_WALTER;
+                case 99:
+                    return KILLER_GUENTER;
+
             }
         }
     }
-
 
 }
