@@ -31,12 +31,6 @@ public class NPCRenderer extends MobRenderer<NPCEntity, NPCModel<NPCEntity>> {
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    private final ResourceLocation HEAD_PHONES_A = new ResourceLocation(Basmod.MOD_ID, "textures/entity/npc_types/hat_types/head_phones_a.png");
-    private final ResourceLocation HEAD_PHONES_B = new ResourceLocation(Basmod.MOD_ID, "textures/entity/npc_types/hat_types/head_phones_b.png");
-    private final ResourceLocation HEAD_PHONES_C = new ResourceLocation(Basmod.MOD_ID, "textures/entity/npc_types/hat_types/head_phones_c.png");
-    private final ResourceLocation HEAD_PHONES_D = new ResourceLocation(Basmod.MOD_ID, "textures/entity/npc_types/hat_types/head_phones_d.png");
-    private final ResourceLocation HEAD_PHONES_E = new ResourceLocation(Basmod.MOD_ID, "textures/entity/npc_types/hat_types/head_phones_e.png");
-
     public NPCRenderer(EntityRendererManager renderManagerIn) {
         super(renderManagerIn, new NPCModel<>(), 0.5F);
     }
