@@ -5,12 +5,14 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.passive.PigEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.*;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
@@ -21,7 +23,10 @@ import java.util.function.Predicate;
 public class NPCEntity extends CreatureEntity {
 
     private static final DataParameter<Integer> NPC_TYPE = EntityDataManager.createKey(NPCEntity.class, DataSerializers.VARINT);
+    private static final DataParameter<Integer> NPC_TYPE_HATS = EntityDataManager.createKey(NPCEntity.class, DataSerializers.VARINT);
+
     private static final Predicate<LivingEntity> field_213627_bA = (p_213626_0_) -> p_213626_0_ instanceof MobEntity;
+
 
     private static final ResourceLocation KILLER_GUENTER = new ResourceLocation("killer_guenter");
     private static final ResourceLocation KILLER_WALTER = new ResourceLocation("killer_walter");
@@ -31,8 +36,11 @@ public class NPCEntity extends CreatureEntity {
     private static final ResourceLocation NPC_GUNTER = new ResourceLocation("gunter");
     private static final ResourceLocation NPC_SOPHI = new ResourceLocation("sophi");
     private static final ResourceLocation NPC_FLADIMIR = new ResourceLocation("fladimir");
-    private static final ResourceLocation KILLER_WALTER = new ResourceLocation("killer_walter");
-
+    private static final ResourceLocation NPC_FRANK = new ResourceLocation("frank");
+    private static final ResourceLocation NPC_OLAF = new ResourceLocation("olaf");
+    private static final ResourceLocation NPC_ASUKA = new ResourceLocation("asuka");
+    private static final ResourceLocation NPC_KURATA = new ResourceLocation("kurata");
+    private static final ResourceLocation NPC_JONNY = new ResourceLocation("jonny");
 
 
     public NPCEntity(EntityType<? extends CreatureEntity> p_i50247_1_, World p_i50247_2_) {
@@ -78,11 +86,15 @@ public class NPCEntity extends CreatureEntity {
     public void writeAdditional(CompoundNBT compound) {
         super.writeAdditional(compound);
         compound.putInt("NPCType", this.getNPCEntityType());
+        compound.putInt("NPCHats", this.getNPCEntityTypeHats());
+
     }
 
     public void readAdditional(CompoundNBT compound) {
         super.readAdditional(compound);
         this.setRabbitType(compound.getInt("NPCType"));
+        this.setRabbitType(compound.getInt("NPCHats"));
+
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -111,8 +123,10 @@ public class NPCEntity extends CreatureEntity {
     }
 
     public boolean attackEntityFrom(DamageSource source, float amount) {
-        return this.isInvulnerableTo(source) ? false : super.attackEntityFrom(source, amount);
+        return !this.isInvulnerableTo(source) && super.attackEntityFrom(source, amount);
     }
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     public int getNPCEntityType() {
         return this.dataManager.get(NPC_TYPE);
@@ -129,72 +143,13 @@ public class NPCEntity extends CreatureEntity {
             }
         }
 
-        //
-
-        if (npcTypeId == 98) {
-            this.getAttribute(Attributes.ARMOR).setBaseValue(10.0D);
-            if (!this.hasCustomName()) {
-                this.setCustomName(new TranslationTextComponent(Util.makeTranslationKey("entity", KILLER_WALTER)));
-            }
-        }
-
-        if (npcTypeId == 97) {
-            this.getAttribute(Attributes.ARMOR).setBaseValue(10.0D);
-            if (!this.hasCustomName()) {
-                this.setCustomName(new TranslationTextComponent(Util.makeTranslationKey("entity", NPC_ESEL)));
-            }
-        }
-
-        if (npcTypeId == 96) {
-            this.getAttribute(Attributes.ARMOR).setBaseValue(10.0D);
-            if (!this.hasCustomName()) {
-                this.setCustomName(new TranslationTextComponent(Util.makeTranslationKey("entity", NPC_GUNTER)));
-            }
-        }
-
-        if (npcTypeId == 95) {
-            this.getAttribute(Attributes.ARMOR).setBaseValue(10.0D);
-            if (!this.hasCustomName()) {
-                this.setCustomName(new TranslationTextComponent(Util.makeTranslationKey("entity", NPC_LU)));
-            }
-        }
-
-        if (npcTypeId == 94) {
-            this.getAttribute(Attributes.ARMOR).setBaseValue(10.0D);
-            if (!this.hasCustomName()) {
-                this.setCustomName(new TranslationTextComponent(Util.makeTranslationKey("entity", NPC_SOPHI)));
-            }
-        }
-
-        if (npcTypeId == 93) {
-            this.getAttribute(Attributes.ARMOR).setBaseValue(10.0D);
-            if (!this.hasCustomName()) {
-                this.setCustomName(new TranslationTextComponent(Util.makeTranslationKey("entity", NPC_FLADIMIR)));
-            }
-        }
-
-        if (npcTypeId == 92) {
-            this.getAttribute(Attributes.ARMOR).setBaseValue(10.0D);
-            if (!this.hasCustomName()) {
-                this.setCustomName(new TranslationTextComponent(Util.makeTranslationKey("entity", KILLER_WALTER)));
-            }
-        }
-
-        if (npcTypeId == 91) {
-            this.getAttribute(Attributes.ARMOR).setBaseValue(10.0D);
-            if (!this.hasCustomName()) {
-                this.setCustomName(new TranslationTextComponent(Util.makeTranslationKey("entity", KILLER_WALTER)));
-            }
-        }
-
-        if (npcTypeId == 90) {
-            this.getAttribute(Attributes.ARMOR).setBaseValue(10.0D);
-            if (!this.hasCustomName()) {
-                this.setCustomName(new TranslationTextComponent(Util.makeTranslationKey("entity", KILLER_WALTER)));
-            }
-        }
-
         this.dataManager.set(NPC_TYPE, npcTypeId);
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    public int getNPCEntityTypeHats() {
+        return this.dataManager.get(NPC_TYPE_HATS);
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -209,8 +164,21 @@ public class NPCEntity extends CreatureEntity {
 
         if (!world.isRemote()) {
 
-            if (this.getNPCEntityType() == 98) {
-                playerIn.giveExperiencePoints(10);
+            if (this.getNPCEntityType() == 1) {
+
+                if (playerIn.experienceLevel == 2) {
+                    playerIn.sendStatusMessage(new StringTextComponent("Hallo"), true);
+
+                } else if (playerIn.experienceLevel == 4) {
+                    BlockPos pos = playerIn.getPosition();
+                    World worldIn = playerIn.getEntityWorld();
+                    PigEntity pig = EntityType.PIG.create(worldIn);
+
+                    pig.setPosition(pos.getX() + this.rand.nextInt(10) - 5, pos.getY(), pos.getZ() + this.rand.nextInt(10) - 5);
+                    pig.addTag("ruediger");
+                    worldIn.addEntity(pig);
+
+                }
 
                 playerIn.sendMessage(new StringTextComponent("Hallo"), UUID.randomUUID());
 

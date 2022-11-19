@@ -7,7 +7,7 @@ import com.alpherininus.basmod.common.blocks.doorblock.*;
 import com.alpherininus.basmod.common.blocks.portals.EndPortalBlock;
 import com.alpherininus.basmod.common.blocks.portals.NetherPortalBlock;
 import com.alpherininus.basmod.common.blocks.trees.MagicalOakTree;
-import com.alpherininus.basmod.core.itemgroup.ModItemGroupBlocks;
+import com.alpherininus.basmod.core.util.itemgroup.ModItemGroupBlocks;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;

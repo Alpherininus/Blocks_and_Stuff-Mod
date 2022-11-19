@@ -10,16 +10,13 @@ import com.alpherininus.basmod.common.items.animated.renderer.HealStaffItemRende
 import com.alpherininus.basmod.common.items.animated.renderer.MagicalStaffItemRenderer;
 import com.alpherininus.basmod.common.items.animated.renderer.NosfaratuBookItemRenderer;
 import com.alpherininus.basmod.common.items.animated.renderer.TeleportStaffItemRenderer;
-import com.alpherininus.basmod.common.items.armor.DivingHelmetItem;
-import com.alpherininus.basmod.common.items.armor.ExperiArmorItem;
-import com.alpherininus.basmod.common.items.armor.ExperiHorseArmorItem;
-import com.alpherininus.basmod.common.items.armor.JetPackArmorItem;
+import com.alpherininus.basmod.common.items.armor.*;
 import com.alpherininus.basmod.common.items.models.BasmodSpawnEggItem;
 import com.alpherininus.basmod.common.items.theme.*;
 import com.alpherininus.basmod.common.materials.BasmodArmorMaterial;
 import com.alpherininus.basmod.common.materials.BasmodToolMaterial;
-import com.alpherininus.basmod.core.itemgroup.ModItemGroupItems;
-import com.alpherininus.basmod.core.itemgroup.ModItemGroupWapons;
+import com.alpherininus.basmod.core.util.itemgroup.ModItemGroupItems;
+import com.alpherininus.basmod.core.util.itemgroup.ModItemGroupWapons;
 import com.alpherininus.basmod.core.util.BasmodConfig;
 import net.minecraft.entity.EntityType;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -213,7 +210,7 @@ public class ItemInit {
     public static final RegistryObject<Item> JETPACK_CHESTPLATTE = ITEMS.register("jetpack",
             () -> new JetPackArmorItem(BasmodArmorMaterial.EXPERIMENTALITEM, EquipmentSlotType.CHEST,
                     new Item.Properties().group(ModItemGroupWapons.BAS_MOD_WAPONS)));
-
+    
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     public static final RegistryObject<Item> DIVING_HELMET_HELMET = ITEMS.register("diving_helmet",

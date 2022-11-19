@@ -1,4 +1,4 @@
-package com.alpherininus.basmod.core.itemgroup;
+package com.alpherininus.basmod.core.util.itemgroup;
 
 import com.alpherininus.basmod.core.init.ItemInit;
 import net.minecraft.item.ItemGroup;

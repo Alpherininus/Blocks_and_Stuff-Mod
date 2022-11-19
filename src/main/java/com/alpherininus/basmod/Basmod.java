@@ -5,10 +5,7 @@ import com.alpherininus.basmod.common.containers.screen.BaSInfoScreen;
 import com.alpherininus.basmod.common.entitys.animated.renerer.BasBossRenderer;
 import com.alpherininus.basmod.common.entitys.animated.renerer.BasWanderingTraderRenderer;
 import com.alpherininus.basmod.common.entitys.animated.renerer.BossOfDeadRenderer;
-import com.alpherininus.basmod.common.entitys.renderer.CopperGolemRenderer;
-import com.alpherininus.basmod.common.entitys.renderer.MagicalSpellArrowRenderer;
-import com.alpherininus.basmod.common.entitys.renderer.NPCRenderer;
-import com.alpherininus.basmod.common.entitys.renderer.SeieorShellRenderer;
+import com.alpherininus.basmod.common.entitys.renderer.*;
 import com.alpherininus.basmod.common.items.armor.JetPackArmorItem;
 import com.alpherininus.basmod.common.items.armor.models.renderer.JetPackArmorRenderer;
 import com.alpherininus.basmod.common.items.models.BasmodItemModel;
@@ -26,6 +23,7 @@ import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.crash.CrashReport;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
@@ -49,6 +47,11 @@ import software.bernie.geckolib3.renderers.geo.GeoArmorRenderer;
 import top.theillusivec4.curios.api.SlotTypeMessage;
 import top.theillusivec4.curios.api.SlotTypePreset;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+
 @Mod("basmod")
 @Mod.EventBusSubscriber(modid = Basmod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class Basmod {
@@ -58,7 +61,7 @@ public class Basmod {
 
     public static final String MOD_ID = "basmod";
 
-    public Basmod() {
+    public Basmod() throws IOException {
         IEventBus eventbus = FMLJavaModLoadingContext.get().getModEventBus();
 
         // TODO Registrys
@@ -87,10 +90,13 @@ public class Basmod {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::enqueueIMC);
 
+
         // TODO EVENTBUS
         MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGH, OreGeneration::addOres);
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, BasmodConfig.COMMON_SPEC_GENERAL, "basmod/basmod-common.toml");
+
+        makeDir();
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
@@ -176,7 +182,10 @@ public class Basmod {
         // BasmodItemModel.makeBow(ItemInit.FAILNAUGHT_BOW.get());
 
         RenderingRegistry.registerEntityRenderingHandler(EntityTypesInit.BASMOD_COPPER_GOLEM.get(), CopperGolemRenderer::new);
+
         RenderingRegistry.registerEntityRenderingHandler(EntityTypesInit.BASMOD_NPC_TYPE.get(), NPCRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityTypesInit.BASMOD_NPC_TYPE.get(), NPCOtherRenderer::new);
+
         RenderingRegistry.registerEntityRenderingHandler(EntityTypesInit.BASMOD_SEIORSHELL.get(), SeieorShellRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityTypesInit.MAGICAL_SPELL_ARROW.get(), MagicalSpellArrowRenderer::new);
 
@@ -189,8 +198,26 @@ public class Basmod {
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     }
 
-    public static class OtherStuff {
+    private static void makeDir() {
+
+        String path = "././config/basmod/texture/";
+        String fileName = "test.txt";
+        String dirName = "npc";
+        File file = new File(path + dirName + "/" + fileName);
+        File dir = new File(path + dirName);
+
+        if (dir.mkdir()) {
+            try {
+                System.out.println("|| -> Datei erstellt: " + file.createNewFile());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("|| ->" + dir + " konnte nicht erstellt werden");
+        }
 
     }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 }

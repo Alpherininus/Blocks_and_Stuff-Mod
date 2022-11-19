@@ -5,7 +5,8 @@ import net.minecraftforge.common.ForgeConfigSpec;
 public class BasmodConfig {
     public static final ForgeConfigSpec.Builder CONFIG_BUILDER = new ForgeConfigSpec.Builder();
     public static ForgeConfigSpec COMMON_SPEC_GENERAL;
-
+    public static ForgeConfigSpec CLIENT_SPEC_GENERAL;
+    public static ForgeConfigSpec SERVER_SPEC_GENERAL;
 
     // for Basmod Alpha version 5.2
     public static final ForgeConfigSpec.ConfigValue<Integer> config_integer_manabar;
@@ -23,7 +24,7 @@ public class BasmodConfig {
     public static final ForgeConfigSpec.ConfigValue<String> config_notices_magical_staff;
 
     static {
-        CONFIG_BUILDER.comment("general configs").push("Basmod Configs");
+        CONFIG_BUILDER.comment("general configs").push("Basmod COMMON Configs");
 
         // RenderGameOverlayEvent
         config_integer_manabar = CONFIG_BUILDER.comment("Default value is Bar Maximum: 88.").worldRestart().define("Config Manabar", 88);
@@ -50,4 +51,14 @@ public class BasmodConfig {
         CONFIG_BUILDER.pop();
         COMMON_SPEC_GENERAL = CONFIG_BUILDER.build();
     }
+
+    static {
+
+        CONFIG_BUILDER.comment(" ").push("Basmod CLIENT Configs");
+
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        CONFIG_BUILDER.pop();
+        CLIENT_SPEC_GENERAL = CONFIG_BUILDER.build();
+    }
+
 }
