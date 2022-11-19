@@ -5,6 +5,7 @@ import com.alpherininus.basmod.common.entitys.NPCEntity;
 import com.alpherininus.basmod.common.entitys.model.NPCModel;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
+import net.minecraft.client.renderer.entity.RabbitRenderer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.api.distmarker.Dist;
@@ -14,34 +15,37 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 public class NPCRenderer extends MobRenderer<NPCEntity, NPCModel<NPCEntity>> {
     private static final ResourceLocation DEFAULT_NPC = new ResourceLocation(Basmod.MOD_ID, "textures/entity/npc_types/npc_type.png");
 
-    private static final ResourceLocation KILLER_GUENTER = new ResourceLocation(Basmod.MOD_ID,"textures/entity/npc_types/guenter.png");
-    private static final ResourceLocation KILLER_WALTER = new ResourceLocation(Basmod.MOD_ID,"textures/entity/npc_types/walter.png");
+    private static final ResourceLocation KILLER_GUENTER = new ResourceLocation(Basmod.MOD_ID, "textures/entity/npc_types/guenter.png");
+    private static final ResourceLocation KILLER_WALTER = new ResourceLocation(Basmod.MOD_ID, "textures/entity/npc_types/walter.png");
 
-    private static final ResourceLocation NPC_GUNTER = new ResourceLocation(Basmod.MOD_ID,"textures/entity/npc_types/gunter.png");
-    private static final ResourceLocation NPC_LU = new ResourceLocation(Basmod.MOD_ID,"textures/entity/npc_types/lu.png");
-    private static final ResourceLocation NPC_SOPHI = new ResourceLocation(Basmod.MOD_ID,"textures/entity/npc_types/sophi.png");
-    private static final ResourceLocation NPC_ESEL = new ResourceLocation(Basmod.MOD_ID,"textures/entity/npc_types/esel.png");
-    private static final ResourceLocation NPC_FLADIMIR = new ResourceLocation(Basmod.MOD_ID,"textures/entity/npc_types/fladimir.png");
-    private static final ResourceLocation NPC_OLAF = new ResourceLocation(Basmod.MOD_ID,"textures/entity/npc_types/olaf.png");
-    private static final ResourceLocation NPC_FRANK = new ResourceLocation(Basmod.MOD_ID,"textures/entity/npc_types/frank.png");
-    private static final ResourceLocation NPC_ASUKA = new ResourceLocation(Basmod.MOD_ID,"textures/entity/npc_types/asuka.png");
-    private static final ResourceLocation NPC_KURATA = new ResourceLocation(Basmod.MOD_ID,"textures/entity/npc_types/kurata.png");
-    private static final ResourceLocation NPC_JONNY = new ResourceLocation(Basmod.MOD_ID,"textures/entity/npc_types/jonny.png");
+    private static final ResourceLocation NPC_GUNTER = new ResourceLocation(Basmod.MOD_ID, "textures/entity/npc_types/gunter.png");
+    private static final ResourceLocation NPC_LU = new ResourceLocation(Basmod.MOD_ID, "textures/entity/npc_types/lu.png");
+    private static final ResourceLocation NPC_SOPHI = new ResourceLocation(Basmod.MOD_ID, "textures/entity/npc_types/sophi.png");
+    private static final ResourceLocation NPC_ESEL = new ResourceLocation(Basmod.MOD_ID, "textures/entity/npc_types/esel.png");
+    private static final ResourceLocation NPC_FLADIMIR = new ResourceLocation(Basmod.MOD_ID, "textures/entity/npc_types/fladimir.png");
+    private static final ResourceLocation NPC_OLAF = new ResourceLocation(Basmod.MOD_ID, "textures/entity/npc_types/olaf.png");
+    private static final ResourceLocation NPC_FRANK = new ResourceLocation(Basmod.MOD_ID, "textures/entity/npc_types/frank.png");
+    private static final ResourceLocation NPC_ASUKA = new ResourceLocation(Basmod.MOD_ID, "textures/entity/npc_types/asuka.png");
+    private static final ResourceLocation NPC_KURATA = new ResourceLocation(Basmod.MOD_ID, "textures/entity/npc_types/kurata.png");
+    private static final ResourceLocation NPC_JONNY = new ResourceLocation(Basmod.MOD_ID, "textures/entity/npc_types/jonny.png");
 
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    private final ResourceLocation HEAD_PHONES_A = new ResourceLocation(Basmod.MOD_ID, "textures/entity/npc_types/hat_types/head_phones_a.png");
+    private final ResourceLocation HEAD_PHONES_B = new ResourceLocation(Basmod.MOD_ID, "textures/entity/npc_types/hat_types/head_phones_b.png");
+    private final ResourceLocation HEAD_PHONES_C = new ResourceLocation(Basmod.MOD_ID, "textures/entity/npc_types/hat_types/head_phones_c.png");
+    private final ResourceLocation HEAD_PHONES_D = new ResourceLocation(Basmod.MOD_ID, "textures/entity/npc_types/hat_types/head_phones_d.png");
+    private final ResourceLocation HEAD_PHONES_E = new ResourceLocation(Basmod.MOD_ID, "textures/entity/npc_types/hat_types/head_phones_e.png");
 
     public NPCRenderer(EntityRendererManager renderManagerIn) {
         super(renderManagerIn, new NPCModel<>(), 0.5F);
     }
 
-    @Override
+     @Override
     public ResourceLocation getEntityTexture(NPCEntity entity) {
-        String str = TextFormatting.getTextWithoutFormattingCodes(entity.getName().getString());
-
-        if (str != null && "Gunter".equals(str)) {
+        String s = TextFormatting.getTextWithoutFormattingCodes(entity.getName().getString());
+        if (s != null && "Gunter".equals(s)) {
             return NPC_GUNTER;
-
-        } else if (str != null && "Esel".equals(str)) {
-            return NPC_ESEL;
 
         } else {
             switch (entity.getNPCEntityType()) {
@@ -66,6 +70,7 @@ public class NPCRenderer extends MobRenderer<NPCEntity, NPCModel<NPCEntity>> {
                 case 8:
                     return NPC_JONNY;
                 case 9:
+                    return NPC_ESEL;
                 case 10:
                 case 11:
                 case 12:
@@ -162,4 +167,7 @@ public class NPCRenderer extends MobRenderer<NPCEntity, NPCModel<NPCEntity>> {
             }
         }
     }
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 }

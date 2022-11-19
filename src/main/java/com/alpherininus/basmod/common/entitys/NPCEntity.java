@@ -23,25 +23,10 @@ import java.util.function.Predicate;
 public class NPCEntity extends CreatureEntity {
 
     private static final DataParameter<Integer> NPC_TYPE = EntityDataManager.createKey(NPCEntity.class, DataSerializers.VARINT);
-    private static final DataParameter<Integer> NPC_TYPE_HATS = EntityDataManager.createKey(NPCEntity.class, DataSerializers.VARINT);
 
     private static final Predicate<LivingEntity> field_213627_bA = (p_213626_0_) -> p_213626_0_ instanceof MobEntity;
 
-
     private static final ResourceLocation KILLER_GUENTER = new ResourceLocation("killer_guenter");
-    private static final ResourceLocation KILLER_WALTER = new ResourceLocation("killer_walter");
-
-    private static final ResourceLocation NPC_ESEL = new ResourceLocation("esel");
-    private static final ResourceLocation NPC_LU = new ResourceLocation("lu");
-    private static final ResourceLocation NPC_GUNTER = new ResourceLocation("gunter");
-    private static final ResourceLocation NPC_SOPHI = new ResourceLocation("sophi");
-    private static final ResourceLocation NPC_FLADIMIR = new ResourceLocation("fladimir");
-    private static final ResourceLocation NPC_FRANK = new ResourceLocation("frank");
-    private static final ResourceLocation NPC_OLAF = new ResourceLocation("olaf");
-    private static final ResourceLocation NPC_ASUKA = new ResourceLocation("asuka");
-    private static final ResourceLocation NPC_KURATA = new ResourceLocation("kurata");
-    private static final ResourceLocation NPC_JONNY = new ResourceLocation("jonny");
-
 
     public NPCEntity(EntityType<? extends CreatureEntity> p_i50247_1_, World p_i50247_2_) {
         super(p_i50247_1_, p_i50247_2_);
@@ -75,6 +60,7 @@ public class NPCEntity extends CreatureEntity {
     protected void registerData() {
         super.registerData();
         this.dataManager.register(NPC_TYPE, 0);
+
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -86,14 +72,12 @@ public class NPCEntity extends CreatureEntity {
     public void writeAdditional(CompoundNBT compound) {
         super.writeAdditional(compound);
         compound.putInt("NPCType", this.getNPCEntityType());
-        compound.putInt("NPCHats", this.getNPCEntityTypeHats());
 
     }
 
     public void readAdditional(CompoundNBT compound) {
         super.readAdditional(compound);
-        this.setRabbitType(compound.getInt("NPCType"));
-        this.setRabbitType(compound.getInt("NPCHats"));
+        this.setNPCType(compound.getInt("NPCType"));
 
     }
 
@@ -132,7 +116,7 @@ public class NPCEntity extends CreatureEntity {
         return this.dataManager.get(NPC_TYPE);
     }
 
-    public void setRabbitType(int npcTypeId) {
+    public void setNPCType(int npcTypeId) {
         if (npcTypeId == 99) {
             this.getAttribute(Attributes.ARMOR).setBaseValue(12.0D);
             this.goalSelector.addGoal(4, new NPCEntity.EvilAttackGoal(this));
@@ -144,12 +128,6 @@ public class NPCEntity extends CreatureEntity {
         }
 
         this.dataManager.set(NPC_TYPE, npcTypeId);
-    }
-
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-    public int getNPCEntityTypeHats() {
-        return this.dataManager.get(NPC_TYPE_HATS);
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
