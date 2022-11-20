@@ -145,7 +145,7 @@ public class NPCEntity extends CreatureEntity {
             this.getAttribute(Attributes.ARMOR).setBaseValue(20.0D);
             this.goalSelector.addGoal(4, new NPCEntity.EvilAttackGoal(this));
             this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setCallsForHelp());
-            this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, AbstractSkeletonEntity.class, true));
+            this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, SkeletonEntity.class, true));
             this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, AbstractIllagerEntity.class, true));
             this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, AbstractRaiderEntity.class, true));
             this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, SpiderEntity.class, true));
@@ -158,9 +158,8 @@ public class NPCEntity extends CreatureEntity {
             this.getAttribute(Attributes.ARMOR).setBaseValue(30.0D);
             this.goalSelector.addGoal(4, new NPCEntity.EvilAttackGoal(this));
             this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setCallsForHelp());
-            this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, AbstractSkeletonEntity.class, true));
-            this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, AbstractIllagerEntity.class, true));
-            this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, AbstractRaiderEntity.class, true));
+            this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, SkeletonEntity.class, true));
+            this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PillagerEntity.class, true));
             this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, SpiderEntity.class, true));
             this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, ZombieEntity.class, true));
             if (!this.hasCustomName()) {
@@ -171,9 +170,8 @@ public class NPCEntity extends CreatureEntity {
             this.getAttribute(Attributes.ARMOR).setBaseValue(30.0D);
             this.goalSelector.addGoal(4, new NPCEntity.EvilAttackGoal(this));
             this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setCallsForHelp());
-            this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, AbstractSkeletonEntity.class, true));
-            this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, AbstractIllagerEntity.class, true));
-            this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, AbstractRaiderEntity.class, true));
+            this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, SkeletonEntity.class, true));
+            this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PillagerEntity.class, true));
             this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, SpiderEntity.class, true));
             this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, ZombieEntity.class, true));
             if (!this.hasCustomName()) {
@@ -184,9 +182,8 @@ public class NPCEntity extends CreatureEntity {
             this.getAttribute(Attributes.ARMOR).setBaseValue(10.0D);
             this.goalSelector.addGoal(4, new NPCEntity.EvilAttackGoal(this));
             this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setCallsForHelp());
-            this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, AbstractSkeletonEntity.class, true));
-            this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, AbstractIllagerEntity.class, true));
-            this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, AbstractRaiderEntity.class, true));
+            this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, SkeletonEntity.class, true));
+            this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PillagerEntity.class, true));
             this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, SpiderEntity.class, true));
             this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, ZombieEntity.class, true));
 
