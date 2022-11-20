@@ -27,6 +27,8 @@ public class NPCEntity extends CreatureEntity {
     private static final Predicate<LivingEntity> field_213627_bA = (p_213626_0_) -> p_213626_0_ instanceof MobEntity;
 
     private static final ResourceLocation KILLER_GUENTER = new ResourceLocation("killer_guenter");
+    private static final ResourceLocation NORMAL_GUENTER = new ResourceLocation("normal_guenter");
+
 
     public NPCEntity(EntityType<? extends CreatureEntity> p_i50247_1_, World p_i50247_2_) {
         super(p_i50247_1_, p_i50247_2_);
@@ -127,6 +129,160 @@ public class NPCEntity extends CreatureEntity {
             }
         }
 
+        if (npcTypeId == 1) {
+            this.getAttribute(Attributes.ARMOR).setBaseValue(15.0D);
+            if (!this.hasCustomName()) {
+                String NPC_NAME = "gunter";
+                this.setCustomName(new TranslationTextComponent(Util.makeTranslationKey("entity." + NPC_NAME + ".", NORMAL_GUENTER)));
+            }
+        }
+
+        if (npcTypeId == 2) {
+            this.getAttribute(Attributes.ARMOR).setBaseValue(15.0D);
+            if (!this.hasCustomName()) {
+                String NPC_NAME = "lu";
+                this.setCustomName(new TranslationTextComponent(Util.makeTranslationKey("entity." + NPC_NAME + ".", NORMAL_GUENTER)));
+            }
+        }
+
+        if (npcTypeId == 3) {
+            this.getAttribute(Attributes.ARMOR).setBaseValue(15.0D);
+            if (!this.hasCustomName()) {
+                String NPC_NAME = "sophi";
+                this.setCustomName(new TranslationTextComponent(Util.makeTranslationKey("entity." + NPC_NAME + ".", NORMAL_GUENTER)));
+            }
+        }
+
+        if (npcTypeId == 4) {
+            this.getAttribute(Attributes.ARMOR).setBaseValue(15.0D);
+            if (!this.hasCustomName()) {
+                String NPC_NAME = "fladimir";
+                this.setCustomName(new TranslationTextComponent(Util.makeTranslationKey("entity." + NPC_NAME + ".", NORMAL_GUENTER)));
+            }
+        }
+
+        if (npcTypeId == 5) {
+            this.getAttribute(Attributes.ARMOR).setBaseValue(15.0D);
+            if (!this.hasCustomName()) {
+                String NPC_NAME = "frank";
+                this.setCustomName(new TranslationTextComponent(Util.makeTranslationKey("entity." + NPC_NAME + ".", NORMAL_GUENTER)));
+            }
+        }
+
+        if (npcTypeId == 6) {
+            this.getAttribute(Attributes.ARMOR).setBaseValue(15.0D);
+            if (!this.hasCustomName()) {
+                String NPC_NAME = "olaf";
+                this.setCustomName(new TranslationTextComponent(Util.makeTranslationKey("entity." + NPC_NAME + ".", NORMAL_GUENTER)));
+            }
+        }
+
+        if (npcTypeId == 7) {
+            this.getAttribute(Attributes.ARMOR).setBaseValue(15.0D);
+            if (!this.hasCustomName()) {
+                String NPC_NAME = "kurata";
+                this.setCustomName(new TranslationTextComponent(Util.makeTranslationKey("entity." + NPC_NAME + ".", NORMAL_GUENTER)));
+            }
+        }
+
+        if (npcTypeId == 8) {
+            this.getAttribute(Attributes.ARMOR).setBaseValue(15.0D);
+            if (!this.hasCustomName()) {
+                String NPC_NAME = "jonny";
+                this.setCustomName(new TranslationTextComponent(Util.makeTranslationKey("entity." + NPC_NAME + ".", NORMAL_GUENTER)));
+            }
+        }
+
+        if (npcTypeId == 9) {
+            this.getAttribute(Attributes.ARMOR).setBaseValue(15.0D);
+            if (!this.hasCustomName()) {
+                String NPC_NAME = "anne";
+                this.setCustomName(new TranslationTextComponent(Util.makeTranslationKey("entity." + NPC_NAME + ".", NORMAL_GUENTER)));
+            }
+        }
+
+        if (npcTypeId == 10) {
+            this.getAttribute(Attributes.ARMOR).setBaseValue(15.0D);
+            if (!this.hasCustomName()) {
+                String NPC_NAME = "aimi";
+                this.setCustomName(new TranslationTextComponent(Util.makeTranslationKey("entity." + NPC_NAME + ".", NORMAL_GUENTER)));
+            }
+        }
+
+        if (npcTypeId == 11) {
+            this.getAttribute(Attributes.ARMOR).setBaseValue(15.0D);
+            if (!this.hasCustomName()) {
+                String NPC_NAME = "erika";
+                this.setCustomName(new TranslationTextComponent(Util.makeTranslationKey("entity." + NPC_NAME + ".", NORMAL_GUENTER)));
+            }
+        }
+
+        if (npcTypeId == 12) {
+            this.getAttribute(Attributes.ARMOR).setBaseValue(15.0D);
+            if (!this.hasCustomName()) {
+                String NPC_NAME = "max";
+                this.setCustomName(new TranslationTextComponent(Util.makeTranslationKey("entity." + NPC_NAME + ".", NORMAL_GUENTER)));
+            }
+        }
+
+        if (npcTypeId == 13) {
+            this.getAttribute(Attributes.ARMOR).setBaseValue(15.0D);
+            if (!this.hasCustomName()) {
+                String NPC_NAME = "mei";
+                this.setCustomName(new TranslationTextComponent(Util.makeTranslationKey("entity." + NPC_NAME + ".", NORMAL_GUENTER)));
+            }
+        }
+
+        if (npcTypeId == 14) {
+            this.getAttribute(Attributes.ARMOR).setBaseValue(15.0D);
+            if (!this.hasCustomName()) {
+                String NPC_NAME = "strafnur";
+                this.setCustomName(new TranslationTextComponent(Util.makeTranslationKey("entity." + NPC_NAME + ".", NORMAL_GUENTER)));
+            }
+        }
+
+        if (npcTypeId == 15) {
+            this.getAttribute(Attributes.ARMOR).setBaseValue(15.0D);
+            if (!this.hasCustomName()) {
+                String NPC_NAME = "timmy";
+                this.setCustomName(new TranslationTextComponent(Util.makeTranslationKey("entity." + NPC_NAME + ".", NORMAL_GUENTER)));
+            }
+        }
+
+        if (npcTypeId == 16) {
+            this.getAttribute(Attributes.ARMOR).setBaseValue(15.0D);
+            if (!this.hasCustomName()) {
+                String NPC_NAME = "titania";
+                this.setCustomName(new TranslationTextComponent(Util.makeTranslationKey("entity." + NPC_NAME + ".", NORMAL_GUENTER)));
+            }
+        }
+
+        if (npcTypeId == 17) {
+            this.getAttribute(Attributes.ARMOR).setBaseValue(15.0D);
+            if (!this.hasCustomName()) {
+                String NPC_NAME = "xander";
+                this.setCustomName(new TranslationTextComponent(Util.makeTranslationKey("entity." + NPC_NAME + ".", NORMAL_GUENTER)));
+            }
+        }
+
+        if (npcTypeId == 18) {
+            this.getAttribute(Attributes.ARMOR).setBaseValue(15.0D);
+            if (!this.hasCustomName()) {
+                String NPC_NAME = "mist";
+                this.setCustomName(new TranslationTextComponent(Util.makeTranslationKey("entity." + NPC_NAME + ".", NORMAL_GUENTER)));
+            }
+        }
+
+        if (npcTypeId == 19) {
+            this.getAttribute(Attributes.ARMOR).setBaseValue(15.0D);
+            if (!this.hasCustomName()) {
+                String NPC_NAME = "soleil";
+                this.setCustomName(new TranslationTextComponent(Util.makeTranslationKey("entity." + NPC_NAME + ".", NORMAL_GUENTER)));
+            }
+        }
+
+
+
         this.dataManager.set(NPC_TYPE, npcTypeId);
     }
 
@@ -161,6 +317,28 @@ public class NPCEntity extends CreatureEntity {
                 playerIn.sendMessage(new StringTextComponent("Hallo"), UUID.randomUUID());
 
             }
+
+            if (this.getNPCEntityType() == 2) {
+                String tagname = "message";
+
+                if (playerIn.experienceLevel == 1) {
+                    playerIn.addTag(tagname);
+                }
+                if (playerIn.getTags().add(tagname)) {
+                    playerIn.sendMessage(new TranslationTextComponent("lu.message.talk1"), UUID.randomUUID());
+
+                    playerIn.removeTag(tagname);
+                }
+                if (playerIn.getTags().add(tagname)) {
+                    playerIn.sendMessage(new TranslationTextComponent("lu.message.talk2"), UUID.randomUUID());
+
+                    playerIn.removeTag(tagname);
+                }
+
+            }
+
+
+            return ActionResultType.SUCCESS;
         }
 
         return super.getEntityInteractionResult(playerIn, hand);
