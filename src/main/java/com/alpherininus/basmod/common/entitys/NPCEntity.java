@@ -5,6 +5,8 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.boss.dragon.EnderDragonEntity;
+import net.minecraft.entity.monster.*;
 import net.minecraft.entity.passive.PigEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
@@ -86,11 +88,21 @@ public class NPCEntity extends CreatureEntity {
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     protected SoundEvent getAmbientSound() {
-        return SoundEvents.ENTITY_RABBIT_AMBIENT;
+        if (this.getNPCEntityType() == 69) {
+            this.playSound(SoundEvents.ENTITY_VILLAGER_YES, 50.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
+        } else {
+            return SoundEvents.ENTITY_RABBIT_AMBIENT;
+        }
+        return null;
     }
 
     protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-        return SoundEvents.ENTITY_RABBIT_HURT;
+        if (this.getNPCEntityType() == 69) {
+            this.playSound(SoundEvents.ENTITY_VILLAGER_HURT, 50.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
+        } else {
+            return SoundEvents.ENTITY_RABBIT_HURT;
+        }
+        return null;
     }
 
     protected SoundEvent getDeathSound() {
@@ -129,11 +141,81 @@ public class NPCEntity extends CreatureEntity {
             }
         }
 
+        if (npcTypeId == 96) {
+            this.getAttribute(Attributes.ARMOR).setBaseValue(20.0D);
+            this.goalSelector.addGoal(4, new NPCEntity.EvilAttackGoal(this));
+            this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setCallsForHelp());
+            this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, AbstractSkeletonEntity.class, true));
+            this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, AbstractIllagerEntity.class, true));
+            this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, AbstractRaiderEntity.class, true));
+            this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, SpiderEntity.class, true));
+            this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, ZombieEntity.class, true));
+            if (!this.hasCustomName()) {
+                this.setCustomName(new TranslationTextComponent(Util.makeTranslationKey("entity.npc_knight.", KILLER_GUENTER)));
+            }
+        }
+        if (npcTypeId == 95) {
+            this.getAttribute(Attributes.ARMOR).setBaseValue(30.0D);
+            this.goalSelector.addGoal(4, new NPCEntity.EvilAttackGoal(this));
+            this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setCallsForHelp());
+            this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, AbstractSkeletonEntity.class, true));
+            this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, AbstractIllagerEntity.class, true));
+            this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, AbstractRaiderEntity.class, true));
+            this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, SpiderEntity.class, true));
+            this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, ZombieEntity.class, true));
+            if (!this.hasCustomName()) {
+                this.setCustomName(new TranslationTextComponent(Util.makeTranslationKey("entity.npc_dark_knight.", KILLER_GUENTER)));
+            }
+        }
+        if (npcTypeId == 94) {
+            this.getAttribute(Attributes.ARMOR).setBaseValue(30.0D);
+            this.goalSelector.addGoal(4, new NPCEntity.EvilAttackGoal(this));
+            this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setCallsForHelp());
+            this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, AbstractSkeletonEntity.class, true));
+            this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, AbstractIllagerEntity.class, true));
+            this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, AbstractRaiderEntity.class, true));
+            this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, SpiderEntity.class, true));
+            this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, ZombieEntity.class, true));
+            if (!this.hasCustomName()) {
+                this.setCustomName(new TranslationTextComponent(Util.makeTranslationKey("entity.npc_knight_kavilier.", KILLER_GUENTER)));
+            }
+        }
+        if (npcTypeId == 93) {
+            this.getAttribute(Attributes.ARMOR).setBaseValue(10.0D);
+            this.goalSelector.addGoal(4, new NPCEntity.EvilAttackGoal(this));
+            this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setCallsForHelp());
+            this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, AbstractSkeletonEntity.class, true));
+            this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, AbstractIllagerEntity.class, true));
+            this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, AbstractRaiderEntity.class, true));
+            this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, SpiderEntity.class, true));
+            this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, ZombieEntity.class, true));
+
+            if (!this.hasCustomName()) {
+                this.setCustomName(new TranslationTextComponent(Util.makeTranslationKey("entity.npc_knight_magier.", KILLER_GUENTER)));
+            }
+        }
+        if (npcTypeId == 69) {
+            this.getAttribute(Attributes.ARMOR).setBaseValue(100.0D);
+            this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(+ 55.5D);
+            this.getAttribute(Attributes.KNOCKBACK_RESISTANCE).setBaseValue(10000.0D);
+            this.goalSelector.addGoal(4, new NPCEntity.EvilAttackGoal(this));
+            this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setCallsForHelp());
+            this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, MonsterEntity.class, true));
+            this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, EnderDragonEntity.class, true));
+            this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, EndermanEntity.class, true));
+
+            if (!this.hasCustomName()) {
+                this.setCustomName(new TranslationTextComponent(Util.makeTranslationKey("entity.npc_gigachad.", KILLER_GUENTER)));
+            }
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
         if (npcTypeId == 1) {
             this.getAttribute(Attributes.ARMOR).setBaseValue(15.0D);
             if (!this.hasCustomName()) {
                 String NPC_NAME = "gunter";
-                this.setCustomName(new TranslationTextComponent(Util.makeTranslationKey("entity." + NPC_NAME + ".", NORMAL_GUENTER)));
+                this.setCustomName(new TranslationTextComponent(Util.makeTranslationKey("entity.npc_" + NPC_NAME, NORMAL_GUENTER)));
             }
         }
 
@@ -141,7 +223,7 @@ public class NPCEntity extends CreatureEntity {
             this.getAttribute(Attributes.ARMOR).setBaseValue(15.0D);
             if (!this.hasCustomName()) {
                 String NPC_NAME = "lu";
-                this.setCustomName(new TranslationTextComponent(Util.makeTranslationKey("entity." + NPC_NAME + ".", NORMAL_GUENTER)));
+                this.setCustomName(new TranslationTextComponent(Util.makeTranslationKey("entity.npc_" + NPC_NAME, NORMAL_GUENTER)));
             }
         }
 
@@ -149,7 +231,7 @@ public class NPCEntity extends CreatureEntity {
             this.getAttribute(Attributes.ARMOR).setBaseValue(15.0D);
             if (!this.hasCustomName()) {
                 String NPC_NAME = "sophi";
-                this.setCustomName(new TranslationTextComponent(Util.makeTranslationKey("entity." + NPC_NAME + ".", NORMAL_GUENTER)));
+                this.setCustomName(new TranslationTextComponent(Util.makeTranslationKey("entity.npc_" + NPC_NAME, NORMAL_GUENTER)));
             }
         }
 
@@ -157,7 +239,7 @@ public class NPCEntity extends CreatureEntity {
             this.getAttribute(Attributes.ARMOR).setBaseValue(15.0D);
             if (!this.hasCustomName()) {
                 String NPC_NAME = "fladimir";
-                this.setCustomName(new TranslationTextComponent(Util.makeTranslationKey("entity." + NPC_NAME + ".", NORMAL_GUENTER)));
+                this.setCustomName(new TranslationTextComponent(Util.makeTranslationKey("entity.npc_" + NPC_NAME, NORMAL_GUENTER)));
             }
         }
 
@@ -165,7 +247,7 @@ public class NPCEntity extends CreatureEntity {
             this.getAttribute(Attributes.ARMOR).setBaseValue(15.0D);
             if (!this.hasCustomName()) {
                 String NPC_NAME = "frank";
-                this.setCustomName(new TranslationTextComponent(Util.makeTranslationKey("entity." + NPC_NAME + ".", NORMAL_GUENTER)));
+                this.setCustomName(new TranslationTextComponent(Util.makeTranslationKey("entity.npc_" + NPC_NAME, NORMAL_GUENTER)));
             }
         }
 
@@ -173,7 +255,7 @@ public class NPCEntity extends CreatureEntity {
             this.getAttribute(Attributes.ARMOR).setBaseValue(15.0D);
             if (!this.hasCustomName()) {
                 String NPC_NAME = "olaf";
-                this.setCustomName(new TranslationTextComponent(Util.makeTranslationKey("entity." + NPC_NAME + ".", NORMAL_GUENTER)));
+                this.setCustomName(new TranslationTextComponent(Util.makeTranslationKey("entity.npc_" + NPC_NAME, NORMAL_GUENTER)));
             }
         }
 
@@ -181,7 +263,7 @@ public class NPCEntity extends CreatureEntity {
             this.getAttribute(Attributes.ARMOR).setBaseValue(15.0D);
             if (!this.hasCustomName()) {
                 String NPC_NAME = "kurata";
-                this.setCustomName(new TranslationTextComponent(Util.makeTranslationKey("entity." + NPC_NAME + ".", NORMAL_GUENTER)));
+                this.setCustomName(new TranslationTextComponent(Util.makeTranslationKey("entity.npc_" + NPC_NAME, NORMAL_GUENTER)));
             }
         }
 
@@ -189,7 +271,7 @@ public class NPCEntity extends CreatureEntity {
             this.getAttribute(Attributes.ARMOR).setBaseValue(15.0D);
             if (!this.hasCustomName()) {
                 String NPC_NAME = "jonny";
-                this.setCustomName(new TranslationTextComponent(Util.makeTranslationKey("entity." + NPC_NAME + ".", NORMAL_GUENTER)));
+                this.setCustomName(new TranslationTextComponent(Util.makeTranslationKey("entity.npc_" + NPC_NAME, NORMAL_GUENTER)));
             }
         }
 
@@ -197,7 +279,7 @@ public class NPCEntity extends CreatureEntity {
             this.getAttribute(Attributes.ARMOR).setBaseValue(15.0D);
             if (!this.hasCustomName()) {
                 String NPC_NAME = "anne";
-                this.setCustomName(new TranslationTextComponent(Util.makeTranslationKey("entity." + NPC_NAME + ".", NORMAL_GUENTER)));
+                this.setCustomName(new TranslationTextComponent(Util.makeTranslationKey("entity.npc_" + NPC_NAME, NORMAL_GUENTER)));
             }
         }
 
@@ -205,7 +287,7 @@ public class NPCEntity extends CreatureEntity {
             this.getAttribute(Attributes.ARMOR).setBaseValue(15.0D);
             if (!this.hasCustomName()) {
                 String NPC_NAME = "aimi";
-                this.setCustomName(new TranslationTextComponent(Util.makeTranslationKey("entity." + NPC_NAME + ".", NORMAL_GUENTER)));
+                this.setCustomName(new TranslationTextComponent(Util.makeTranslationKey("entity.npc_" + NPC_NAME, NORMAL_GUENTER)));
             }
         }
 
@@ -213,7 +295,7 @@ public class NPCEntity extends CreatureEntity {
             this.getAttribute(Attributes.ARMOR).setBaseValue(15.0D);
             if (!this.hasCustomName()) {
                 String NPC_NAME = "erika";
-                this.setCustomName(new TranslationTextComponent(Util.makeTranslationKey("entity." + NPC_NAME + ".", NORMAL_GUENTER)));
+                this.setCustomName(new TranslationTextComponent(Util.makeTranslationKey("entity.npc_" + NPC_NAME, NORMAL_GUENTER)));
             }
         }
 
@@ -221,7 +303,7 @@ public class NPCEntity extends CreatureEntity {
             this.getAttribute(Attributes.ARMOR).setBaseValue(15.0D);
             if (!this.hasCustomName()) {
                 String NPC_NAME = "max";
-                this.setCustomName(new TranslationTextComponent(Util.makeTranslationKey("entity." + NPC_NAME + ".", NORMAL_GUENTER)));
+                this.setCustomName(new TranslationTextComponent(Util.makeTranslationKey("entity.npc_" + NPC_NAME, NORMAL_GUENTER)));
             }
         }
 
@@ -229,7 +311,7 @@ public class NPCEntity extends CreatureEntity {
             this.getAttribute(Attributes.ARMOR).setBaseValue(15.0D);
             if (!this.hasCustomName()) {
                 String NPC_NAME = "mei";
-                this.setCustomName(new TranslationTextComponent(Util.makeTranslationKey("entity." + NPC_NAME + ".", NORMAL_GUENTER)));
+                this.setCustomName(new TranslationTextComponent(Util.makeTranslationKey("entity.npc_" + NPC_NAME, NORMAL_GUENTER)));
             }
         }
 
@@ -237,7 +319,7 @@ public class NPCEntity extends CreatureEntity {
             this.getAttribute(Attributes.ARMOR).setBaseValue(15.0D);
             if (!this.hasCustomName()) {
                 String NPC_NAME = "strafnur";
-                this.setCustomName(new TranslationTextComponent(Util.makeTranslationKey("entity." + NPC_NAME + ".", NORMAL_GUENTER)));
+                this.setCustomName(new TranslationTextComponent(Util.makeTranslationKey("entity.npc_" + NPC_NAME, NORMAL_GUENTER)));
             }
         }
 
@@ -245,7 +327,7 @@ public class NPCEntity extends CreatureEntity {
             this.getAttribute(Attributes.ARMOR).setBaseValue(15.0D);
             if (!this.hasCustomName()) {
                 String NPC_NAME = "timmy";
-                this.setCustomName(new TranslationTextComponent(Util.makeTranslationKey("entity." + NPC_NAME + ".", NORMAL_GUENTER)));
+                this.setCustomName(new TranslationTextComponent(Util.makeTranslationKey("entity.npc_" + NPC_NAME, NORMAL_GUENTER)));
             }
         }
 
@@ -253,7 +335,7 @@ public class NPCEntity extends CreatureEntity {
             this.getAttribute(Attributes.ARMOR).setBaseValue(15.0D);
             if (!this.hasCustomName()) {
                 String NPC_NAME = "titania";
-                this.setCustomName(new TranslationTextComponent(Util.makeTranslationKey("entity." + NPC_NAME + ".", NORMAL_GUENTER)));
+                this.setCustomName(new TranslationTextComponent(Util.makeTranslationKey("entity.npc_" + NPC_NAME, NORMAL_GUENTER)));
             }
         }
 
@@ -261,7 +343,7 @@ public class NPCEntity extends CreatureEntity {
             this.getAttribute(Attributes.ARMOR).setBaseValue(15.0D);
             if (!this.hasCustomName()) {
                 String NPC_NAME = "xander";
-                this.setCustomName(new TranslationTextComponent(Util.makeTranslationKey("entity." + NPC_NAME + ".", NORMAL_GUENTER)));
+                this.setCustomName(new TranslationTextComponent(Util.makeTranslationKey("entity.npc_" + NPC_NAME, NORMAL_GUENTER)));
             }
         }
 
@@ -269,7 +351,7 @@ public class NPCEntity extends CreatureEntity {
             this.getAttribute(Attributes.ARMOR).setBaseValue(15.0D);
             if (!this.hasCustomName()) {
                 String NPC_NAME = "mist";
-                this.setCustomName(new TranslationTextComponent(Util.makeTranslationKey("entity." + NPC_NAME + ".", NORMAL_GUENTER)));
+                this.setCustomName(new TranslationTextComponent(Util.makeTranslationKey("entity.npc_" + NPC_NAME, NORMAL_GUENTER)));
             }
         }
 
@@ -277,7 +359,7 @@ public class NPCEntity extends CreatureEntity {
             this.getAttribute(Attributes.ARMOR).setBaseValue(15.0D);
             if (!this.hasCustomName()) {
                 String NPC_NAME = "soleil";
-                this.setCustomName(new TranslationTextComponent(Util.makeTranslationKey("entity." + NPC_NAME + ".", NORMAL_GUENTER)));
+                this.setCustomName(new TranslationTextComponent(Util.makeTranslationKey("entity.npc_" + NPC_NAME, NORMAL_GUENTER)));
             }
         }
 

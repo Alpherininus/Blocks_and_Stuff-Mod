@@ -76,6 +76,11 @@ public class NPCRenderer extends MobRenderer<NPCEntity, NPCModel<NPCEntity>> {
     // U
     private static final ResourceLocation NPC_FINN = new ResourceLocation(Basmod.MOD_ID, "textures/entity/npc_types/finn.png");
     private static final ResourceLocation NPC_KIRSTAN = new ResourceLocation(Basmod.MOD_ID, "textures/entity/npc_types/kirstan.png");
+    // Knights
+    private static final ResourceLocation NPC_KNIGHT_DARK = new ResourceLocation(Basmod.MOD_ID, "textures/entity/npc_types/dark_knight.png");
+    private static final ResourceLocation NPC_KNIGHT_KAVILIER = new ResourceLocation(Basmod.MOD_ID, "textures/entity/npc_types/kavilier_knight.png");
+    private static final ResourceLocation NPC_KNIGHT_MAGIER = new ResourceLocation(Basmod.MOD_ID, "textures/entity/npc_types/magier_knight.png");
+    private static final ResourceLocation NPC_KNIGHT = new ResourceLocation(Basmod.MOD_ID, "textures/entity/npc_types/knight_knight.png");
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -83,7 +88,7 @@ public class NPCRenderer extends MobRenderer<NPCEntity, NPCModel<NPCEntity>> {
         super(renderManagerIn, new NPCModel<>(), 0.5F);
     }
 
-     @Override
+    @Override
     public ResourceLocation getEntityTexture(NPCEntity entity) {
         String s = TextFormatting.getTextWithoutFormattingCodes(entity.getName().getString());
         if (s != null && "Gunter".equals(s)) {
@@ -240,9 +245,13 @@ public class NPCRenderer extends MobRenderer<NPCEntity, NPCModel<NPCEntity>> {
                 case 91:
                 case 92:
                 case 93:
+                    return NPC_KNIGHT_MAGIER;
                 case 94:
+                    return NPC_KNIGHT_KAVILIER;
                 case 95:
+                    return NPC_KNIGHT_DARK;
                 case 96:
+                    return NPC_KNIGHT;
                 case 97:
                     return NPC_ESEL;
                 case 98:
