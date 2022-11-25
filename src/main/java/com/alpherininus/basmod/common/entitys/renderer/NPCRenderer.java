@@ -73,14 +73,31 @@ public class NPCRenderer extends MobRenderer<NPCEntity, NPCModel<NPCEntity>> {
     private static final ResourceLocation NPC_ISABELLA = new ResourceLocation(Basmod.MOD_ID, "textures/entity/npc_types/isabella.png");
     private static final ResourceLocation NPC_SCARLETT = new ResourceLocation(Basmod.MOD_ID, "textures/entity/npc_types/scarlett.png");
     private static final ResourceLocation NPC_AMY = new ResourceLocation(Basmod.MOD_ID, "textures/entity/npc_types/amy.png");
+    private static final ResourceLocation NPC_TIM = new ResourceLocation(Basmod.MOD_ID, "textures/entity/npc_types/tim.png");
+
     // U
     private static final ResourceLocation NPC_FINN = new ResourceLocation(Basmod.MOD_ID, "textures/entity/npc_types/finn.png");
     private static final ResourceLocation NPC_KIRSTAN = new ResourceLocation(Basmod.MOD_ID, "textures/entity/npc_types/kirstan.png");
     // Knights
-    private static final ResourceLocation NPC_KNIGHT_DARK = new ResourceLocation(Basmod.MOD_ID, "textures/entity/npc_types/dark_knight.png");
-    private static final ResourceLocation NPC_KNIGHT_KAVILIER = new ResourceLocation(Basmod.MOD_ID, "textures/entity/npc_types/kavilier_knight.png");
-    private static final ResourceLocation NPC_KNIGHT_MAGIER = new ResourceLocation(Basmod.MOD_ID, "textures/entity/npc_types/magier_knight.png");
-    private static final ResourceLocation NPC_KNIGHT = new ResourceLocation(Basmod.MOD_ID, "textures/entity/npc_types/knight_knight.png");
+    private static final ResourceLocation NPC_KNIGHT_A = new ResourceLocation(Basmod.MOD_ID, "textures/entity/npc_types/npc_knight_a.png");
+    private static final ResourceLocation NPC_KNIGHT_B = new ResourceLocation(Basmod.MOD_ID, "textures/entity/npc_types/npc_knight_a.png");
+    private static final ResourceLocation NPC_KNIGHT_C = new ResourceLocation(Basmod.MOD_ID, "textures/entity/npc_types/npc_knight_a.png");
+    private static final ResourceLocation NPC_KNIGHT_D = new ResourceLocation(Basmod.MOD_ID, "textures/entity/npc_types/npc_knight_a.png");
+    private static final ResourceLocation NPC_KNIGHT_E = new ResourceLocation(Basmod.MOD_ID, "textures/entity/npc_types/npc_knight_a.png");
+    private static final ResourceLocation NPC_KNIGHT_F = new ResourceLocation(Basmod.MOD_ID, "textures/entity/npc_types/npc_knight_a.png");
+    private static final ResourceLocation NPC_KNIGHT_G = new ResourceLocation(Basmod.MOD_ID, "textures/entity/npc_types/npc_knight_a.png");
+    private static final ResourceLocation NPC_KNIGHT_H = new ResourceLocation(Basmod.MOD_ID, "textures/entity/npc_types/npc_knight_a.png");
+    private static final ResourceLocation NPC_KNIGHT_I = new ResourceLocation(Basmod.MOD_ID, "textures/entity/npc_types/npc_knight_a.png");
+    private static final ResourceLocation NPC_KNIGHT_J = new ResourceLocation(Basmod.MOD_ID, "textures/entity/npc_types/npc_knight_a.png");
+    private static final ResourceLocation NPC_KNIGHT_K = new ResourceLocation(Basmod.MOD_ID, "textures/entity/npc_types/npc_knight_a.png");
+    private static final ResourceLocation NPC_KNIGHT_MAGIER_A = new ResourceLocation(Basmod.MOD_ID, "textures/entity/npc_types/npc_knight_magier_a.png");
+    private static final ResourceLocation NPC_KNIGHT_MAGIER_B = new ResourceLocation(Basmod.MOD_ID, "textures/entity/npc_types/npc_knight_magier_b.png");
+    private static final ResourceLocation NPC_KNIGHT_MAGIER_C = new ResourceLocation(Basmod.MOD_ID, "textures/entity/npc_types/npc_knight_magier_c.png");
+    private static final ResourceLocation NPC_KNIGHT_MAGIER_D = new ResourceLocation(Basmod.MOD_ID, "textures/entity/npc_types/npc_knight_magier_d.png");
+    private static final ResourceLocation NPC_KNIGHT_MAGIER_E = new ResourceLocation(Basmod.MOD_ID, "textures/entity/npc_types/npc_knight_magier_e.png");
+    private static final ResourceLocation NPC_KNIGHT_MAGIER_F = new ResourceLocation(Basmod.MOD_ID, "textures/entity/npc_types/npc_knight_magier_f.png");
+
+
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -174,8 +191,10 @@ public class NPCRenderer extends MobRenderer<NPCEntity, NPCModel<NPCEntity>> {
                     return NPC_NICO;
                 case 37:
                     return NPC_NICOLLE;
-                case 39:
+                case 38:
                     return NPC_NORA;
+                case 39:
+                    return NPC_TIM;
                 case 40:
                     return NPC_JAKOB;
                 case 41:
@@ -232,26 +251,52 @@ public class NPCRenderer extends MobRenderer<NPCEntity, NPCModel<NPCEntity>> {
                 case 78:
                 case 79:
                 case 80:
+                    return NPC_KNIGHT_A;
+
                 case 81:
+                    return NPC_KNIGHT_B;
+
                 case 82:
+                    return NPC_KNIGHT_C;
+
                 case 83:
+                    return NPC_KNIGHT_D;
+
                 case 84:
+                    return NPC_KNIGHT_E;
+
                 case 85:
+                    return NPC_KNIGHT_F;
+
                 case 86:
+                    return NPC_KNIGHT_G;
+
                 case 87:
+                    return NPC_KNIGHT_H;
+
                 case 88:
+                    return NPC_KNIGHT_I;
+
                 case 89:
+                    return NPC_KNIGHT_J;
+
                 case 90:
+                    return NPC_KNIGHT_K;
+
                 case 91:
+                    return NPC_KNIGHT_MAGIER_A;
+
                 case 92:
+                    return NPC_KNIGHT_MAGIER_B;
+
                 case 93:
-                    return NPC_KNIGHT_MAGIER;
+                    return NPC_KNIGHT_MAGIER_C;
                 case 94:
-                    return NPC_KNIGHT_KAVILIER;
+                    return NPC_KNIGHT_MAGIER_D;
                 case 95:
-                    return NPC_KNIGHT_DARK;
+                    return NPC_KNIGHT_MAGIER_E;
                 case 96:
-                    return NPC_KNIGHT;
+                    return NPC_KNIGHT_MAGIER_F;
                 case 97:
                     return NPC_ESEL;
                 case 98:
