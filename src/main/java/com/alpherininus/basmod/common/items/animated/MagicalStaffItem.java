@@ -202,28 +202,28 @@ public class MagicalStaffItem extends ShootableItem implements IAnimatable {
             if (!attacker.world.isRemote()) {
                 EntityType.LIGHTNING_BOLT.spawn(world, null, player, pos,
                         SpawnReason.TRIGGERED, true, true);
-                return BasmodConfig.config_thunder_magical_staff.get();
+                return BasmodConfig.MAGICSTAFFCONFIG.config_thunder_magical_staff.get();
 
             }
 
             if (!attacker.world.isRemote()) {
                 EntityType.TNT.spawn(world, null, player, pos.up(2),
                         SpawnReason.TRIGGERED, true, true);
-                return BasmodConfig.config_tnt_magical_staff.get();
+                return BasmodConfig.MAGICSTAFFCONFIG.config_tnt_magical_staff.get();
 
             }
 
             if (!attacker.world.isRemote()) {
                 EntityType.FIREBALL.spawn(world, null, player, pos.up(2),
                         SpawnReason.TRIGGERED, true, true);
-                return BasmodConfig.config_fireball_magical_staff.get();
+                return BasmodConfig.MAGICSTAFFCONFIG.config_fireball_magical_staff.get();
 
             }
 
             if (!attacker.world.isRemote()) {
                 EntityType.FIREWORK_ROCKET.spawn(world, null, player, pos.up(2),
                         SpawnReason.TRIGGERED, true, true);
-                return BasmodConfig.config_firework_magical_staff.get();
+                return BasmodConfig.MAGICSTAFFCONFIG.config_firework_magical_staff.get();
             }
         }
 
@@ -241,15 +241,15 @@ public class MagicalStaffItem extends ShootableItem implements IAnimatable {
 
         if (Screen.hasShiftDown()) {
             tooltip.add(new StringTextComponent("\u00A77Settings:"));
-            tooltip.add(new StringTextComponent("\u0020\u00A7b" + BasmodConfig.config_integer_ad_magical_staff.get() + "\u0020\u00A79+1 Attack Damadge"));
-            tooltip.add(new StringTextComponent("\u00A79\u0020Spawn Thunder:\u0020\u00A7c" + BasmodConfig.config_thunder_magical_staff.get()));
-            tooltip.add(new StringTextComponent("\u00A79\u0020Spawn TNT:\u0020\u00A7c" + BasmodConfig.config_tnt_magical_staff.get()));
-            tooltip.add(new StringTextComponent("\u00A79\u0020Spawn Fireball:\u0020\u00A7c" + BasmodConfig.config_fireball_magical_staff.get()));
-            tooltip.add(new StringTextComponent("\u00A79\u0020Spawn Firework:\u0020\u00A7c" + BasmodConfig.config_firework_magical_staff.get()));
+            tooltip.add(new StringTextComponent("\u0020\u00A7b" + BasmodConfig.MAGICSTAFFCONFIG.config_integer_ad_magical_staff.get() + "\u0020\u00A79+1 Attack Damadge"));
+            tooltip.add(new StringTextComponent("\u00A79\u0020Spawn Thunder:\u0020\u00A7c" + BasmodConfig.MAGICSTAFFCONFIG.config_thunder_magical_staff.get()));
+            tooltip.add(new StringTextComponent("\u00A79\u0020Spawn TNT:\u0020\u00A7c" + BasmodConfig.MAGICSTAFFCONFIG.config_tnt_magical_staff.get()));
+            tooltip.add(new StringTextComponent("\u00A79\u0020Spawn Fireball:\u0020\u00A7c" + BasmodConfig.MAGICSTAFFCONFIG.config_fireball_magical_staff.get()));
+            tooltip.add(new StringTextComponent("\u00A79\u0020Spawn Firework:\u0020\u00A7c" + BasmodConfig.MAGICSTAFFCONFIG.config_firework_magical_staff.get()));
             tooltip.add(new StringTextComponent("\u0020"));
 
             tooltip.add(new StringTextComponent("\u00A77Notices:"));
-            tooltip.add(new StringTextComponent("\u0020" + BasmodConfig.config_notices_magical_staff.get()));
+            tooltip.add(new StringTextComponent("\u0020" + BasmodConfig.MAGICSTAFFCONFIG.config_notices_magical_staff.get()));
 
         } else {
             tooltip.add(new StringTextComponent("Hold \u00A76SHIFT \u00A7ffor more Information"));

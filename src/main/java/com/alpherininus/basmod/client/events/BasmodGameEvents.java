@@ -1,15 +1,26 @@
 package com.alpherininus.basmod.client.events;
 
 import com.alpherininus.basmod.Basmod;
+import com.alpherininus.basmod.core.util.BasmodFonts;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.AbstractGui;
+import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.gui.fonts.FontResourceManager;
+import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.Color;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.GuiOpenEvent;
 import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.TextComponentMessageFormatHandler;
 import net.minecraftforge.fml.common.Mod;
+
+import java.io.IOException;
 
 @Mod.EventBusSubscriber(modid = Basmod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)
 public class BasmodGameEvents {
@@ -17,6 +28,7 @@ public class BasmodGameEvents {
     protected static final ResourceLocation MANA_BARS = new ResourceLocation(Basmod.MOD_ID, "textures/gui/hud/mana_bar.png");
 
     private static final Minecraft minecraft = Minecraft.getInstance();
+    private FontRenderer fontRenderer;
 
     @SubscribeEvent
     public static void onRenderGameOverlay(RenderGameOverlayEvent event) throws Exception {
@@ -65,7 +77,7 @@ public class BasmodGameEvents {
         if (minecraft.player.isSleeping()) {
             event.getWindow().setWindowTitle("Good Night :D!");
         }
-        
+
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////

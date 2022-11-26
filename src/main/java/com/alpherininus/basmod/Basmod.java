@@ -49,18 +49,15 @@ import software.bernie.geckolib3.renderers.geo.GeoArmorRenderer;
 import top.theillusivec4.curios.api.SlotTypeMessage;
 import top.theillusivec4.curios.api.SlotTypePreset;
 
-import java.io.IOException;
-
 @Mod("basmod")
 @Mod.EventBusSubscriber(modid = Basmod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class Basmod {
-
 
     private static final Logger LOGGER = LogManager.getLogger();
 
     public static final String MOD_ID = "basmod";
 
-    public Basmod() throws IOException {
+    public Basmod() {
         IEventBus eventbus = FMLJavaModLoadingContext.get().getModEventBus();
 
         // TODO Registrys
@@ -93,7 +90,10 @@ public class Basmod {
         // TODO EVENTBUS
         MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGH, OreGeneration::addOres);
 
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, BasmodConfig.COMMON_SPEC_GENERAL, "basmod/basmod-common.toml");
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, BasmodConfig.COMMONCONFIGS.COMMON_SPEC_GENERAL, "basmod/basmod-common.toml");
+        ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, BasmodConfig.COMMONCONFIGS.COMMON_SPEC_GENERAL, "basmod/basmod-magical_staff.toml");
+        ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, BasmodConfig.NPCTYPECONFIG.COMMON_SPEC_NPC_NAMEN, "basmod/basmod-npc_config.toml");
+
 
         // ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, BasmodConfig.SERVER_SPEC_GENERAL, "basmod/basmod-server.toml");
         // ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, BasmodConfig.CLIENT_SPEC_GENERAL, "basmod/basmod-client.toml");
@@ -149,6 +149,7 @@ public class Basmod {
     }
 
     private void doClientStuff(final FMLClientSetupEvent event) {
+
         Minecraft mc = Minecraft.getInstance();
         mc = event.getMinecraftSupplier().get();
 
@@ -196,7 +197,6 @@ public class Basmod {
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     }
-
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
