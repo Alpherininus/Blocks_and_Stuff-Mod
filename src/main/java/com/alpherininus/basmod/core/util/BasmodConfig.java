@@ -22,7 +22,6 @@ public class BasmodConfig {
             config_integer_manabar = CONFIG_BUILDER.comment("Default value is Bar Maximum: 88.").worldRestart().define("Config Manabar", 88);
             config_integer_magicalstaff = CONFIG_BUILDER.comment("Default value is Bar Maximum: 88.").worldRestart().define("Config Magical Staff bar", 88);
             config_integer_healstaff = CONFIG_BUILDER.comment("Default value is Bar Maximum: 88.").worldRestart().define("Config Heal Staff bar", 88);
-
             //
 
             ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -116,14 +115,6 @@ public class BasmodConfig {
         public static final ForgeConfigSpec.ConfigValue<String> config_npc_name_ID49;
         public static final ForgeConfigSpec.ConfigValue<String> config_npc_name_ID50;
 
-        public static ForgeConfigSpec.ConfigValue<String> quests_lu_a;
-        public static ForgeConfigSpec.ConfigValue<String> quests_lu_b;
-        public static ForgeConfigSpec.ConfigValue<String> quests_lu_c;
-        public static ForgeConfigSpec.ConfigValue<String> quests_lu_d;
-        public static ForgeConfigSpec.ConfigValue<String> quests_lu_e;
-
-
-
         static {
 
             CONFIG_BUILDER.comment("NPC Default textures is locatet in: 'assets/basmod/textures/entity/npc_types/' .").push("NPC Name Configs");
@@ -184,6 +175,42 @@ public class BasmodConfig {
 
         }
 
+        public static ForgeConfigSpec.ConfigValue<String> quests_lu_a;
+        public static ForgeConfigSpec.ConfigValue<String> quests_lu_b;
+        public static ForgeConfigSpec.ConfigValue<String> quests_lu_c;
+        public static ForgeConfigSpec.ConfigValue<String> quests_lu_d;
+        public static ForgeConfigSpec.ConfigValue<String> quests_lu_e;
+
+        public static ForgeConfigSpec.ConfigValue<Integer> quests_lu_experience_a;
+        public static ForgeConfigSpec.ConfigValue<Integer> quests_lu_experience_b;
+        public static ForgeConfigSpec.ConfigValue<Integer> quests_lu_experience_c;
+        public static ForgeConfigSpec.ConfigValue<Integer> quests_lu_experience_d;
+        public static ForgeConfigSpec.ConfigValue<Integer> quests_lu_experience_e;
+
+        public static ForgeConfigSpec.ConfigValue<String> quests_scarlett_a;
+        public static ForgeConfigSpec.ConfigValue<String> quests_scarlett_b;
+        public static ForgeConfigSpec.ConfigValue<String> quests_scarlett_c;
+        public static ForgeConfigSpec.ConfigValue<String> quests_scarlett_d;
+        public static ForgeConfigSpec.ConfigValue<String> quests_scarlett_e;
+
+        public static ForgeConfigSpec.ConfigValue<Integer> quests_scarlett_experience_a;
+        public static ForgeConfigSpec.ConfigValue<Integer> quests_scarlett_experience_b;
+        public static ForgeConfigSpec.ConfigValue<Integer> quests_scarlett_experience_c;
+        public static ForgeConfigSpec.ConfigValue<Integer> quests_scarlett_experience_d;
+        public static ForgeConfigSpec.ConfigValue<Integer> quests_scarlett_experience_e;
+
+        public static ForgeConfigSpec.ConfigValue<String> quests_asuka_a;
+        public static ForgeConfigSpec.ConfigValue<String> quests_asuka_b;
+        public static ForgeConfigSpec.ConfigValue<String> quests_asuka_c;
+        public static ForgeConfigSpec.ConfigValue<String> quests_asuka_d;
+        public static ForgeConfigSpec.ConfigValue<String> quests_asuka_e;
+
+        public static ForgeConfigSpec.ConfigValue<Integer> quests_asuka_experience_a;
+        public static ForgeConfigSpec.ConfigValue<Integer> quests_asuka_experience_b;
+        public static ForgeConfigSpec.ConfigValue<Integer> quests_asuka_experience_c;
+        public static ForgeConfigSpec.ConfigValue<Integer> quests_asuka_experience_d;
+        public static ForgeConfigSpec.ConfigValue<Integer> quests_asuka_experience_e;
+
         static {
 
             CONFIG_BUILDER.comment("NPC Quest Text").push("NPC Quest Configs");
@@ -194,11 +221,57 @@ public class BasmodConfig {
             quests_lu_d = CONFIG_BUILDER.comment(" ").define("Lu's 4-Quest :", "Hallo, hier ist deine Vierte aufgabe.");
             quests_lu_e = CONFIG_BUILDER.comment(" ").define("Lu's 5-Quest :", "Hallo, hier ist deine Fünfte aufgabe.");
 
+            quests_lu_experience_a = CONFIG_BUILDER.comment("Quest-1 ").define("Lu's Required exp :", 5);
+            quests_lu_experience_b = CONFIG_BUILDER.comment("Quest-2 ").define("Lu's Required exp :", 10);
+            quests_lu_experience_c = CONFIG_BUILDER.comment("Quest-3 ").define("Lu's Required exp :", 15);
+            quests_lu_experience_d = CONFIG_BUILDER.comment("Quest-4 ").define("Lu's Required exp :", 20);
+            quests_lu_experience_e = CONFIG_BUILDER.comment("Quest-5 ").define("Lu's Required exp :", 25);
+
+            quests_scarlett_a = CONFIG_BUILDER.comment(" ").define("Scarlett's 1-Quest :", "Hallo, hier ist deine Erste aufgabe.");
+            quests_scarlett_b = CONFIG_BUILDER.comment(" ").define("Scarlett's 2-Quest :", "Hallo, hier ist deine Zweite aufgabe.");
+            quests_scarlett_c = CONFIG_BUILDER.comment(" ").define("Scarlett's 3-Quest :", "Hallo, hier ist deine Dritte aufgabe, viel Spaß!");
+            quests_scarlett_d = CONFIG_BUILDER.comment(" ").define("Scarlett's 4-Quest :", "Hallo, hier ist deine Vierte aufgabe.");
+            quests_scarlett_e = CONFIG_BUILDER.comment(" ").define("Scarlett's 5-Quest :", "Hallo, hier ist deine Fünfte aufgabe.");
+
+            quests_scarlett_experience_a = CONFIG_BUILDER.comment("Quest-1 ").define("Scarlett's Required exp :", 5);
+            quests_scarlett_experience_b = CONFIG_BUILDER.comment("Quest-2 ").define("Scarlett's Required exp :", 10);
+            quests_scarlett_experience_c = CONFIG_BUILDER.comment("Quest-3 ").define("Scarlett's Required exp :", 15);
+            quests_scarlett_experience_d = CONFIG_BUILDER.comment("Quest-4 ").define("Scarlett's Required exp :", 20);
+            quests_scarlett_experience_e = CONFIG_BUILDER.comment("Quest-5 ").define("Scarlett's Required exp :", 25);
+
+            quests_asuka_a = CONFIG_BUILDER.comment(" ").define("Asuka's 1-Quest :", "Hallo, hier ist deine Erste aufgabe.");
+            quests_asuka_b = CONFIG_BUILDER.comment(" ").define("Asuka's 2-Quest :", "Hallo, hier ist deine Zweite aufgabe.");
+            quests_asuka_c = CONFIG_BUILDER.comment(" ").define("Asuka's 3-Quest :", "Hallo, hier ist deine Dritte aufgabe, viel Spaß!");
+            quests_asuka_d = CONFIG_BUILDER.comment(" ").define("Asuka's 4-Quest :", "Hallo, hier ist deine Vierte aufgabe.");
+            quests_asuka_e = CONFIG_BUILDER.comment(" ").define("Asuka's 5-Quest :", "Hallo, hier ist deine Fünfte aufgabe.");
+
+            quests_asuka_experience_a = CONFIG_BUILDER.comment("Quest-1 ").define("Asuka's Required exp :", 5);
+            quests_asuka_experience_b = CONFIG_BUILDER.comment("Quest-2 ").define("Asuka's Required exp :", 10);
+            quests_asuka_experience_c = CONFIG_BUILDER.comment("Quest-3 ").define("Asuka's Required exp :", 15);
+            quests_asuka_experience_d = CONFIG_BUILDER.comment("Quest-4 ").define("Asuka's Required exp :", 20);
+            quests_asuka_experience_e = CONFIG_BUILDER.comment("Quest-5 ").define("Asuka's Required exp :", 25);
+
 
             ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
             CONFIG_BUILDER.pop();
+
+        }
+
+        public static final ForgeConfigSpec.ConfigValue<Boolean> config_npc_character_symbols;
+
+        static {
+
+            CONFIG_BUILDER.comment("NPC Character Symbol -> Font").push("NPC Character Configs");
+
+            config_npc_character_symbols = CONFIG_BUILDER.comment("Default is FALSE").define("Block the Symbol Character :", false);
+
+
+            CONFIG_BUILDER.pop();
+            ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
             COMMON_SPEC_NPC_NAMEN = CONFIG_BUILDER.build();
 
         }
+
     }
 }

@@ -1,4 +1,4 @@
-package com.alpherininus.basmod.common.containers;
+package com.alpherininus.basmod.client.containers;
 
 import com.alpherininus.basmod.core.init.ContainerInit;
 import com.alpherininus.basmod.core.init.ItemInit;

@@ -1,7 +1,7 @@
 package com.alpherininus.basmod;
 
 import com.alpherininus.basmod.client.handlers.BasmodAnivilHandler;
-import com.alpherininus.basmod.common.containers.screen.BaSInfoScreen;
+import com.alpherininus.basmod.client.containers.screen.BaSInfoScreen;
 import com.alpherininus.basmod.common.entitys.animated.renerer.BasBossRenderer;
 import com.alpherininus.basmod.common.entitys.animated.renerer.BasWanderingTraderRenderer;
 import com.alpherininus.basmod.common.entitys.animated.renerer.BossOfDeadRenderer;

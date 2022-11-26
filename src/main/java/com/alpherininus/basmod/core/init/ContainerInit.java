@@ -1,7 +1,7 @@
 package com.alpherininus.basmod.core.init;
 
 import com.alpherininus.basmod.Basmod;
-import com.alpherininus.basmod.common.containers.BaSInfoContainer;
+import com.alpherininus.basmod.client.containers.BaSInfoContainer;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.world.World;
 import net.minecraftforge.common.extensions.IForgeContainerType;

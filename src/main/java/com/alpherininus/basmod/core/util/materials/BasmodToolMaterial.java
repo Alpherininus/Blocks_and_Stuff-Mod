@@ -1,4 +1,4 @@
-package com.alpherininus.basmod.common.materials;
+package com.alpherininus.basmod.core.util.materials;
 
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.Items;

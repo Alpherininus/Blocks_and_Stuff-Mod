@@ -1,6 +1,6 @@
 package com.alpherininus.basmod.common.items.armor;
 
-import com.alpherininus.basmod.common.materials.BasmodArmorMaterial;
+import com.alpherininus.basmod.core.util.materials.BasmodArmorMaterial;
 import com.alpherininus.basmod.core.init.ItemInit;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.PlayerEntity;

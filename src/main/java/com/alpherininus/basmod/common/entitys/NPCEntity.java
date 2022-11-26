@@ -1,11 +1,9 @@
 package com.alpherininus.basmod.common.entitys;
 
 import com.alpherininus.basmod.Basmod;
-import com.alpherininus.basmod.common.entitys.ai.AttackGoal;
+import com.alpherininus.basmod.client.controller.ai.AttackGoal;
 import com.alpherininus.basmod.core.init.ItemInit;
 import com.alpherininus.basmod.core.util.BasmodConfig;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.fonts.Font;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -400,6 +398,8 @@ public class NPCEntity extends CreatureEntity {
 
     @Override
     protected ActionResultType getEntityInteractionResult(PlayerEntity playerIn, Hand hand) {
+        NPCcharacterSymbols characterSymbols = null;
+        assert characterSymbols != null;
 
         if (!world.isRemote()) {
 
@@ -419,14 +419,14 @@ public class NPCEntity extends CreatureEntity {
 
             if (this.getNPCEntityType() == 2) {
 
-                String character = "\uEA01";
+                String character = "\uEfa1";
+                characterSymbols.getFontStyle();
 
-                int quest1 = 5;
-                int quest2 = 10;
-                int quest3 = 15;
-                int quest4 = 20;
-                int quest5 = 25;
-
+                int quest1 = BasmodConfig.NPCTYPECONFIG.quests_lu_experience_a.get();
+                int quest2 = BasmodConfig.NPCTYPECONFIG.quests_lu_experience_b.get();
+                int quest3 = BasmodConfig.NPCTYPECONFIG.quests_lu_experience_c.get();
+                int quest4 = BasmodConfig.NPCTYPECONFIG.quests_lu_experience_d.get();
+                int quest5 = BasmodConfig.NPCTYPECONFIG.quests_lu_experience_e.get();
 
                 if (playerIn.experienceLevel == quest1) {
                     String quest = BasmodConfig.NPCTYPECONFIG.quests_lu_a.get();
@@ -508,6 +508,24 @@ public class NPCEntity extends CreatureEntity {
         public NPCData(int type) {
             super(1.0F);
             this.typeData = type;
+        }
+    }
+
+    public static class NPCcharacterSymbols {
+
+        public final ResourceLocation FONT_RENDERER_NAME = new ResourceLocation(Basmod.MOD_ID,"textures/font/npc_character.png");
+
+        public boolean useBlockyFont = BasmodConfig.NPCTYPECONFIG.config_npc_character_symbols.get();
+
+        public NPCcharacterSymbols() {
+        }
+
+        public Style getFontStyle() {
+            if (useBlockyFont) {
+                return Style.EMPTY;
+            } else {
+                return Style.EMPTY.setFontId(FONT_RENDERER_NAME);
+            }
         }
     }
 

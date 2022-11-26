@@ -1,4 +1,4 @@
-package com.alpherininus.basmod.common.materials;
+package com.alpherininus.basmod.core.util.materials;
 
 import com.alpherininus.basmod.Basmod;
 import com.alpherininus.basmod.core.init.ItemInit;

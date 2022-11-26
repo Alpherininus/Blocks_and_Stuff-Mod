@@ -13,8 +13,8 @@ import com.alpherininus.basmod.common.items.animated.renderer.TeleportStaffItemR
 import com.alpherininus.basmod.common.items.armor.*;
 import com.alpherininus.basmod.common.items.models.BasmodSpawnEggItem;
 import com.alpherininus.basmod.common.items.theme.*;
-import com.alpherininus.basmod.common.materials.BasmodArmorMaterial;
-import com.alpherininus.basmod.common.materials.BasmodToolMaterial;
+import com.alpherininus.basmod.core.util.materials.BasmodArmorMaterial;
+import com.alpherininus.basmod.core.util.materials.BasmodToolMaterial;
 import com.alpherininus.basmod.core.util.itemgroup.ModItemGroupItems;
 import com.alpherininus.basmod.core.util.itemgroup.ModItemGroupWapons;
 import com.alpherininus.basmod.core.util.BasmodConfig;

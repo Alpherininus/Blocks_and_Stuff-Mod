@@ -1,8 +1,7 @@
 package com.alpherininus.basmod.common.world.gen;
 
-import com.alpherininus.basmod.common.blocks.trees.MagicalOakTree;
 import com.alpherininus.basmod.common.world.BasmodConfiguredFeatures;
-import com.alpherininus.basmod.core.init.BiomeInit;
+import com.alpherininus.basmod.common.blocks.trees.MagicalOakTree;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.Biome;

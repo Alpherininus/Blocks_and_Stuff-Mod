@@ -1,6 +1,6 @@
 package com.alpherininus.basmod.common.entitys.animated;
 
-import com.alpherininus.basmod.common.entitys.ai.AttackGoal;
+import com.alpherininus.basmod.client.controller.ai.AttackGoal;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.*;
@@ -15,7 +15,6 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.ShootableItem;
-import net.minecraft.item.UseAction;
 import net.minecraft.network.play.server.SChangeGameStatePacket;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;

@@ -1,7 +1,7 @@
-package com.alpherininus.basmod.common.containers.screen;
+package com.alpherininus.basmod.client.containers.screen;
 
 import com.alpherininus.basmod.Basmod;
-import com.alpherininus.basmod.common.containers.BaSInfoContainer;
+import com.alpherininus.basmod.client.containers.BaSInfoContainer;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
