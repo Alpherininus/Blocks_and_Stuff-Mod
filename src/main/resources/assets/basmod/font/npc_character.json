@@ -1,0 +1,17 @@
+{
+  "providers": [
+    {
+      "type": "bitmap",
+      "file": "basmod:font/npc_characters.png",
+      "ascent": 350,
+      "height": 350,
+      "chars": [
+        "\uEA00\uEA01\uEA02\uE003\uEA04\uEA05\uEA06\uEA07\uEA08\uEA09",
+        "\uEA10\uEA11\uEA12\uEA13\uEA14\uEA15\uEA16\uEA17\uEA18\uEA19",
+        "\uEA20\uEA21\uEA22\uEA23\uEA24\uEA25\uEA26\uEA27\uEA28\uEA29",
+        "\uEA30\uEA31\uEA32\uEA33\uEA34\uEA35\uEA36\uEA37\uEA38\uEA39",
+        "\uEA40\uEA41\uEA42\uEA43\uEA44\uEA45\uEA46\uEA47\uEA48\uEA49"
+      ]
+    }
+  ]
+}

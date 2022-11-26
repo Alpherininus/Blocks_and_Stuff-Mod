@@ -2,11 +2,13 @@ package com.alpherininus.basmod;
 
 import com.alpherininus.basmod.client.handlers.BasmodAnivilHandler;
 import com.alpherininus.basmod.common.containers.screen.BaSInfoScreen;
-import com.alpherininus.basmod.common.entitys.NPCEntity;
 import com.alpherininus.basmod.common.entitys.animated.renerer.BasBossRenderer;
 import com.alpherininus.basmod.common.entitys.animated.renerer.BasWanderingTraderRenderer;
 import com.alpherininus.basmod.common.entitys.animated.renerer.BossOfDeadRenderer;
-import com.alpherininus.basmod.common.entitys.renderer.*;
+import com.alpherininus.basmod.common.entitys.renderer.CopperGolemRenderer;
+import com.alpherininus.basmod.common.entitys.renderer.MagicalSpellArrowRenderer;
+import com.alpherininus.basmod.common.entitys.renderer.NPCRenderer;
+import com.alpherininus.basmod.common.entitys.renderer.SeieorShellRenderer;
 import com.alpherininus.basmod.common.items.armor.JetPackArmorItem;
 import com.alpherininus.basmod.common.items.armor.models.renderer.JetPackArmorRenderer;
 import com.alpherininus.basmod.common.items.models.BasmodItemModel;
@@ -24,7 +26,6 @@ import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.crash.CrashReport;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
@@ -48,9 +49,6 @@ import software.bernie.geckolib3.renderers.geo.GeoArmorRenderer;
 import top.theillusivec4.curios.api.SlotTypeMessage;
 import top.theillusivec4.curios.api.SlotTypePreset;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 
 @Mod("basmod")
@@ -97,7 +95,8 @@ public class Basmod {
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, BasmodConfig.COMMON_SPEC_GENERAL, "basmod/basmod-common.toml");
 
-        makeDir();
+        // ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, BasmodConfig.SERVER_SPEC_GENERAL, "basmod/basmod-server.toml");
+        // ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, BasmodConfig.CLIENT_SPEC_GENERAL, "basmod/basmod-client.toml");
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
@@ -198,25 +197,6 @@ public class Basmod {
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     }
 
-    private static void makeDir() {
-
-        String path = "././config/basmod/texture/";
-        String fileName = "test.txt";
-        String dirName = "npc";
-        File file = new File(path + dirName + "/" + fileName);
-        File dir = new File(path + dirName);
-
-        if (dir.mkdir()) {
-            try {
-                System.out.println("|| -> Datei erstellt: " + file.createNewFile());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        } else {
-            System.out.println("|| ->" + dir + " konnte nicht erstellt werden");
-        }
-
-    }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

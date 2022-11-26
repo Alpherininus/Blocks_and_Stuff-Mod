@@ -109,55 +109,6 @@ public class BasmodConfig {
     public static final ForgeConfigSpec.ConfigValue<String> config_npc_name_ID48;
     public static final ForgeConfigSpec.ConfigValue<String> config_npc_name_ID49;
     public static final ForgeConfigSpec.ConfigValue<String> config_npc_name_ID50;
-    public static final ForgeConfigSpec.ConfigValue<String> config_npc_name_ID51;
-    public static final ForgeConfigSpec.ConfigValue<String> config_npc_name_ID52;
-    public static final ForgeConfigSpec.ConfigValue<String> config_npc_name_ID53;
-    public static final ForgeConfigSpec.ConfigValue<String> config_npc_name_ID54;
-    public static final ForgeConfigSpec.ConfigValue<String> config_npc_name_ID55;
-    public static final ForgeConfigSpec.ConfigValue<String> config_npc_name_ID56;
-    public static final ForgeConfigSpec.ConfigValue<String> config_npc_name_ID57;
-    public static final ForgeConfigSpec.ConfigValue<String> config_npc_name_ID58;
-    public static final ForgeConfigSpec.ConfigValue<String> config_npc_name_ID59;
-    public static final ForgeConfigSpec.ConfigValue<String> config_npc_name_ID60;
-    public static final ForgeConfigSpec.ConfigValue<String> config_npc_name_ID61;
-    public static final ForgeConfigSpec.ConfigValue<String> config_npc_name_ID62;
-    public static final ForgeConfigSpec.ConfigValue<String> config_npc_name_ID63;
-    public static final ForgeConfigSpec.ConfigValue<String> config_npc_name_ID64;
-    public static final ForgeConfigSpec.ConfigValue<String> config_npc_name_ID65;
-    public static final ForgeConfigSpec.ConfigValue<String> config_npc_name_ID66;
-    public static final ForgeConfigSpec.ConfigValue<String> config_npc_name_ID67;
-    public static final ForgeConfigSpec.ConfigValue<String> config_npc_name_ID68;
-    public static final ForgeConfigSpec.ConfigValue<String> config_npc_name_ID69;
-    public static final ForgeConfigSpec.ConfigValue<String> config_npc_name_ID70;
-    public static final ForgeConfigSpec.ConfigValue<String> config_npc_name_ID71;
-    public static final ForgeConfigSpec.ConfigValue<String> config_npc_name_ID72;
-    public static final ForgeConfigSpec.ConfigValue<String> config_npc_name_ID73;
-    public static final ForgeConfigSpec.ConfigValue<String> config_npc_name_ID74;
-    public static final ForgeConfigSpec.ConfigValue<String> config_npc_name_ID75;
-    public static final ForgeConfigSpec.ConfigValue<String> config_npc_name_ID76;
-    public static final ForgeConfigSpec.ConfigValue<String> config_npc_name_ID77;
-    public static final ForgeConfigSpec.ConfigValue<String> config_npc_name_ID78;
-    public static final ForgeConfigSpec.ConfigValue<String> config_npc_name_ID79;
-    public static final ForgeConfigSpec.ConfigValue<String> config_npc_name_ID80;
-    public static final ForgeConfigSpec.ConfigValue<String> config_npc_name_ID81;
-    public static final ForgeConfigSpec.ConfigValue<String> config_npc_name_ID82;
-    public static final ForgeConfigSpec.ConfigValue<String> config_npc_name_ID83;
-    public static final ForgeConfigSpec.ConfigValue<String> config_npc_name_ID84;
-    public static final ForgeConfigSpec.ConfigValue<String> config_npc_name_ID85;
-    public static final ForgeConfigSpec.ConfigValue<String> config_npc_name_ID86;
-    public static final ForgeConfigSpec.ConfigValue<String> config_npc_name_ID87;
-    public static final ForgeConfigSpec.ConfigValue<String> config_npc_name_ID88;
-    public static final ForgeConfigSpec.ConfigValue<String> config_npc_name_ID89;
-    public static final ForgeConfigSpec.ConfigValue<String> config_npc_name_ID90;
-    public static final ForgeConfigSpec.ConfigValue<String> config_npc_name_ID91;
-    public static final ForgeConfigSpec.ConfigValue<String> config_npc_name_ID92;
-    public static final ForgeConfigSpec.ConfigValue<String> config_npc_name_ID93;
-    public static final ForgeConfigSpec.ConfigValue<String> config_npc_name_ID94;
-    public static final ForgeConfigSpec.ConfigValue<String> config_npc_name_ID95;
-    public static final ForgeConfigSpec.ConfigValue<String> config_npc_name_ID96;
-    public static final ForgeConfigSpec.ConfigValue<String> config_npc_name_ID97;
-    public static final ForgeConfigSpec.ConfigValue<String> config_npc_name_ID98;
-    public static final ForgeConfigSpec.ConfigValue<String> config_npc_name_ID99;
 
     static {
 
@@ -213,59 +164,6 @@ public class BasmodConfig {
         config_npc_name_ID48 = CONFIG_BUILDER.comment("ella.png").define("id - NPCType:48", "ella");
         config_npc_name_ID49 = CONFIG_BUILDER.comment("finn.png").define("id - NPCType:49", "finn");
         config_npc_name_ID50 = CONFIG_BUILDER.comment("kirstan.png").define("id - NPCType:50", "kirstan");
-        config_npc_name_ID51 = CONFIG_BUILDER.comment("magnus.png").define("id - NPCType:51", "Magnus");
-        config_npc_name_ID52 = CONFIG_BUILDER.comment("avid.png").define("id - NPCType:52", "Avid");
-        config_npc_name_ID53 = CONFIG_BUILDER.comment("amanda.png").define("id - NPCType:53", "Amanda");
-        config_npc_name_ID54 = CONFIG_BUILDER.comment("").define("id - NPCType:54", "");
-        config_npc_name_ID55 = CONFIG_BUILDER.comment("").define("id - NPCType:55", "");
-        config_npc_name_ID56 = CONFIG_BUILDER.comment("").define("id - NPCType:56", "");
-        config_npc_name_ID57 = CONFIG_BUILDER.comment("").define("id - NPCType:57", "");
-        config_npc_name_ID58 = CONFIG_BUILDER.comment("").define("id - NPCType:58", "");
-        config_npc_name_ID59 = CONFIG_BUILDER.comment("").define("id - NPCType:59", "");
-        config_npc_name_ID60 = CONFIG_BUILDER.comment("").define("id - NPCType:60", "");
-        config_npc_name_ID61 = CONFIG_BUILDER.comment("").define("id - NPCType:61", "");
-        config_npc_name_ID62 = CONFIG_BUILDER.comment("").define("id - NPCType:62", "");
-        config_npc_name_ID63 = CONFIG_BUILDER.comment("").define("id - NPCType:63", "");
-        config_npc_name_ID64 = CONFIG_BUILDER.comment("").define("id - NPCType:64", "");
-        config_npc_name_ID65 = CONFIG_BUILDER.comment("").define("id - NPCType:65", "");
-        config_npc_name_ID66 = CONFIG_BUILDER.comment("").define("id - NPCType:66", "");
-        config_npc_name_ID67 = CONFIG_BUILDER.comment("").define("id - NPCType:67", "");
-        config_npc_name_ID68 = CONFIG_BUILDER.comment("").define("id - NPCType:68", "");
-        config_npc_name_ID69 = CONFIG_BUILDER.comment("gigachad.png").define("id - NPCType:69", "is not editadble");
-        config_npc_name_ID70 = CONFIG_BUILDER.comment("").define("id - NPCType:70", "is not editadble");
-        config_npc_name_ID71 = CONFIG_BUILDER.comment("").define("id - NPCType:71", "is not editadble");
-        config_npc_name_ID72 = CONFIG_BUILDER.comment("").define("id - NPCType:72", "is not editadble");
-        config_npc_name_ID73 = CONFIG_BUILDER.comment("").define("id - NPCType:73", "is not editadble");
-        config_npc_name_ID74 = CONFIG_BUILDER.comment("").define("id - NPCType:74", "is not editadble");
-        config_npc_name_ID75 = CONFIG_BUILDER.comment("").define("id - NPCType:75", "is not editadble");
-        config_npc_name_ID76 = CONFIG_BUILDER.comment("").define("id - NPCType:76", "is not editadble");
-        config_npc_name_ID77 = CONFIG_BUILDER.comment("").define("id - NPCType:77", "is not editadble");
-        config_npc_name_ID78 = CONFIG_BUILDER.comment("").define("id - NPCType:78", "is not editadble");
-        config_npc_name_ID79 = CONFIG_BUILDER.comment("").define("id - NPCType:79", "is not editadble");
-        config_npc_name_ID80 = CONFIG_BUILDER.comment("npc_knight_a").define("id - NPCType:80", "is not editadble");
-        config_npc_name_ID81 = CONFIG_BUILDER.comment("npc_knight_b").define("id - NPCType:81", "is not editadble");
-        config_npc_name_ID82 = CONFIG_BUILDER.comment("npc_knight_c").define("id - NPCType:82", "is not editadble");
-        config_npc_name_ID83 = CONFIG_BUILDER.comment("npc_knight_d").define("id - NPCType:83", "is not editadble");
-        config_npc_name_ID84 = CONFIG_BUILDER.comment("npc_knight_e").define("id - NPCType:84", "is not editadble");
-        config_npc_name_ID85 = CONFIG_BUILDER.comment("npc_knight_f").define("id - NPCType:85", "is not editadble");
-        config_npc_name_ID86 = CONFIG_BUILDER.comment("npc_knight_g").define("id - NPCType:86", "is not editadble");
-        config_npc_name_ID87 = CONFIG_BUILDER.comment("npc_knight_h").define("id - NPCType:87", "is not editadble");
-        config_npc_name_ID88 = CONFIG_BUILDER.comment("npc_knight_i").define("id - NPCType:88", "is not editadble");
-        config_npc_name_ID89 = CONFIG_BUILDER.comment("npc_knight_j").define("id - NPCType:89", "is not editadble");
-        config_npc_name_ID90 = CONFIG_BUILDER.comment("npc_knight_k").define("id - NPCType:90", "is not editadble");
-        config_npc_name_ID91 = CONFIG_BUILDER.comment("npc_knight_magier_a").define("id - NPCType:91", "is not editadble");
-        config_npc_name_ID92 = CONFIG_BUILDER.comment("npc_knight_magier_b").define("id - NPCType:92", "is not editadble");
-        config_npc_name_ID93 = CONFIG_BUILDER.comment("npc_knight_magier_c").define("id - NPCType:93", "is not editadble");
-        config_npc_name_ID94 = CONFIG_BUILDER.comment("npc_knight_magier_d").define("id - NPCType:94", "is not editadble");
-        config_npc_name_ID95 = CONFIG_BUILDER.comment("npc_knight_magier_e").define("id - NPCType:95", "is not editadble");
-        config_npc_name_ID96 = CONFIG_BUILDER.comment("npc_knight_magier_f.png").define("id - NPCType:96", "is not editadble");
-        config_npc_name_ID97 = CONFIG_BUILDER.comment("esel.png").define("id - NPCType:97", "is not editadble");
-        config_npc_name_ID98 = CONFIG_BUILDER.comment("walter.png").define("id - NPCType:98", "is not editadble");
-        config_npc_name_ID99 = CONFIG_BUILDER.comment("guenter.png").define("id - NPCType:99", "is not editadble");
-
-
-
-        //
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
         CONFIG_BUILDER.pop();

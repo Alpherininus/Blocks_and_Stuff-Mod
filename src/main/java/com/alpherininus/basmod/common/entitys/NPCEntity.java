@@ -1,21 +1,26 @@
 package com.alpherininus.basmod.common.entitys;
 
 import com.alpherininus.basmod.common.entitys.ai.AttackGoal;
+import com.alpherininus.basmod.core.init.ItemInit;
 import com.alpherininus.basmod.core.util.BasmodConfig;
+import com.alpherininus.basmod.core.util.BasmodFonts;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.boss.dragon.EnderDragonEntity;
 import net.minecraft.entity.monster.*;
+import net.minecraft.entity.passive.ChickenEntity;
 import net.minecraft.entity.passive.PigEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
@@ -138,83 +143,19 @@ public class NPCEntity extends CreatureEntity {
             this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setCallsForHelp());
             this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
             if (!this.hasCustomName()) {
-                this.setCustomName(new TranslationTextComponent(Util.makeTranslationKey("entity", KILLER_GUENTER)));
+                this.setCustomName(new StringTextComponent("Guenter"));
             }
-        }
-
-        if (npcTypeId == 96) {
-            this.getAttribute(Attributes.ARMOR).setBaseValue(20.0D);
-            this.goalSelector.addGoal(4, new NPCEntity.EvilAttackGoal(this));
-            this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setCallsForHelp());
-            this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, SkeletonEntity.class, true));
-            this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, AbstractIllagerEntity.class, true));
-            this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, AbstractRaiderEntity.class, true));
-            this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, SpiderEntity.class, true));
-            this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, ZombieEntity.class, true));
-            if (!this.hasCustomName()) {
-                this.setCustomName(new TranslationTextComponent(Util.makeTranslationKey("entity.npc_knight.", KILLER_GUENTER)));
-            }
-        }
-        if (npcTypeId == 95) {
-            this.getAttribute(Attributes.ARMOR).setBaseValue(30.0D);
-            this.goalSelector.addGoal(4, new NPCEntity.EvilAttackGoal(this));
-            this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setCallsForHelp());
-            this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, SkeletonEntity.class, true));
-            this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PillagerEntity.class, true));
-            this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, SpiderEntity.class, true));
-            this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, ZombieEntity.class, true));
-            if (!this.hasCustomName()) {
-                this.setCustomName(new TranslationTextComponent(Util.makeTranslationKey("entity.npc_dark_knight.", KILLER_GUENTER)));
-            }
-        }
-        if (npcTypeId == 94) {
-            this.getAttribute(Attributes.ARMOR).setBaseValue(30.0D);
-            this.goalSelector.addGoal(4, new NPCEntity.EvilAttackGoal(this));
-            this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setCallsForHelp());
-            this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, SkeletonEntity.class, true));
-            this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PillagerEntity.class, true));
-            this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, SpiderEntity.class, true));
-            this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, ZombieEntity.class, true));
-            if (!this.hasCustomName()) {
-                this.setCustomName(new TranslationTextComponent(Util.makeTranslationKey("entity.npc_knight_kavilier.", KILLER_GUENTER)));
-            }
-        }
-        if (npcTypeId == 93) {
-            this.getAttribute(Attributes.ARMOR).setBaseValue(10.0D);
-            this.goalSelector.addGoal(4, new NPCEntity.EvilAttackGoal(this));
-            this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setCallsForHelp());
-            this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, SkeletonEntity.class, true));
-            this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PillagerEntity.class, true));
-            this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, SpiderEntity.class, true));
-            this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, ZombieEntity.class, true));
-
-            if (!this.hasCustomName()) {
-                this.setCustomName(new TranslationTextComponent(Util.makeTranslationKey("entity.npc_knight_magier.", KILLER_GUENTER)));
-            }
-        }
-        if (npcTypeId == 69) {
-            this.getAttribute(Attributes.ARMOR).setBaseValue(100.0D);
-            this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(+ 55.5D);
-            this.getAttribute(Attributes.KNOCKBACK_RESISTANCE).setBaseValue(10000.0D);
-            this.goalSelector.addGoal(4, new NPCEntity.EvilAttackGoal(this));
-            this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setCallsForHelp());
-            this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, MonsterEntity.class, true));
-            this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, EnderDragonEntity.class, true));
-            this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, EndermanEntity.class, true));
-
-            if (!this.hasCustomName()) {
-                this.setCustomName(new TranslationTextComponent(Util.makeTranslationKey("entity.npc_gigachad.", KILLER_GUENTER)));
-            }
-
         }
 
         if (npcTypeId == 42) {
             this.getAttribute(Attributes.ARMOR).setBaseValue(15.0D);
             if (!this.hasCustomName()) {
-                String NPC_NAME = "asuka";
+                String NPC_NAME = "Asuka";
                 this.setCustomName(new StringTextComponent(NPC_NAME));
             }
         }
+
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -473,36 +414,24 @@ public class NPCEntity extends CreatureEntity {
                     playerIn.sendStatusMessage(new StringTextComponent("Hallo"), true);
 
                 } else if (playerIn.experienceLevel == 4) {
-                    BlockPos pos = playerIn.getPosition();
-                    World worldIn = playerIn.getEntityWorld();
-                    PigEntity pig = EntityType.PIG.create(worldIn);
-
-                    pig.setPosition(pos.getX() + this.rand.nextInt(10) - 5, pos.getY(), pos.getZ() + this.rand.nextInt(10) - 5);
-                    pig.addTag("ruediger");
-                    worldIn.addEntity(pig);
+                    playerIn.sendStatusMessage(new StringTextComponent("lul"), true);
 
                 }
-
                 playerIn.sendMessage(new StringTextComponent("Hallo"), UUID.randomUUID());
 
             }
 
             if (this.getNPCEntityType() == 2) {
-                String tagname = "message";
+                String character = "\uEA01";
 
                 if (playerIn.experienceLevel == 1) {
-                    playerIn.addTag(tagname);
-                }
-                if (playerIn.getTags().add(tagname)) {
-                    playerIn.sendMessage(new TranslationTextComponent("lu.message.talk1"), UUID.randomUUID());
+                    playerIn.addItemStackToInventory(new ItemStack(ItemInit.BASMOD_BOOK_BLOCKS.get(), 1));
 
-                    playerIn.removeTag(tagname);
-                }
-                if (playerIn.getTags().add(tagname)) {
-                    playerIn.sendMessage(new TranslationTextComponent("lu.message.talk2"), UUID.randomUUID());
+                    playerIn.sendStatusMessage(ITextComponent.getTextComponentOrEmpty("Hier ist die nexte Quest" + "  " + character), true);
 
-                    playerIn.removeTag(tagname);
                 }
+
+                playerIn.sendStatusMessage(ITextComponent.getTextComponentOrEmpty("Hallo :) ." + "  " + character), true);
 
             }
 
