@@ -190,12 +190,12 @@
 	"enchantment.basmod.mjoenir_enchan_desc": "useful when thundering",
 	"enchantment.basmod.mjoenirs_attack": "Mjönirs Schlag",
 
-	"key.category.basmod": "Blocks and Stuff Mod",
-	"key.basmod.keyY": "Y - NONE",
-	"key.basmod.keyX": "X - NONE",
-	"key.basmod.keyV": "V - NONE",
-	"key.basmod.keyN": "N - NONE",
-	"key.basmod.keyM": "M - NONE",
+	"key.category.basmod.default": "Blocks and Stuff",
+	"key.basmod.drink_water": "Drink Water LOL",
+	"key.basmod.key_n": "not difi.",
+	"key.basmod.key_m": "not difi.",
+	"key.basmod.key_mouse3": "not difi.",
+	"key.basmod.key_mouse4": "not difi.",
 
 	"item.basmod.diving_helmet": "Diving Helmet"
 
