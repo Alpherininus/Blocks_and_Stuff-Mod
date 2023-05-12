@@ -412,9 +412,9 @@ public abstract class NPCEntity extends CreatureEntity {
     protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty) {
         super.setEquipmentBasedOnDifficulty(difficulty);
         if (this.getNPCEntityType() == 8) {
-            this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(ItemInit.CSWORD.get()));
+            this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(ItemInit.ASUKA_AXT.get()));
         }
-        this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(ItemInit.CSWORD.get()));
+        this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(ItemInit.ASUKA_AXT.get()));
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -293,9 +293,9 @@ public class ItemInit {
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    public static final RegistryObject<Item> CSWORD = ITEMS.register("csword",
-            () -> new CSwrod(BasmodToolMaterial.CSWORD_MATERIAL, 0, 0F, 0F,
-                    new Item.Properties().group(ModItemGroupWapons.BAS_MOD_WAPONS)));
+    //public static final RegistryObject<Item> CSWORD = ITEMS.register("csword",
+    //        () -> new CSwrod(BasmodToolMaterial.CSWORD_MATERIAL, 0, 0F, 0F,
+    //                new Item.Properties().group(ModItemGroupWapons.BAS_MOD_WAPONS)));
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

@@ -56,7 +56,11 @@ public class BladeShotSwordItem extends ShootableItem {
     }
 
     public UseAction getUseAction(ItemStack stack) {
-        return UseAction.CROSSBOW;
+
+        //if (offHand.getItem() == ItemInit.BLADESWORD.get()) {
+        //    return UseAction.CROSSBOW;
+        //}
+        return UseAction.BLOCK;
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -64,7 +68,6 @@ public class BladeShotSwordItem extends ShootableItem {
     @Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
         ItemStack offHand = playerIn.getItemStackFromSlot(EquipmentSlotType.OFFHAND);
-        ItemStack mainHand = playerIn.getItemStackFromSlot(EquipmentSlotType.MAINHAND);
 
         ItemStack itemstack = playerIn.getHeldItem(handIn);
         playerIn.setActiveHand(handIn);
