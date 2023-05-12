@@ -18,6 +18,7 @@ import com.alpherininus.basmod.core.util.materials.BasmodToolMaterial;
 import com.alpherininus.basmod.core.util.itemgroup.ModItemGroupItems;
 import com.alpherininus.basmod.core.util.itemgroup.ModItemGroupWapons;
 import com.alpherininus.basmod.core.util.BasmodConfig;
+import jdk.nashorn.api.scripting.ScriptObjectMirror;
 import net.minecraft.entity.EntityType;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
@@ -289,6 +290,18 @@ public class ItemInit {
     public static final RegistryObject<Item> MANA_BUCKET = ITEMS.register("mana_bucket",
             () -> new BucketItem(FluidInit.MANA_FLUID,
                     new Item.Properties().maxStackSize(1).group(ItemGroup.MISC)));
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    public static final RegistryObject<Item> CSWORD = ITEMS.register("csword",
+            () -> new CSwrod(BasmodToolMaterial.CSWORD_MATERIAL, 0, 0F, 0F,
+                    new Item.Properties().group(ModItemGroupWapons.BAS_MOD_WAPONS)));
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    public static final RegistryObject<Item> BLADESWORD = ITEMS.register("blade_shot",
+            () -> new BladeShotSwordItem(BasmodToolMaterial.Z_TOOL_MATERIAL, 1, 1,
+                    new Item.Properties().maxStackSize(1).group(ModItemGroupWapons.BAS_MOD_WAPONS)));
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

@@ -37,7 +37,9 @@ public enum BasmodToolMaterial implements IItemTier {
 	ZATOOL_MATERIAL(0, 6000, 15.0f, 0.0f, 22, () -> Ingredient.fromItems(Items.IRON_INGOT)),
 
 	SUBLIME_SWORD_MATERIAL(0, 50, 15.0f, 0.0f, 15, () -> Ingredient.fromItems(Items.IRON_INGOT)),
-	CREATOR_SWORD_MATERIAL(0, 25, 10.0f, 0.0f, 5, () -> Ingredient.fromItems(Items.IRON_INGOT));
+	CREATOR_SWORD_MATERIAL(0, 25, 10.0f, 0.0f, 5, () -> Ingredient.fromItems(Items.IRON_INGOT)),
+
+	CSWORD_MATERIAL(0, 2500, 10.0f, 0.0f, 5, () -> Ingredient.fromItems(Items.IRON_INGOT));
 
 
 	private final int harvestLevel;
@@ -48,7 +50,7 @@ public enum BasmodToolMaterial implements IItemTier {
 	private final Ingredient repairMaterial;
 
 	BasmodToolMaterial(int harvestLevel, int maxUses, float efficiency, float attackDamage, int enchantability,
-                       Supplier<Ingredient> repairMaterial) {
+					   Supplier<Ingredient> repairMaterial) {
 		this.harvestLevel = harvestLevel;
 		this.maxUses = maxUses;
 		this.efficiency = efficiency;

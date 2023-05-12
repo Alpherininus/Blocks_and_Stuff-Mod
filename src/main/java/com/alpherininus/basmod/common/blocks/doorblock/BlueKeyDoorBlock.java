@@ -39,6 +39,8 @@ public class BlueKeyDoorBlock extends DoorBlock {
     public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
 
         ItemStack mainhand = player.getItemStackFromSlot(EquipmentSlotType.MAINHAND);
+        ItemStack offhand = player.getItemStackFromSlot(EquipmentSlotType.OFFHAND);
+
 
         if (mainhand.getItem() == ItemInit.DOOR_BLUEKEY_ITEM.get() && this.material == Material.IRON) {
             state = state.cycleValue(OPEN);

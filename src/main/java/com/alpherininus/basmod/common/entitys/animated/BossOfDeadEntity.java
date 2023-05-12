@@ -7,8 +7,11 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.boss.WitherEntity;
+import net.minecraft.entity.boss.dragon.EnderDragonEntity;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.monster.MonsterEntity;
+import net.minecraft.entity.monster.SkeletonEntity;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -40,6 +43,7 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 import javax.annotation.Nullable;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Predicate;
 
 public class BossOfDeadEntity extends MonsterEntity implements IAnimatable {
@@ -48,14 +52,14 @@ public class BossOfDeadEntity extends MonsterEntity implements IAnimatable {
         if (EffectUtils.hasMiningSpeedup(this)) {
             return 6 - (1 + EffectUtils.getMiningSpeedup(this));
         } else {
-            return this.isPotionActive(Effects.MINING_FATIGUE) ? 6 + (1 + this.getActivePotionEffect(Effects.MINING_FATIGUE).getAmplifier()) * 2 : 6;
+            return this.isPotionActive(Effects.MINING_FATIGUE) ? 6 + (1 + Objects.requireNonNull(this.getActivePotionEffect(Effects.MINING_FATIGUE)).getAmplifier()) * 2 : 6;
         }
     }
 
     private static final EntityPredicate PLAYER_INVADER_CONDITION = (new EntityPredicate()).setDistance(64.0D);
     private static final Predicate<LivingEntity> NOT_UNDEAD = (p_213797_0_) -> p_213797_0_.getCreatureAttribute() != CreatureAttribute.UNDEAD && p_213797_0_.attackable();
 
-    private final ServerBossInfo bossInfo1Phase = (ServerBossInfo)(new ServerBossInfo(new StringTextComponent("Dance of Death"), BossInfo.Color.PINK, BossInfo.Overlay.PROGRESS));
+    private final ServerBossInfo bossInfo1Phase = new ServerBossInfo(new StringTextComponent("Dance of Death"), BossInfo.Color.PINK, BossInfo.Overlay.PROGRESS);
 
     private final int id = 1;
     private final int state = 0;
@@ -72,45 +76,21 @@ public class BossOfDeadEntity extends MonsterEntity implements IAnimatable {
     }
 
     protected void registerGoals() {
-        this.goalSelector.addGoal(1, new AttackGoal(this, 1.2D, true));
-        this.addLookGoals();
         this.addSwimGoals();
+
+        this.goalSelector.addGoal(5, new LookAtGoal(this, PlayerEntity.class, 16.0F));
+        this.goalSelector.addGoal(6, new LookRandomlyGoal(this));
+        this.goalSelector.addGoal(2, new LookAtWithoutMovingGoal(this, PlayerEntity.class, 15.5F, 1.0F));
+        this.goalSelector.addGoal(1, new AttackGoal(this, 1.0D, true));
+
+        this.targetSelector.addGoal(0, new HurtByTargetGoal(this));
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, 10, true, false, field_213627_bA));
-        this.addMoreTargets();
 
     }
 
     protected void addSwimGoals() {
         this.goalSelector.addGoal(0, new SwimGoal(this));
-        this.goalSelector.addGoal(4, new WaterAvoidingRandomWalkingGoal(this, 2.5D));
-    }
-
-    protected void addLookGoals() {
-        this.goalSelector.addGoal(1, new LookAtGoal(this, PlayerEntity.class, 16.0F));
-        this.goalSelector.addGoal(2, new LookAtWithoutMovingGoal(this, PlayerEntity.class, 15.5F, 1.0F));
-    }
-
-    protected void addMoreTargets() {
-        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, CreatureEntity.class, 5, true, false, field_213627_bA));
-        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, AnimalEntity.class, 5, true, false, field_213627_bA));
-    }
-
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-    public boolean isTwoHandedAnimationRunning() {
-        return this.isSpellCasting() || this.isSpinToWinActive() || this.isWieldingTwoHandedWeapon();
-    }
-
-    public boolean isSpinToWinActive() {
-        return false;
-    }
-
-    public boolean isSpellCasting() {
-        return false;
-    }
-
-    public boolean isWieldingTwoHandedWeapon() {
-        return false;
+        this.goalSelector.addGoal(4, new WaterAvoidingRandomWalkingGoal(this, 2.0D));
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -120,8 +100,9 @@ public class BossOfDeadEntity extends MonsterEntity implements IAnimatable {
                 .createMutableAttribute(Attributes.MAX_HEALTH, 1500.0D)
                 .createMutableAttribute(Attributes.ATTACK_DAMAGE, 5.0f)
                 .createMutableAttribute(Attributes.ATTACK_SPEED, 2.0f)
-                .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.25D)
+                .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.50D)
                 .createMutableAttribute(Attributes.ZOMBIE_SPAWN_REINFORCEMENTS, 64.0D)
+                .createMutableAttribute(Attributes.FOLLOW_RANGE, 64.0D)
                 .createMutableAttribute(Attributes.ATTACK_KNOCKBACK, 1.0f).create();
 
     }
@@ -144,11 +125,6 @@ public class BossOfDeadEntity extends MonsterEntity implements IAnimatable {
         return 5 + this.world.rand.nextInt(11);
     }
 
-    @Override
-    public boolean isAggressive() {
-        return true;
-    }
-
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
@@ -157,20 +133,10 @@ public class BossOfDeadEntity extends MonsterEntity implements IAnimatable {
 
     }
 
-    private <E extends IAnimatable> PlayState predicateTwoHandedSwing(AnimationEvent<E> event) {
-        if (this.isTwoHandedAnimationRunning() && this.isSwingInProgress) {
-            event.getController().setAnimation(new AnimationBuilder().addAnimation("attack", false));
-        }
-        return PlayState.STOP;
-    }
-
     @Override
     public void registerControllers(AnimationData data) {
         data.addAnimationController(
                 new AnimationController(this, "ontroller_idle", 0, this::predicate));
-
-        data.addAnimationController(
-                new AnimationController(this, "controller_attack", 10, this::predicateTwoHandedSwing));
 
     }
 
@@ -218,37 +184,6 @@ public class BossOfDeadEntity extends MonsterEntity implements IAnimatable {
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-    @Override
-    protected void dropSpecialItems(DamageSource source, int looting, boolean recentlyHitIn) {
-        super.dropSpecialItems(source, looting, recentlyHitIn);
-        Entity entity = source.getTrueSource();
-        ItemEntity itementity = this.entityDropItem(Items.DIAMOND_HOE);
-        if (itementity != null) {
-            itementity.setNoDespawn();
-        }
-        if (entity instanceof BossOfDeadEntity) {
-            BossOfDeadEntity bossOfDead = (BossOfDeadEntity)entity;
-            if (bossOfDead.ableToCauseSkullDrop()) {
-                ItemStack itemstack = this.getSkullDrop();
-                if (!itemstack.isEmpty()) {
-                    bossOfDead.incrementDroppedSkulls();
-                    this.entityDropItem(itemstack);
-                }
-            }
-        }
-    }
-
-    private void incrementDroppedSkulls() {
-    }
-
-    private boolean ableToCauseSkullDrop() {
-        return true;
-    }
-
-    protected ItemStack getSkullDrop() {
-        return new ItemStack(Items.ZOMBIE_HEAD);
-    }
 
     public CreatureAttribute getCreatureAttribute() {
         return CreatureAttribute.UNDEAD;

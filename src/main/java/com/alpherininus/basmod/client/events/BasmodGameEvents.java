@@ -4,6 +4,7 @@ import com.alpherininus.basmod.Basmod;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.GuiOpenEvent;
@@ -29,6 +30,8 @@ public class BasmodGameEvents {
 
         boolean isNotInWater = !minecraft.player.isInWater();
         boolean isInWater = minecraft.player.isInWater();
+
+        PlayerEntity playerIn = minecraft.player;
 
         boolean modifiExperience = !event.isCancelable() && event.getType() == RenderGameOverlayEvent.ElementType.EXPERIENCE;
 
@@ -67,7 +70,6 @@ public class BasmodGameEvents {
         if (minecraft.player.isSleeping()) {
             event.getWindow().setWindowTitle("Good Night :D!");
         }
-
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////

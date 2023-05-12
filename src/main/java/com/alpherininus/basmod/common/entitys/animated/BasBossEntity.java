@@ -1,5 +1,6 @@
 package com.alpherininus.basmod.common.entitys.animated;
 
+import mezz.jei.api.recipe.vanilla.IJeiBrewingRecipe;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;

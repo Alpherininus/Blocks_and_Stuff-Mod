@@ -6,6 +6,8 @@ import net.minecraft.block.AbstractBannerBlock;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.client.util.InputMappings;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.UseAction;
 import net.minecraftforge.api.distmarker.Dist;
@@ -70,16 +72,7 @@ public class BasmodKeyBinding {
         @SubscribeEvent
         public static void onMouseInput(InputEvent.MouseInputEvent event) {
             if (BasmodKeyBinding.KEY_MOUSE3.isPressed()) {
-
-                ItemStack itemStack = null;
-
-                if (itemStack.getItem().equals(ItemInit.ASUKA_AXT.get())) {
-
-                    UseAction block = UseAction.BLOCK;
-                } else {
-                    Minecraft.getInstance().player.sendChatMessage("Pressed a MOUSE 4!");
-
-                }
+                Minecraft.getInstance().player.sendChatMessage("Pressed a MOUSE 4!");
             }
 
 

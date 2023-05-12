@@ -5,6 +5,7 @@ import com.alpherininus.basmod.common.entitys.NPCEntity;
 import com.alpherininus.basmod.common.entitys.model.NPCModel;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
+import net.minecraft.client.renderer.entity.RabbitRenderer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.api.distmarker.Dist;
@@ -64,127 +65,31 @@ public class NPCRenderer extends MobRenderer<NPCEntity, NPCModel<NPCEntity>> {
     private static final ResourceLocation NPC_TIM = new ResourceLocation(Basmod.MOD_ID, "textures/entity/npc_types/tim.png");
     private static final ResourceLocation NPC_FINN = new ResourceLocation(Basmod.MOD_ID, "textures/entity/npc_types/finn.png");
     private static final ResourceLocation NPC_KIRSTAN = new ResourceLocation(Basmod.MOD_ID, "textures/entity/npc_types/kirstan.png");
+    private static final ResourceLocation NPC_CORINNA = new ResourceLocation(Basmod.MOD_ID, "textures/entity/npc_types/corinna.png");
+
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     public NPCRenderer(EntityRendererManager renderManagerIn) {
         super(renderManagerIn, new NPCModel<>(), 0.5F);
+
     }
 
     @Override
     public ResourceLocation getEntityTexture(NPCEntity entity) {
-        String s = TextFormatting.getTextWithoutFormattingCodes(entity.getName().getString());
-        if (s != null && "Guenter".equals(s)) {
-            return NPC_GUNTER;
+        final ResourceLocation[] myNPC = {DEFAULT_NPC, NPC_GUNTER, NPC_FLADIMIR, NPC_OLAF,
+                NPC_FRANK, NPC_JONNY, NPC_XANDER, NPC_RUDOLF, NPC_MAX, NPC_STRAFNUR,
+                NPC_TIMMY, NPC_ROMEY, NPC_LEO, NPC_FRANZ, NPC_SEV, NPC_OLI, NPC_STEFAN,
+                NPC_JAKOB, NPC_LUCA, NPC_LUKAS, NPC_NICO, NPC_PHILLIP, NPC_THEODOR,
+                NPC_JACK, NPC_LU, NPC_SOPHI, NPC_MIST, NPC_ASUKA, NPC_KURATA, NPC_SOLEIL,
+                NPC_TITANIA, NPC_ANNA, NPC_ERIKA, NPC_HISOKA, NPC_AIMI, NPC_RYOKO, NPC_MEI,
+                NPC_ANNE, NPC_MI, NPC_LUCY, NPC_NICOLLE, NPC_NORA, NPC_INGRID, NPC_ELLA,
+                NPC_HANA, NPC_ISABELLA, NPC_SCARLETT, NPC_AMY, NPC_TIM, NPC_FINN, NPC_KIRSTAN,
+                NPC_CORINNA
+        };
 
-        } else {
-            switch (entity.getNPCEntityType()) {
-                case 0:
-                default:
-                    return DEFAULT_NPC;
-
-                case 1:
-                    return NPC_GUNTER;
-                case 2:
-                    return NPC_LU;
-                case 3:
-                    return NPC_SOPHI;
-                case 4:
-                    return NPC_FLADIMIR;
-                case 5:
-                    return NPC_FRANK;
-                case 6:
-                    return NPC_OLAF;
-                case 7:
-                    return NPC_KURATA;
-                case 8:
-                    return NPC_JONNY;
-                case 9:
-                    return NPC_ANNE;
-                case 10:
-                    return NPC_AIMI;
-                case 11:
-                    return NPC_ERIKA;
-                case 12:
-                    return NPC_MAX;
-                case 13:
-                    return NPC_MEI;
-                case 14:
-                    return NPC_STRAFNUR;
-                case 15:
-                    return NPC_TIMMY;
-                case 16:
-                    return NPC_TITANIA;
-                case 17:
-                    return NPC_XANDER;
-                case 18:
-                    return NPC_MIST;
-                case 19:
-                    return NPC_SOLEIL;
-                case 20:
-                    return NPC_HISOKA;
-                case 21:
-                    return NPC_RUDOLF;
-                case 22:
-                    return NPC_ANNA;
-                case 23:
-                    return NPC_RYOKO;
-                case 24:
-                    return NPC_ROMEY;
-                case 25:
-                    return NPC_SCARLETT;
-                case 26:
-                    return NPC_SEV;
-                case 27:
-                    return NPC_THEODOR;
-                case 28:
-                    return NPC_LEO;
-                case 29:
-                    return NPC_LUCA;
-                case 30:
-                    return NPC_LUCY;
-                case 31:
-                    return NPC_LUKAS;
-                case 32:
-                    return NPC_STEFAN;
-                case 33:
-                    return NPC_PHILLIP;
-                case 34:
-                    return NPC_OLI;
-                case 35:
-                    return NPC_AMY;
-                case 36:
-                    return NPC_NICO;
-                case 37:
-                    return NPC_NICOLLE;
-                case 38:
-                    return NPC_NORA;
-                case 39:
-                    return NPC_TIM;
-                case 40:
-                    return NPC_JAKOB;
-                case 41:
-                    return NPC_JACK;
-                case 42:
-                    return NPC_ASUKA;
-                case 43:
-                    return NPC_ISABELLA;
-                case 44:
-                    return NPC_INGRID;
-                case 45:
-                    return NPC_HANA;
-                case 46:
-                    return NPC_FRANZ;
-                case 47:
-                    return NPC_MI;
-                case 48:
-                    return NPC_ELLA;
-                case 49:
-                    return NPC_FINN;
-                case 50:
-                    return NPC_KIRSTAN;
-            }
-        }
+        String txt = TextFormatting.getTextWithoutFormattingCodes(entity.getName().getString());
+        return myNPC[entity.getNPCEntityType()];
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -27,8 +27,11 @@ public class EnchantmentInit {
     public static RegistryObject<Enchantment> TNT_HIT =
             ENCHANTMENT_DEFERRED_REGISTER.register("tnt_attack", () -> new TNTAttack(Enchantment.Rarity.UNCOMMON, EnchantmentType.WEAPON, EquipmentSlotType.MAINHAND));
 
-    public static RegistryObject<Enchantment> SET_NOGRAVITY =
+    public static RegistryObject<Enchantment> MJOENIR_ATT =
             ENCHANTMENT_DEFERRED_REGISTER.register("mjoenirs_attack", () -> new MjoenirAttack(Enchantment.Rarity.UNCOMMON, EnchantmentType.WEAPON, EquipmentSlotType.MAINHAND));
+
+    public static RegistryObject<Enchantment> HEAL_P =
+            ENCHANTMENT_DEFERRED_REGISTER.register("heal_prayer", () -> new MjoenirAttack(Enchantment.Rarity.UNCOMMON, EnchantmentType.WEAPON, EquipmentSlotType.MAINHAND));
 
     public static void register(IEventBus eventBus) {
         ENCHANTMENT_DEFERRED_REGISTER.register(eventBus);

@@ -28,7 +28,7 @@ public class BasmodEventBusEvents {
     public static void addEntityAttributes(EntityAttributeCreationEvent event) {
         event.put(EntityTypesInit.BASMOD_COPPER_GOLEM.get(), CopperGolemEntity.setCustomCopperGolemAttributes().create());
         event.put(EntityTypesInit.BASMOD_SEIORSHELL.get(), SeiorShellArmorEntity.setCustomAttributes().create());
-        event.put(EntityTypesInit.BASMOD_NPC_TYPE.get(), NPCEntity.registerNPCAttributes().create());
+        //event.put(EntityTypesInit.BASMOD_NPC_TYPE.get(), NPCEntity.registerNPCAttributes().create());
 
         event.put(EntityTypesInit.BASMOD_BOSS_ENTITY.get(), BasBossEntity.setCustomBasbossAttributes());
         event.put(EntityTypesInit.BOSS_OF_DEAD_ENTITY.get(), BossOfDeadEntity.setCustomBossOfDeadAttributes());

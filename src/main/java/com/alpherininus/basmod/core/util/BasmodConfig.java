@@ -258,13 +258,15 @@ public class BasmodConfig {
         }
 
         public static final ForgeConfigSpec.ConfigValue<Boolean> config_npc_character_symbols;
+        public static final ForgeConfigSpec.ConfigValue<Boolean> setNOAItoFollower;
+
 
         static {
 
             CONFIG_BUILDER.comment("NPC Character Symbol -> Font").push("NPC Character Configs");
 
             config_npc_character_symbols = CONFIG_BUILDER.comment("Default is FALSE").define("Block the Symbol Character :", false);
-
+            setNOAItoFollower = CONFIG_BUILDER.comment("Default is False").define("NOAI :", false);
 
             CONFIG_BUILDER.pop();
             ///////////////////////////////////////////////////////////////////////////////////////////////////////////////

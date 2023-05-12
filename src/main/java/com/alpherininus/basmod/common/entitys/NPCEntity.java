@@ -1,6 +1,5 @@
 package com.alpherininus.basmod.common.entitys;
 
-import com.alpherininus.basmod.Basmod;
 import com.alpherininus.basmod.client.controller.ai.AttackGoal;
 import com.alpherininus.basmod.core.init.ItemInit;
 import com.alpherininus.basmod.core.util.BasmodConfig;
@@ -9,19 +8,23 @@ import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.*;
-import net.minecraft.util.text.*;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 
+import java.util.Objects;
 import java.util.UUID;
 import java.util.function.Predicate;
 
-public class NPCEntity extends CreatureEntity {
+public abstract class NPCEntity extends CreatureEntity {
 
     private static final DataParameter<Integer> NPC_TYPE = EntityDataManager.createKey(NPCEntity.class, DataSerializers.VARINT);
 
@@ -67,6 +70,8 @@ public class NPCEntity extends CreatureEntity {
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    protected abstract void entityInit();
 
     public void updateAITasks() {
 
@@ -131,8 +136,8 @@ public class NPCEntity extends CreatureEntity {
 
     public void setNPCType(int npcTypeId) {
         if (npcTypeId == 99) {
-            this.getAttribute(Attributes.ARMOR).setBaseValue(12.0D);
-            this.goalSelector.addGoal(4, new NPCEntity.EvilAttackGoal(this));
+            Objects.requireNonNull(this.getAttribute(Attributes.ARMOR)).setBaseValue(12.0D);
+            this.goalSelector.addGoal(2, new NPCEntity.EvilAttackGoal(this));
             this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setCallsForHelp());
             this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
             if (!this.hasCustomName()) {
@@ -141,7 +146,7 @@ public class NPCEntity extends CreatureEntity {
         }
 
         if (npcTypeId == 42) {
-            this.getAttribute(Attributes.ARMOR).setBaseValue(15.0D);
+            Objects.requireNonNull(this.getAttribute(Attributes.ARMOR)).setBaseValue(15.0D);
             if (!this.hasCustomName()) {
                 String NPC_NAME = "Asuka";
                 this.setCustomName(new StringTextComponent(NPC_NAME));
@@ -153,7 +158,8 @@ public class NPCEntity extends CreatureEntity {
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         if (npcTypeId == 1) {
-            this.getAttribute(Attributes.ARMOR).setBaseValue(15.0D);
+            Objects.requireNonNull(this.getAttribute(Attributes.ARMOR)).setBaseValue(15.0D);
+            // this.getAttribute(Attributes.ARMOR).setBaseValue(15.0D);
             if (!this.hasCustomName()) {
                 String NPC_NAME = BasmodConfig.NPCTYPECONFIG.config_npc_name_ID1.get();
                 this.setCustomName(new StringTextComponent(NPC_NAME));
@@ -161,7 +167,7 @@ public class NPCEntity extends CreatureEntity {
         }
 
         if (npcTypeId == 2) {
-            this.getAttribute(Attributes.ARMOR).setBaseValue(15.0D);
+            Objects.requireNonNull(this.getAttribute(Attributes.ARMOR)).setBaseValue(15.0D);
             if (!this.hasCustomName()) {
                 String NPC_NAME = BasmodConfig.NPCTYPECONFIG.config_npc_name_ID2.get();
                 this.setCustomName(new StringTextComponent(NPC_NAME));
@@ -169,7 +175,7 @@ public class NPCEntity extends CreatureEntity {
         }
 
         if (npcTypeId == 3) {
-            this.getAttribute(Attributes.ARMOR).setBaseValue(15.0D);
+            Objects.requireNonNull(this.getAttribute(Attributes.ARMOR)).setBaseValue(15.0D);
             if (!this.hasCustomName()) {
                 String NPC_NAME = BasmodConfig.NPCTYPECONFIG.config_npc_name_ID3.get();
                 this.setCustomName(new StringTextComponent(NPC_NAME));
@@ -177,7 +183,7 @@ public class NPCEntity extends CreatureEntity {
         }
 
         if (npcTypeId == 4) {
-            this.getAttribute(Attributes.ARMOR).setBaseValue(15.0D);
+            Objects.requireNonNull(this.getAttribute(Attributes.ARMOR)).setBaseValue(15.0D);
             if (!this.hasCustomName()) {
                 String NPC_NAME = BasmodConfig.NPCTYPECONFIG.config_npc_name_ID4.get();
                 this.setCustomName(new StringTextComponent(NPC_NAME));
@@ -185,7 +191,7 @@ public class NPCEntity extends CreatureEntity {
         }
 
         if (npcTypeId == 5) {
-            this.getAttribute(Attributes.ARMOR).setBaseValue(15.0D);
+            Objects.requireNonNull(this.getAttribute(Attributes.ARMOR)).setBaseValue(15.0D);
             if (!this.hasCustomName()) {
                 String NPC_NAME = BasmodConfig.NPCTYPECONFIG.config_npc_name_ID5.get();
                 this.setCustomName(new StringTextComponent(NPC_NAME));
@@ -193,7 +199,7 @@ public class NPCEntity extends CreatureEntity {
         }
 
         if (npcTypeId == 6) {
-            this.getAttribute(Attributes.ARMOR).setBaseValue(15.0D);
+            Objects.requireNonNull(this.getAttribute(Attributes.ARMOR)).setBaseValue(15.0D);
             if (!this.hasCustomName()) {
                 String NPC_NAME = BasmodConfig.NPCTYPECONFIG.config_npc_name_ID6.get();
                 this.setCustomName(new StringTextComponent(NPC_NAME));
@@ -201,7 +207,7 @@ public class NPCEntity extends CreatureEntity {
         }
 
         if (npcTypeId == 7) {
-            this.getAttribute(Attributes.ARMOR).setBaseValue(15.0D);
+            Objects.requireNonNull(this.getAttribute(Attributes.ARMOR)).setBaseValue(15.0D);
             if (!this.hasCustomName()) {
                 String NPC_NAME = BasmodConfig.NPCTYPECONFIG.config_npc_name_ID7.get();
                 this.setCustomName(new StringTextComponent(NPC_NAME));
@@ -209,7 +215,7 @@ public class NPCEntity extends CreatureEntity {
         }
 
         if (npcTypeId == 8) {
-            this.getAttribute(Attributes.ARMOR).setBaseValue(15.0D);
+            Objects.requireNonNull(this.getAttribute(Attributes.ARMOR)).setBaseValue(15.0D);
             if (!this.hasCustomName()) {
                 String NPC_NAME = BasmodConfig.NPCTYPECONFIG.config_npc_name_ID8.get();
                 this.setCustomName(new StringTextComponent(NPC_NAME));
@@ -217,7 +223,7 @@ public class NPCEntity extends CreatureEntity {
         }
 
         if (npcTypeId == 9) {
-            this.getAttribute(Attributes.ARMOR).setBaseValue(15.0D);
+            Objects.requireNonNull(this.getAttribute(Attributes.ARMOR)).setBaseValue(15.0D);
             if (!this.hasCustomName()) {
                 String NPC_NAME = BasmodConfig.NPCTYPECONFIG.config_npc_name_ID9.get();
                 this.setCustomName(new StringTextComponent(NPC_NAME));
@@ -225,7 +231,7 @@ public class NPCEntity extends CreatureEntity {
         }
 
         if (npcTypeId == 10) {
-            this.getAttribute(Attributes.ARMOR).setBaseValue(15.0D);
+            Objects.requireNonNull(this.getAttribute(Attributes.ARMOR)).setBaseValue(15.0D);
             if (!this.hasCustomName()) {
                 String NPC_NAME = BasmodConfig.NPCTYPECONFIG.config_npc_name_ID10.get();
                 this.setCustomName(new StringTextComponent(NPC_NAME));
@@ -233,7 +239,7 @@ public class NPCEntity extends CreatureEntity {
         }
 
         if (npcTypeId == 11) {
-            this.getAttribute(Attributes.ARMOR).setBaseValue(15.0D);
+            Objects.requireNonNull(this.getAttribute(Attributes.ARMOR)).setBaseValue(15.0D);
             if (!this.hasCustomName()) {
                 String NPC_NAME = BasmodConfig.NPCTYPECONFIG.config_npc_name_ID11.get();
                 this.setCustomName(new StringTextComponent(NPC_NAME));
@@ -241,7 +247,7 @@ public class NPCEntity extends CreatureEntity {
         }
 
         if (npcTypeId == 12) {
-            this.getAttribute(Attributes.ARMOR).setBaseValue(15.0D);
+            Objects.requireNonNull(this.getAttribute(Attributes.ARMOR)).setBaseValue(15.0D);
             if (!this.hasCustomName()) {
                 String NPC_NAME = BasmodConfig.NPCTYPECONFIG.config_npc_name_ID12.get();
                 this.setCustomName(new StringTextComponent(NPC_NAME));
@@ -249,7 +255,7 @@ public class NPCEntity extends CreatureEntity {
         }
 
         if (npcTypeId == 13) {
-            this.getAttribute(Attributes.ARMOR).setBaseValue(15.0D);
+            Objects.requireNonNull(this.getAttribute(Attributes.ARMOR)).setBaseValue(15.0D);
             if (!this.hasCustomName()) {
                 String NPC_NAME = BasmodConfig.NPCTYPECONFIG.config_npc_name_ID13.get();
                 this.setCustomName(new StringTextComponent(NPC_NAME));
@@ -257,7 +263,7 @@ public class NPCEntity extends CreatureEntity {
         }
 
         if (npcTypeId == 14) {
-            this.getAttribute(Attributes.ARMOR).setBaseValue(15.0D);
+            Objects.requireNonNull(this.getAttribute(Attributes.ARMOR)).setBaseValue(15.0D);
             if (!this.hasCustomName()) {
                 String NPC_NAME = BasmodConfig.NPCTYPECONFIG.config_npc_name_ID14.get();
                 this.setCustomName(new StringTextComponent(NPC_NAME));
@@ -265,7 +271,7 @@ public class NPCEntity extends CreatureEntity {
         }
 
         if (npcTypeId == 15) {
-            this.getAttribute(Attributes.ARMOR).setBaseValue(15.0D);
+            Objects.requireNonNull(this.getAttribute(Attributes.ARMOR)).setBaseValue(15.0D);
             if (!this.hasCustomName()) {
                 String NPC_NAME = BasmodConfig.NPCTYPECONFIG.config_npc_name_ID15.get();
                 this.setCustomName(new StringTextComponent(NPC_NAME));
@@ -273,7 +279,7 @@ public class NPCEntity extends CreatureEntity {
         }
 
         if (npcTypeId == 16) {
-            this.getAttribute(Attributes.ARMOR).setBaseValue(15.0D);
+            Objects.requireNonNull(this.getAttribute(Attributes.ARMOR)).setBaseValue(15.0D);
             if (!this.hasCustomName()) {
                 String NPC_NAME = BasmodConfig.NPCTYPECONFIG.config_npc_name_ID16.get();
                 this.setCustomName(new StringTextComponent(NPC_NAME));
@@ -281,7 +287,7 @@ public class NPCEntity extends CreatureEntity {
         }
 
         if (npcTypeId == 17) {
-            this.getAttribute(Attributes.ARMOR).setBaseValue(15.0D);
+            Objects.requireNonNull(this.getAttribute(Attributes.ARMOR)).setBaseValue(15.0D);
             if (!this.hasCustomName()) {
                 String NPC_NAME = BasmodConfig.NPCTYPECONFIG.config_npc_name_ID17.get();
                 this.setCustomName(new StringTextComponent(NPC_NAME));
@@ -289,7 +295,7 @@ public class NPCEntity extends CreatureEntity {
         }
 
         if (npcTypeId == 18) {
-            this.getAttribute(Attributes.ARMOR).setBaseValue(15.0D);
+            Objects.requireNonNull(this.getAttribute(Attributes.ARMOR)).setBaseValue(15.0D);
             if (!this.hasCustomName()) {
                 String NPC_NAME = BasmodConfig.NPCTYPECONFIG.config_npc_name_ID18.get();
                 this.setCustomName(new StringTextComponent(NPC_NAME));
@@ -297,7 +303,7 @@ public class NPCEntity extends CreatureEntity {
         }
 
         if (npcTypeId == 19) {
-            this.getAttribute(Attributes.ARMOR).setBaseValue(15.0D);
+            Objects.requireNonNull(this.getAttribute(Attributes.ARMOR)).setBaseValue(15.0D);
             if (!this.hasCustomName()) {
                 String NPC_NAME = BasmodConfig.NPCTYPECONFIG.config_npc_name_ID19.get();
                 this.setCustomName(new StringTextComponent(NPC_NAME));
@@ -305,7 +311,7 @@ public class NPCEntity extends CreatureEntity {
         }
 
         if (npcTypeId == 20) {
-            this.getAttribute(Attributes.ARMOR).setBaseValue(15.0D);
+            Objects.requireNonNull(this.getAttribute(Attributes.ARMOR)).setBaseValue(15.0D);
             if (!this.hasCustomName()) {
                 String NPC_NAME = BasmodConfig.NPCTYPECONFIG.config_npc_name_ID20.get();
                 this.setCustomName(new StringTextComponent(NPC_NAME));
@@ -313,7 +319,7 @@ public class NPCEntity extends CreatureEntity {
         }
 
         if (npcTypeId == 21) {
-            this.getAttribute(Attributes.ARMOR).setBaseValue(15.0D);
+            Objects.requireNonNull(this.getAttribute(Attributes.ARMOR)).setBaseValue(15.0D);
             if (!this.hasCustomName()) {
                 String NPC_NAME = BasmodConfig.NPCTYPECONFIG.config_npc_name_ID21.get();
                 this.setCustomName(new StringTextComponent(NPC_NAME));
@@ -321,7 +327,7 @@ public class NPCEntity extends CreatureEntity {
         }
 
         if (npcTypeId == 22) {
-            this.getAttribute(Attributes.ARMOR).setBaseValue(15.0D);
+            Objects.requireNonNull(this.getAttribute(Attributes.ARMOR)).setBaseValue(15.0D);
             if (!this.hasCustomName()) {
                 String NPC_NAME = BasmodConfig.NPCTYPECONFIG.config_npc_name_ID22.get();
                 this.setCustomName(new StringTextComponent(NPC_NAME));
@@ -329,7 +335,7 @@ public class NPCEntity extends CreatureEntity {
         }
 
         if (npcTypeId == 23) {
-            this.getAttribute(Attributes.ARMOR).setBaseValue(15.0D);
+            Objects.requireNonNull(this.getAttribute(Attributes.ARMOR)).setBaseValue(15.0D);
             if (!this.hasCustomName()) {
                 String NPC_NAME = BasmodConfig.NPCTYPECONFIG.config_npc_name_ID23.get();
                 this.setCustomName(new StringTextComponent(NPC_NAME));
@@ -337,7 +343,7 @@ public class NPCEntity extends CreatureEntity {
         }
 
         if (npcTypeId == 24) {
-            this.getAttribute(Attributes.ARMOR).setBaseValue(15.0D);
+            Objects.requireNonNull(this.getAttribute(Attributes.ARMOR)).setBaseValue(15.0D);
             if (!this.hasCustomName()) {
                 String NPC_NAME = BasmodConfig.NPCTYPECONFIG.config_npc_name_ID24.get();
                 this.setCustomName(new StringTextComponent(NPC_NAME));
@@ -345,7 +351,7 @@ public class NPCEntity extends CreatureEntity {
         }
 
         if (npcTypeId == 25) {
-            this.getAttribute(Attributes.ARMOR).setBaseValue(15.0D);
+            Objects.requireNonNull(this.getAttribute(Attributes.ARMOR)).setBaseValue(15.0D);
             if (!this.hasCustomName()) {
                 String NPC_NAME = BasmodConfig.NPCTYPECONFIG.config_npc_name_ID25.get();
                 this.setCustomName(new StringTextComponent(NPC_NAME));
@@ -353,7 +359,7 @@ public class NPCEntity extends CreatureEntity {
         }
 
         if (npcTypeId == 26) {
-            this.getAttribute(Attributes.ARMOR).setBaseValue(15.0D);
+            Objects.requireNonNull(this.getAttribute(Attributes.ARMOR)).setBaseValue(15.0D);
             if (!this.hasCustomName()) {
                 String NPC_NAME = BasmodConfig.NPCTYPECONFIG.config_npc_name_ID26.get();
                 this.setCustomName(new StringTextComponent(NPC_NAME));
@@ -361,7 +367,7 @@ public class NPCEntity extends CreatureEntity {
         }
 
         if (npcTypeId == 27) {
-            this.getAttribute(Attributes.ARMOR).setBaseValue(15.0D);
+            Objects.requireNonNull(this.getAttribute(Attributes.ARMOR)).setBaseValue(15.0D);
             if (!this.hasCustomName()) {
                 String NPC_NAME = BasmodConfig.NPCTYPECONFIG.config_npc_name_ID27.get();
                 this.setCustomName(new StringTextComponent(NPC_NAME));
@@ -369,7 +375,7 @@ public class NPCEntity extends CreatureEntity {
         }
 
         if (npcTypeId == 28) {
-            this.getAttribute(Attributes.ARMOR).setBaseValue(15.0D);
+            Objects.requireNonNull(this.getAttribute(Attributes.ARMOR)).setBaseValue(15.0D);
             if (!this.hasCustomName()) {
                 String NPC_NAME = BasmodConfig.NPCTYPECONFIG.config_npc_name_ID28.get();
                 this.setCustomName(new StringTextComponent(NPC_NAME));
@@ -377,7 +383,7 @@ public class NPCEntity extends CreatureEntity {
         }
 
         if (npcTypeId == 29) {
-            this.getAttribute(Attributes.ARMOR).setBaseValue(15.0D);
+            Objects.requireNonNull(this.getAttribute(Attributes.ARMOR)).setBaseValue(15.0D);
             if (!this.hasCustomName()) {
                 String NPC_NAME = BasmodConfig.NPCTYPECONFIG.config_npc_name_ID29.get();
                 this.setCustomName(new StringTextComponent(NPC_NAME));
@@ -396,10 +402,25 @@ public class NPCEntity extends CreatureEntity {
         return super.hitByEntity(entityIn);
     }
 
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    @Override
+    public boolean canEquipItem(ItemStack stack) {
+        return true;
+    }
+
+    protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty) {
+        super.setEquipmentBasedOnDifficulty(difficulty);
+        if (this.getNPCEntityType() == 8) {
+            this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(ItemInit.CSWORD.get()));
+        }
+        this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(ItemInit.CSWORD.get()));
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
     @Override
     protected ActionResultType getEntityInteractionResult(PlayerEntity playerIn, Hand hand) {
-        NPCcharacterSymbols characterSymbols = null;
-        assert characterSymbols != null;
 
         if (!world.isRemote()) {
 
@@ -420,7 +441,6 @@ public class NPCEntity extends CreatureEntity {
             if (this.getNPCEntityType() == 2) {
 
                 String character = "\uEfa1";
-                characterSymbols.getFontStyle();
 
                 int quest1 = BasmodConfig.NPCTYPECONFIG.quests_lu_experience_a.get();
                 int quest2 = BasmodConfig.NPCTYPECONFIG.quests_lu_experience_b.get();
@@ -431,53 +451,53 @@ public class NPCEntity extends CreatureEntity {
                 if (playerIn.experienceLevel == quest1) {
                     String quest = BasmodConfig.NPCTYPECONFIG.quests_lu_a.get();
 
-                    playerIn.sendStatusMessage(ITextComponent.getTextComponentOrEmpty(quest + "\u00A7f  " + character), true);
+                    playerIn.sendStatusMessage(ITextComponent.getTextComponentOrEmpty(quest + "§f  " + character), true);
 
                     playerIn.addItemStackToInventory(new ItemStack(ItemInit.BASMOD_BOOK_BLOCKS.get(), 1));
 
                 } else if (playerIn.experienceLevel == quest2) {
                     String quest = BasmodConfig.NPCTYPECONFIG.quests_lu_b.get();
 
-                    playerIn.sendStatusMessage(ITextComponent.getTextComponentOrEmpty(quest + "\u00A7f  " + character), true);
+                     playerIn.sendStatusMessage(ITextComponent.getTextComponentOrEmpty(quest + "§f  " + character), true);
                     playerIn.addItemStackToInventory(new ItemStack(ItemInit.BASMOD_BOOK_BLOCKS.get(), 1));
 
                 } else if (playerIn.experienceLevel == quest3) {
                     String quest = BasmodConfig.NPCTYPECONFIG.quests_lu_c.get();
 
-                    playerIn.sendStatusMessage(ITextComponent.getTextComponentOrEmpty(quest + "\u00A7f  " + character), true);
+                    playerIn.sendStatusMessage(ITextComponent.getTextComponentOrEmpty(quest + "§f  " + character), true);
                     playerIn.addItemStackToInventory(new ItemStack(ItemInit.BASMOD_BOOK_BLOCKS.get(), 1));
 
                 } else if (playerIn.experienceLevel == quest4) {
                     String quest = BasmodConfig.NPCTYPECONFIG.quests_lu_d.get();
 
-                    playerIn.sendStatusMessage(ITextComponent.getTextComponentOrEmpty(quest + "\u00A7f  " + character), true);
+                    playerIn.sendStatusMessage(ITextComponent.getTextComponentOrEmpty(quest + "§f  " + character), true);
                     playerIn.addItemStackToInventory(new ItemStack(ItemInit.BASMOD_BOOK_BLOCKS.get(), 1));
 
                 } else if (playerIn.experienceLevel == quest5) {
                     String quest = BasmodConfig.NPCTYPECONFIG.quests_lu_d.get();
 
-                    playerIn.sendStatusMessage(ITextComponent.getTextComponentOrEmpty(quest + "\u00A7f  " + character), true);
+                    playerIn.sendStatusMessage(ITextComponent.getTextComponentOrEmpty(quest + "§f  " + character), true);
                     playerIn.addItemStackToInventory(new ItemStack(ItemInit.BASMOD_BOOK_BLOCKS.get(), 1));
 
                 } else {
-                    String quest = "Au, Du brauchst EXP, um eine Quest zu verlangen! Du hast gerade mal:\u00A7c " + playerIn.experienceLevel;
+                    String quest = "Au, Du brauchst EXP, um eine Quest zu verlangen! Du hast gerade mal:§c " + playerIn.experienceLevel;
                     if (playerIn.experienceLevel < quest1) {
-                        playerIn.sendStatusMessage(ITextComponent.getTextComponentOrEmpty(quest + "\u00A7f  " + character), true);
+                        playerIn.sendStatusMessage(ITextComponent.getTextComponentOrEmpty(quest + "§f  " + character), true);
                     }
                     if (playerIn.experienceLevel < quest2) {
-                        playerIn.sendStatusMessage(ITextComponent.getTextComponentOrEmpty(quest + "\u00A7f  " + character), true);
+                        playerIn.sendStatusMessage(ITextComponent.getTextComponentOrEmpty(quest + "§f  " + character), true);
 
                     }
                     if (playerIn.experienceLevel < quest3) {
-                        playerIn.sendStatusMessage(ITextComponent.getTextComponentOrEmpty(quest + "\u00A7f  " + character), true);
+                        playerIn.sendStatusMessage(ITextComponent.getTextComponentOrEmpty(quest + "§f  " + character), true);
 
                     }
                     if (playerIn.experienceLevel < quest4) {
-                        playerIn.sendStatusMessage(ITextComponent.getTextComponentOrEmpty(quest + "\u00A7f  " + character), true);
+                        playerIn.sendStatusMessage(ITextComponent.getTextComponentOrEmpty(quest + "§f  " + character), true);
 
                     }
                     if (playerIn.experienceLevel < quest5) {
-                        playerIn.sendStatusMessage(ITextComponent.getTextComponentOrEmpty(quest + "\u00A7f  " + character), true);
+                        playerIn.sendStatusMessage(ITextComponent.getTextComponentOrEmpty(quest + "§f  " + character), true);
                     }
                     //
                 }
@@ -511,22 +531,5 @@ public class NPCEntity extends CreatureEntity {
         }
     }
 
-    public static class NPCcharacterSymbols {
-
-        public final ResourceLocation FONT_RENDERER_NAME = new ResourceLocation(Basmod.MOD_ID,"textures/font/npc_character.png");
-
-        public boolean useBlockyFont = BasmodConfig.NPCTYPECONFIG.config_npc_character_symbols.get();
-
-        public NPCcharacterSymbols() {
-        }
-
-        public Style getFontStyle() {
-            if (useBlockyFont) {
-                return Style.EMPTY;
-            } else {
-                return Style.EMPTY.setFontId(FONT_RENDERER_NAME);
-            }
-        }
-    }
 
 }
