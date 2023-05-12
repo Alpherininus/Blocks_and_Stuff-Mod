@@ -39,10 +39,6 @@ public class BladeShotSwordItem extends ShootableItem {
         return this.attackDamage;
     }
 
-    public Multimap<Attribute, AttributeModifier> getAttributeModifiers(EquipmentSlotType equipmentSlot) {
-        return equipmentSlot == EquipmentSlotType.MAINHAND ? this.attributeModifiers : super.getAttributeModifiers(equipmentSlot);
-    }
-
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     @Override
@@ -86,5 +82,11 @@ public class BladeShotSwordItem extends ShootableItem {
             }
         }
         return ret;
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    public Multimap<Attribute, AttributeModifier> getAttributeModifiers(EquipmentSlotType equipmentSlot) {
+        return equipmentSlot == EquipmentSlotType.MAINHAND ? this.attributeModifiers : super.getAttributeModifiers(equipmentSlot);
     }
 }
