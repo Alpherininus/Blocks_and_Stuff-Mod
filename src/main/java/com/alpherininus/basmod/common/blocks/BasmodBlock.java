@@ -1,5 +1,6 @@
 package com.alpherininus.basmod.common.blocks;
 
+import com.alpherininus.basmod.core.util.materials.blocktier.BlockHardness;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalBlock;
@@ -22,7 +23,7 @@ public class BasmodBlock extends HorizontalBlock {
     public BasmodBlock() {
         super(AbstractBlock.Properties.create(Material.CLAY, MaterialColor.BLUE)
                 .sound(SoundType.SLIME)
-                .hardnessAndResistance(2.8F)
+                .hardnessAndResistance(BlockHardness.getWood())
                 .slipperiness(0.8F)
                 .notSolid());
     }

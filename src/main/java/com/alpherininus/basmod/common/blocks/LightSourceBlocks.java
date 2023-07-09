@@ -1,5 +1,6 @@
 package com.alpherininus.basmod.common.blocks;
 
+import com.alpherininus.basmod.core.util.materials.blocktier.BlockToolLevel;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -19,7 +20,7 @@ public class LightSourceBlocks extends Block {
                 .create((Material.IRON), MaterialColor.GRAY)
                 .hardnessAndResistance(2, 5)
                 .harvestTool(ToolType.PICKAXE)
-                .harvestLevel(1)
+                .harvestLevel(BlockToolLevel.getStone())
                 .sound(SoundType.BONE)
                 .setLightLevel(BlockState -> 15)); // 1 - 15
     }

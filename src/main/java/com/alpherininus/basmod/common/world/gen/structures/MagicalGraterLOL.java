@@ -1,6 +1,7 @@
 package com.alpherininus.basmod.common.world.gen.structures;
 
 import com.alpherininus.basmod.Basmod;
+import com.mojang.serialization.Codec;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SharedSeedRandom;
@@ -25,9 +26,9 @@ import net.minecraft.world.gen.feature.template.TemplateManager;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 
-public class MagicalWitchHouse extends Structure<NoFeatureConfig> {
+public class MagicalGraterLOL extends Structure<NoFeatureConfig> {
 
-    public MagicalWitchHouse() {
+    public MagicalGraterLOL() {
         super(NoFeatureConfig.CODEC);
     }
 
@@ -50,12 +51,11 @@ public class MagicalWitchHouse extends Structure<NoFeatureConfig> {
         return topBlock.getFluidState().isEmpty();
     }
 
-
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     @Override
     public IStartFactory<NoFeatureConfig> getStartFactory() {
-        return MagicalWitchHouse.Start::new;
+        return MagicalGraterLOL.Start::new;
     }
 
     public static class Start extends StructureStart<NoFeatureConfig> {
@@ -76,7 +76,7 @@ public class MagicalWitchHouse extends Structure<NoFeatureConfig> {
             //addpieces()
             JigsawManager.func_242837_a(dynamicRegistryManager,
                     new VillageConfig(() -> dynamicRegistryManager.getRegistry(Registry.JIGSAW_POOL_KEY)
-                            .getOrDefault(new ResourceLocation(Basmod.MOD_ID, "graterlol/start_pool")),
+                            .getOrDefault(new ResourceLocation(Basmod.MOD_ID, "magicalhouse/start_pool")),
                             10), AbstractVillagePiece::new, chunkGenerator, templateManagerIn,
                     blockpos, this.components, this.rand,false,true);
 
@@ -91,5 +91,4 @@ public class MagicalWitchHouse extends Structure<NoFeatureConfig> {
                     this.components.get(0).getBoundingBox().minZ);
         }
     }
-
 }

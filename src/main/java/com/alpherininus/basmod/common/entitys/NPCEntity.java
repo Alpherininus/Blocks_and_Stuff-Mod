@@ -24,7 +24,9 @@ import java.util.Objects;
 import java.util.UUID;
 import java.util.function.Predicate;
 
-public abstract class NPCEntity extends CreatureEntity {
+
+
+public class NPCEntity extends CreatureEntity {
 
     private static final DataParameter<Integer> NPC_TYPE = EntityDataManager.createKey(NPCEntity.class, DataSerializers.VARINT);
 
@@ -71,7 +73,9 @@ public abstract class NPCEntity extends CreatureEntity {
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    protected abstract void entityInit();
+    protected void entityInit() {
+
+    }
 
     public void updateAITasks() {
 
@@ -451,53 +455,53 @@ public abstract class NPCEntity extends CreatureEntity {
                 if (playerIn.experienceLevel == quest1) {
                     String quest = BasmodConfig.NPCTYPECONFIG.quests_lu_a.get();
 
-                    playerIn.sendStatusMessage(ITextComponent.getTextComponentOrEmpty(quest + "§f  " + character), true);
+                    playerIn.sendStatusMessage(ITextComponent.getTextComponentOrEmpty(quest + "" + character), true);
 
                     playerIn.addItemStackToInventory(new ItemStack(ItemInit.BASMOD_BOOK_BLOCKS.get(), 1));
 
                 } else if (playerIn.experienceLevel == quest2) {
                     String quest = BasmodConfig.NPCTYPECONFIG.quests_lu_b.get();
 
-                     playerIn.sendStatusMessage(ITextComponent.getTextComponentOrEmpty(quest + "§f  " + character), true);
+                     playerIn.sendStatusMessage(ITextComponent.getTextComponentOrEmpty(quest + "" + character), true);
                     playerIn.addItemStackToInventory(new ItemStack(ItemInit.BASMOD_BOOK_BLOCKS.get(), 1));
 
                 } else if (playerIn.experienceLevel == quest3) {
                     String quest = BasmodConfig.NPCTYPECONFIG.quests_lu_c.get();
 
-                    playerIn.sendStatusMessage(ITextComponent.getTextComponentOrEmpty(quest + "§f  " + character), true);
+                    playerIn.sendStatusMessage(ITextComponent.getTextComponentOrEmpty(quest + "" + character), true);
                     playerIn.addItemStackToInventory(new ItemStack(ItemInit.BASMOD_BOOK_BLOCKS.get(), 1));
 
                 } else if (playerIn.experienceLevel == quest4) {
                     String quest = BasmodConfig.NPCTYPECONFIG.quests_lu_d.get();
 
-                    playerIn.sendStatusMessage(ITextComponent.getTextComponentOrEmpty(quest + "§f  " + character), true);
+                    playerIn.sendStatusMessage(ITextComponent.getTextComponentOrEmpty(quest + "" + character), true);
                     playerIn.addItemStackToInventory(new ItemStack(ItemInit.BASMOD_BOOK_BLOCKS.get(), 1));
 
                 } else if (playerIn.experienceLevel == quest5) {
                     String quest = BasmodConfig.NPCTYPECONFIG.quests_lu_d.get();
 
-                    playerIn.sendStatusMessage(ITextComponent.getTextComponentOrEmpty(quest + "§f  " + character), true);
+                    playerIn.sendStatusMessage(ITextComponent.getTextComponentOrEmpty(quest + "" + character), true);
                     playerIn.addItemStackToInventory(new ItemStack(ItemInit.BASMOD_BOOK_BLOCKS.get(), 1));
 
                 } else {
-                    String quest = "Au, Du brauchst EXP, um eine Quest zu verlangen! Du hast gerade mal:§c " + playerIn.experienceLevel;
+                    String quest = "Au, Du brauchst EXP, um eine Quest zu verlangen! Du hast gerade mal: " + playerIn.experienceLevel;
                     if (playerIn.experienceLevel < quest1) {
-                        playerIn.sendStatusMessage(ITextComponent.getTextComponentOrEmpty(quest + "§f  " + character), true);
+                        playerIn.sendStatusMessage(ITextComponent.getTextComponentOrEmpty(quest + "" + character), true);
                     }
                     if (playerIn.experienceLevel < quest2) {
-                        playerIn.sendStatusMessage(ITextComponent.getTextComponentOrEmpty(quest + "§f  " + character), true);
+                        playerIn.sendStatusMessage(ITextComponent.getTextComponentOrEmpty(quest + "" + character), true);
 
                     }
                     if (playerIn.experienceLevel < quest3) {
-                        playerIn.sendStatusMessage(ITextComponent.getTextComponentOrEmpty(quest + "§f  " + character), true);
+                        playerIn.sendStatusMessage(ITextComponent.getTextComponentOrEmpty(quest + "" + character), true);
 
                     }
                     if (playerIn.experienceLevel < quest4) {
-                        playerIn.sendStatusMessage(ITextComponent.getTextComponentOrEmpty(quest + "§f  " + character), true);
+                        playerIn.sendStatusMessage(ITextComponent.getTextComponentOrEmpty(quest + "" + character), true);
 
                     }
                     if (playerIn.experienceLevel < quest5) {
-                        playerIn.sendStatusMessage(ITextComponent.getTextComponentOrEmpty(quest + "§f  " + character), true);
+                        playerIn.sendStatusMessage(ITextComponent.getTextComponentOrEmpty(quest + "" + character), true);
                     }
                     //
                 }

@@ -1,5 +1,7 @@
 package com.alpherininus.basmod.common.blocks;
 
+import com.alpherininus.basmod.core.util.materials.blocktier.BlockHardness;
+import com.alpherininus.basmod.core.util.materials.blocktier.BlockResistance;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
@@ -35,7 +37,7 @@ public class TeleporterBlock extends Block {
     public TeleporterBlock() {
         super(AbstractBlock.Properties
                 .create((Material.IRON), MaterialColor.GRAY)
-                .hardnessAndResistance(2, 5)
+                .hardnessAndResistance(BlockHardness.getIron(), BlockResistance.getIron())
                 .harvestTool(ToolType.PICKAXE)
                 .harvestLevel(1)
                 .sound(SoundType.BONE).notSolid()

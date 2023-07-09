@@ -17,6 +17,7 @@ import com.alpherininus.basmod.common.recipes.BasmodBrewingPotion;
 import com.alpherininus.basmod.common.world.gen.BiomeGeneration;
 import com.alpherininus.basmod.common.world.gen.OreGeneration;
 import com.alpherininus.basmod.core.init.*;
+import com.alpherininus.basmod.core.init.vanilla.VaBlockInit;
 import com.alpherininus.basmod.core.init.villager.POITypesInit;
 import com.alpherininus.basmod.core.init.villager.ProfessionsInit;
 import com.alpherininus.basmod.core.util.BasmodConfig;
@@ -26,15 +27,17 @@ import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.crash.CrashReport;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
+import net.minecraft.item.*;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.brewing.BrewingRecipeRegistry;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.ModLoadingContext;
+import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
@@ -48,6 +51,8 @@ import software.bernie.geckolib3.GeckoLib;
 import software.bernie.geckolib3.renderers.geo.GeoArmorRenderer;
 import top.theillusivec4.curios.api.SlotTypeMessage;
 import top.theillusivec4.curios.api.SlotTypePreset;
+
+import java.util.Objects;
 
 @Mod("basmod")
 @Mod.EventBusSubscriber(modid = Basmod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -75,6 +80,8 @@ public class Basmod {
         StructureInit.STRUCTURES.register(eventbus);
         PotionInit.POTIONS.register(eventbus);
         EffectInit.POTIONS.register(eventbus);
+
+        VaBlockInit.VANILLA_BLOCK_REGISTER.register(eventbus);
 
         POITypesInit.POINT_OF_INTEREST_TYPES.register(eventbus);
         ProfessionsInit.VILLAGER_PROFESSIONS.register(eventbus);
@@ -183,7 +190,7 @@ public class Basmod {
 
         RenderingRegistry.registerEntityRenderingHandler(EntityTypesInit.BASMOD_COPPER_GOLEM.get(), CopperGolemRenderer::new);
 
-        //RenderingRegistry.registerEntityRenderingHandler(EntityTypesInit..get(), NPCRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityTypesInit.BASMOD_NPC_TYPE.get(), NPCRenderer::new);
 
         RenderingRegistry.registerEntityRenderingHandler(EntityTypesInit.BASMOD_SEIORSHELL.get(), SeieorShellRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityTypesInit.MAGICAL_SPELL_ARROW.get(), MagicalSpellArrowRenderer::new);
@@ -195,6 +202,14 @@ public class Basmod {
         GeoArmorRenderer.registerArmorRenderer(JetPackArmorItem.class, JetPackArmorRenderer::new);
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    }
+
+    @SubscribeEvent
+    public static void onRegisterItems(final RegistryEvent.Register<Item> event) {
+        VaBlockInit.VANILLA_BLOCK_REGISTER.getEntries().stream().map(RegistryObject::get).forEach(block ->
+                event.getRegistry().register(new BlockItem(block, new Item.Properties()
+                        .group(ItemGroup.BUILDING_BLOCKS))
+                        .setRegistryName(Objects.requireNonNull(block.getRegistryName()))));
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////

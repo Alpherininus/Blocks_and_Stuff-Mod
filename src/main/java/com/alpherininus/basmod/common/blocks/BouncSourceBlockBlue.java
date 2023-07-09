@@ -1,5 +1,6 @@
 package com.alpherininus.basmod.common.blocks;
 
+import com.alpherininus.basmod.core.util.materials.blocktier.BlockHardness;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.SoundType;
@@ -22,7 +23,7 @@ public class BouncSourceBlockBlue extends Block {
     public BouncSourceBlockBlue() {
         super(Properties.create(Material.CLAY, MaterialColor.BLUE)
                 .sound(SoundType.SLIME)
-                .hardnessAndResistance(2.8F)
+                .hardnessAndResistance(BlockHardness.getWood())
                 .slipperiness(0.8F)
                 .notSolid());
     }
