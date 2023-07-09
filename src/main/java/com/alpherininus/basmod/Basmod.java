@@ -186,7 +186,6 @@ public class Basmod {
             ScreenManager.registerFactory(ContainerInit.LIGHTNING_CHANNELER_CONTAINER.get(), BaSInfoScreen::new);
 
         });
-        // BasmodItemModel.makeBow(ItemInit.FAILNAUGHT_BOW.get());
 
         RenderingRegistry.registerEntityRenderingHandler(EntityTypesInit.BASMOD_COPPER_GOLEM.get(), CopperGolemRenderer::new);
 

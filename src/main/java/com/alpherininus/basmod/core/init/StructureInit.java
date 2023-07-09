@@ -26,12 +26,17 @@ public class StructureInit {
     public static final RegistryObject<Structure<NoFeatureConfig>> MAGICAL_WITCH_HOUSE =
             STRUCTURES.register("magicalhouse", MagicalWitchHouse::new);
 
+    public static final RegistryObject<Structure<NoFeatureConfig>> GRATERLOL =
+            STRUCTURES.register("grater", MagicalWitchHouse::new);
+
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     public static void setupStructures() {
         setupMapSpacingAndLand(MAGICAL_WITCH_HOUSE.get(),
                 new StructureSeparationSettings(100,50, 1234567890),
                 true);
+
+        setupMapSpacingAndLand(GRATERLOL.get(), new StructureSeparationSettings(100, 50, 1234567890), true);
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
