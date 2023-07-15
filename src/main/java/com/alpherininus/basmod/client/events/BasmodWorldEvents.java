@@ -134,6 +134,29 @@ public class BasmodWorldEvents {
             field_236193_d_ = tempMap;
         }
 
+        if (event.getWorld() instanceof ServerWorld) {
+            ServerWorld serverWorld = (ServerWorld) event.getWorld();
+
+            try {
+                Method GETCODEC_METHOD = ObfuscationReflectionHelper.findMethod(ChunkGenerator.class, "func_230347_a_"); // field_235948_a_
+                ResourceLocation cgRL = Registry.CHUNK_GENERATOR_CODEC.getKey((Codec<? extends ChunkGenerator>) GETCODEC_METHOD.invoke(serverWorld.getChunkProvider().generator));
+                if (cgRL != null && cgRL.getNamespace().equals("terraforged")) {
+                    return;
+                }
+            } catch (Exception e) {
+                LogManager.getLogger().error("Was unable to check if " + serverWorld.getDimensionKey().getLocation()
+                        + " is using Terraforged's ChunkGenerator.");
+            }
+
+            if (serverWorld.getChunkProvider().generator instanceof FlatChunkGenerator && serverWorld.getDimensionKey().equals(World.OVERWORLD)) {
+                return;
+            }
+
+            Map<Structure<?>, StructureSeparationSettings> tempMap = new HashMap<>(serverWorld.getChunkProvider().generator.func_235957_b_().func_236195_a_());
+            tempMap.putIfAbsent(StructureInit.GRATERLOL.get(), DimensionStructuresSettings.field_236191_b_.get(StructureInit.GRATERLOL.get()));
+            field_236193_d_ = tempMap;
+        }
+
     }
 
 }

@@ -5,10 +5,7 @@ import com.alpherininus.basmod.client.containers.screen.BaSInfoScreen;
 import com.alpherininus.basmod.common.entitys.animated.renerer.BasBossRenderer;
 import com.alpherininus.basmod.common.entitys.animated.renerer.BasWanderingTraderRenderer;
 import com.alpherininus.basmod.common.entitys.animated.renerer.BossOfDeadRenderer;
-import com.alpherininus.basmod.common.entitys.renderer.CopperGolemRenderer;
-import com.alpherininus.basmod.common.entitys.renderer.MagicalSpellArrowRenderer;
-import com.alpherininus.basmod.common.entitys.renderer.NPCRenderer;
-import com.alpherininus.basmod.common.entitys.renderer.SeieorShellRenderer;
+import com.alpherininus.basmod.common.entitys.renderer.*;
 import com.alpherininus.basmod.common.items.armor.JetPackArmorItem;
 import com.alpherininus.basmod.common.items.armor.models.renderer.JetPackArmorRenderer;
 import com.alpherininus.basmod.common.items.models.BasmodItemModel;
@@ -197,6 +194,8 @@ public class Basmod {
         RenderingRegistry.registerEntityRenderingHandler(EntityTypesInit.BASMOD_BOSS_ENTITY.get(), BasBossRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityTypesInit.BOSS_OF_DEAD_ENTITY.get(), BossOfDeadRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityTypesInit.BASMOD_WANDERINGTRADER.get(), BasWanderingTraderRenderer::new);
+
+        RenderingRegistry.registerEntityRenderingHandler(EntityTypesInit.GODRICK_BOSS.get(), GodrickRenderer::new);
 
         GeoArmorRenderer.registerArmorRenderer(JetPackArmorItem.class, JetPackArmorRenderer::new);
 

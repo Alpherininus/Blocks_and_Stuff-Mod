@@ -1,10 +1,7 @@
 package com.alpherininus.basmod.core.init;
 
 import com.alpherininus.basmod.Basmod;
-import com.alpherininus.basmod.common.entitys.CopperGolemEntity;
-import com.alpherininus.basmod.common.entitys.MagicalSpellArrowEntity;
-import com.alpherininus.basmod.common.entitys.NPCEntity;
-import com.alpherininus.basmod.common.entitys.SeiorShellArmorEntity;
+import com.alpherininus.basmod.common.entitys.*;
 import com.alpherininus.basmod.common.entitys.animated.BasBossEntity;
 import com.alpherininus.basmod.common.entitys.animated.BasWanderingTraderEntity;
 import com.alpherininus.basmod.common.entitys.animated.BossOfDeadEntity;
@@ -26,6 +23,13 @@ public class EntityTypesInit {
                             .create(CopperGolemEntity::new, EntityClassification.CREATURE)
                             .size(1f,0.95f)
                             .build(new ResourceLocation(Basmod.MOD_ID, "copper_golem").toString()));
+
+    public static final RegistryObject<EntityType<GodrickEntity>> GODRICK_BOSS =
+            ENTITY_TYPES.register("boss_godrick",
+                    () -> EntityType.Builder
+                            .create(GodrickEntity::new, EntityClassification.MONSTER)
+                            .size(1f,1f)
+                            .build(new ResourceLocation(Basmod.MOD_ID, "godrick_txt").toString()));
 
     public static final RegistryObject<EntityType<SeiorShellArmorEntity>> BASMOD_SEIORSHELL =
             ENTITY_TYPES.register("seiorshell",

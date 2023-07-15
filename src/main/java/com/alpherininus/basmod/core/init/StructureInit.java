@@ -1,6 +1,7 @@
 package com.alpherininus.basmod.core.init;
 
 import com.alpherininus.basmod.Basmod;
+import com.alpherininus.basmod.common.world.gen.structures.GraterLOL;
 import com.alpherininus.basmod.common.world.gen.structures.MagicalWitchHouse;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
@@ -27,7 +28,7 @@ public class StructureInit {
             STRUCTURES.register("magicalhouse", MagicalWitchHouse::new);
 
     public static final RegistryObject<Structure<NoFeatureConfig>> GRATERLOL =
-            STRUCTURES.register("grater", MagicalWitchHouse::new);
+            STRUCTURES.register("grater", GraterLOL::new);
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -36,7 +37,9 @@ public class StructureInit {
                 new StructureSeparationSettings(100,50, 1234567890),
                 true);
 
-        setupMapSpacingAndLand(GRATERLOL.get(), new StructureSeparationSettings(100, 50, 1234567890), true);
+        setupMapSpacingAndLand(GRATERLOL.get(),
+                new StructureSeparationSettings(100, 50, 1234567890),
+                true);
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////

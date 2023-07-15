@@ -27,9 +27,9 @@ public class BasmodConfiguredSurfacebuilder {
 
     public static ConfiguredSurfaceBuilder<?> DARK_PLAINS = register("dark_plains",
             SurfaceBuilder.DEFAULT.func_242929_a(new SurfaceBuilderConfig(
-                    Blocks.GRASS_BLOCK.getDefaultState(),
-                    Blocks.COARSE_DIRT.getDefaultState(),
-                    Blocks.COARSE_DIRT.getDefaultState()
+                    Blocks.AIR.getDefaultState(),
+                    Blocks.AIR.getDefaultState(),
+                    Blocks.AIR.getDefaultState()
             )));
 
     private static <SC extends ISurfaceBuilderConfig>ConfiguredSurfaceBuilder<SC> register(String name, ConfiguredSurfaceBuilder<SC> csb) {

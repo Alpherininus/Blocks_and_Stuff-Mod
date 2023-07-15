@@ -1,7 +1,6 @@
 package com.alpherininus.basmod.common.world.gen.structures;
 
 import com.alpherininus.basmod.Basmod;
-import com.mojang.serialization.Codec;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SharedSeedRandom;
@@ -26,9 +25,9 @@ import net.minecraft.world.gen.feature.template.TemplateManager;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 
-public class MagicalGraterLOL extends Structure<NoFeatureConfig> {
+public class GraterLOL extends Structure<NoFeatureConfig> {
 
-    public MagicalGraterLOL() {
+    public GraterLOL() {
         super(NoFeatureConfig.CODEC);
     }
 
@@ -55,7 +54,7 @@ public class MagicalGraterLOL extends Structure<NoFeatureConfig> {
 
     @Override
     public IStartFactory<NoFeatureConfig> getStartFactory() {
-        return MagicalGraterLOL.Start::new;
+        return GraterLOL.Start::new;
     }
 
     public static class Start extends StructureStart<NoFeatureConfig> {
@@ -69,23 +68,23 @@ public class MagicalGraterLOL extends Structure<NoFeatureConfig> {
                                    TemplateManager templateManagerIn, int chunkX, int chunkZ, Biome biomeIn,
                                    NoFeatureConfig config) {
             // Turns the chunk coordinates into actual coordinates we can use. (Gets center of that chunk)
-            int x = (chunkX << 4) + 7;
-            int z = (chunkZ << 4) + 7;
-            BlockPos blockpos = new BlockPos(x, 0, z);
+            int x = (chunkX << 8) + 4;
+            int z = (chunkZ << 8) + 4;
+            BlockPos blockpos = new BlockPos(x, -70, z);
 
             //addpieces()
             JigsawManager.func_242837_a(dynamicRegistryManager,
                     new VillageConfig(() -> dynamicRegistryManager.getRegistry(Registry.JIGSAW_POOL_KEY)
-                            .getOrDefault(new ResourceLocation(Basmod.MOD_ID, "magicalhouse/start_pool")),
+                            .getOrDefault(new ResourceLocation(Basmod.MOD_ID, "graterlol/start_pool")),
                             10), AbstractVillagePiece::new, chunkGenerator, templateManagerIn,
                     blockpos, this.components, this.rand,false,true);
 
-            this.components.forEach(piece -> piece.offset(0, -48, 0));
+            this.components.forEach(piece -> piece.offset(0, -1, 0));
             this.components.forEach(piece -> piece.getBoundingBox().minY -= 1);
 
             this.recalculateStructureSize();
 
-            LogManager.getLogger().log(Level.DEBUG, "House at " +
+            LogManager.getLogger().log(Level.DEBUG, "Grater at " +
                     this.components.get(0).getBoundingBox().minX + " " +
                     this.components.get(0).getBoundingBox().minY + " " +
                     this.components.get(0).getBoundingBox().minZ);
