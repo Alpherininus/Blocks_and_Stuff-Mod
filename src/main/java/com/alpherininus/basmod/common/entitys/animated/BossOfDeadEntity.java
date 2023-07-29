@@ -7,12 +7,7 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
-import net.minecraft.entity.boss.WitherEntity;
-import net.minecraft.entity.boss.dragon.EnderDragonEntity;
-import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.monster.MonsterEntity;
-import net.minecraft.entity.monster.SkeletonEntity;
-import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -81,7 +76,7 @@ public class BossOfDeadEntity extends MonsterEntity implements IAnimatable {
         this.goalSelector.addGoal(5, new LookAtGoal(this, PlayerEntity.class, 16.0F));
         this.goalSelector.addGoal(6, new LookRandomlyGoal(this));
         this.goalSelector.addGoal(2, new LookAtWithoutMovingGoal(this, PlayerEntity.class, 15.5F, 1.0F));
-        this.goalSelector.addGoal(1, new AttackGoal(this, 1.0D, true));
+        this.goalSelector.addGoal(1, new AttackGoal(this, 0.6D, true));
 
         this.targetSelector.addGoal(0, new HurtByTargetGoal(this));
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, 10, true, false, field_213627_bA));
@@ -98,11 +93,11 @@ public class BossOfDeadEntity extends MonsterEntity implements IAnimatable {
     public static AttributeModifierMap setCustomBossOfDeadAttributes() {
         return MobEntity.func_233666_p_()
                 .createMutableAttribute(Attributes.MAX_HEALTH, 1500.0D)
-                .createMutableAttribute(Attributes.ATTACK_DAMAGE, 5.0f)
-                .createMutableAttribute(Attributes.ATTACK_SPEED, 2.0f)
-                .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.50D)
-                .createMutableAttribute(Attributes.ZOMBIE_SPAWN_REINFORCEMENTS, 64.0D)
-                .createMutableAttribute(Attributes.FOLLOW_RANGE, 64.0D)
+                .createMutableAttribute(Attributes.ATTACK_DAMAGE, 15.0f)
+                .createMutableAttribute(Attributes.ATTACK_SPEED, 1.3f)
+                .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.25D)
+                .createMutableAttribute(Attributes.ZOMBIE_SPAWN_REINFORCEMENTS, 128.0D)
+                .createMutableAttribute(Attributes.FOLLOW_RANGE, 128.0D)
                 .createMutableAttribute(Attributes.ATTACK_KNOCKBACK, 1.0f).create();
 
     }

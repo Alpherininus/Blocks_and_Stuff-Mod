@@ -20,6 +20,9 @@ public enum BasmodArmorMaterial implements IArmorMaterial {
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+    TOTEMOFTAKEOVER("totemoftakeover", 7, new int[] {0, 0, 9, 0}, 9,
+            SoundEvents.ENTITY_VILLAGER_AMBIENT, -10.0f, 0.1f, () -> Ingredient.fromItems(ItemInit.EXPERIMENTAL_ITEM.get())),
+
     A_ARMOR_MATERIAL("material_a", 7, new int[] {1, 4, 5, 1}, 9,
     SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 0.0f, 0.03f, () -> Ingredient.fromItems(ItemInit.EXPERIMENTAL_ITEM.get())),
 

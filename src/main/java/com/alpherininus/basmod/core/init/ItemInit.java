@@ -173,6 +173,10 @@ public class ItemInit {
     public static final RegistryObject<Item> ANIMATED_NOSFARATU_BOOK = ITEMS.register("nosfaratu_book",
             () -> new NosfaratuBookItem(new Item.Properties().setISTER(() -> NosfaratuBookItemRenderer::new).maxStackSize(1).group(ModItemGroupWapons.BAS_MOD_WAPONS), new Random(3)));
 
+    public static final RegistryObject<Item> TOTEM_OF_TAKEOVER = ITEMS.register("totem_of_takeover",
+            () -> new TotemOfTakeover(BasmodArmorMaterial.TOTEMOFTAKEOVER, EquipmentSlotType.CHEST,
+                    new Item.Properties().isImmuneToFire().group(ModItemGroupItems.BAS_MOD_ITEMS)));
+
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // TODO SWORDS
     public static final RegistryObject<Item> RUBY_SWORD = ITEMS.register("ruby_sword",

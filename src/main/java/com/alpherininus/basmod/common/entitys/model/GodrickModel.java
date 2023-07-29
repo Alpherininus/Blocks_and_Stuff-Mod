@@ -7,10 +7,10 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
-import net.minecraft.entity.CreatureEntity;
+import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.util.math.MathHelper;
 
-public class GodrickModel<C extends CreatureEntity> extends EntityModel<C> {
+public class GodrickModel<C extends MonsterEntity> extends EntityModel<C> {
 	private final ModelRenderer head;
 	private final ModelRenderer body;
 	private final ModelRenderer right_arm;

@@ -98,11 +98,6 @@ public class Basmod {
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, BasmodConfig.COMMONCONFIGS.COMMON_SPEC_GENERAL, "basmod/basmod-magical_staff.toml");
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, BasmodConfig.NPCTYPECONFIG.COMMON_SPEC_NPC_NAMEN, "basmod/basmod-npc_config.toml");
 
-
-        // ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, BasmodConfig.SERVER_SPEC_GENERAL, "basmod/basmod-server.toml");
-        // ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, BasmodConfig.CLIENT_SPEC_GENERAL, "basmod/basmod-client.toml");
-
-        // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
     }
 
@@ -153,13 +148,6 @@ public class Basmod {
     }
 
     private void doClientStuff(final FMLClientSetupEvent event) {
-
-        Minecraft mc = Minecraft.getInstance();
-        mc = event.getMinecraftSupplier().get();
-
-        if (mc.isDemo()) {
-            mc.crashed(CrashReport.makeCrashReport(new Throwable(), "Please Buy Minecraft, and have Fun."));
-        }
 
         event.enqueueWork(() -> {
 

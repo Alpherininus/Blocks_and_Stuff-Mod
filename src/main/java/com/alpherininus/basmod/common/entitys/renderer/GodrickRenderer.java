@@ -17,7 +17,7 @@ public class GodrickRenderer extends MobRenderer<GodrickEntity, GodrickModel<God
             new ResourceLocation(Basmod.MOD_ID, "textures/entity/godrick/godrick_txt.png");
 
     public GodrickRenderer(EntityRendererManager renderManagerIn) {
-        super(renderManagerIn, new GodrickModel<>(), 2.9F);
+        super(renderManagerIn, new GodrickModel<>(), 1.9F);
     }
 
     @Override

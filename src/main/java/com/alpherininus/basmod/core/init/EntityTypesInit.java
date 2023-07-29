@@ -28,7 +28,7 @@ public class EntityTypesInit {
             ENTITY_TYPES.register("boss_godrick",
                     () -> EntityType.Builder
                             .create(GodrickEntity::new, EntityClassification.MONSTER)
-                            .size(1f,1f)
+                            .size(1.3f,2.3f)
                             .build(new ResourceLocation(Basmod.MOD_ID, "godrick_txt").toString()));
 
     public static final RegistryObject<EntityType<SeiorShellArmorEntity>> BASMOD_SEIORSHELL =
