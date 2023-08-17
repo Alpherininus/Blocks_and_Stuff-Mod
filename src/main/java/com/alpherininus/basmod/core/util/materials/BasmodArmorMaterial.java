@@ -16,11 +16,11 @@ import java.util.function.Supplier;
 
 public enum BasmodArmorMaterial implements IArmorMaterial {
 
-    EXPERIMENTALITEM("experi", 7, new int[] {999, 999, 999, 999}, 12,
-            SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 1.0f, 0.0f, () -> Ingredient.fromItems(ItemInit.EXPERIMENTAL_ITEM.get()), 0.0f),
+    EXPERIMENTALITEM("experi", 7, new int[] {420, 666, 69, 777}, 12,
+            SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 1.0f, 0.0f, () -> Ingredient.fromItems(ItemInit.EXPERIMENTAL_ITEM.get()), 50.0f),
 
     BOSSSLAYER("bossslayer", 9, new int[] {999, 999, 999, 999}, 9,
-            SoundEvents.ENTITY_WITHER_AMBIENT, 9.9f, 9.99f, () -> Ingredient.fromItems(Items.NETHERITE_INGOT), 10.5f),
+            SoundEvents.ENTITY_WITHER_AMBIENT, 9.9f, 9.9f, () -> Ingredient.fromItems(Items.NETHERITE_INGOT), 5.0f),
 
     TOTEMOFTAKEOVER("totemoftakeover", 7, new int[] {0, 0, 9, 0}, 9,
             SoundEvents.ENTITY_VILLAGER_AMBIENT, -10.0f, 0.1f, () -> Ingredient.fromItems(ItemInit.EXPERIMENTAL_ITEM.get()), 0.0f),
@@ -125,7 +125,9 @@ public enum BasmodArmorMaterial implements IArmorMaterial {
                         SoundEvent soundEvent,
                         float toughness,
                         float knockbackResistance,
-                        Supplier<Ingredient> repairMaterial, float healthboost) {
+                        Supplier<Ingredient> repairMaterial,
+                        float healthboost
+    ) {
 
         this.name = name;
         this.maxDamageFactor = maxDamageFactor;
@@ -172,7 +174,7 @@ public enum BasmodArmorMaterial implements IArmorMaterial {
     }
 
     public float getHealthBoost() {
-        return this.healthboost;
+        return this.healthboost + 0.0f;
     }
 
 }

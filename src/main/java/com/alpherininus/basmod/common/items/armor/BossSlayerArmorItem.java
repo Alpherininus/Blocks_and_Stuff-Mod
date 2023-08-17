@@ -1,11 +1,9 @@
 package com.alpherininus.basmod.common.items.armor;
 
-import com.alpherininus.basmod.core.init.EffectInit;
 import com.alpherininus.basmod.core.init.ItemInit;
 import com.alpherininus.basmod.core.util.materials.BasmodArmorMaterial;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
-import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.ai.attributes.Attribute;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
@@ -13,11 +11,11 @@ import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorItem;
+import net.minecraft.item.IArmorMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -29,14 +27,31 @@ import java.util.UUID;
 public class BossSlayerArmorItem extends ArmorItem {
     private static final UUID[] ARMOR_MODIFIERS = new UUID[]{UUID.fromString("845DB27C-C624-495F-8C9F-6020A9A58B6B"), UUID.fromString("D8499B04-0E66-4726-AB29-64469D734E0D"), UUID.fromString("9F3D476D-C118-4544-8365-64846904B48E"), UUID.fromString("2AD3F246-FEE1-4E67-B886-69FD380BB150")};
     private final Multimap<Attribute, AttributeModifier> attributemodifi;
+    protected final EquipmentSlotType slot;
+    protected final float knockbackResistance;
+    protected final IArmorMaterial material;
+    private final float damageReduceAmount;
+    private final float toughness;
+    private final float healthBoost;
 
     public BossSlayerArmorItem(BasmodArmorMaterial armorMaterial, EquipmentSlotType slotType, Properties properties) {
         super(armorMaterial, slotType, properties);
-        float healthBoost1 = armorMaterial.getHealthBoost();
+        this.material = armorMaterial;
+        this.slot = slotType;
+        this.damageReduceAmount = armorMaterial.getDamageReductionAmount(slot);
+        this.toughness = armorMaterial.getToughness();
+        this.knockbackResistance = armorMaterial.getKnockbackResistance();
+        this.healthBoost = armorMaterial.getHealthBoost();
 
         ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
         UUID uuid = ARMOR_MODIFIERS[slot.getIndex()];
-        builder.put(Attributes.MAX_HEALTH, new AttributeModifier(uuid, "Armor modifier", (double) healthBoost1, AttributeModifier.Operation.ADDITION));
+        builder.put(Attributes.ARMOR, new AttributeModifier(uuid, "Armor modifier", this.damageReduceAmount, AttributeModifier.Operation.ADDITION));
+        builder.put(Attributes.ARMOR_TOUGHNESS, new AttributeModifier(uuid, "Armor toughness", this.toughness, AttributeModifier.Operation.ADDITION));
+        if (this.knockbackResistance > 0) {
+            builder.put(Attributes.KNOCKBACK_RESISTANCE, new AttributeModifier(uuid, "Armor knockback resistance", this.knockbackResistance, AttributeModifier.Operation.ADDITION));
+        }
+        builder.put(Attributes.MAX_HEALTH, new AttributeModifier(uuid, "Armor health boost", this.healthBoost, AttributeModifier.Operation.ADDITION));
+
         this.attributemodifi = builder.build();
     }
 
@@ -89,9 +104,6 @@ public class BossSlayerArmorItem extends ArmorItem {
             if (player.isPotionActive(Effects.SLOWNESS)) {
                 player.removePotionEffect(Effects.SLOWNESS);
             }
-            if (player.isPotionActive(EffectInit.FREEZE.get())) {
-                player.removePotionEffect(EffectInit.FREEZE.get());
-            }
         }
         super.onArmorTick(stack, world, player);
     }
@@ -99,12 +111,6 @@ public class BossSlayerArmorItem extends ArmorItem {
     @Override
     @OnlyIn(Dist.CLIENT)
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-        if (Screen.hasControlDown()) {
-            tooltip.add(new StringTextComponent("\u00A77If the player has equipped all pieces of armor,\nthe following effects apply:\n`Immune to all negative effects`"));
-
-        } else {
-            tooltip.add(new StringTextComponent("Hold \u00A76CONTROL \u00A7ffor more Information"));
-        }
         super.addInformation(stack, worldIn, tooltip, flagIn);
     }
 
