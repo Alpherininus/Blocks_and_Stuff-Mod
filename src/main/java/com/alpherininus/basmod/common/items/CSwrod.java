@@ -62,6 +62,8 @@ public class CSwrod extends SwordItem {
         ItemStack itemstack = playerIn.getHeldItem(handIn);
         playerIn.setActiveHand(handIn);
         playerIn.getAttackingEntity();
+        this.getStatBoost();
+
         return ActionResult.resultConsume(itemstack);
     }
 
@@ -72,7 +74,6 @@ public class CSwrod extends SwordItem {
 
     @Override
     public void onUsingTick(ItemStack stack, LivingEntity player, int count) {
-
         super.onUsingTick(stack, player, count);
     }
 

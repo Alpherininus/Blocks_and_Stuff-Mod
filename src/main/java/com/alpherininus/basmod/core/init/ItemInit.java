@@ -18,7 +18,7 @@ import com.alpherininus.basmod.core.util.materials.BasmodToolMaterial;
 import com.alpherininus.basmod.core.util.itemgroup.ModItemGroupItems;
 import com.alpherininus.basmod.core.util.itemgroup.ModItemGroupWapons;
 import com.alpherininus.basmod.core.util.BasmodConfig;
-import jdk.nashorn.api.scripting.ScriptObjectMirror;
+import com.alpherininus.basmod.core.util.materials.itemtier.ItemAttackDamage;
 import net.minecraft.entity.EntityType;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
@@ -36,7 +36,7 @@ public class ItemInit {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Basmod.MOD_ID);
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // TODO FIRE EMBLEM THEME
+    // TODO THEME ITEMS
     public static final RegistryObject<Item> SUBLIME_CREATOR_SWORD = ITEMS.register("sublime_creator_sword",
             () -> new SublimeCreatorSword(BasmodToolMaterial.SUBLIME_SWORD_MATERIAL, 4, -2f,
                     new Item.Properties().group(ModItemGroupWapons.BAS_MOD_WAPONS)));
@@ -68,6 +68,10 @@ public class ItemInit {
 
     public static final RegistryObject<SeioerShellSpawnEggItem> SEIEORSHELL_SPAWN_EGG = ITEMS.register("seieorshell_spawn_egg",
             () -> new SeioerShellSpawnEggItem(EntityTypesInit.BASMOD_SEIORSHELL, 13661252, 7969893,
+                    new Item.Properties().group(ModItemGroupWapons.BAS_MOD_WAPONS)));
+
+    public static final RegistryObject<Item> KHA_MG_BATTLEAXE = ITEMS.register("kha_battleaxt",
+            () -> new KhaBattleAxeItem((IItemTier) BasmodToolMaterial.Z_TOOL_MATERIAL, ItemAttackDamage.Axe.getDiamond(), -2f, 9,
                     new Item.Properties().group(ModItemGroupWapons.BAS_MOD_WAPONS)));
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -214,6 +218,22 @@ public class ItemInit {
 
     public static final RegistryObject<Item> JETPACK_CHESTPLATTE = ITEMS.register("jetpack",
             () -> new JetPackArmorItem(BasmodArmorMaterial.EXPERIMENTALITEM, EquipmentSlotType.CHEST,
+                    new Item.Properties().group(ModItemGroupWapons.BAS_MOD_WAPONS)));
+
+    public static final RegistryObject<Item> BOSSSLAYER_HELMET = ITEMS.register("bossslayer_helmet",
+            () -> new BossSlayerArmorItem(BasmodArmorMaterial.BOSSSLAYER, EquipmentSlotType.HEAD,
+                    new Item.Properties().group(ModItemGroupWapons.BAS_MOD_WAPONS)));
+
+    public static final RegistryObject<Item> BOSSSLAYER_CHESTPLATTE = ITEMS.register("bossslayer_chestplatte",
+            () -> new BossSlayerArmorItem(BasmodArmorMaterial.BOSSSLAYER, EquipmentSlotType.CHEST,
+                    new Item.Properties().group(ModItemGroupWapons.BAS_MOD_WAPONS)));
+
+    public static final RegistryObject<Item> BOSSSLAYER_LEGGING = ITEMS.register("bossslayer_leggings",
+            () -> new BossSlayerArmorItem(BasmodArmorMaterial.BOSSSLAYER, EquipmentSlotType.LEGS,
+                    new Item.Properties().group(ModItemGroupWapons.BAS_MOD_WAPONS)));
+
+    public static final RegistryObject<Item> BOSSSLAYER_BOOTS = ITEMS.register("bossslayer_boots",
+            () -> new BossSlayerArmorItem(BasmodArmorMaterial.BOSSSLAYER, EquipmentSlotType.FEET,
                     new Item.Properties().group(ModItemGroupWapons.BAS_MOD_WAPONS)));
     
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

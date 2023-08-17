@@ -1,5 +1,6 @@
 package com.alpherininus.basmod.common.items;
 
+import com.alpherininus.basmod.core.init.EffectInit;
 import com.alpherininus.basmod.core.init.ItemInit;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.gui.screen.Screen;
@@ -69,6 +70,15 @@ public class TotemOfTakeover extends ArmorItem {
                 if (player.isPotionActive(Effects.HUNGER)) {
                     player.removePotionEffect(Effects.HUNGER);
                 }
+                if (player.isPotionActive(Effects.POISON)) {
+                    player.removePotionEffect(Effects.POISON);
+                }
+                if (player.isPotionActive(Effects.SLOWNESS)) {
+                    player.removePotionEffect(Effects.SLOWNESS);
+                }
+                if (player.isPotionActive(EffectInit.FREEZE.get())) {
+                    player.removePotionEffect(EffectInit.FREEZE.get());
+                }
             }
 
 
@@ -86,7 +96,13 @@ public class TotemOfTakeover extends ArmorItem {
     @OnlyIn(Dist.CLIENT)
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
         if (Screen.hasControlDown()) {
-            tooltip.add(new StringTextComponent("This is a Armoritem\n\nIf the item is enchanted with Curse of Binding\nthe player is resistant to ALL negative effects"));
+            tooltip.add(new StringTextComponent("\u00A77This is a Armoritem"));
+
+            if (stack.isEnchanted() == Enchantments.BINDING_CURSE.isCurse()) {
+                tooltip.add(new StringTextComponent("\u00A77\nIf the item is enchanted with Curse of Binding\nthe player is resistant to ALL negative effects."));
+            } else {
+                tooltip.add(new StringTextComponent("\u00A77An equip totem of unimaginable power."));
+            }
         } else {
             tooltip.add(new StringTextComponent("Hold \u00A76CONTROL \u00A7ffor more Information"));
         }
