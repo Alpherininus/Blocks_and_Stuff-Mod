@@ -14,6 +14,7 @@ import net.minecraft.item.ArmorItem;
 import net.minecraft.item.IArmorMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.potion.Effect;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
@@ -26,6 +27,7 @@ import java.util.UUID;
 
 public class BossSlayerArmorItem extends ArmorItem {
     private static final UUID[] ARMOR_MODIFIERS = new UUID[]{UUID.fromString("845DB27C-C624-495F-8C9F-6020A9A58B6B"), UUID.fromString("D8499B04-0E66-4726-AB29-64469D734E0D"), UUID.fromString("9F3D476D-C118-4544-8365-64846904B48E"), UUID.fromString("2AD3F246-FEE1-4E67-B886-69FD380BB150")};
+    private static final Effect[] NEGATIV_EFFECTS = {Effects.WITHER, Effects.BAD_OMEN, Effects.BLINDNESS, Effects.INSTANT_DAMAGE, Effects.MINING_FATIGUE, Effects.WEAKNESS, Effects.LEVITATION, Effects.UNLUCK, Effects.NAUSEA, Effects.HUNGER, Effects.POISON, Effects.SLOWNESS};
     private final Multimap<Attribute, AttributeModifier> attributemodifi;
     protected final EquipmentSlotType slot;
     protected final float knockbackResistance;
@@ -68,41 +70,8 @@ public class BossSlayerArmorItem extends ArmorItem {
                 legs.getItem() == ItemInit.EXPERIMENTAL_LEGGING.get() &&
                 feet.getItem() == ItemInit.EXPERIMENTAL_BOOTS.get()) {
 
-            if (player.isPotionActive(Effects.WITHER)) {
-                player.removePotionEffect(Effects.WITHER);
-            }
-            if (player.isPotionActive(Effects.BAD_OMEN)) {
-                player.removePotionEffect(Effects.BAD_OMEN);
-            }
-            if (player.isPotionActive(Effects.BLINDNESS)) {
-                player.removePotionEffect(Effects.BLINDNESS);
-            }
-            if (player.isPotionActive(Effects.INSTANT_DAMAGE)) {
-                player.removePotionEffect(Effects.INSTANT_DAMAGE);
-            }
-            if (player.isPotionActive(Effects.MINING_FATIGUE)) {
-                player.removePotionEffect(Effects.MINING_FATIGUE);
-            }
-            if (player.isPotionActive(Effects.WEAKNESS)) {
-                player.removePotionEffect(Effects.WEAKNESS);
-            }
-            if (player.isPotionActive(Effects.LEVITATION)) {
-                player.removePotionEffect(Effects.LEVITATION);
-            }
-            if (player.isPotionActive(Effects.UNLUCK)) {
-                player.removePotionEffect(Effects.UNLUCK);
-            }
-            if (player.isPotionActive(Effects.NAUSEA)) {
-                player.removePotionEffect(Effects.NAUSEA);
-            }
-            if (player.isPotionActive(Effects.HUNGER)) {
-                player.removePotionEffect(Effects.HUNGER);
-            }
-            if (player.isPotionActive(Effects.POISON)) {
-                player.removePotionEffect(Effects.POISON);
-            }
-            if (player.isPotionActive(Effects.SLOWNESS)) {
-                player.removePotionEffect(Effects.SLOWNESS);
+            if (player.isPotionActive(NEGATIV_EFFECTS[slot.getIndex()])) {
+                player.removePotionEffect(NEGATIV_EFFECTS[slot.getIndex()]);
             }
         }
         super.onArmorTick(stack, world, player);

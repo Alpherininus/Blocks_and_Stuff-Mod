@@ -220,6 +220,8 @@ public class ItemInit {
             () -> new JetPackArmorItem(BasmodArmorMaterial.EXPERIMENTALITEM, EquipmentSlotType.CHEST,
                     new Item.Properties().group(ModItemGroupWapons.BAS_MOD_WAPONS)));
 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
     public static final RegistryObject<Item> BOSSSLAYER_HELMET = ITEMS.register("bossslayer_helmet",
             () -> new BossSlayerArmorItem(BasmodArmorMaterial.BOSSSLAYER, EquipmentSlotType.HEAD,
                     new Item.Properties().group(ModItemGroupWapons.BAS_MOD_WAPONS)));
