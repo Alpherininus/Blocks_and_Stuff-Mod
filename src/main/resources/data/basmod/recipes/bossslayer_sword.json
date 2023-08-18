@@ -1,0 +1,21 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#",
+        "#",
+        "W"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:netherite_chestplate"
+        },
+        "W": {
+            "item": "minecraft:wooden_sword"
+        }
+    },
+    "result": {
+        "item": "basmod:bossslayer_sword",
+        "count": 1
+    },
+    "group": "bossslayer"
+}

@@ -10,9 +10,7 @@ import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.text.StringTextComponent;
@@ -26,13 +24,11 @@ public class GodrickEntity extends MonsterEntity {
     private static final Minecraft mc = Minecraft.getInstance();
     private static final PlayerEntity playerIn = mc.player;
 
-    private static final Item[] BLOCKED_HEAL_EFFECT_ITEMS = {ItemInit.ASUKA_AXT.get(), ItemInit.BOSSSLAYER_SWORD.get(), ItemInit.SUBLIME_CREATOR_SWORD.get()};
-
     private static final EntityPredicate PLAYER_INVADER_CONDITION = (new EntityPredicate()).setDistance(64.0D);
     private static final Predicate<LivingEntity> NOT_UNDEAD = (p_213797_0_) -> p_213797_0_.getCreatureAttribute() != CreatureAttribute.UNDEAD && p_213797_0_.attackable();
 
-    private final ServerBossInfo bossInfo1Phase = new ServerBossInfo(new StringTextComponent("GODRICK CRAFT"), BossInfo.Color.RED, BossInfo.Overlay.PROGRESS);
-
+    private final ServerBossInfo bossInfo1Phase = (ServerBossInfo) new ServerBossInfo(new StringTextComponent("GODRICK CRAFT"), BossInfo.Color.RED, BossInfo.Overlay.PROGRESS)
+            .setPlayEndBossMusic(true).setCreateFog(true).setDarkenSky(true);
 
     private static final Predicate<LivingEntity> field_213627_bA = (p_213626_0_) -> p_213626_0_ instanceof MobEntity;
 
@@ -45,7 +41,7 @@ public class GodrickEntity extends MonsterEntity {
 
     public static AttributeModifierMap setCustomAttributes() {
          return MobEntity.func_233666_p_()
-                    .createMutableAttribute(Attributes.MAX_HEALTH, 4500.0D)
+                    .createMutableAttribute(Attributes.MAX_HEALTH, 9999D)
                     .createMutableAttribute(Attributes.ATTACK_DAMAGE, 20.5f)
                     .createMutableAttribute(Attributes.ATTACK_SPEED, 2.0f)
                     .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.25D)
@@ -84,28 +80,13 @@ public class GodrickEntity extends MonsterEntity {
         return super.getEntityInteractionResult(p_230254_1_, p_230254_2_);
     }
 
-    public static boolean getBlockedHealEffect() {
-        ItemStack main = playerIn.getItemStackFromSlot(EquipmentSlotType.MAINHAND);
-        return main.getItem() == BLOCKED_HEAL_EFFECT_ITEMS[main.hashCode()];
-    }
-
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     @Override
     protected void updateAITasks() {
 
         if (this.ticksExisted % 20 == 0) {
-            this.heal(1.5F);
-        }
-
-        if (getBlockedHealEffect()) {
-            if (this.getHealth() <= 10.5F) {
-                this.heal(0.25F);
-            }
-        } else {
-            if (this.getHealth() <= 10.5F) {
-                this.heal(2250.5F);
-            }
+            this.heal(1.9F);
         }
 
         this.bossInfo1Phase.setPercent(this.getHealth() / this.getMaxHealth());
