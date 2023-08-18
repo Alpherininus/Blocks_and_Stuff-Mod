@@ -237,6 +237,10 @@ public class ItemInit {
     public static final RegistryObject<Item> BOSSSLAYER_BOOTS = ITEMS.register("bossslayer_boots",
             () -> new BossSlayerArmorItem(BasmodArmorMaterial.BOSSSLAYER, EquipmentSlotType.FEET,
                     new Item.Properties().group(ModItemGroupWapons.BAS_MOD_WAPONS)));
+
+    public static final RegistryObject<Item> BOSSSLAYER_SWORD = ITEMS.register("bossslayer_sword",
+            () -> new BossSlayerSwordItem(BasmodToolMaterial.ZATOOL_MATERIAL, 99, 9.5f,
+                    new Item.Properties().group(ModItemGroupWapons.BAS_MOD_WAPONS)));
     
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

@@ -1,7 +1,7 @@
 package com.alpherininus.basmod.common.entitys;
 
 import com.alpherininus.basmod.client.controller.ai.AttackGoal;
-import com.alpherininus.basmod.core.init.EffectInit;
+import com.alpherininus.basmod.core.init.ItemInit;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
@@ -10,23 +10,23 @@ import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.network.play.server.SChangeGameStatePacket;
-import net.minecraft.potion.Effect;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Effects;
+import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.BossInfo;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerBossInfo;
-import net.minecraft.world.server.ServerWorld;
 
-import java.util.List;
 import java.util.function.Predicate;
 
 public class GodrickEntity extends MonsterEntity {
     private static final Minecraft mc = Minecraft.getInstance();
+    private static final PlayerEntity playerIn = mc.player;
+
+    private static final Item[] BLOCKED_HEAL_EFFECT_ITEMS = {ItemInit.ASUKA_AXT.get(), ItemInit.BOSSSLAYER_SWORD.get(), ItemInit.SUBLIME_CREATOR_SWORD.get()};
 
     private static final EntityPredicate PLAYER_INVADER_CONDITION = (new EntityPredicate()).setDistance(64.0D);
     private static final Predicate<LivingEntity> NOT_UNDEAD = (p_213797_0_) -> p_213797_0_.getCreatureAttribute() != CreatureAttribute.UNDEAD && p_213797_0_.attackable();
@@ -46,7 +46,7 @@ public class GodrickEntity extends MonsterEntity {
     public static AttributeModifierMap setCustomAttributes() {
          return MobEntity.func_233666_p_()
                     .createMutableAttribute(Attributes.MAX_HEALTH, 4500.0D)
-                    .createMutableAttribute(Attributes.ATTACK_DAMAGE, 15.0f)
+                    .createMutableAttribute(Attributes.ATTACK_DAMAGE, 20.5f)
                     .createMutableAttribute(Attributes.ATTACK_SPEED, 2.0f)
                     .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.25D)
                     .createMutableAttribute(Attributes.ATTACK_KNOCKBACK, 1.0f).create();
@@ -84,6 +84,11 @@ public class GodrickEntity extends MonsterEntity {
         return super.getEntityInteractionResult(p_230254_1_, p_230254_2_);
     }
 
+    public static boolean getBlockedHealEffect() {
+        ItemStack main = playerIn.getItemStackFromSlot(EquipmentSlotType.MAINHAND);
+        return main.getItem() == BLOCKED_HEAL_EFFECT_ITEMS[main.hashCode()];
+    }
+
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     @Override
@@ -93,8 +98,14 @@ public class GodrickEntity extends MonsterEntity {
             this.heal(1.5F);
         }
 
-        if (this.getHealth() <= 10.5F) {
-            this.heal(2250.5F);
+        if (getBlockedHealEffect()) {
+            if (this.getHealth() <= 10.5F) {
+                this.heal(0.25F);
+            }
+        } else {
+            if (this.getHealth() <= 10.5F) {
+                this.heal(2250.5F);
+            }
         }
 
         this.bossInfo1Phase.setPercent(this.getHealth() / this.getMaxHealth());

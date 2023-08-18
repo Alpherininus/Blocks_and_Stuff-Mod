@@ -1,0 +1,18 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "   ",
+        "# #",
+        "# #"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:netherite_chestplate"
+        }
+    },
+    "result": {
+        "item": "basmod:bossslayer_boots",
+        "count": 1
+    },
+    "group": "bossslayer"
+}

@@ -34,7 +34,7 @@ public enum BasmodToolMaterial implements IItemTier {
 	X_TOOL_MATERIAL(0, 5280, 15.0f, 0.0f, 10, () -> Ingredient.fromItems(Items.IRON_INGOT)),
 	Y_TOOL_MATERIAL(0, 5520, 15.0f, 0.0f, 10, () -> Ingredient.fromItems(Items.IRON_INGOT)),
 	Z_TOOL_MATERIAL(0, 5760, 15.0f, 0.0f, 22, () -> Ingredient.fromItems(Items.IRON_INGOT)),
-	ZATOOL_MATERIAL(0, 6000, 15.0f, 0.0f, 22, () -> Ingredient.fromItems(Items.IRON_INGOT)),
+	ZATOOL_MATERIAL(0, 6000, 15.0f, 0.0f, 22, () -> Ingredient.fromItems(Items.NETHERITE_INGOT)),
 
 	SUBLIME_SWORD_MATERIAL(0, 50, 15.0f, 0.0f, 15, () -> Ingredient.fromItems(Items.IRON_INGOT)),
 	CREATOR_SWORD_MATERIAL(0, 25, 10.0f, 0.0f, 5, () -> Ingredient.fromItems(Items.IRON_INGOT)),
