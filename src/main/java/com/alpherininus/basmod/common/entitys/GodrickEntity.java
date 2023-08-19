@@ -2,6 +2,7 @@ package com.alpherininus.basmod.common.entitys;
 
 import com.alpherininus.basmod.client.controller.ai.AttackGoal;
 import com.alpherininus.basmod.core.init.ItemInit;
+import com.alpherininus.basmod.core.init.SoundInit;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
@@ -13,6 +14,7 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.BossInfo;
 import net.minecraft.world.World;
@@ -86,7 +88,11 @@ public class GodrickEntity extends MonsterEntity {
     protected void updateAITasks() {
 
         if (this.ticksExisted % 20 == 0) {
-            this.heal(1.9F);
+            this.heal(2.5F);
+        }
+
+        if (this.dead) {
+            playerIn.playSound(SoundInit.DEAT_GODRICK_CRAFT_VICTORY_FF7.get(), SoundCategory.VOICE, 10, 0);
         }
 
         this.bossInfo1Phase.setPercent(this.getHealth() / this.getMaxHealth());

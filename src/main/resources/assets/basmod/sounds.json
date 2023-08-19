@@ -17,15 +17,6 @@
 			}
 		]
 	},
-	"basmod_boss_battlemusic": {
-		"subtitle": "sounds.basmod.music.basmod_boss_battlemusic",
-		"sounds": [
-			{
-				"name": "basmod:music/basmod_boss_battlemusic",
-				"stream": true
-			}
-		]
-	},
 	"basmod_mystery": {
 		"subtitle": "sounds.basmod.ambient.mystery",
 		"sounds": [
@@ -35,11 +26,11 @@
 			}
 		]
 	},
-	"the_robot_music_disc": {
-		"subtitle": "sounds.basmod.records.the_robot_music_disc",
+	"victory_ff7_gc": {
+		"subtitle": "sounds.basmod.entity.boss.victory_ff7_gc",
 		"sounds": [
 			{
-				"name": "basmod:records/der_roboter",
+				"name": "basmod:entity/boss/victory_ff7_gc",
 				"stream": true
 			}
 		]

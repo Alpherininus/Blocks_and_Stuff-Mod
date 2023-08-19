@@ -22,7 +22,7 @@ public class SoundInit {
             registerSoundEvent("gears_music_disc");
 
     public static final RegistryObject<SoundEvent> RECORDS_DER_ROBOTER =
-            registerSoundEvent("der_roboter");
+            registerSoundEvent("random/the_roboter");
 
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -32,12 +32,15 @@ public class SoundInit {
     // TODO Basmod Ambient
 
     public static final RegistryObject<SoundEvent> AMBIENT_MYSTERY =
-            registerSoundEvent("mystery");
+            registerSoundEvent("ambient/mystery");
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // TODO Basmod Main Menu
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    public static final RegistryObject<SoundEvent> DEAT_GODRICK_CRAFT_VICTORY_FF7 =
+            registerSoundEvent("entitys/boss/victory_ff7_gc");
 
     private static RegistryObject<SoundEvent> registerSoundEvent(String name) {
         return BAS_SOUND_EVENTS.register(name, () -> new SoundEvent(new ResourceLocation(Basmod.MOD_ID, name)));
