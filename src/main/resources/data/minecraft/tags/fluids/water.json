@@ -1,9 +1,0 @@
-{
-  "replace": false,
-  "values": [
-    "basmod:mana_fluid",
-    "basmod:mana_flowing",
-    "minecraft:water",
-    "minecraft:flowing_water"
-  ]
-}

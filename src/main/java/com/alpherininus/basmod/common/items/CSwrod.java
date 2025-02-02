@@ -1,5 +1,6 @@
 package com.alpherininus.basmod.common.items;
 
+import com.alpherininus.basmod.Basmod;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import net.minecraft.block.BlockState;
@@ -16,6 +17,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
 import net.minecraft.item.UseAction;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -24,6 +26,9 @@ public class CSwrod extends SwordItem {
     private final float attackDamage;
     private final float statBoost;
     private final ImmutableMultimap<Attribute, AttributeModifier> attributeModifiers;
+
+    private final ItemStack ItemIn = null;
+    private final DamageSource CUSTOM_DMG_CS = new DamageSource(Basmod.MOD_ID + ".creator_sword");
 
     public CSwrod(IItemTier tier, int attack, float speed, float boost, Properties properties) {
         super(tier, attack, speed, properties);
@@ -38,7 +43,6 @@ public class CSwrod extends SwordItem {
 
         this.attributeModifiers = builder.build();
     }
-
 
     public float getAttackDamage() {
         return this.attackDamage;

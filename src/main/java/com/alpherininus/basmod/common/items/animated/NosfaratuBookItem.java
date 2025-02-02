@@ -57,7 +57,7 @@ public class NosfaratuBookItem extends Item implements IAnimatable, ISyncable {
 
     @Override
     public void registerControllers(AnimationData data) {
-        AnimationController<MagicalStaffItem> controller = new AnimationController(this, CONTROLLER_NAME, 20, this::predicate);
+        AnimationController controller = new AnimationController(this, CONTROLLER_NAME, 20, this::predicate);
         data.addAnimationController(controller);
 
         AnimationController<MagicalStaffItem> idlecontroller = new AnimationController(this, "idlecontroller", 0, this::predicateIDLE);

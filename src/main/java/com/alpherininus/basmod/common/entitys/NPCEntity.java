@@ -1,6 +1,5 @@
 package com.alpherininus.basmod.common.entitys;
 
-import com.alpherininus.basmod.client.controller.ai.AttackGoal;
 import com.alpherininus.basmod.core.init.ItemInit;
 import com.alpherininus.basmod.core.util.BasmodConfig;
 import net.minecraft.entity.*;
@@ -58,7 +57,6 @@ public class NPCEntity extends CreatureEntity {
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     protected void addPlayerAttackGoals() {
-        this.goalSelector.addGoal(1, new AttackGoal(this, 1.0D, true));
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, 10, true, false, field_213627_bA));
 
     }

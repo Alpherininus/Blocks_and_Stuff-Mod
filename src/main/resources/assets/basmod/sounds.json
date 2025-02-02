@@ -30,7 +30,7 @@
 		"subtitle": "sounds.basmod.entity.boss.victory_ff7_gc",
 		"sounds": [
 			{
-				"name": "basmod:entity/boss/victory_ff7_gc",
+				"name": "basmod:entitys/boss/victory_ff7_gc",
 				"stream": true
 			}
 		]

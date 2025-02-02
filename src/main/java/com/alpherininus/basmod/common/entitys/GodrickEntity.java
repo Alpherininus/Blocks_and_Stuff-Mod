@@ -1,7 +1,5 @@
 package com.alpherininus.basmod.common.entitys;
 
-import com.alpherininus.basmod.client.controller.ai.AttackGoal;
-import com.alpherininus.basmod.core.init.ItemInit;
 import com.alpherininus.basmod.core.init.SoundInit;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.*;
@@ -11,7 +9,6 @@ import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.item.Item;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundCategory;
@@ -59,7 +56,6 @@ public class GodrickEntity extends MonsterEntity {
         this.goalSelector.addGoal(5, new LookAtGoal(this, PlayerEntity.class, 16.0F));
         this.goalSelector.addGoal(6, new LookRandomlyGoal(this));
         this.goalSelector.addGoal(2, new LookAtWithoutMovingGoal(this, PlayerEntity.class, 15.5F, 0.5F));
-        this.goalSelector.addGoal(1, new AttackGoal(this, 0.5D, true));
         this.addEvilGoal();
 
         this.targetSelector.addGoal(0, new HurtByTargetGoal(this));
@@ -91,8 +87,8 @@ public class GodrickEntity extends MonsterEntity {
             this.heal(2.5F);
         }
 
-        if (this.dead) {
-            playerIn.playSound(SoundInit.DEAT_GODRICK_CRAFT_VICTORY_FF7.get(), SoundCategory.VOICE, 10, 0);
+        if (this.getHealth() == 0.0F) {
+            playerIn.playSound(SoundInit.AMBIENT_MYSTERY.get(), SoundCategory.MUSIC, 10, 10);
         }
 
         this.bossInfo1Phase.setPercent(this.getHealth() / this.getMaxHealth());

@@ -2,14 +2,8 @@ package com.alpherininus.basmod.core.init;
 
 import com.alpherininus.basmod.Basmod;
 import com.alpherininus.basmod.common.items.*;
-import com.alpherininus.basmod.common.items.animated.HealStaffItem;
-import com.alpherininus.basmod.common.items.animated.MagicalStaffItem;
-import com.alpherininus.basmod.common.items.animated.NosfaratuBookItem;
-import com.alpherininus.basmod.common.items.animated.TeleportStaffItem;
-import com.alpherininus.basmod.common.items.animated.renderer.HealStaffItemRenderer;
-import com.alpherininus.basmod.common.items.animated.renderer.MagicalStaffItemRenderer;
-import com.alpherininus.basmod.common.items.animated.renderer.NosfaratuBookItemRenderer;
-import com.alpherininus.basmod.common.items.animated.renderer.TeleportStaffItemRenderer;
+import com.alpherininus.basmod.common.items.animated.*;
+import com.alpherininus.basmod.common.items.animated.renderer.*;
 import com.alpherininus.basmod.common.items.armor.*;
 import com.alpherininus.basmod.common.items.models.BasmodSpawnEggItem;
 import com.alpherininus.basmod.common.items.theme.*;
@@ -180,6 +174,11 @@ public class ItemInit {
     public static final RegistryObject<Item> TOTEM_OF_TAKEOVER = ITEMS.register("totem_of_takeover",
             () -> new TotemOfTakeover(BasmodArmorMaterial.TOTEMOFTAKEOVER, EquipmentSlotType.CHEST,
                     new Item.Properties().isImmuneToFire().group(ModItemGroupItems.BAS_MOD_ITEMS)));
+
+    public static final RegistryObject<Item> ANIMATED_SPINBLADE = ITEMS.register("spin_blade",
+            () -> new SpinBladeItem(new Item.Properties().setISTER(() -> SpinBladeRenderer::new).maxStackSize(1).group(ModItemGroupWapons.BAS_MOD_WAPONS), new Random(3)));
+
+
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // TODO SWORDS

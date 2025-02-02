@@ -1,13 +1,15 @@
 package com.alpherininus.basmod.common.entitys.animated;
 
-import com.alpherininus.basmod.client.controller.ai.AttackGoal;
+import com.alpherininus.basmod.common.entitys.NPCEntity;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.merchant.villager.AbstractVillagerEntity;
 import net.minecraft.entity.monster.MonsterEntity;
+import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -28,6 +30,7 @@ import net.minecraft.world.Difficulty;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerBossInfo;
 import net.minecraft.world.server.ServerWorld;
+import software.bernie.geckolib3.core.AnimationState;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;
@@ -56,10 +59,6 @@ public class BossOfDeadEntity extends MonsterEntity implements IAnimatable {
 
     private final ServerBossInfo bossInfo1Phase = new ServerBossInfo(new StringTextComponent("Dance of Death"), BossInfo.Color.PINK, BossInfo.Overlay.PROGRESS);
 
-    private final int id = 1;
-    private final int state = 0;
-    private boolean slowed;
-
     private final Minecraft mc = Minecraft.getInstance();
 
     private static final Predicate<LivingEntity> field_213627_bA = (p_213626_0_) -> p_213626_0_ instanceof MobEntity;
@@ -72,15 +71,22 @@ public class BossOfDeadEntity extends MonsterEntity implements IAnimatable {
 
     protected void registerGoals() {
         this.addSwimGoals();
+        this.addAttackGoal();
 
         this.goalSelector.addGoal(5, new LookAtGoal(this, PlayerEntity.class, 16.0F));
         this.goalSelector.addGoal(6, new LookRandomlyGoal(this));
         this.goalSelector.addGoal(2, new LookAtWithoutMovingGoal(this, PlayerEntity.class, 15.5F, 1.0F));
-        this.goalSelector.addGoal(1, new AttackGoal(this, 0.6D, true));
 
-        this.targetSelector.addGoal(0, new HurtByTargetGoal(this));
-        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, 10, true, false, field_213627_bA));
+        this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
+        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, 10, true, false, field_213627_bA));
+        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, IronGolemEntity.class, true));
+        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractVillagerEntity.class, false));
+    }
 
+    protected void addAttackGoal() {
+        this.goalSelector.addGoal(2, new BossOfDeadEntity.EvilAttackGoal(this));
+        this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setCallsForHelp());
+        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
     }
 
     protected void addSwimGoals() {
@@ -128,12 +134,30 @@ public class BossOfDeadEntity extends MonsterEntity implements IAnimatable {
 
     }
 
+    private PlayState attackPredicate(AnimationEvent event) {
+        if (this.isSwingInProgress && event.getController().getAnimationState().equals(AnimationState.Stopped)) {
+            event.getController().markNeedsReload();
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("attack", false));
+
+            this.isSwingInProgress = true;
+
+        }
+
+        return PlayState.CONTINUE;
+    }
+
     @Override
     public void registerControllers(AnimationData data) {
+
         data.addAnimationController(
                 new AnimationController(this, "ontroller_idle", 0, this::predicate));
 
+        data.addAnimationController(
+                new AnimationController(this, "attack_controller", 0, this::attackPredicate));
+
     }
+
+
 
     @Override
     public AnimationFactory getFactory() {
@@ -293,6 +317,16 @@ public class BossOfDeadEntity extends MonsterEntity implements IAnimatable {
     @Override
     public void livingTick() {
         super.livingTick();
+    }
+
+    static class EvilAttackGoal extends MeleeAttackGoal {
+        public EvilAttackGoal(BossOfDeadEntity boss) {
+            super(boss, 1.4D, true);
+        }
+
+        protected double getAttackReachSqr(LivingEntity attackTarget) {
+            return (double)(4.0F + attackTarget.getWidth());
+        }
     }
 
 }

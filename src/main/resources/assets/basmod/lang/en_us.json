@@ -177,6 +177,9 @@
 	"sounds.basmod.records.gears_music_disc": "Gears",
 	"sounds.basmod.music.basmod_boss_battlemusic": "Blocks and Staff | Boss Battle Music",
 
+	"sounds.basmod.entity.boss.victory_ff7_gc": "Victory",
+	"sounds.basmod.ambient.mystery": "Mystery",
+
 	"item.basmod.gears_music_disc": "Gears",
 	"item.basmod.gears_music_disc.desc": "Music Descripton",
 	"item.basmod.theme_music_disc": "Theme",

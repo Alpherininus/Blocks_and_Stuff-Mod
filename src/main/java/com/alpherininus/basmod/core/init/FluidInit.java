@@ -18,9 +18,9 @@ import net.minecraftforge.registries.ForgeRegistries;
 import java.awt.*;
 
 public class FluidInit {
-    public static final ResourceLocation WATER_STILL_RL = new ResourceLocation("block/water_still");
-    public static final ResourceLocation WATER_FLOWING_RL = new ResourceLocation("block/water_flow");
-    public static final ResourceLocation WATER_OVERLAY_RL = new ResourceLocation("block/water_overlay");
+    public static final ResourceLocation WATER_STILL_RL = new ResourceLocation(Basmod.MOD_ID,"block/mana_still");
+    public static final ResourceLocation WATER_FLOWING_RL = new ResourceLocation(Basmod.MOD_ID,"block/mana_flow");
+    public static final ResourceLocation WATER_OVERLAY_RL = new ResourceLocation(Basmod.MOD_ID,"block/mana_overlay");
 
     public static final DeferredRegister<Fluid>
             FLUIDS = DeferredRegister.create(ForgeRegistries.FLUIDS, Basmod.MOD_ID);
@@ -28,10 +28,10 @@ public class FluidInit {
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     public static final RegistryObject<FlowingFluid> MANA_FLUID
-            = FLUIDS.register("mana_fluid", () -> new ForgeFlowingFluid.Source(FluidInit.MANA_PROPERTIES));
+            = FLUIDS.register("mana_still", () -> new ForgeFlowingFluid.Source(FluidInit.MANA_PROPERTIES));
 
     public static final RegistryObject<FlowingFluid> MANA_FLOWING
-            = FLUIDS.register("mana_flowing", () -> new ForgeFlowingFluid.Flowing(FluidInit.MANA_PROPERTIES));
+            = FLUIDS.register("mana_flow", () -> new ForgeFlowingFluid.Flowing(FluidInit.MANA_PROPERTIES));
 
 
     public static final ForgeFlowingFluid.Properties MANA_PROPERTIES = new ForgeFlowingFluid.Properties(
