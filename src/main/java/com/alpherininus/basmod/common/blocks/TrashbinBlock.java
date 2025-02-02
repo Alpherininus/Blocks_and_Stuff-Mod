@@ -2,6 +2,7 @@ package com.alpherininus.basmod.common.blocks;
 
 import com.alpherininus.basmod.core.util.BasmodTags;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.ComposterBlock;
 import net.minecraft.block.RotatedPillarBlock;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.ITooltipFlag;
@@ -11,6 +12,7 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.INBT;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
@@ -39,26 +41,9 @@ public class TrashbinBlock extends RotatedPillarBlock {
         super.addInformation(stack, worldIn, tooltip, flagIn);
     }
 
+    @Override
     public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-
-        ItemStack itemstack1 = player.getHeldItem(handIn);
-        ItemStack mainhand = player.getItemStackFromSlot(EquipmentSlotType.MAINHAND);
-
-        if (worldIn.isRemote) {
-            if (itemstack1.isEmpty()) {
-                System.out.println("## Trashing has failed, No Blocks or Items in your Hand. ##");
-            }
-        } else {
-            if (state.isIn(BasmodTags.Blocks.TRASHABLE_BLOCKS)) {
-                itemstack1.setDamage(itemstack1.getDamage() + 1);
-                if (itemstack1.getDamage() >= itemstack1.getMaxDamage()) itemstack1.setCount(0);
-            }
-
-            ItemStack itemstack = player.getHeldItem(handIn);
-            return itemstack.getItem() instanceof BlockItem && (new BlockItemUseContext(player, handIn, itemstack, hit)).canPlace() ? ActionResultType.PASS : ActionResultType.SUCCESS;
-        }
-        ItemStack itemstack = player.getHeldItem(handIn);
-        return itemstack.getItem() instanceof BlockItem && (new BlockItemUseContext(player, handIn, itemstack, hit)).canPlace() ? ActionResultType.PASS : ActionResultType.SUCCESS;
+        return super.onBlockActivated(state, worldIn, pos, player, handIn, hit);
     }
 }
 
